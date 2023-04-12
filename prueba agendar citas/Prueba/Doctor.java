@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Doctor extends Persona{
     private String especialidad;
     static private ArrayList<Cita> agenda = new ArrayList<Cita>();
-    static ArrayList<Cita> agendaDisponible = new ArrayList<Cita>();
     
     static {
     	agenda.add(new Cita("3 de Abril, 8:00 am", null));
@@ -34,17 +33,16 @@ public class Doctor extends Persona{
         this.agenda = agenda;
     }
     
-    public void mostrarAgendaDisponible() {
+    public ArrayList<Cita> mostrarAgendaDisponible() {
+    	ArrayList<Cita> agendaDisponible = new ArrayList<Cita>();
     	for(int i=1; i<=agenda.size(); i++) {
     		if (agenda.get(i-1).getPaciente() == null) {
     			agendaDisponible.add(agenda.get(i-1));
     		}
     }
-    	for(int i=1; i<=agendaDisponible.size(); i++) {
-    		System.out.println(i + ". " + agendaDisponible.get(i-1).getFecha());
-    }
+    	return agendaDisponible;
   }
-    public void actualizarAgenda(Paciente pacienteAsignado, byte numeroCita) {
+    public void actualizarAgenda(Paciente pacienteAsignado, byte numeroCita, ArrayList<Cita> agendaDisponible) {
     	for(int i=1; i<=agenda.size(); i++) {
     		if (agenda.get(i-1).getFecha() == agendaDisponible.get(numeroCita-1).getFecha()) {
     			agenda.get(i-1).setPaciente(pacienteAsignado);

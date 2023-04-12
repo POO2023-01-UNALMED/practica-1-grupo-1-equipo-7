@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Hospital {
     static private ArrayList<Paciente> listaPacientes = new ArrayList<Paciente>();;
     static private ArrayList<Doctor> listaDoctores = new ArrayList<Doctor>();
-    static ArrayList<Doctor> doctoresDisponibles = new ArrayList<Doctor>();
     
     static {
     	
@@ -23,16 +22,15 @@ public class Hospital {
     	listaPacientes.add(new Paciente(555, "Pedro", new HistoriaClinica()));
     }
     
-    static public void buscarTipoDoctor(String especialidad) {
+    static public ArrayList<Doctor> buscarTipoDoctor(String especialidad) {
+    	ArrayList<Doctor> doctoresDisponibles = new ArrayList<Doctor>();
     	for(int i=1; i<=listaDoctores.size(); i++) {
     		if (listaDoctores.get(i-1).getEspecialidad() == especialidad) {
     			doctoresDisponibles.add(listaDoctores.get(i-1));
     		}
     }
-    	for(int i=1; i<=doctoresDisponibles.size(); i++) {
-    		System.out.println(i + ". " + doctoresDisponibles.get(i-1).getNombre());
-    	}
-    }
+    	return doctoresDisponibles;
+}
     
     static public Paciente buscarPaciente(int numeroCedula) {
     	Paciente pacienteAsignado = null;
