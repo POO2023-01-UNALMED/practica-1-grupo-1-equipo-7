@@ -4,18 +4,20 @@ public class Medicamento {
 	private String nombre;
 	private String tipo;
 	private String descripcion;
-	private int cantidad = 0;
-	
-	public Medicamento(String nombre, String tipo, String descripcion, int cantidad) {
+	private int cantidad;
+	private int precio;
+	public Medicamento(String nombre, String tipo, String descripcion, int cantidad, int precio) {
 		this.nombre = nombre;
 		this.tipo = tipo;
 		this.descripcion = descripcion;
 		this.cantidad=cantidad;
+		this.precio = precio;
 	}
 	
 	public void eliminarCantidad() {
 		this.cantidad=this.cantidad-1;
 	}
+
 	
 	public String getNombre() {
 		return nombre;
@@ -41,9 +43,18 @@ public class Medicamento {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-	
+
+	public int getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(int precio) {
+		this.precio = precio;
+	}
+
+	@Override
 	public String toString() {
-		return "Nombre: " + nombre + ", " + "Tipo: " + tipo + ", " + "Descripcion: " + descripcion;
+		return "Nombre: " + nombre + ", " + "Tipo: " + tipo + ", " + "Descripcion: " + descripcion + "Cantidad: " + cantidad;
 	}
 
 }

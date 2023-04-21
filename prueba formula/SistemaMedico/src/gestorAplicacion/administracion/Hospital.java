@@ -7,25 +7,37 @@ import gestorAplicacion.personas.Paciente;
 import gestorAplicacion.administracion.Medicamento;
 
 
+
 public class Hospital {
+
 	static private ArrayList<Paciente> listaPacientes = new ArrayList<Paciente>();;
     static private ArrayList<Doctor> listaDoctores = new ArrayList<Doctor>();
-    static ArrayList<Doctor> doctoresDisponibles = new ArrayList<Doctor>();
     static private ArrayList<Medicamento> listaMedicamentos = new ArrayList<Medicamento>();    
     
     static {
-    	    	
-    	listaPacientes.add(new Paciente(111, "Juan", new HistoriaClinica()));
-    	listaPacientes.add(new Paciente(222, "Jose", new HistoriaClinica()));
-    	listaPacientes.add(new Paciente(333, "Felipe", new HistoriaClinica()));
-    	listaPacientes.add(new Paciente(444, "Maria", new HistoriaClinica()));
-    	listaPacientes.add(new Paciente(555, "Pedro", new HistoriaClinica()));
+		ArrayList<String> enfe = new ArrayList<>();
+		enfe.add("Taquicardia");
+		enfe.add("Hipertension");
+		listaPacientes.add(new Paciente(111, "Daniel", new HistoriaClinica(), "Sisben", enfe));
+
+		listaMedicamentos.add(new Medicamento("Corazon","Taquicardia","afaef",4,1000));
+		listaMedicamentos.add(new Medicamento("Riñon","TAsfaef","afaef",4,1000));
+		listaMedicamentos.add(new Medicamento("Azucar","General","afaef",4,1000));
+		listaMedicamentos.add(new Medicamento("Agua","Hipertension","afaef",4,2000));
+
+    	listaDoctores.add(new Doctor(123,"Diego","General",new ArrayList<String>()));
+    	listaDoctores.add(new Doctor(123,"Santiago","Oftalmologia",new ArrayList<String>()));
+    	listaDoctores.add(new Doctor(123,"Camilo","Odontologia",new ArrayList<String>()));
+    	listaDoctores.add(new Doctor(123,"Elian","General",new ArrayList<String>()));
+    	listaDoctores.add(new Doctor(123,"Daniel","Oftalmologia",new ArrayList<String>()));
+    	listaDoctores.add(new Doctor(123,"Pacho","General",new ArrayList<String>()));
     	
-    	listaMedicamentos.add(new Medicamento("Omeprazol","General","Sirve pa algo",5));
-    	listaMedicamentos.add(new Medicamento("Ibuprofeno","General","Sirve pa algo",5));
-    	listaMedicamentos.add(new Medicamento("Acetaminofen","General","Sirve pa algo",5));
-    	listaMedicamentos.add(new Medicamento("Xanax","General","Sirve pa algo",5));
+
     }
+    
+    //public Hospital() {
+   // 	Deserializador.deserializar(this);
+    //}
     
     static public Paciente buscarPaciente(int numeroCedula) {
     	Paciente pacienteAsignado = null;
@@ -36,15 +48,14 @@ public class Hospital {
     	}
     	return pacienteAsignado;
     }
-	static public void buscarTipoDoctor(String especialidad) {
-    	for(int i=0; i<listaDoctores.size(); i++) {
-    		if (listaDoctores.get(i).getEspecialidad() == especialidad) {
-    			doctoresDisponibles.add(listaDoctores.get(i));
+    static public ArrayList<Doctor> buscarTipoDoctor(String especialidad) {
+    	ArrayList<Doctor> doctoresDisponibles = new ArrayList<Doctor>();
+    	for(int i=1; i<=listaDoctores.size(); i++) {
+    		if (listaDoctores.get(i-1).getEspecialidad() == especialidad) {
+    			doctoresDisponibles.add(listaDoctores.get(i-1));
     		}
-    }
-    	for(int i=1; i<=doctoresDisponibles.size(); i++) {
-    		System.out.println(i + ". " + doctoresDisponibles.get(i-1).getNombre());
     	}
+    	return doctoresDisponibles;
     }
 	static public ArrayList<Medicamento> medicamentosDisponibles(){
 		ArrayList<Medicamento> disponibles = new ArrayList<Medicamento>();
@@ -55,7 +66,6 @@ public class Hospital {
 		}
 		return disponibles;
 	}
-	
 	
     
 	public static ArrayList<Paciente> getListaPacientes() {

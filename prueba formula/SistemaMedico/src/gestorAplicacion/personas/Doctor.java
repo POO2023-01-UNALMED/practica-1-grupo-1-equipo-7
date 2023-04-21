@@ -7,10 +7,12 @@ import gestorAplicacion.administracion.Cita;
 public class Doctor extends Persona{
 	private String especialidad;
     private ArrayList<Cita> agenda = new ArrayList<Cita>();
+	private ArrayList<String> tipoEps;
     
-    public Doctor(int cedula, String nombre, String especialidad) {
+    public Doctor(int cedula, String nombre, String especialidad, ArrayList<String> tipoEps) {
     	super(cedula, nombre);
     	this.especialidad = especialidad;
+		this.tipoEps = tipoEps;
     }
     
 	public String getEspecialidad() {
@@ -25,5 +27,12 @@ public class Doctor extends Persona{
 	public void setAgenda(ArrayList<Cita> agenda) {
 		this.agenda = agenda;
 	}
-    
+
+	public ArrayList<String> getTipoEps() {
+		return tipoEps;
+	}
+
+	public void setTipoEps(ArrayList<String> tipoEps) {
+		this.tipoEps = tipoEps;
+	}
 }
