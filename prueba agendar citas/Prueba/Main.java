@@ -9,6 +9,14 @@ public class Main {
 	//funcionalidad agendar cita	
 	static public void agendarCita(){
 		
+        System.out.print("Ingrese su numero de cedula: ");
+		
+		int numeroCedula;
+		numeroCedula = sc.nextInt();
+		
+		Paciente pacienteAsignado = Hospital.buscarPaciente(numeroCedula);
+		
+		
 		//menu para elegir el tipo de cita
 		byte tipoCita;
 		
@@ -27,21 +35,21 @@ public class Main {
 		
 		switch (tipoCita) {
 		case 1:
-			doctoresDisponibles = Hospital.buscarTipoDoctor("General");
+			doctoresDisponibles = pacienteAsignado.buscarDoctorEps("General");
 			for(int i=1; i<=doctoresDisponibles.size(); i++) {
 	    		System.out.println(i + ". " + doctoresDisponibles.get(i-1).getNombre());
 			}
 			break;
 			
 		case 2:
-			doctoresDisponibles = Hospital.buscarTipoDoctor("Odontologia");
+			doctoresDisponibles = pacienteAsignado.buscarDoctorEps("Odontologia");
 			for(int i=1; i<=doctoresDisponibles.size(); i++) {
 	    		System.out.println(i + ". " + doctoresDisponibles.get(i-1).getNombre());
 			}
 			break;
 			
 		case 3:
-			doctoresDisponibles = Hospital.buscarTipoDoctor("Oftalmologia");
+			doctoresDisponibles = pacienteAsignado.buscarDoctorEps("Oftalmologia");
 			for(int i=1; i<=doctoresDisponibles.size(); i++) {
 	    		System.out.println(i + ". " + doctoresDisponibles.get(i-1).getNombre());
 			}
@@ -64,38 +72,37 @@ public class Main {
 		for(int i=1; i<=agendaDisponible.size(); i++) {
     		System.out.println(i + ". " + agendaDisponible.get(i-1).getFecha());
     }
-		
+	
 		//selecciona la cita, luego busca el paciente y lo asigna en la cita
 		System.out.print("\nSeleccione la cita de su preferencia: ");
 		
 		byte numeroCita;
 		numeroCita = sc.nextByte();
 		
-		System.out.print("Ingrese su numero de cedula: ");
-		
-		int numeroCedula;
-		numeroCedula = sc.nextInt();
-		
-		Paciente pacienteAsignado = Hospital.buscarPaciente(numeroCedula);
 		
 		//actualiza la agenda del doctor con el paciente
-		doctorAsignado.actualizarAgenda(pacienteAsignado, numeroCita, agendaDisponible);
+		Cita citaAsignada = doctorAsignado.actualizarAgenda(pacienteAsignado, numeroCita, agendaDisponible);
 		
-		System.out.println("\nSu cita ha sido asignada con exito");
+		System.out.println("\nSu cita ha sido asignada con exito");		
 		
-		//crea la cita con el parametro doctor, y la guarda en historia clinica
-		Cita citaAsignada = new Cita(agendaDisponible.get(numeroCita-1).getFecha(), pacienteAsignado, doctorAsignado);
-		HistoriaClinica.actualizarHistoriaClinica(citaAsignada);
+		pacienteAsignado.actualizarHistorialCitas(citaAsignada);
+		
 		
 		//resumen de la cita
 		System.out.println("\nResumen de su cita: ");
 		System.out.println("Fecha: " + citaAsignada.getFecha());
 		System.out.println("Paciente: " + citaAsignada.getPaciente().getNombre());
 		System.out.println("Doctor: " + citaAsignada.getDoctor().getNombre());
+		System.out.println("Precio de la cita: " + pacienteAsignado.calcularPrecio(citaAsignada));
+		
 		
 		//limpia los arrays de doctores y agenda disponibles al haberse asignado un paciente a una cita
 		agendaDisponible.clear();
 		doctoresDisponibles.clear();
+		
+		System.out.println("\nhistorial citas de historia clinica del paciente: ");
+		pacienteAsignado.mostrarHistorial();
+		
 	}
 
 	public static void main(String[] args) {
@@ -112,6 +119,8 @@ public class Main {
 			
 		switch (opcion) {
 		case 1:
+			agendarCita();
+			agendarCita();
 			agendarCita();
 			break;
 		    

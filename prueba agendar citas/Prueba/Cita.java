@@ -5,10 +5,6 @@ public class Cita {
     private Paciente paciente;
     private Doctor doctor;
     
-    public Cita(String fecha, Paciente paciente) {
-    	this.fecha = fecha;
-    	this.paciente = paciente;
-    }
     
     public Cita(String fecha, Paciente paciente, Doctor doctor) {
     	this.fecha = fecha;

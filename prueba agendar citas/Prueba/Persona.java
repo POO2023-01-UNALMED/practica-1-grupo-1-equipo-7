@@ -3,10 +3,12 @@ package Prueba;
 public abstract class Persona {
     private int cedula;
     private String nombre;
+    private String tipoEps;
     
-    public Persona(int cedula, String nombre) {
+    public Persona(int cedula, String nombre, String tipoEps) {
     	this.cedula = cedula;
     	this.nombre = nombre;
+    	this.tipoEps = tipoEps;
     }
 
     public int getCedula() {
@@ -23,5 +25,13 @@ public abstract class Persona {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    
+    public String getTipoEps() {
+        return tipoEps;
+    }
+
+    public void setTipoEps(String tipoEps) {
+        this.tipoEps = tipoEps;
     }
 }
