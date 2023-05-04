@@ -16,6 +16,16 @@ public class Hospital implements Serializable {
         Deserializador.deserializar(this);
     }
 
+    public Paciente buscarPaciente(int cedulaPaciente) {
+        for (Paciente paciente :
+                listaPacientes) {
+            if (paciente.getCedula() == cedulaPaciente) {
+                return paciente;
+            }
+        }
+        return null;
+    }
+
     public void registrarPaciente(Paciente paciente) {
         listaPacientes.add(paciente);
     }
