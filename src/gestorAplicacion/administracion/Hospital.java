@@ -16,6 +16,10 @@ public class Hospital implements Serializable {
         Deserializador.deserializar(this);
     }
 
+    public void registrarPaciente(Paciente paciente) {
+        listaPacientes.add(paciente);
+    }
+
     public ArrayList<Doctor> getListaDoctores() {
         return listaDoctores;
     }
