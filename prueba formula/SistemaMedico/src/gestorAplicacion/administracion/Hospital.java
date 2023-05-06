@@ -1,8 +1,10 @@
 package gestorAplicacion.administracion;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import gestorAplicacion.personas.Doctor;
+import gestorAplicacion.personas.Enfermedad;
 import gestorAplicacion.personas.Paciente;
 import gestorAplicacion.administracion.Medicamento;
 
@@ -15,15 +17,14 @@ public class Hospital {
     static private ArrayList<Medicamento> listaMedicamentos = new ArrayList<Medicamento>();    
     
     static {
-		ArrayList<String> enfe = new ArrayList<>();
-		enfe.add("Taquicardia");
-		enfe.add("Hipertension");
-		listaPacientes.add(new Paciente(111, "Daniel", new HistoriaClinica(), "Sisben", enfe));
-
-		listaMedicamentos.add(new Medicamento("Corazon","Taquicardia","afaef",4,1000));
-		listaMedicamentos.add(new Medicamento("Riñon","TAsfaef","afaef",4,1000));
-		listaMedicamentos.add(new Medicamento("Azucar","General","afaef",4,1000));
-		listaMedicamentos.add(new Medicamento("Agua","Hipertension","afaef",4,2000));
+		ArrayList<Enfermedad> enf = new ArrayList<>();
+		enf.add(new Enfermedad("Oftalmologia", "Miopia", "I"));
+		enf.add(new Enfermedad("Oftalmologia", "Cataratas", "II"));
+		enf.add(new Enfermedad("Odontologia", "Caries", "I"));
+		enf.add(new Enfermedad("Odontologia", "Muelas del juicio", "II"));
+		Paciente pac = new Paciente(111, "Pepe", "Contributiva");
+		pac.getHistoriaClinica().setEnfermedades(enf);
+		listaPacientes.add(pac);
 
     	listaDoctores.add(new Doctor(123,"Diego","General",new ArrayList<String>()));
     	listaDoctores.add(new Doctor(123,"Santiago","Oftalmologia",new ArrayList<String>()));
@@ -31,9 +32,16 @@ public class Hospital {
     	listaDoctores.add(new Doctor(123,"Elian","General",new ArrayList<String>()));
     	listaDoctores.add(new Doctor(123,"Daniel","Oftalmologia",new ArrayList<String>()));
     	listaDoctores.add(new Doctor(123,"Pacho","General",new ArrayList<String>()));
-    	
 
-    }
+		listaMedicamentos.add(new Medicamento("Miopia", enf.get(0),"aef", 1, 10000));
+		listaMedicamentos.add(new Medicamento("Cataratas", enf.get(1),"aef", 1, 10000));
+		listaMedicamentos.add(new Medicamento("Muelas del juicio", enf.get(2),"aef", 1, 10000));
+		listaMedicamentos.add(new Medicamento("Caries", enf.get(3),"aef", 1, 20000));
+
+		Cita cit = new Cita("1414", pac, listaDoctores.get(4));
+		pac.getHistoriaClinica().getHistorialCitas().add(cit);
+
+	}
     
     //public Hospital() {
    // 	Deserializador.deserializar(this);

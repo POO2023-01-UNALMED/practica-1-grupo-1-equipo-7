@@ -8,6 +8,7 @@ public class Doctor extends Persona{
 	private String especialidad;
     private ArrayList<Cita> agenda = new ArrayList<Cita>();
 	private ArrayList<String> tipoEps;
+	private ArrayList<String> enfermedadesAtendidas;
     
     public Doctor(int cedula, String nombre, String especialidad, ArrayList<String> tipoEps) {
     	super(cedula, nombre);

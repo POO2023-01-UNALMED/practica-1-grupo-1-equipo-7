@@ -1,14 +1,16 @@
 package gestorAplicacion.administracion;
 
+import gestorAplicacion.personas.Enfermedad;
+
 public class Medicamento {
 	private String nombre;
-	private String tipo;
+	private Enfermedad enfermedad;
 	private String descripcion;
 	private int cantidad;
 	private int precio;
-	public Medicamento(String nombre, String tipo, String descripcion, int cantidad, int precio) {
+	public Medicamento(String nombre, Enfermedad enfermedad, String descripcion, int cantidad, int precio) {
 		this.nombre = nombre;
-		this.tipo = tipo;
+		this.enfermedad = enfermedad;
 		this.descripcion = descripcion;
 		this.cantidad=cantidad;
 		this.precio = precio;
@@ -25,11 +27,11 @@ public class Medicamento {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getTipo() {
-		return tipo;
+	public Enfermedad getEnfermedad() {
+		return enfermedad;
 	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setEnfermedad(Enfermedad enfermedad) {
+		this.enfermedad = enfermedad;
 	}
 	public String getDescripcion() {
 		return descripcion;
@@ -54,7 +56,7 @@ public class Medicamento {
 
 	@Override
 	public String toString() {
-		return "Nombre: " + nombre + ", " + "Tipo: " + tipo + ", " + "Descripcion: " + descripcion + "Cantidad: " + cantidad;
+		return "Nombre: " + nombre + ", " + "Enfermedad: " + enfermedad.getNombre() + " " + enfermedad.getTipologia() + ", " + "Descripcion: " + descripcion;
 	}
 
 }
