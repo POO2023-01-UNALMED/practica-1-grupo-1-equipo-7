@@ -1,0 +1,33 @@
+name: Build JAR file
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'src/**.java'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Compile Java files
+        run: |
+          mkdir -p bin
+          find src -name '*.java' | xargs javac -d bin
+
+      - name: Build JAR file
+        run: |
+          jar cfe SistemaMedico.jar Main -C bin .
+          mv myapp.jar ${{ github.workspace }}
+
+      - name: Delete missing Java files from bin
+        run: |
+          find bin -name '*.class' | sed 's/\.class/.java/' | xargs -I {} sh -c '[ ! -e "{}" ] && rm {}'
