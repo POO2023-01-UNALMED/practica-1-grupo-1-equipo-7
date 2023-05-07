@@ -30,7 +30,7 @@ jobs:
       - name: Build JAR file
         run: |
           jar cfe SistemaMedico.jar Main -C bin .
-          mv SistemaMedico.jar ${{ github.workspace }}/SistemaMedico.jar
+          mv ./SistemaMedico.jar ${{ github.workspace }}/SistemaMedico.jar
 
       - name: Delete missing Java files from bin
         run: |
