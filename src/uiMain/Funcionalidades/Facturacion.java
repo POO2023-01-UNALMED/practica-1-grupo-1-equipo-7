@@ -47,7 +47,7 @@ public class Facturacion {
         } while (servicioSeleccionado == null);
 
         // Calcular precio
-        double precioServicioSeleccionado = pacienteSeleccionado.calcularPrecio();
+        double precioServicioSeleccionado = pacienteSeleccionado.calcularPrecio(servicioSeleccionado);
         System.out.println("Total a pagar: $" + precioServicioSeleccionado);
 
         // Realizar pago

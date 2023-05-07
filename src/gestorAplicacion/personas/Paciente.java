@@ -1,6 +1,7 @@
 package gestorAplicacion.personas;
 
 import gestorAplicacion.administracion.HistoriaClinica;
+import gestorAplicacion.servicios.Servicio;
 
 public class Paciente extends Persona{
 
@@ -11,7 +12,7 @@ public class Paciente extends Persona{
         this.historiaClinica = new HistoriaClinica(this);
     }
 
-    public double calcularPrecio() {
+    public double calcularPrecio(Servicio servicio) {
         return 0;
     }
 
