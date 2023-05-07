@@ -40,3 +40,12 @@ jobs:
               rm "$class_file"
             fi
           done
+
+      - name: Push JAR file to repository
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          directory: .
+          message: Build JAR file
+
