@@ -9,17 +9,13 @@ public abstract class Servicio implements Serializable {
     protected static long generadorID = 1;
     protected final long idServicio;
     protected final Paciente paciente;
-    protected final String fecha;
     private boolean estadoPago;
 
-    public Servicio(Paciente paciente, String fecha) {
+    public Servicio(Paciente paciente) {
         this.idServicio = generadorID++;
         this.paciente = paciente;
-        this.fecha = fecha;
         this.estadoPago = false;
     }
-
-    public abstract double calcularPrecio();
 
     public boolean isEstadoPago() {
         return estadoPago;

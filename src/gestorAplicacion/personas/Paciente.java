@@ -11,6 +11,10 @@ public class Paciente extends Persona{
         this.historiaClinica = new HistoriaClinica(this);
     }
 
+    public double calcularPrecio() {
+        return 0;
+    }
+
     public HistoriaClinica getHistoriaClinica() {
         return historiaClinica;
     }

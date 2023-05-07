@@ -72,7 +72,7 @@ public class Secretaria {
         } while (servicioSeleccionado == null);
 
         // Calcular precio
-        double precioServicioSeleccionado = servicioSeleccionado.calcularPrecio();
+        double precioServicioSeleccionado = pacienteSeleccionado.calcularPrecio();
         System.out.println("Total a pagar: $" + precioServicioSeleccionado);
 
         // Realizar pago
