@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class Deserializador {
 
     public static void deserializar(Hospital hospital) {
-        deserializarDoctores(hospital,new File("src\\baseDatos\\temp\\registroDoctores"));
-        deserializarPacientes(hospital,new File("src\\baseDatos\\temp\\registroPacientes"));
+        deserializarDoctores(hospital,new File("src\\baseDatos\\temp\\registroDoctores.dat"));
+        deserializarPacientes(hospital,new File("src\\baseDatos\\temp\\registroPacientes.dat"));
     }
 
     public static void deserializarDoctores(Hospital hospital, File ruta) {
