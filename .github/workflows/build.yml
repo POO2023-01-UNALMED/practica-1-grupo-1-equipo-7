@@ -31,6 +31,12 @@ jobs:
         run: |
           jar cfe SistemaMedico.jar Main -C bin .
 
-      - name: Delete missing Java files from bin
+      - name: Delete unnecessary .class files
         run: |
-          find bin -name '*.class' | sed 's/\.class/.java/' | xargs -I {} sh -c '[ ! -e "{}" ] && rm {}'
+          cd bin
+          find . -name '*.class' | while read class_file; do
+            java_file=$(echo "$class_file" | sed 's/\.class$/.java/')
+            if [ ! -f "../src/$java_file" ]; then
+              rm "$class_file"
+            fi
+          done
