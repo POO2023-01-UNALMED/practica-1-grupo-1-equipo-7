@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-java@v2.1.0
         with:
           java-version: 17
-          distribution: 'openjdk'
+          distribution: 'adopt'
 
       - name: Compile Java files
         run: |
