@@ -13,6 +13,7 @@ public class MenuFuncionalidades {
 
         do {
             System.out.println("MENU FUNCIONALIDADES");
+            System.out.println("4. Generar fórmula médica");
             System.out.println("5. Facturacion");
             System.out.println("6. Regresar al menu inicial");
             System.out.println("7. Salir");
@@ -20,6 +21,7 @@ public class MenuFuncionalidades {
             opcion = sc.nextByte();
 
             switch (opcion) {
+                case 4 -> FormulaMedica.formulaMedica(hospital);
                 case 5 -> Facturacion.facturacion(hospital);
                 case 6 -> {
                     return;
