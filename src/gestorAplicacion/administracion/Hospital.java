@@ -12,6 +12,7 @@ public class Hospital implements Serializable {
     private ArrayList<Doctor> listaDoctores = new ArrayList<>();
     private ArrayList<Paciente> listaPacientes = new ArrayList<>();
     private ArrayList<Medicamento> listaMedicamentos = new ArrayList<Medicamento>();
+    public static ArrayList<Habitacion> habitaciones= new ArrayList<>();
 
 
     public Hospital() {

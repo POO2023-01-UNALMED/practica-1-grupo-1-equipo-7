@@ -1,8 +1,6 @@
 package gestorAplicacion.personas;
 
-import gestorAplicacion.administracion.HistoriaClinica;
-import gestorAplicacion.administracion.Hospital;
-import gestorAplicacion.administracion.Medicamento;
+import gestorAplicacion.administracion.*;
 import gestorAplicacion.servicios.Servicio;
 
 import java.util.ArrayList;
@@ -11,9 +9,13 @@ public class Paciente extends Persona{
 
     private final HistoriaClinica historiaClinica;
     private String tipoEps;
+    private CategoriaHabitacion categoriaHabitacion;
+    private Habitacion habitacionAsignada;
 
-    public Paciente(int cedula, String nombre) {
+    public Paciente(int cedula, String nombre, String tipoEps,CategoriaHabitacion categoriaHabitacion) {
         super(cedula,nombre);
+        this.tipoEps = tipoEps;
+        this.categoriaHabitacion=categoriaHabitacion;
         this.historiaClinica = new HistoriaClinica(this);
     }
 
@@ -38,6 +40,25 @@ public class Paciente extends Persona{
         }
         return medEnfermedades;
     }
+    public  float calcularPrecio(int dias)
+    {
+        float precio=0;
+        if (getTipoEps()=="subsidiado")
+        {
+            precio=getCategoriaHabitacion().getValor()*0;
+            return precio;
+        }
+        else if (getTipoEps()=="contributivo")
+        {
+            precio=(getCategoriaHabitacion().getValor()/2)*dias;
+            return precio;
+        }
+        else
+        {
+            precio=getCategoriaHabitacion().getValor()*dias;
+            return precio;
+        }
+    }
 
     public HistoriaClinica getHistoriaClinica() {
         return historiaClinica;
@@ -51,5 +72,20 @@ public class Paciente extends Persona{
         this.tipoEps = tipoEps;
     }
 
+    public CategoriaHabitacion getCategoriaHabitacion()
+    {
+        return categoriaHabitacion;
+    }
 
+    public void setCategoriaHabitacion(CategoriaHabitacion categoriaHabitacion) {
+        this.categoriaHabitacion = categoriaHabitacion;
+    }
+
+    public Habitacion getHabitacionAsignada() {
+        return habitacionAsignada;
+    }
+
+    public void setHabitacionAsignada(Habitacion habitacionAsignada) {
+        this.habitacionAsignada = habitacionAsignada;
+    }
 }
