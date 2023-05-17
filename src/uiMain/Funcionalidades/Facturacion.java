@@ -55,9 +55,9 @@ public class Facturacion {
         // Calcular precio
         double precioServicioSeleccionado = 0;
         if (servicioSeleccionado instanceof Formula)
-            pacienteSeleccionado.calcularPrecio((Formula) servicioSeleccionado);
+            precioServicioSeleccionado = pacienteSeleccionado.calcularPrecio((Formula) servicioSeleccionado);
         else if (servicioSeleccionado instanceof CitaVacuna)
-            pacienteSeleccionado.calcularPrecio((CitaVacuna) servicioSeleccionado);
+            precioServicioSeleccionado = pacienteSeleccionado.calcularPrecio((CitaVacuna) servicioSeleccionado);
 
         System.out.println("Total a pagar: $" + precioServicioSeleccionado);
 
