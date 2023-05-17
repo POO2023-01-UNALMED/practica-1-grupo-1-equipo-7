@@ -3,7 +3,7 @@ package gestorAplicacion.personas;
 import gestorAplicacion.administracion.*;
 import gestorAplicacion.servicios.CitaVacuna;
 import gestorAplicacion.servicios.Formula;
-import gestorAplicacion.servicios.Servicio;
+import gestorAplicacion.servicios.Habitacion;
 
 import java.util.ArrayList;
 
@@ -65,26 +65,25 @@ public class Paciente extends Persona{
         return precioTotal;
     }
 
-    /*
-    public  float calcularPrecio(int dias)
+    public  float calcularPrecio(int dias,Habitacion habitacionAsignada)
     {
         float precio=0;
         if (getTipoEps()=="subsidiado")
         {
-            precio=getCategoriaHabitacion().getValor()*0;
+            precio=habitacionAsignada.getCategoria().getValor()*0;
             return precio;
         }
         else if (getTipoEps()=="contributivo")
         {
-            precio=(getCategoriaHabitacion().getValor()/2)*dias;
+            precio=(habitacionAsignada.getCategoria().getValor()/2)*dias;
             return precio;
         }
         else
         {
-            precio=getCategoriaHabitacion().getValor()*dias;
+            precio=habitacionAsignada.getCategoria().getValor()*dias;
             return precio;
         }
-    }*/
+    }
 
     public ArrayList<Vacuna> buscarVacunaPorEps(String tipo, Hospital hospital){
         ArrayList<Vacuna> vacunasPorTipo= hospital.buscarTipoVacuna(tipo);

@@ -3,6 +3,7 @@ package gestorAplicacion.administracion;
 import baseDatos.Deserializador;
 import gestorAplicacion.personas.Doctor;
 import gestorAplicacion.personas.Paciente;
+import gestorAplicacion.servicios.Habitacion;
 
 import java.io.Serializable;
 import java.util.ArrayList;

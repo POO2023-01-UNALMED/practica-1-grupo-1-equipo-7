@@ -1,21 +1,25 @@
-package gestorAplicacion.administracion;
+package gestorAplicacion.servicios;
 
 
+import gestorAplicacion.administracion.CategoriaHabitacion;
+import gestorAplicacion.administracion.Hospital;
 import gestorAplicacion.personas.Paciente;
 
 import java.util.ArrayList;
 
 
-public class Habitacion  {
-    private Paciente paciente;
+public class Habitacion  extends Servicio{
     private int numero;
     private CategoriaHabitacion categoria;
     private boolean ocupada;
-    public Habitacion(int numero, CategoriaHabitacion categoria, boolean ocupada)
+
+    public Habitacion(int numero, CategoriaHabitacion categoria, boolean ocupada,Paciente paciente)
     {
+        super(paciente);
         this.numero = numero;
         this.categoria = categoria;
         this.ocupada = ocupada;
+
 
     }
 
