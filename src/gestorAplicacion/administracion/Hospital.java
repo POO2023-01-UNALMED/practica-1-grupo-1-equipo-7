@@ -11,8 +11,8 @@ public class Hospital implements Serializable {
 
     private ArrayList<Doctor> listaDoctores = new ArrayList<>();
     private ArrayList<Paciente> listaPacientes = new ArrayList<>();
-    private ArrayList<Medicamento> listaMedicamentos = new ArrayList<Medicamento>();
-    private ArrayList<Vacuna> listaVacunas= new ArrayList<Vacuna>();
+    private ArrayList<Medicamento> listaMedicamentos = new ArrayList<>();
+    private ArrayList<Vacuna> listaVacunas= new ArrayList<>();
     public static ArrayList<Habitacion> habitaciones= new ArrayList<>();
 
     public Hospital() {
@@ -83,5 +83,13 @@ public class Hospital implements Serializable {
 
     public void setListaMedicamentos(ArrayList<Medicamento> listaMedicamentos) {
         this.listaMedicamentos = listaMedicamentos;
+    }
+
+    public ArrayList<Vacuna> getListaVacunas() {
+        return listaVacunas;
+    }
+
+    public void setListaVacunas(ArrayList<Vacuna> listaVacunas) {
+        this.listaVacunas = listaVacunas;
     }
 }

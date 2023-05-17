@@ -2,7 +2,9 @@ package gestorAplicacion.administracion;
 
 import gestorAplicacion.personas.Enfermedad;
 
-public class Medicamento {
+import java.io.Serializable;
+
+public class Medicamento implements Serializable {
     private String nombre;
     private Enfermedad enfermedad;
     private String descripcion;
