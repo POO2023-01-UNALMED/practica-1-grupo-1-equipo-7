@@ -5,6 +5,7 @@ import gestorAplicacion.administracion.Medicamento;
 import gestorAplicacion.administracion.Vacuna;
 import gestorAplicacion.personas.Doctor;
 import gestorAplicacion.personas.Paciente;
+import gestorAplicacion.servicios.Habitacion;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class Deserializador {
         deserializarPacientes(hospital,new File("src\\baseDatos\\temp\\registroPacientes.dat"));
         deserializarMedicamentos(hospital,new File("src\\baseDatos\\temp\\registroMedicamentos.dat"));
         deserializarVacunas(hospital,new File("src\\baseDatos\\temp\\registroVacunas.dat"));
+        deserializarHabitaciones(hospital,new File("src\\baseDatos\\temp\\registroHabitaciones.dat"));
     }
 
     public static void deserializarDoctores(Hospital hospital, File ruta) {
@@ -56,6 +58,17 @@ public class Deserializador {
             FileInputStream file = new FileInputStream(ruta);
             ObjectInputStream in = new ObjectInputStream(file);
             hospital.setListaVacunas((ArrayList<Vacuna>) in.readObject());
+
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error en la serializacion" + e);
+        }
+    }
+
+    public static void deserializarHabitaciones(Hospital hospital, File ruta) {
+        try {
+            FileInputStream file = new FileInputStream(ruta);
+            ObjectInputStream in = new ObjectInputStream(file);
+            Hospital.setHabitaciones((ArrayList<Habitacion>) in.readObject());
 
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Error en la serializacion" + e);

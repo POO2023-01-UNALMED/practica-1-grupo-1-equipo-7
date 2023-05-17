@@ -93,4 +93,12 @@ public class Hospital implements Serializable {
     public void setListaVacunas(ArrayList<Vacuna> listaVacunas) {
         this.listaVacunas = listaVacunas;
     }
+
+    public static ArrayList<Habitacion> getHabitaciones() {
+        return habitaciones;
+    }
+
+    public static void setHabitaciones(ArrayList<Habitacion> habitaciones) {
+        Hospital.habitaciones = habitaciones;
+    }
 }
