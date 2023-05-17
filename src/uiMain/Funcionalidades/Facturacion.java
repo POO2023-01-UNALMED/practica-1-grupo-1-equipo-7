@@ -3,6 +3,8 @@ package uiMain.Funcionalidades;
 import gestorAplicacion.administracion.Factura;
 import gestorAplicacion.administracion.Hospital;
 import gestorAplicacion.personas.Paciente;
+import gestorAplicacion.servicios.CitaVacuna;
+import gestorAplicacion.servicios.Formula;
 import gestorAplicacion.servicios.Servicio;
 
 import java.util.ArrayList;
@@ -19,7 +21,11 @@ public class Facturacion {
         do {
             pacienteSeleccionado = hospital.buscarPaciente(sc.nextInt());
             if (pacienteSeleccionado == null) {
-                System.out.println("No existe un paciente registrado con esta cedula. Intente de nuevo.");
+                System.out.println("No existe un paciente registrado con esta cedula. Desea intentar de nuevo? (S/N)");
+
+                if (sc.nextLine().equalsIgnoreCase("n")) {
+                    return;
+                }
             }
         } while (pacienteSeleccionado == null);
 
@@ -47,11 +53,16 @@ public class Facturacion {
         } while (servicioSeleccionado == null);
 
         // Calcular precio
-        double precioServicioSeleccionado = pacienteSeleccionado.calcularPrecio(servicioSeleccionado);
+        double precioServicioSeleccionado = 0;
+        if (servicioSeleccionado instanceof Formula)
+            pacienteSeleccionado.calcularPrecio((Formula) servicioSeleccionado);
+        else if (servicioSeleccionado instanceof CitaVacuna)
+            pacienteSeleccionado.calcularPrecio((CitaVacuna) servicioSeleccionado);
+
         System.out.println("Total a pagar: $" + precioServicioSeleccionado);
 
         // Realizar pago
-        Factura facturaServicioSeleccionado = new Factura(servicioSeleccionado.getIdServicio(), pacienteSeleccionado, precioServicioSeleccionado);
+        Factura facturaServicioSeleccionado = new Factura(servicioSeleccionado.getIdServicio(), pacienteSeleccionado);
 
         System.out.println("Realizar pago? (S/N)");
 
