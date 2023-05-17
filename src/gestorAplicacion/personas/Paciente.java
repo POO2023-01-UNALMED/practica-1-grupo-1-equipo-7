@@ -1,6 +1,7 @@
 package gestorAplicacion.personas;
 
 import gestorAplicacion.administracion.*;
+import gestorAplicacion.servicios.Formula;
 import gestorAplicacion.servicios.Servicio;
 
 import java.util.ArrayList;
@@ -22,11 +23,12 @@ public class Paciente extends Persona{
     public double calcularPrecio(Servicio servicio) {
         return 0;
     }
-    public double calcularPrecio(ArrayList<Medicamento> medicamentos){
+    public double calcularPrecio(Formula formula){
         double precio = 0;
-        for (Medicamento med : medicamentos){
+        for (Medicamento med : formula.getListaMedicamentos()){
             precio += med.getPrecio();
         }
+        formula.setPrecio(precio);
         return precio;
     }
     public ArrayList<Medicamento> medEnfermedad(Enfermedad enfermedad, Hospital hospital) {
