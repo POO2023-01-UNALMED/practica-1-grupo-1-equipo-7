@@ -4,7 +4,6 @@ import gestorAplicacion.personas.Doctor;
 import gestorAplicacion.personas.Enfermedad;
 import gestorAplicacion.personas.Paciente;
 import gestorAplicacion.servicios.Cita;
-import gestorAplicacion.servicios.EjemploServicio;
 import gestorAplicacion.servicios.Formula;
 import gestorAplicacion.servicios.Servicio;
 
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 
 public class HistoriaClinica implements Serializable {
     private final Paciente paciente;
-    private ArrayList<EjemploServicio> listaEjemploServicios = new ArrayList<>();
     private ArrayList<Formula> listaFormulas = new ArrayList<>();
     private ArrayList<Cita> historialCitas = new ArrayList<>();
     private ArrayList<Enfermedad> enfermedades = new ArrayList<>();
@@ -37,16 +35,8 @@ public class HistoriaClinica implements Serializable {
         listaFormulas.add(formulaPaciente);
     }
 
-    public ArrayList<EjemploServicio> getListaEjemploServicios() {
-        return listaEjemploServicios;
-    }
-
     public Paciente getPaciente() {
         return paciente;
-    }
-
-    public void setListaEjemploServicios(ArrayList<EjemploServicio> listaEjemploServicios) {
-        this.listaEjemploServicios = listaEjemploServicios;
     }
 
     public ArrayList<Formula> getListaFormulas() {
