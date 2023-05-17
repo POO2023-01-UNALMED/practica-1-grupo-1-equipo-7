@@ -65,6 +65,7 @@ public class Paciente extends Persona{
         return precioTotal;
     }
 
+    /*
     public  float calcularPrecio(int dias)
     {
         float precio=0;
@@ -83,7 +84,7 @@ public class Paciente extends Persona{
             precio=getCategoriaHabitacion().getValor()*dias;
             return precio;
         }
-    }
+    }*/
 
     public ArrayList<Vacuna> buscarVacunaPorEps(String tipo, Hospital hospital){
         ArrayList<Vacuna> vacunasPorTipo= hospital.buscarTipoVacuna(tipo);
