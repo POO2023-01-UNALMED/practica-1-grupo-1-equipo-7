@@ -3,10 +3,11 @@ package gestorAplicacion.administracion;
 import gestorAplicacion.personas.Paciente;
 import gestorAplicacion.servicios.CitaVacuna;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Vacuna {
+public class Vacuna implements Serializable {
     private String tipo;
     private String nombre;
     private double precio;

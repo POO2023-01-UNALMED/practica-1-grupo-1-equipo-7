@@ -7,12 +7,10 @@ public class Factura {
 
     private final long idServicio;
     private final Paciente paciente;
-    private final double precio;
 
-    public Factura(long idServicio, Paciente paciente, double precio) {
+    public Factura(long idServicio, Paciente paciente) {
         this.idServicio = idServicio;
         this.paciente = paciente;
-        this.precio = precio;
     }
 
     public void realizarPago() {
