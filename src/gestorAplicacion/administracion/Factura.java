@@ -16,10 +16,21 @@ public class Factura {
     }
 
     public void realizarPago() {
+        HistoriaClinica historiaClinicaPaciente = this.paciente.getHistoriaClinica();
+        
         for (Servicio servicio :
-                this.paciente.getHistoriaClinica().getListaEjemploServicios()) {
+                historiaClinicaPaciente.getHistorialCitas()) {
             if (servicio.getIdServicio() == this.idServicio) {
                 servicio.setEstadoPago(true);
+                return;
+            }
+        }
+
+        for (Servicio servicio :
+                historiaClinicaPaciente.getListaFormulas()) {
+            if (servicio.getIdServicio() == this.idServicio) {
+                servicio.setEstadoPago(true);
+                return;
             }
         }
     }

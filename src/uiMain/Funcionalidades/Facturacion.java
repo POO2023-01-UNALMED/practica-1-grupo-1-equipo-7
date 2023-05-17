@@ -25,7 +25,7 @@ public class Facturacion {
 
         // Buscar servicios pendientes de pago
         System.out.println("Servicios pendientes de pago:");
-        ArrayList<Servicio> serviciosSinPagar = pacienteSeleccionado.getHistoriaClinica().obtenerServiciosSinPagar();
+        ArrayList<Servicio> serviciosSinPagar = Servicio.obtenerServiciosSinPagar(pacienteSeleccionado);
         for (Servicio servicio :
                 serviciosSinPagar) {
             System.out.println(servicio);
