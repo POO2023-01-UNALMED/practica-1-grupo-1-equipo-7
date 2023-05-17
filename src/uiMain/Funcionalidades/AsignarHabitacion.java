@@ -507,13 +507,18 @@ public class AsignarHabitacion {
                 habitacion.setOcupada(true);
                 habitacion.setPaciente(paciente);
                 paciente.setHabitacionAsignada(habitacion);
+                sc = new Scanner(System.in);
+                System.out.println("Ingrese el número de dias de estadia en la habitacion:");
+                int dias = sc.nextInt();
+                sc.nextLine();
+                paciente.getHabitacionAsignada().setDias(dias);
                 System.out.println("La habitación " + habitacion.getNumero() + " ha sido asignada al paciente " + paciente.getNombre());
 
             }
             else {
                 System.out.println("No hay habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion());
                 System.out.println("¿Desea asignar una habitación de otra categoría anterior? (s/n)");
-                Scanner scanner1 = new Scanner(System.in);
+                sc = new Scanner(System.in);
                 String respuesta = sc.nextLine();
                 if (respuesta.equalsIgnoreCase("s")) {
                     CategoriaHabitacion otraCategoria = Habitacion.BuscarOtraCategoria(paciente.getCategoriaHabitacion());
@@ -557,6 +562,11 @@ public class AsignarHabitacion {
                         otraHabitacion.setOcupada(true);
                         otraHabitacion.setPaciente(paciente);
                         paciente.setHabitacionAsignada(otraHabitacion);
+                        sc = new Scanner(System.in);
+                        System.out.println("Ingrese el número de dias de estadia en la habitacion:");
+                        int dias = sc.nextInt();
+                        sc.nextLine();
+                        paciente.getHabitacionAsignada().setDias(dias);
                         System.out.println("La habitación " + otraHabitacion.getNumero() + " ha sido asignada al paciente " + paciente.getNombre());
                     }
                     else {

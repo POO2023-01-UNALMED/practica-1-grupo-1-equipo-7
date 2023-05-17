@@ -65,7 +65,7 @@ public class Paciente extends Persona{
         return precioTotal;
     }
 
-    public  float calcularPrecio(int dias,Habitacion habitacionAsignada)
+    public  float calcularPrecio(Habitacion habitacionAsignada)
     {
         float precio=0;
         if (getTipoEps()=="subsidiado")
@@ -75,12 +75,12 @@ public class Paciente extends Persona{
         }
         else if (getTipoEps()=="contributivo")
         {
-            precio=(habitacionAsignada.getCategoria().getValor()/2)*dias;
+            precio=(habitacionAsignada.getCategoria().getValor()/2)*habitacionAsignada.getDias();
             return precio;
         }
         else
         {
-            precio=habitacionAsignada.getCategoria().getValor()*dias;
+            precio=habitacionAsignada.getCategoria().getValor()*habitacionAsignada.getDias();
             return precio;
         }
     }

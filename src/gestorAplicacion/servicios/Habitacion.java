@@ -12,13 +12,15 @@ public class Habitacion  extends Servicio{
     private int numero;
     private CategoriaHabitacion categoria;
     private boolean ocupada;
+    private int dias;
 
-    public Habitacion(int numero, CategoriaHabitacion categoria, boolean ocupada,Paciente paciente)
+    public Habitacion(int numero, CategoriaHabitacion categoria, boolean ocupada,Paciente paciente,int dias)
     {
         super(paciente);
         this.numero = numero;
         this.categoria = categoria;
         this.ocupada = ocupada;
+        this.dias=dias;
 
 
     }
@@ -101,6 +103,15 @@ public class Habitacion  extends Servicio{
     public void setOcupada(boolean ocupada)
     {
         this.ocupada = ocupada;
+    }
+    public int getDias()
+    {
+        return dias;
+    }
+
+    public void setDias(int dias)
+    {
+        this.dias = dias;
     }
 
 }
