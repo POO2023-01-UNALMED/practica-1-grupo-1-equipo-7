@@ -5,7 +5,6 @@ import gestorAplicacion.personas.Enfermedad;
 import gestorAplicacion.personas.Paciente;
 import gestorAplicacion.servicios.Cita;
 import gestorAplicacion.servicios.Formula;
-import gestorAplicacion.servicios.Servicio;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,17 +19,6 @@ public class HistoriaClinica implements Serializable {
         this.paciente = paciente;
     }
 
-    public ArrayList<Servicio> obtenerServiciosSinPagar() {
-        ArrayList<Servicio> serviciosSinPagar = new ArrayList<>();
-
-        for (Servicio servicio :
-                listaEjemploServicios) {
-            if (!servicio.isEstadoPago()) {
-                serviciosSinPagar.add(servicio);
-            }
-        }
-        return serviciosSinPagar;
-    }
     public void agregarFormula(Formula formulaPaciente) {
         listaFormulas.add(formulaPaciente);
     }
