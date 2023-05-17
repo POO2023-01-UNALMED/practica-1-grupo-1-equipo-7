@@ -8,7 +8,7 @@ public abstract class Servicio implements Serializable {
 
     protected static long generadorID = 1;
     protected final long idServicio;
-    protected final Paciente paciente;
+    protected Paciente paciente;
     private boolean estadoPago;
 
     public Servicio(Paciente paciente) {
@@ -27,5 +27,13 @@ public abstract class Servicio implements Serializable {
 
     public void setEstadoPago(boolean estadoPago) {
         this.estadoPago = estadoPago;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
 }

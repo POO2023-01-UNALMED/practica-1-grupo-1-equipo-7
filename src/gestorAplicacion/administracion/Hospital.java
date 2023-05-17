@@ -12,8 +12,8 @@ public class Hospital implements Serializable {
     private ArrayList<Doctor> listaDoctores = new ArrayList<>();
     private ArrayList<Paciente> listaPacientes = new ArrayList<>();
     private ArrayList<Medicamento> listaMedicamentos = new ArrayList<Medicamento>();
+    private ArrayList<Vacuna> listaVacunas= new ArrayList<Vacuna>();
     public static ArrayList<Habitacion> habitaciones= new ArrayList<>();
-
 
     public Hospital() {
         Deserializador.deserializar(this);
@@ -45,6 +45,16 @@ public class Hospital implements Serializable {
             }
         }
         return disponibles;
+    }
+
+    public ArrayList<Vacuna> buscarTipoVacuna(String tipo){
+        ArrayList<Vacuna> vacunasDisponibles = new ArrayList<Vacuna>();
+        for (int i=1; i<=listaVacunas.size(); i++){
+            if (listaVacunas.get(i-1).getTipo()==tipo){
+                vacunasDisponibles.add(listaVacunas.get(i-1));
+            }
+        }
+        return vacunasDisponibles;
     }
 
     public void registrarPaciente(Paciente paciente) {

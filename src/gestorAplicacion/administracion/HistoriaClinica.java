@@ -4,7 +4,6 @@ import gestorAplicacion.personas.Doctor;
 import gestorAplicacion.personas.Enfermedad;
 import gestorAplicacion.personas.Paciente;
 import gestorAplicacion.servicios.Cita;
-import gestorAplicacion.servicios.EjemploServicio;
 import gestorAplicacion.servicios.Formula;
 import gestorAplicacion.servicios.Servicio;
 
@@ -13,10 +12,12 @@ import java.util.ArrayList;
 
 public class HistoriaClinica implements Serializable {
     private final Paciente paciente;
-    private ArrayList<EjemploServicio> listaEjemploServicios = new ArrayList<>();
+
     private ArrayList<Formula> listaFormulas = new ArrayList<>();
     private ArrayList<Cita> historialCitas = new ArrayList<>();
     private ArrayList<Enfermedad> enfermedades = new ArrayList<>();
+
+    private ArrayList<Vacuna> historialVacunas= new ArrayList<Vacuna>();
 
     public HistoriaClinica(Paciente paciente) {
         this.paciente = paciente;
@@ -33,21 +34,28 @@ public class HistoriaClinica implements Serializable {
         }
         return serviciosSinPagar;
     }
+    public ArrayList<Doctor> buscarCitaDoc(String especialidad, Hospital hospital) {
+        ArrayList<Doctor> doctoresDisp = hospital.buscarTipoDoctor(especialidad, hospital);
+        ArrayList<Doctor> docCita = new ArrayList<>();
+        for (Doctor doc : doctoresDisp){
+            for (Cita cita : historialCitas){
+                if (doc == cita.getDoctor()){
+                    docCita.add(doc);
+                }
+            }
+        }
+        return docCita;
+    }
+
     public void agregarFormula(Formula formulaPaciente) {
         listaFormulas.add(formulaPaciente);
     }
 
-    public ArrayList<EjemploServicio> getListaEjemploServicios() {
-        return listaEjemploServicios;
-    }
 
     public Paciente getPaciente() {
         return paciente;
     }
 
-    public void setListaEjemploServicios(ArrayList<EjemploServicio> listaEjemploServicios) {
-        this.listaEjemploServicios = listaEjemploServicios;
-    }
 
     public ArrayList<Formula> getListaFormulas() {
         return listaFormulas;
@@ -73,17 +81,11 @@ public class HistoriaClinica implements Serializable {
         this.enfermedades = enfermedades;
     }
 
-    public ArrayList<Doctor> buscarCitaDoc(String especialidad, Hospital hospital) {
-        ArrayList<Doctor> doctoresDisp = hospital.buscarTipoDoctor(especialidad, hospital);
-        ArrayList<Doctor> docCita = new ArrayList<>();
-        for (Doctor doc : doctoresDisp){
-            for (Cita cita : historialCitas){
-                if (doc == cita.getDoctor()){
-                    docCita.add(doc);
-                }
-            }
-        }
-        return docCita;
+    public ArrayList<Vacuna> getHistorialVacunas() {
+        return historialVacunas;
     }
 
+    public void setHistorialVacunas(ArrayList<Vacuna> historialVacunas) {
+        this.historialVacunas = historialVacunas;
+    }
 }

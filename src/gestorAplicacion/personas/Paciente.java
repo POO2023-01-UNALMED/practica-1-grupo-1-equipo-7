@@ -1,6 +1,7 @@
 package gestorAplicacion.personas;
 
 import gestorAplicacion.administracion.*;
+import gestorAplicacion.servicios.CitaVacuna;
 import gestorAplicacion.servicios.Formula;
 import gestorAplicacion.servicios.Servicio;
 
@@ -20,17 +21,6 @@ public class Paciente extends Persona{
         this.historiaClinica = new HistoriaClinica(this);
     }
 
-    public double calcularPrecio(Servicio servicio) {
-        return 0;
-    }
-    public double calcularPrecio(Formula formula){
-        double precio = 0;
-        for (Medicamento med : formula.getListaMedicamentos()){
-            precio += med.getPrecio();
-        }
-        formula.setPrecio(precio);
-        return precio;
-    }
     public ArrayList<Medicamento> medEnfermedad(Enfermedad enfermedad, Hospital hospital) {
         ArrayList<Medicamento> medicamentos = hospital.medicamentosDisponibles();
         ArrayList<Medicamento> medEnfermedades = new ArrayList<Medicamento>();
@@ -42,6 +32,39 @@ public class Paciente extends Persona{
         }
         return medEnfermedades;
     }
+    public double calcularPrecio(Formula formula){
+        double precio = 0;
+        for (Medicamento med : formula.getListaMedicamentos()){
+            precio += med.getPrecio();
+        }
+        formula.setPrecio(precio);
+        return precio;
+    }
+
+    public double calcularPrecio(CitaVacuna citaAsignada){
+        final double IVA= 0.19;
+        double precioTotal=citaAsignada.getVacuna().getPrecio();
+
+        if(citaAsignada.getVacuna().getTipo()=="Obligatoria"){
+            precioTotal += 1000;
+        }
+        if(citaAsignada.getVacuna().getTipo()=="No obligatoria"){
+            precioTotal += 3000;
+        }
+        if (citaAsignada.getPaciente().getTipoEps()=="Contributivo"){
+            precioTotal += 2000;
+        }
+        if (citaAsignada.getPaciente().getTipoEps()=="Subsidiado"){
+            precioTotal += 500;
+        }
+        if (citaAsignada.getPaciente().getTipoEps()=="Particular"){
+            precioTotal += 10000;
+        }
+
+        precioTotal=precioTotal*(1+IVA);
+        return precioTotal;
+    }
+
     public  float calcularPrecio(int dias)
     {
         float precio=0;
@@ -59,6 +82,31 @@ public class Paciente extends Persona{
         {
             precio=getCategoriaHabitacion().getValor()*dias;
             return precio;
+        }
+    }
+
+    public ArrayList<Vacuna> buscarVacunaPorEps(String tipo, Hospital hospital){
+        ArrayList<Vacuna> vacunasPorTipo= hospital.buscarTipoVacuna(tipo);
+        ArrayList<Vacuna> vacunasDisponibles= new ArrayList<Vacuna>();
+
+        for (int i=1; i<=vacunasPorTipo.size();i++){
+            ArrayList<String> tipoEpsVacuna= vacunasPorTipo.get(i-1).getTipoEps();
+            for (int j=1;j<=tipoEpsVacuna.size();j++){
+                if (tipoEpsVacuna.get(j-1)==getTipoEps()){
+                    vacunasDisponibles.add(vacunasPorTipo.get(i-1));
+                }
+            }
+        }
+        return vacunasDisponibles;
+    }
+
+    public void actualizarHistorialVacunas(CitaVacuna citaAsignada){
+        historiaClinica.getHistorialVacunas().add(citaAsignada.getVacuna());
+    }
+
+    public void mostrarHistorialVacunas() {
+        for (int i=1; i<=historiaClinica.getHistorialVacunas().size();i++){
+            System.out.println(i + ". Vacuna: "+historiaClinica.getHistorialVacunas().get(i-1).getNombre());
         }
     }
 
