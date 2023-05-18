@@ -20,6 +20,9 @@ public class Paciente extends Persona{
         this.categoriaHabitacion=categoriaHabitacion;
         this.historiaClinica = new HistoriaClinica(this);
     }
+    public Paciente(int cedula, String nombre, String tipoEps){
+        this(cedula, nombre, tipoEps, null);
+    }
 
     public ArrayList<Medicamento> medEnfermedad(Enfermedad enfermedad, Hospital hospital) {
         ArrayList<Medicamento> medicamentos = hospital.medicamentosDisponibles();
@@ -137,5 +140,11 @@ public class Paciente extends Persona{
 
     public void setHabitacionAsignada(Habitacion habitacionAsignada) {
         this.habitacionAsignada = habitacionAsignada;
+    }
+
+    @Override
+
+    public String toString(){
+        return "\nNombre: "+ getNombre() + "\nCédula: " + getCedula() + "\nTipo de EPS: " + tipoEps + "\nHistoria Clinica: " + historiaClinica;
     }
 }
