@@ -68,9 +68,9 @@ public class Paciente extends Persona{
         return precioTotal;
     }
 
-    public  float calcularPrecio(Habitacion habitacionAsignada)
+    public  double calcularPrecio(Habitacion habitacionAsignada)
     {
-        float precio=0;
+        double precio=0;
         if (getTipoEps()=="subsidiado")
         {
             precio=habitacionAsignada.getCategoria().getValor()*0;
