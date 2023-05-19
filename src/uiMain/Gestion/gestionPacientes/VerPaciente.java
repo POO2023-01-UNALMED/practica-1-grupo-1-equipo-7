@@ -15,7 +15,6 @@ public class VerPaciente {
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese la cédula del paciente: ");
         int cedula = sc.nextInt();
-        System.out.println(hospital.getListaPacientes());
         Paciente paciente = hospital.buscarPaciente(cedula);
         if (paciente == null) { /*Si el paciente es null, quiere decir que no lo encontró, por lo que
         preguntamos si desea registrar este paciente */

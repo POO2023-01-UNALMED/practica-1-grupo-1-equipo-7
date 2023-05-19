@@ -45,8 +45,6 @@ public class RegistrarNuevaEnfermedad {
         boolean agregarOtro = false; //condicion para el while para ir agregando enfermedades
         do {
             ArrayList <Enfermedad> enfermedades = Enfermedad.getEnfermedadesRegistradas();
-            System.out.println(enfermedades);
-            System.out.println(Enfermedad.getEnfermedadesRegistradas());
             while (true){
                 System.out.println("Estas son las enfermedades registradas en el sistema, por favor elige una.");
                 System.out.println("0.Registrar nueva enfermedad al sistema");
