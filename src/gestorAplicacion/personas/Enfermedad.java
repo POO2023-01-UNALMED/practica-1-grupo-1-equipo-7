@@ -1,8 +1,9 @@
 package gestorAplicacion.personas;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Enfermedad {
+public class Enfermedad implements Serializable {
     private String especialidad;
     private String nombre;
     private String tipologia;
