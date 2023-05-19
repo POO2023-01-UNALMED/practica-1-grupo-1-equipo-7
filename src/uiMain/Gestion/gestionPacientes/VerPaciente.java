@@ -50,9 +50,9 @@ public class VerPaciente {
         for (Cita citas : paciente.getHistoriaClinica().getHistorialCitas()){
             System.out.println(citas);
         }
-        System.out.println("Citas de Vacuna: ");
+        System.out.println("Historial de Vacunas: ");
         for (Vacuna vacunas : paciente.getHistoriaClinica().getHistorialVacunas()){
-            System.out.println(vacunas);
+            System.out.println(vacunas.getNombre());
         }
     }
 }

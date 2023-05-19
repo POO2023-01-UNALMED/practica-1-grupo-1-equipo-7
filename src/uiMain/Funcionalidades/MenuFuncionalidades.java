@@ -13,7 +13,7 @@ public class MenuFuncionalidades {
 
         do {
             System.out.println("MENU FUNCIONALIDADES");
-            System.out.println("4. Aplicarse una vacuna");
+            System.out.println("2. Aplicarse una vacuna");
             System.out.println("3. Asignar habitación a un paciente");
             System.out.println("4. Generar fórmula médica");
             System.out.println("5. Facturacion");
