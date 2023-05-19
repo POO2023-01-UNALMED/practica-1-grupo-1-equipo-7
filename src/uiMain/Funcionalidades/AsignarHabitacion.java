@@ -8,10 +8,11 @@ import gestorAplicacion.personas.Paciente;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static uiMain.Funcionalidades.FormulaMedica.sc;
+
 
 public class AsignarHabitacion {
-    Scanner scanner = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
+
     public static void asignarHabitacion(Hospital hospital) {
 
         System.out.println("Ingrese el número de identificación del paciente:");
@@ -20,12 +21,13 @@ public class AsignarHabitacion {
         Paciente paciente = hospital.buscarPaciente(cedula);
 
         if (paciente != null) {
+            if (paciente.getHabitacionAsignada() == null) {
             Habitacion habitacion = null;
-            Habitacion habitacionSeleccionada=null;
-            Habitacion otraHabitacion=null;
+            Habitacion habitacionSeleccionada = null;
+            Habitacion otraHabitacion = null;
             ArrayList<Habitacion> habitacionesDisponibles = new ArrayList<>();
             ArrayList<Habitacion> otraHabitacionDisponibles = new ArrayList<>();
-            if(paciente.getTipoEps().equals("subsidiado")) {
+            if (paciente.getTipoEps().equals("subsidiado")) {
                 int eleccion;
                 do {
                     System.out.println("Elija el tipo de habitacion que desee, recuerde que segun el tipo va el costo del servicio");
@@ -37,18 +39,17 @@ public class AsignarHabitacion {
                     sc.nextLine();
 
 
-
                     switch (eleccion) {
                         case 1:
                             paciente.setCategoriaHabitacion(CategoriaHabitacion.CAMILLA);
                             habitacionesDisponibles = Habitacion.BuscarHabitacionDisponible(paciente.getCategoriaHabitacion());
-                            if (habitacionesDisponibles!=null) {
+                            if (habitacionesDisponibles != null) {
                                 System.out.println("Habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion() + ":");
                                 for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                     Habitacion habi = habitacionesDisponibles.get(i);
                                     System.out.println(i + ". " + habi.getNumero());
                                 }
-                                sc= new Scanner(System.in);
+                                sc = new Scanner(System.in);
                                 int opcion;
                                 do {
                                     System.out.println("Seleccione la habitación deseada (ingrese un número del 0 al " +
@@ -75,8 +76,7 @@ public class AsignarHabitacion {
 
                                 habitacion = habitacionSeleccionada;
                                 break;
-                            }
-                            else{
+                            } else {
                                 habitacion = null;
                                 break;
                             }
@@ -84,7 +84,7 @@ public class AsignarHabitacion {
                         case 2:
                             paciente.setCategoriaHabitacion(CategoriaHabitacion.OBSERVACION);
                             habitacionesDisponibles = Habitacion.BuscarHabitacionDisponible(paciente.getCategoriaHabitacion());
-                            if (habitacionesDisponibles!=null) {
+                            if (habitacionesDisponibles != null) {
                                 System.out.println("Habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion() + ":");
                                 for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                     Habitacion habi = habitacionesDisponibles.get(i);
@@ -117,15 +117,14 @@ public class AsignarHabitacion {
 
                                 habitacion = habitacionSeleccionada;
                                 break;
-                            }
-                            else{
+                            } else {
                                 habitacion = null;
                                 break;
                             }
                         case 3:
                             paciente.setCategoriaHabitacion(CategoriaHabitacion.UCI);
                             habitacionesDisponibles = Habitacion.BuscarHabitacionDisponible(paciente.getCategoriaHabitacion());
-                            if (habitacionesDisponibles!=null) {
+                            if (habitacionesDisponibles != null) {
                                 System.out.println("Habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion() + ":");
                                 for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                     Habitacion habi = habitacionesDisponibles.get(i);
@@ -158,8 +157,7 @@ public class AsignarHabitacion {
 
                                 habitacion = habitacionSeleccionada;
                                 break;
-                            }
-                            else{
+                            } else {
                                 habitacion = null;
                                 break;
                             }
@@ -170,8 +168,7 @@ public class AsignarHabitacion {
 
                 } while (eleccion != 1 && eleccion != 2 && eleccion != 3);
 
-            }
-            else if (paciente.getTipoEps().equals("contributivo")) {
+            } else if (paciente.getTipoEps().equals("contributivo")) {
                 int eleccion;
                 do {
                     System.out.println("Elija el tipo de habitacion que desee, recuerde que segun el tipo va el costo del servicio");
@@ -189,7 +186,7 @@ public class AsignarHabitacion {
                         case 1:
                             paciente.setCategoriaHabitacion(CategoriaHabitacion.INDIVIDUAL);
                             habitacionesDisponibles = Habitacion.BuscarHabitacionDisponible(paciente.getCategoriaHabitacion());
-                            if (habitacionesDisponibles!=null) {
+                            if (habitacionesDisponibles != null) {
                                 System.out.println("Habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion() + ":");
                                 for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                     Habitacion habi = habitacionesDisponibles.get(i);
@@ -220,17 +217,16 @@ public class AsignarHabitacion {
                                 // Eliminar la habitación seleccionada de la lista de habitaciones disponibles
                                 habitacionesDisponibles.remove(opcion);
 
-                                habitacion= habitacionSeleccionada;
+                                habitacion = habitacionSeleccionada;
                                 break;
-                            }
-                            else{
+                            } else {
                                 habitacion = null;
                                 break;
                             }
                         case 2:
                             paciente.setCategoriaHabitacion(CategoriaHabitacion.DOBLE);
                             habitacionesDisponibles = Habitacion.BuscarHabitacionDisponible(paciente.getCategoriaHabitacion());
-                            if (habitacionesDisponibles!=null) {
+                            if (habitacionesDisponibles != null) {
                                 System.out.println("Habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion() + ":");
                                 for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                     Habitacion habi = habitacionesDisponibles.get(i);
@@ -261,17 +257,16 @@ public class AsignarHabitacion {
                                 // Eliminar la habitación seleccionada de la lista de habitaciones disponibles
                                 habitacionesDisponibles.remove(opcion1);
 
-                                habitacion= habitacionSeleccionada;
+                                habitacion = habitacionSeleccionada;
                                 break;
-                            }
-                            else{
+                            } else {
                                 habitacion = null;
                                 break;
                             }
                         case 3:
                             paciente.setCategoriaHabitacion(CategoriaHabitacion.OBSERVACION);
                             habitacionesDisponibles = Habitacion.BuscarHabitacionDisponible(paciente.getCategoriaHabitacion());
-                            if (habitacionesDisponibles!=null) {
+                            if (habitacionesDisponibles != null) {
                                 System.out.println("Habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion() + ":");
                                 for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                     Habitacion habi = habitacionesDisponibles.get(i);
@@ -302,17 +297,16 @@ public class AsignarHabitacion {
                                 // Eliminar la habitación seleccionada de la lista de habitaciones disponibles
                                 habitacionesDisponibles.remove(opcion2);
 
-                                habitacion= habitacionSeleccionada;
+                                habitacion = habitacionSeleccionada;
                                 break;
-                            }
-                            else{
+                            } else {
                                 habitacion = null;
                                 break;
                             }
                         case 4:
                             paciente.setCategoriaHabitacion(CategoriaHabitacion.UCI);
                             habitacionesDisponibles = Habitacion.BuscarHabitacionDisponible(paciente.getCategoriaHabitacion());
-                            if (habitacionesDisponibles!=null) {
+                            if (habitacionesDisponibles != null) {
                                 System.out.println("Habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion() + ":");
                                 for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                     Habitacion habi = habitacionesDisponibles.get(i);
@@ -343,17 +337,16 @@ public class AsignarHabitacion {
                                 // Eliminar la habitación seleccionada de la lista de habitaciones disponibles
                                 habitacionesDisponibles.remove(opcion3);
 
-                                habitacion= habitacionSeleccionada;
+                                habitacion = habitacionSeleccionada;
                                 break;
-                            }
-                            else{
+                            } else {
                                 habitacion = null;
                                 break;
                             }
                         case 5:
                             paciente.setCategoriaHabitacion(CategoriaHabitacion.UCC);
                             habitacionesDisponibles = Habitacion.BuscarHabitacionDisponible(paciente.getCategoriaHabitacion());
-                            if (habitacionesDisponibles!=null) {
+                            if (habitacionesDisponibles != null) {
                                 System.out.println("Habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion() + ":");
                                 for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                     Habitacion habi = habitacionesDisponibles.get(i);
@@ -384,10 +377,9 @@ public class AsignarHabitacion {
                                 // Eliminar la habitación seleccionada de la lista de habitaciones disponibles
                                 habitacionesDisponibles.remove(opcion4);
 
-                                habitacion= habitacionSeleccionada;
+                                habitacion = habitacionSeleccionada;
                                 break;
-                            }
-                            else{
+                            } else {
                                 habitacion = null;
                                 break;
                             }
@@ -395,13 +387,11 @@ public class AsignarHabitacion {
                             System.out.println("Opción inválida. Por favor, intente de nuevo.");
                             break;
                     }
-                } while (eleccion != 1 && eleccion != 2 && eleccion != 3&& eleccion != 4 && eleccion != 5);
+                } while (eleccion != 1 && eleccion != 2 && eleccion != 3 && eleccion != 4 && eleccion != 5);
 
-            }
-
-            else {
+            } else {
                 int eleccion;
-                do{
+                do {
 
                     System.out.println("Elija el tipo de habitacion que desee, recuerde que segun el tipo va el costo del servicio");
                     System.out.println("1. CAMILLA");
@@ -415,7 +405,7 @@ public class AsignarHabitacion {
                         case 1:
                             paciente.setCategoriaHabitacion(CategoriaHabitacion.CAMILLA);
                             habitacionesDisponibles = Habitacion.BuscarHabitacionDisponible(paciente.getCategoriaHabitacion());
-                            if (habitacionesDisponibles!=null) {
+                            if (habitacionesDisponibles != null) {
                                 System.out.println("Habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion() + ":");
                                 for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                     Habitacion habi = habitacionesDisponibles.get(i);
@@ -448,15 +438,14 @@ public class AsignarHabitacion {
 
                                 habitacion = habitacionSeleccionada;
                                 break;
-                            }
-                            else{
+                            } else {
                                 habitacion = null;
                                 break;
                             }
                         case 2:
                             paciente.setCategoriaHabitacion(CategoriaHabitacion.UCI);
                             habitacionesDisponibles = Habitacion.BuscarHabitacionDisponible(paciente.getCategoriaHabitacion());
-                            if (habitacionesDisponibles!=null) {
+                            if (habitacionesDisponibles != null) {
                                 System.out.println("Habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion() + ":");
                                 for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                     Habitacion habi = habitacionesDisponibles.get(i);
@@ -487,10 +476,9 @@ public class AsignarHabitacion {
                                 // Eliminar la habitación seleccionada de la lista de habitaciones disponibles
                                 habitacionesDisponibles.remove(opcion1);
 
-                                habitacion= habitacionSeleccionada;
+                                habitacion = habitacionSeleccionada;
                                 break;
-                            }
-                            else{
+                            } else {
                                 habitacion = null;
                                 break;
                             }
@@ -499,7 +487,7 @@ public class AsignarHabitacion {
                             System.out.println("Opción inválida. Por favor, intente de nuevo.");
                             break;
                     }
-                } while (eleccion != 1 && eleccion != 2 );
+                } while (eleccion != 1 && eleccion != 2);
             }
 
 
@@ -514,8 +502,7 @@ public class AsignarHabitacion {
                 paciente.getHabitacionAsignada().setDias(dias);
                 System.out.println("La habitación " + habitacion.getNumero() + " ha sido asignada al paciente " + paciente.getNombre());
 
-            }
-            else {
+            } else {
                 System.out.println("No hay habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion());
                 System.out.println("¿Desea asignar una habitación de otra categoría anterior? (s/n)");
                 sc = new Scanner(System.in);
@@ -523,7 +510,7 @@ public class AsignarHabitacion {
                 if (respuesta.equalsIgnoreCase("s")) {
                     CategoriaHabitacion otraCategoria = Habitacion.BuscarOtraCategoria(paciente.getCategoriaHabitacion());
                     otraHabitacionDisponibles = Habitacion.BuscarHabitacionDisponible(otraCategoria);
-                    if (otraHabitacionDisponibles!=null) {
+                    if (otraHabitacionDisponibles != null) {
                         System.out.println("Habitaciones disponibles de la categoría anterior:");
                         for (int i = 0; i < otraHabitacionDisponibles.size(); i++) {
                             Habitacion habi = otraHabitacionDisponibles.get(i);
@@ -553,9 +540,8 @@ public class AsignarHabitacion {
                         // Eliminar la habitación seleccionada de la lista de habitaciones disponibles
                         otraHabitacionDisponibles.remove(opcion);
 
-                        otraHabitacion= habitacionSeleccionada;
-                    }
-                    else{
+                        otraHabitacion = habitacionSeleccionada;
+                    } else {
                         otraHabitacion = null;
                     }
                     if (otraHabitacion != null) {
@@ -568,24 +554,34 @@ public class AsignarHabitacion {
                         sc.nextLine();
                         paciente.getHabitacionAsignada().setDias(dias);
                         System.out.println("La habitación " + otraHabitacion.getNumero() + " ha sido asignada al paciente " + paciente.getNombre());
-                    }
-                    else {
+                    } else
+                    {
                         System.out.println("No hay habitaciones disponibles de ninguna categoría");
-
                     }
-                }
+                 }
+               }
+
+
             }
-
-
+                else
+               {
+                 System.out.println("El paciente ya tiene una habitacion registrada");
+               }
 
 
 
 
         }
+          else
+             {
+            System.out.println("El paciente no se encuentra registrado. Por favor, regístrese en el hospital para poder atenderlo.");
 
+          }
 
     }
 
+
 }
+
 
 
