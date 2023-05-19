@@ -2,6 +2,7 @@ package uiMain.Gestion;
 
 import baseDatos.Serializador;
 import gestorAplicacion.administracion.Hospital;
+import uiMain.Gestion.gestionPacientes.GestionPaciente;
 
 import java.util.Scanner;
 
@@ -13,14 +14,14 @@ public class MenuGestion {
 
         do {
             System.out.println("MENU Gestion");
-            System.out.println("1. Registrar paciente");
+            System.out.println("1. Gestionar Pacientes");
             System.out.println("6. Regresar al menu inicial");
             System.out.println("7. Salir");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextByte();
 
             switch (opcion) {
-                case 1 -> System.out.println("1");
+                case 1 -> GestionPaciente.menuGestionPaciente(hospital);
                 case 6 -> {
                     return;
                 }

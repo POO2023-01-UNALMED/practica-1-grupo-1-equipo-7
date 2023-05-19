@@ -16,15 +16,6 @@ public class Enfermedad {
         enfermedadesRegistradas.add(this);
     }
 
-    public static Enfermedad registroEnfermedad(String nombre, String tipologia){
-        Enfermedad enfermedad = null;
-        for(Enfermedad enf : enfermedadesRegistradas) {
-            if (enf.getNombre() == nombre && enf.getTipologia() == tipologia) {
-                enfermedad = enf;
-            }
-        }
-        return enfermedad;
-    }
     public void nuevoEnfermo(){
         enfermos+=1;
     }

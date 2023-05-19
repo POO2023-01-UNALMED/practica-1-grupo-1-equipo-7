@@ -13,6 +13,10 @@ public class RegistrarPaciente {
         String nombre = sc.next();
         System.out.println("Ingrese el número de cédula: ");
         int id = sc.nextInt();
+        if (hospital.buscarPaciente(id) != null) {
+            System.out.println("Este paciente ya esta registrado");
+            return;
+        }
         System.out.println("Ingrese su tipo de eps: ");
         String eps = sc.next();
         Paciente paciente = new Paciente(id, nombre, eps);
