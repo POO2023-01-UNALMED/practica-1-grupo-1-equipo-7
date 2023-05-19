@@ -4,6 +4,7 @@ import gestorAplicacion.administracion.Hospital;
 import gestorAplicacion.administracion.Vacuna;
 import gestorAplicacion.personas.Paciente;
 import gestorAplicacion.servicios.CitaVacuna;
+import uiMain.Gestion.gestionPacientes.RegistrarPaciente;
 
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class Vacunacion {
 
     public static void vacunacion(Hospital hospital){
 
-        System.out.println("Ingrese su numero de cedula");
+        System.out.println("Ingrese la cédula del paciente: ");
 
         int numeroCedula;
         numeroCedula= sc.nextInt();
@@ -23,6 +24,30 @@ public class Vacunacion {
         //Se busca el paciente por el numero de cédula
         Paciente pacienteAsignado= hospital.buscarPaciente(numeroCedula);
 
+        //Verificación que el paciente se encuentre en la base de datos del hospital
+
+        if (pacienteAsignado == null){
+            while(true){
+                //Se da la posibilidad de registrar ese paciente
+                System.out.println("El paciente no está registrado.\n ¿Desea registrarlo?");
+                System.out.println("1. Si\n2.No \n Seleccione una opción");
+                byte opcion= sc.nextByte();
+                switch (opcion){
+                    case 1:
+                        RegistrarPaciente.registrarPaciente(hospital);
+                        return;
+
+                    case 2:
+                        System.out.println("Adiós");
+                        return;
+
+                    default:
+                        System.out.println("Opción Inválida");
+                }
+            }
+        }
+
+        //Se pregunta por el tipo de vacuna que requiere el paciente
         byte tipoVacuna;
 
         System.out.println("\n Seleccione el tipo de vacuna que requiere");
@@ -32,6 +57,7 @@ public class Vacunacion {
 
         tipoVacuna= sc.nextByte();
 
+        //Validación de la opción ingresada
         while ((tipoVacuna<1) || (tipoVacuna>2)){
             System.out.println("Opción fuera de rango, por favor ingrese otro número: ");
             tipoVacuna = sc.nextByte();
@@ -39,9 +65,10 @@ public class Vacunacion {
 
         System.out.println("Vacunas Disponibles");
 
-        //Busca las vacunas disponibles según su Eps y tipo de Vacuna
+
         ArrayList<Vacuna> vacunasDisponibles = new ArrayList<Vacuna>();
 
+        //Busca las vacunas disponibles según su Eps y tipo de Vacuna
         switch (tipoVacuna){
             case 1:
                 vacunasDisponibles= pacienteAsignado.buscarVacunaPorEps("Obligatoria",hospital);
@@ -62,15 +89,16 @@ public class Vacunacion {
         byte numeroVacuna;
         numeroVacuna = sc.nextByte();
 
-
-        //Verificar que la vacuna seleccionada no esté en el historial de citas o la oción esté fuera de rango
+        //Si verificar vacuna es false, el paciente no se ha puesto esa vacuna anteriormente.
         boolean verificarVacuna=false;
 
         do{
+            //Se verifica que la opción ingresada no esté fuera de rango
             while ((numeroVacuna<1) || (numeroVacuna>vacunasDisponibles.size())){
                 System.out.println("Opción fuera de rango, por favor ingrese otro número: ");
                 numeroVacuna = sc.nextByte();
             }
+            // Se verifica que la vacuna seleccionada no se la haya puesto antes
             for (int i=1;i<=pacienteAsignado.getHistoriaClinica().getHistorialVacunas().size();i++){
                 if (pacienteAsignado.getHistoriaClinica().getHistorialVacunas().get(i-1).getNombre()==vacunasDisponibles.get(numeroVacuna-1).getNombre()){
                     verificarVacuna=true;
@@ -86,6 +114,7 @@ public class Vacunacion {
         ArrayList<CitaVacuna> agendaDisponible = new ArrayList<CitaVacuna>();
         System.out.println("\nCitas disponibles: ");
 
+        //Se busca la agenda disponible de la vacuna seleccionada
         Vacuna vacunaAsignada = vacunasDisponibles.get(numeroVacuna-1);
         agendaDisponible = vacunaAsignada.mostrarAgendaDisponible();
 
@@ -99,12 +128,13 @@ public class Vacunacion {
         byte numeroCita;
         numeroCita= sc.nextByte();
 
-        //Cuarto paso, actualiza la agenda de la vacuna
+        //Se actualiza la agenda de la vacuna
 
         CitaVacuna citaAsignada = vacunaAsignada.actualizarAgenda(pacienteAsignado, numeroCita,agendaDisponible);
 
         System.out.println("\nCita asignada correctamente, puede acudir al centro asistencial con la siguiente informacion: ");
 
+        //Se agrega esa vacuna al historial de vacunas del paciente
         pacienteAsignado.actualizarHistorialVacunas(citaAsignada);
 
         System.out.println("\nResumen de su cita: ");
@@ -117,6 +147,7 @@ public class Vacunacion {
         agendaDisponible.clear();
         vacunasDisponibles.clear();
 
+        //Por último se muestra el historial de vacunas del paciente
         System.out.println("\nEste es el historial de vacunas aplicadas del paciente seleccionado: ");
         pacienteAsignado.mostrarHistorialVacunas();
     }
