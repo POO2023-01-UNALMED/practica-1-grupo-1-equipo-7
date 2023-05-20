@@ -22,7 +22,7 @@ public class HistoriaClinica implements Serializable {
 
 
     public ArrayList<Doctor> buscarCitaDoc(String especialidad, Hospital hospital) {
-        ArrayList<Doctor> doctoresDisp = hospital.buscarTipoDoctor(especialidad, hospital);
+        ArrayList<Doctor> doctoresDisp = hospital.buscarTipoDoctor(especialidad);
         ArrayList<Doctor> docCita = new ArrayList<>();
         for (Doctor doc : doctoresDisp){
             for (Cita cita : historialCitas){

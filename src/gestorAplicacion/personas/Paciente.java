@@ -194,6 +194,6 @@ public class Paciente extends Persona{
     @Override
 
     public String toString(){
-        return "\nNombre: "+ getNombre() + "\nCédula: " + getCedula() + "\nTipo de EPS: " + tipoEps + "\nHistoria Clinica: " + historiaClinica;
+        return "\nNombre: "+ getNombre() + "\nCédula: " + getCedula() + "\nTipo de EPS: " + getTipoEps() + "\nHistoria Clinica: " + historiaClinica;
     }
 }
