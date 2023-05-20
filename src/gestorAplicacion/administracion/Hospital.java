@@ -20,7 +20,7 @@ public class Hospital implements Serializable {
         Deserializador.deserializar(this);
     }
 
-    public ArrayList<Doctor> buscarTipoDoctor(String especialidad, Hospital hospital) {
+    public ArrayList<Doctor> buscarTipoDoctor(String especialidad) {
         ArrayList<Doctor> doctoresDisponibles = new ArrayList<Doctor>();
         for(int i=1; i<=listaDoctores.size(); i++) {
             if (listaDoctores.get(i-1).getEspecialidad() == especialidad) {
