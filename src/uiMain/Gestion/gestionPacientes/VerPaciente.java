@@ -5,6 +5,7 @@ import gestorAplicacion.administracion.Vacuna;
 import gestorAplicacion.personas.Enfermedad;
 import gestorAplicacion.personas.Paciente;
 import gestorAplicacion.servicios.Cita;
+import gestorAplicacion.servicios.CitaVacuna;
 import gestorAplicacion.servicios.Formula;
 
 import java.text.Normalizer;
@@ -51,8 +52,8 @@ public class VerPaciente {
             System.out.println(citas);
         }
         System.out.println("Historial de Vacunas: ");
-        for (Vacuna vacunas : paciente.getHistoriaClinica().getHistorialVacunas()){
-            System.out.println(vacunas.getNombre());
+        for (CitaVacuna vacunas : paciente.getHistoriaClinica().getHistorialVacunas()){
+            System.out.println(vacunas.getVacuna());
         }
     }
 }

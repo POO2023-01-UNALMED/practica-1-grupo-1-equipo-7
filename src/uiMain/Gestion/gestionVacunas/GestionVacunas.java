@@ -11,7 +11,7 @@ public class GestionVacunas {
     public static void menuGestionVacunas(Hospital hospital){
         byte opcion;
         do {
-            System.out.println("MENU Gestion Vacunas");
+            System.out.println("\nMENU Gestion Vacunas");
             System.out.println("1. Registrar vacuna");
             System.out.println("4. Regresar al menu anterior");
             System.out.println("5. Salir");

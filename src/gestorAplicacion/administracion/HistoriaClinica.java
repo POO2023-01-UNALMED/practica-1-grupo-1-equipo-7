@@ -4,6 +4,7 @@ import gestorAplicacion.personas.Doctor;
 import gestorAplicacion.personas.Enfermedad;
 import gestorAplicacion.personas.Paciente;
 import gestorAplicacion.servicios.Cita;
+import gestorAplicacion.servicios.CitaVacuna;
 import gestorAplicacion.servicios.Formula;
 
 import java.io.Serializable;
@@ -14,7 +15,7 @@ public class HistoriaClinica implements Serializable {
     private ArrayList<Formula> listaFormulas = new ArrayList<>();
     private ArrayList<Cita> historialCitas = new ArrayList<>();
     private ArrayList<Enfermedad> enfermedades = new ArrayList<>();
-    private ArrayList<Vacuna> historialVacunas= new ArrayList<Vacuna>();
+    private ArrayList<CitaVacuna> historialVacunas= new ArrayList<>();
 
     public HistoriaClinica(Paciente paciente) {
         this.paciente = paciente;
@@ -67,11 +68,11 @@ public class HistoriaClinica implements Serializable {
         this.enfermedades = enfermedades;
     }
 
-    public ArrayList<Vacuna> getHistorialVacunas() {
+    public ArrayList<CitaVacuna> getHistorialVacunas() {
         return historialVacunas;
     }
 
-    public void setHistorialVacunas(ArrayList<Vacuna> historialVacunas) {
+    public void setHistorialVacunas(ArrayList<CitaVacuna> historialVacunas) {
         this.historialVacunas = historialVacunas;
     }
 }

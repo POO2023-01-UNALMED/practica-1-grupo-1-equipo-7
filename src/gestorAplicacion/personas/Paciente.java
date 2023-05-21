@@ -162,12 +162,12 @@ public class Paciente extends Persona{
     }
 
     public void actualizarHistorialVacunas(CitaVacuna citaAsignada){
-        historiaClinica.getHistorialVacunas().add(citaAsignada.getVacuna());
+        historiaClinica.getHistorialVacunas().add(citaAsignada);
     }
 
     public void mostrarHistorialVacunas() {
         for (int i=1; i<=historiaClinica.getHistorialVacunas().size();i++){
-            System.out.println(i + ". Vacuna: "+historiaClinica.getHistorialVacunas().get(i-1).getNombre());
+            System.out.println(i + ". Vacuna: "+historiaClinica.getHistorialVacunas().get(i-1).getVacuna().getNombre());
         }
     }
 

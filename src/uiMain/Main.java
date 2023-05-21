@@ -21,7 +21,7 @@ public class Main {
         byte opcion;
 
         do {
-            System.out.println("MENU INICIAL");
+            System.out.println("\nMENU INICIAL");
             System.out.println("1. Servicios para pacientes");
             System.out.println("2. Gestionar registros");
             System.out.println("3. Salir");

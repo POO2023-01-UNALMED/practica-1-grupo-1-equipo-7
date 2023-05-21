@@ -26,7 +26,7 @@ public class RegistrarVacuna {
     
     public static void registrarVacuna (Hospital hospital){
 
-        System.out.println("A continuación ingrese la información de la nueva vacuna");
+        System.out.println("A continuación ingrese la información de la nueva vacuna: ");
         System.out.println("Ingrese el nombre de la vacuna (Recuerda empezar con mayúscula) : ");
         String nombre= sc.next();
         sc.nextLine();
@@ -35,7 +35,7 @@ public class RegistrarVacuna {
             System.out.println("Esta vacuna ya está registrada");
             return;
         }
-        System.out.println("Ingrese el tipo de la vacuna (Obligatoria, No obligatoria)");
+        System.out.println("Ingrese el tipo de la vacuna (Obligatoria, No obligatoria): ");
         String tipo = sc.nextLine();
 
         ArrayList<String> tipoEps= new ArrayList<String>();
@@ -60,15 +60,15 @@ public class RegistrarVacuna {
             }
         }while(respuesta);
 
-        System.out.println("Ingrese el precio de la vacuna");
+        System.out.println("Ingrese el precio de la vacuna: ");
         double precio = sc.nextDouble();
 
         Vacuna vacunaNueva= new Vacuna(tipo, nombre, tipoEps, precio );
-        System.out.println("La vacuna ha sido registrada con éxito");
+        System.out.println("¡La vacuna ha sido registrada con éxito!");
 
         hospital.getListaVacunas().add(vacunaNueva);
 
-        System.out.println("Información general de la nueva vacuna registrada");
+        System.out.println("Información general de la nueva vacuna registrada: ");
         System.out.println("Vacuna: "+vacunaNueva.getNombre());
         System.out.println("Tipo: "+vacunaNueva.getTipo());
         System.out.println("Precio: "+ vacunaNueva.getPrecio());

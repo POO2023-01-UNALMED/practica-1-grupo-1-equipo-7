@@ -1,8 +1,11 @@
 package uiMain.Gestion.gestionHospital;
 
 import gestorAplicacion.administracion.Hospital;
+import gestorAplicacion.personas.Paciente;
 import gestorAplicacion.servicios.Habitacion;
 import gestorAplicacion.administracion.CategoriaHabitacion;
+
+import java.util.Scanner;
 
 
 public class ConstruirHabitacion {

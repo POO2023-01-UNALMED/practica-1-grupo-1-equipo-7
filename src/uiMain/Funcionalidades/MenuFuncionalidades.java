@@ -12,7 +12,7 @@ public class MenuFuncionalidades {
         byte opcion;
 
         do {
-            System.out.println("MENU FUNCIONALIDADES");
+            System.out.println("\nMENU FUNCIONALIDADES");
             System.out.println("2. Aplicarse una vacuna");
             System.out.println("3. Asignar habitación a un paciente");
             System.out.println("4. Generar fórmula médica");

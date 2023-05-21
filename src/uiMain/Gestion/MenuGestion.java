@@ -14,7 +14,7 @@ public class MenuGestion {
         byte opcion;
 
         do {
-            System.out.println("MENU Gestion");
+            System.out.println("\nMENU Gestion");
             System.out.println("1. Gestionar Pacientes");
             System.out.println("2. Gestionar apartado de vacunas");
             System.out.println("6. Regresar al menu inicial");

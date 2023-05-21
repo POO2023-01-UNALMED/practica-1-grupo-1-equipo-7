@@ -11,7 +11,7 @@ public class GestionPaciente {
     public static void menuGestionPaciente(Hospital hospital) {
         byte opcion;
         do {
-            System.out.println("MENU Gestion Paciente");
+            System.out.println("\nMENU Gestion Paciente");
             System.out.println("1. Registrar paciente");
             System.out.println("2. Registrar enfermedad");
             System.out.println("3. Eliminar Paciente");

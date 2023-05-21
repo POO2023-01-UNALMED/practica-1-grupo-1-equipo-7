@@ -108,10 +108,13 @@ public class Vacunacion {
             }
             // Se verifica que la vacuna seleccionada no se la haya puesto antes
             for (int i=1;i<=pacienteAsignado.getHistoriaClinica().getHistorialVacunas().size();i++){
-                if (Objects.equals(pacienteAsignado.getHistoriaClinica().getHistorialVacunas().get(i - 1).getNombre(), vacunasDisponibles.get(numeroVacuna - 1).getNombre())){
+                if (Objects.equals(pacienteAsignado.getHistoriaClinica().getHistorialVacunas().get(i - 1).getVacuna().getNombre(), vacunasDisponibles.get(numeroVacuna - 1).getNombre())){
                     verificarVacuna=true;
-                    System.out.println("Usted ya se puso esta vacuna, por favor ingrese otra opción: ");
+                    System.out.println("Usted ya se puso esta vacuna, por favor ingrese otra opción o ingrese el número 0 para terminar el proceso: ");
                     numeroVacuna= sc.nextByte();;
+                    if (numeroVacuna==0){
+                        return;
+                    }
                     break;
                 }else {
                     verificarVacuna=false;
