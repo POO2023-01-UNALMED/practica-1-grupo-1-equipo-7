@@ -161,5 +161,8 @@ public class Vacunacion {
         //Por último se muestra el historial de vacunas del paciente
         System.out.println("\nEste es el historial de vacunas aplicadas del paciente seleccionado: ");
         pacienteAsignado.mostrarHistorialVacunas();
+
+        //Despedida
+        System.out.println("\n"+pacienteAsignado.despedida(citaAsignada));
     }
 }

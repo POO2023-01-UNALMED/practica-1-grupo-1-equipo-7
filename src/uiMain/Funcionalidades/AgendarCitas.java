@@ -147,5 +147,8 @@ static Scanner sc = new Scanner(System.in);
 		
 		System.out.println("\nhistorial citas de historia clinica del paciente: ");
 		pacienteAsignado.mostrarHistorial();
+
+		//Despedida
+		System.out.println("\n"+pacienteAsignado.despedida(citaAsignada));
 	}
 }

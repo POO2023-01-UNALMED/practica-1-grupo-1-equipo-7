@@ -17,6 +17,10 @@ public class Cita extends Servicio {
         return doctor;
     }
 
+    public String mensaje(){
+        return "del servicio cita médica!";
+    }
+
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }

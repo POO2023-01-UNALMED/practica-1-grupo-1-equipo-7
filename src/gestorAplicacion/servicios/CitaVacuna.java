@@ -2,6 +2,7 @@ package gestorAplicacion.servicios;
 
 import gestorAplicacion.administracion.Vacuna;
 import gestorAplicacion.personas.Paciente;
+import gestorAplicacion.personas.Persona;
 
 public class CitaVacuna extends Cita{
     private Vacuna vacuna;
@@ -11,6 +12,9 @@ public class CitaVacuna extends Cita{
         this.vacuna=vacuna;
     }
 
+    public String mensaje(){
+        return "del servicio de vacunas!";
+    }
     public Vacuna getVacuna() {
         return vacuna;
     }

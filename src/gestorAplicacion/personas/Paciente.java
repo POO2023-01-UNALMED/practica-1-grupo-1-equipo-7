@@ -1,10 +1,7 @@
 package gestorAplicacion.personas;
 
 import gestorAplicacion.administracion.*;
-import gestorAplicacion.servicios.CitaVacuna;
-import gestorAplicacion.servicios.Formula;
-import gestorAplicacion.servicios.Habitacion;
-import gestorAplicacion.servicios.Cita;
+import gestorAplicacion.servicios.*;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -196,5 +193,18 @@ public class Paciente extends Persona{
 
     public String toString(){
         return "\nNombre: "+ getNombre() + "\nCédula: " + getCedula() + "\nTipo de EPS: " + getTipoEps() + "\nHistoria Clinica: " + historiaClinica;
+    }
+
+    //Despedida para funcionalidad Vacunas
+    public String despedida(CitaVacuna citaAsignada ){
+        Cita servicio=citaAsignada;
+        //Hay ligadura dinámica
+        return "¡Adiós "+getNombre()+" "+servicio.mensaje();
+    }
+    //Despedida para funcionalidad Cita médica
+    public String despedida(Cita citaAsignada ){
+        Cita servicio=citaAsignada;
+        //Hay ligadura dinámica
+        return "¡Adiós "+getNombre()+" "+servicio.mensaje();
     }
 }

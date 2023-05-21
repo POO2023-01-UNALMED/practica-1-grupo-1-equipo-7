@@ -32,7 +32,6 @@ public abstract class Servicio implements Serializable {
 
         return serviciosSinPagar;
     }
-
     public boolean isEstadoPago() {
         return estadoPago;
     }
