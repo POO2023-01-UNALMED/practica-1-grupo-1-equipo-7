@@ -12,7 +12,7 @@ public class AgendarCitas {
 	
 static Scanner sc = new Scanner(System.in);
 	
-	public static void AgendarCitas(Hospital hospital) {
+	public static void agendarCitas(Hospital hospital) {
 		
 		//pide la cedula y busca el paciente
         System.out.print("Ingrese su numero de cedula: ");
@@ -21,6 +21,29 @@ static Scanner sc = new Scanner(System.in);
 		numeroCedula = sc.nextInt();
 		
 		Paciente pacienteAsignado = hospital.buscarPaciente(numeroCedula);
+		
+		//Verificación que el paciente se encuentre en la base de datos del hospital
+
+        if (pacienteAsignado == null){
+            while(true){
+                //Se da la posibilidad de registrar ese paciente
+                System.out.println("El paciente no está registrado.\n¿Desea registrarlo?");
+                System.out.println("1. Si\n2.No \nSeleccione una opción");
+                byte opcion= sc.nextByte();
+                switch (opcion){
+                    case 1:
+                        RegistrarPaciente.registrarPaciente(hospital);
+                        return;
+
+                    case 2:
+                        System.out.println("Adiós");
+                        return;
+
+                    default:
+                        System.out.println("Opción Inválida");
+                }
+            }
+        }
 		
 		ArrayList<Doctor> doctoresDisponibles = new ArrayList<Doctor>();
 		
@@ -138,7 +161,6 @@ static Scanner sc = new Scanner(System.in);
 		System.out.println("Fecha: " + citaAsignada.getFecha());
 		System.out.println("Paciente: " + citaAsignada.getPaciente().getNombre());
 		System.out.println("Doctor: " + citaAsignada.getDoctor().getNombre());
-		System.out.println("Precio de la cita: " + pacienteAsignado.calcularPrecio(citaAsignada));
 		
 		
 		//limpia los arrays de doctores y agenda disponibles al haberse asignado un paciente a una cita
@@ -147,7 +169,7 @@ static Scanner sc = new Scanner(System.in);
 		
 		System.out.println("\nhistorial citas de historia clinica del paciente: ");
 		pacienteAsignado.mostrarHistorial();
-
+		
 		//Despedida
 		System.out.println("\n"+pacienteAsignado.despedida(citaAsignada));
 	}

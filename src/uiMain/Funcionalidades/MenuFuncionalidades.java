@@ -13,6 +13,7 @@ public class MenuFuncionalidades {
 
         do {
             System.out.println("\nMENU FUNCIONALIDADES");
+            System.out.println("1. Agendar una cita medica");
             System.out.println("2. Aplicarse una vacuna");
             System.out.println("3. Asignar habitación a un paciente");
             System.out.println("4. Generar fórmula médica");
@@ -23,6 +24,7 @@ public class MenuFuncionalidades {
             opcion = sc.nextByte();
 
             switch (opcion) {
+                case 1 -> AgendarCitas.agendarCitas(hospital);
                 case 2 -> Vacunacion.vacunacion(hospital);
                 case 3 -> AsignarHabitacion.asignarHabitacion(hospital);
                 case 4 -> FormulaMedica.formulaMedica(hospital);
