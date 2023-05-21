@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class Formula extends Servicio {
     private ArrayList<Medicamento> listaMedicamentos = new ArrayList<Medicamento>();
     private Doctor doctor;
-    private double precio;
 
     public Formula(ArrayList<Medicamento> listaMedicamentos, Doctor doctor, Paciente paciente) {
         super(paciente);
@@ -35,14 +34,6 @@ public class Formula extends Servicio {
 
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
     }
 
     @Override

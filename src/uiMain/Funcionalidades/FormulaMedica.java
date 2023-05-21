@@ -113,8 +113,7 @@ public class FormulaMedica {
             /* Estas dos lineas son para ir actualizando la lista de medicamentos de la formula e ir actualizando el precio,
              se usa el metodo calcularPrecio de paciente, el cual se mete como parametro la lista de medicamentos que vamos llenando */
             formulaPaciente.setListaMedicamentos(listMedicamento);
-            double precioForm = paciente.calcularPrecio(formulaPaciente);
-            System.out.println("Esta es tu lista actual de medicamentos:" + listMedicamento + "\n" + "Valor a pagar: " + precioForm);
+            System.out.println("Esta es tu lista actual de medicamentos:" + listMedicamento);
             // Esto solo imprime los medicamentos que van
             for (int i = 0; i < listMedicamento.size(); i++) {
                 System.out.println(i + 1 + "." + listMedicamento.get(i));
