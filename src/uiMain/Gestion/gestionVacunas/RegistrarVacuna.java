@@ -29,20 +29,22 @@ public class RegistrarVacuna {
         System.out.println("A continuación ingrese la información de la nueva vacuna");
         System.out.println("Ingrese el nombre de la vacuna (Recuerda empezar con mayúscula) : ");
         String nombre= sc.next();
+        sc.nextLine();
         
         if(RegistrarVacuna.verificarExistenciaVacuna(nombre,hospital)){
             System.out.println("Esta vacuna ya está registrada");
             return;
         }
         System.out.println("Ingrese el tipo de la vacuna (Obligatoria, No obligatoria)");
-        String tipo = sc.next();
+        String tipo = sc.nextLine();
 
         ArrayList<String> tipoEps= new ArrayList<String>();
         boolean respuesta;
 
         do {
             System.out.println("Ingrese el tipo de Eps al que va a estar disponible la vacuna (Subsidiado, Contributivo o Particular) : ");
-            String eps = sc.next();
+            String eps;
+            eps= sc.next();
 
             tipoEps.add(eps);
 
@@ -66,12 +68,10 @@ public class RegistrarVacuna {
 
         hospital.getListaVacunas().add(vacunaNueva);
 
-        System.out.println("Información de la nueva vacuna registrada");
+        System.out.println("Información general de la nueva vacuna registrada");
         System.out.println("Vacuna: "+vacunaNueva.getNombre());
-        System.out.println("Eps 2: "+vacunaNueva.getTipoEps().get(1));
         System.out.println("Tipo: "+vacunaNueva.getTipo());
         System.out.println("Precio: "+ vacunaNueva.getPrecio());
-
     }
     
 }

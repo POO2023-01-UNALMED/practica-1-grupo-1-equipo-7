@@ -7,13 +7,14 @@ import gestorAplicacion.servicios.Habitacion;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Hospital implements Serializable {
 
     private ArrayList<Doctor> listaDoctores = new ArrayList<>();
     private ArrayList<Paciente> listaPacientes = new ArrayList<>();
     private ArrayList<Medicamento> listaMedicamentos = new ArrayList<>();
-    private ArrayList<Vacuna> listaVacunas= new ArrayList<>();
+    private ArrayList<Vacuna> listaVacunas= new ArrayList<Vacuna>();
     public static ArrayList<Habitacion> habitaciones= new ArrayList<>();
 
     public Hospital() {
@@ -51,7 +52,7 @@ public class Hospital implements Serializable {
     public ArrayList<Vacuna> buscarTipoVacuna(String tipo){
         ArrayList<Vacuna> vacunasDisponibles = new ArrayList<Vacuna>();
         for (int i=1; i<=listaVacunas.size(); i++){
-            if (listaVacunas.get(i-1).getTipo()==tipo){
+            if (Objects.equals(listaVacunas.get(i - 1).getTipo(), tipo)){
                 vacunasDisponibles.add(listaVacunas.get(i-1));
             }
         }

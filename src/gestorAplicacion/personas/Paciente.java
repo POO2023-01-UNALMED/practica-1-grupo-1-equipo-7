@@ -7,6 +7,7 @@ import gestorAplicacion.servicios.Habitacion;
 import gestorAplicacion.servicios.Cita;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Paciente extends Persona{
 
@@ -150,9 +151,9 @@ public class Paciente extends Persona{
         ArrayList<Vacuna> vacunasDisponibles= new ArrayList<Vacuna>();
 
         for (int i=1; i<=vacunasPorTipo.size();i++){
-            ArrayList<String> tipoEpsVacuna= vacunasPorTipo.get(i-1).getTipoEps();
+            ArrayList<String> tipoEpsVacuna = vacunasPorTipo.get(i-1).getTipoEps();
             for (int j=1;j<=tipoEpsVacuna.size();j++){
-                if (tipoEpsVacuna.get(j-1)==getTipoEps()){
+                if (Objects.equals(tipoEpsVacuna.get(j - 1), getTipoEps())){
                     vacunasDisponibles.add(vacunasPorTipo.get(i-1));
                 }
             }

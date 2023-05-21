@@ -8,6 +8,7 @@ import uiMain.Gestion.gestionPacientes.RegistrarPaciente;
 
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Vacunacion {
@@ -29,8 +30,8 @@ public class Vacunacion {
         if (pacienteAsignado == null){
             while(true){
                 //Se da la posibilidad de registrar ese paciente
-                System.out.println("El paciente no está registrado.\n ¿Desea registrarlo?");
-                System.out.println("1. Si\n2.No \n Seleccione una opción");
+                System.out.println("El paciente no está registrado.\n¿Desea registrarlo?");
+                System.out.println("1. Si\n2.No \nSeleccione una opción");
                 byte opcion= sc.nextByte();
                 switch (opcion){
                     case 1:
@@ -50,7 +51,7 @@ public class Vacunacion {
         //Se pregunta por el tipo de vacuna que requiere el paciente
         byte tipoVacuna;
 
-        System.out.println("\n Seleccione el tipo de vacuna que requiere");
+        System.out.println("\nSeleccione el tipo de vacuna que requiere");
         System.out.println("1. Obligatoria");
         System.out.println("2. No obligatoria");
         System.out.println("Ingrese una opcion: ");
@@ -65,19 +66,26 @@ public class Vacunacion {
 
         System.out.println("Vacunas Disponibles");
 
-
         ArrayList<Vacuna> vacunasDisponibles = new ArrayList<Vacuna>();
 
         //Busca las vacunas disponibles según su Eps y tipo de Vacuna
         switch (tipoVacuna){
             case 1:
                 vacunasDisponibles= pacienteAsignado.buscarVacunaPorEps("Obligatoria",hospital);
+                if (vacunasDisponibles.size()==0){
+                    System.out.println("No hay vacunas disponibles para usted");
+                    return;
+                }
                 for (int i=1; i<=vacunasDisponibles.size(); i++){
                     System.out.println(i + "."+vacunasDisponibles.get(i-1).getNombre());
                 }
                 break;
             case 2:
                 vacunasDisponibles= pacienteAsignado.buscarVacunaPorEps("No obligatoria",hospital);
+                if (vacunasDisponibles.size()==0){
+                    System.out.println("No hay vacunas disponibles para usted");
+                    return;
+                }
                 for (int i=1; i<=vacunasDisponibles.size(); i++){
                     System.out.println(i + "."+vacunasDisponibles.get(i-1).getNombre());
                 }
@@ -100,7 +108,7 @@ public class Vacunacion {
             }
             // Se verifica que la vacuna seleccionada no se la haya puesto antes
             for (int i=1;i<=pacienteAsignado.getHistoriaClinica().getHistorialVacunas().size();i++){
-                if (pacienteAsignado.getHistoriaClinica().getHistorialVacunas().get(i-1).getNombre()==vacunasDisponibles.get(numeroVacuna-1).getNombre()){
+                if (Objects.equals(pacienteAsignado.getHistoriaClinica().getHistorialVacunas().get(i - 1).getNombre(), vacunasDisponibles.get(numeroVacuna - 1).getNombre())){
                     verificarVacuna=true;
                     System.out.println("Usted ya se puso esta vacuna, por favor ingrese otra opción: ");
                     numeroVacuna= sc.nextByte();;
