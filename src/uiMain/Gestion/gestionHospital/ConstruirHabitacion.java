@@ -15,7 +15,7 @@ public class ConstruirHabitacion {
         CategoriaHabitacion categoriaHabitacion = null;
         int eleccion;
         do {
-            System.out.println("Elija el tipo de habitacion que desee, recuerde que segun el tipo va el costo del servicio");
+            System.out.println("Elija el tipo de habitacion que desea construir");
             System.out.println("1. CAMILLA");
             System.out.println("2. INDIVIDUAL");
             System.out.println("3. DOBLE");
