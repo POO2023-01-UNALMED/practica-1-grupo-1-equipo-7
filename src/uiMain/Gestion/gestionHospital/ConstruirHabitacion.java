@@ -1,0 +1,66 @@
+package uiMain.Gestion.gestionHospital;
+
+import gestorAplicacion.administracion.Hospital;
+import gestorAplicacion.servicios.Habitacion;
+import gestorAplicacion.administracion.CategoriaHabitacion;
+
+
+public class ConstruirHabitacion {
+    static Scanner sc = new Scanner(System.in);
+    public static void construirHabitacion (Hospital hospital){
+
+        System.out.println("Por favor introduce la información de la nueva habitación");
+        System.out.println("Ingrese el número de la habitación:");
+        int numero = sc.nextInt();
+        CategoriaHabitacion categoriaHabitacion = null;
+        int eleccion;
+        do {
+            System.out.println("Elija el tipo de habitacion que desee, recuerde que segun el tipo va el costo del servicio");
+            System.out.println("1. CAMILLA");
+            System.out.println("2. INDIVIDUAL");
+            System.out.println("3. DOBLE");
+            System.out.println("4. OBSERVACION");
+            System.out.println("5. UCI");
+            System.out.println("6. UCC");
+            System.out.print("Ingrese una opción: ");
+            eleccion = sc.nextInt();
+            sc.nextLine();
+
+
+            switch (eleccion) {
+                case 1:
+                    categoriaHabitacion=CategoriaHabitacion.CAMILLA;
+                    break;
+                case 2:
+                    categoriaHabitacion=CategoriaHabitacion.INDIVIDUAL;
+                    break;
+                case 3:
+                    categoriaHabitacion=CategoriaHabitacion.DOBLE;
+                    break;
+                case 4:
+                    categoriaHabitacion=CategoriaHabitacion.OBSERVACION;
+                    break;
+                case 5:
+                    categoriaHabitacion=CategoriaHabitacion.UCI;
+                    break;
+                case 6:
+                    categoriaHabitacion=CategoriaHabitacion.UCC;
+                    break;
+            }
+        } while (eleccion != 1 && eleccion != 2 && eleccion != 3 && eleccion != 4 && eleccion != 5 && eleccion != 6);
+        boolean ocupada=false;
+        Paciente paciente=null;
+        int dias=0;
+
+        for (Habitacion habitacion : Hospital.habitaciones) {
+            if (habitacion.getNumero()==numero && habitacion.getCategoria()==categoriaHabitacion)
+            System.out.println("La habitación ya existe");
+            return;
+        }
+        Habitacion habitacion= new Habitacion(numero, categoriaHabitacion, ocupada, paciente, dias);
+        System.out.println("Ya se ha construido la nueva habitación");
+        hospital.getHabitaciones().add(habitacion);
+        System.out.println(habitacion);
+    }
+
+}
