@@ -62,7 +62,7 @@ public class ConstruirHabitacion {
         Habitacion habitacion= new Habitacion(numero, categoriaHabitacion, ocupada, null, dias);
         System.out.println("Ya se ha construido la nueva habitación");
         hospital.getHabitaciones().add(habitacion);
-        System.out.println(habitacion);
+        System.out.println("-Número de ID de la habitación: "+ habitacion.getNumero() +" "+ "-Categoria de la habitación: "+ habitacion.getCategoria());
     }
 
 }

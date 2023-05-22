@@ -20,7 +20,7 @@ public class VerHabitacion {
                     ocupada="Ocupada";
                 }
 
-                System.out.println("Numero ID de la habitación: "+ habitacion.getNumero()+ "Tipo de habitación: "+ ocupada);
+                System.out.println("Numero ID de la habitación:  "+ habitacion.getNumero()+" "+ "Tipo de habitación: "+ habitacion.getCategoria()+" "+ "Estado: "+ ocupada);
             }
         }
     }

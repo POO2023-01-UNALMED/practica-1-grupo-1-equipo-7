@@ -19,7 +19,11 @@ public class MenuGestion {
             System.out.println("1. Gestionar Pacientes");
             System.out.println("2. Gestionar apartado de vacunas");
             System.out.println("3. Gestionar Doctores");
+<<<<<<< Updated upstream
             System.out.println("3. Gestionar Hospital");
+=======
+            System.out.println("4. Gestionar Habitaciones");
+>>>>>>> Stashed changes
             System.out.println("6. Regresar al menu inicial");
             System.out.println("7. Salir");
             System.out.println("Ingrese una opcion: ");
@@ -29,6 +33,7 @@ public class MenuGestion {
                 case 1 -> GestionPaciente.menuGestionPaciente(hospital);
                 case 2 -> GestionVacunas.menuGestionVacunas(hospital);
                 case 3 -> GestionDoctor.menuGestionDoctor(hospital);
+                case 4 -> GestionHospital.menuGetionHospital(hospital);
                 case 6 -> {
                     return;
                 }

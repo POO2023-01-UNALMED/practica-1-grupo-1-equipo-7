@@ -21,14 +21,14 @@ public class DestruirHabitacion {
                 if (!habitacion.isOcupada()){
                     hospital.getHabitaciones().remove(habitacion);
                     System.out.println("La habitación ha sido demolida con exito");
+                    return;
                 } else {
-                    System.out.println("La habitacion esta ocupada no puede ser demolida");
+                    System.out.println("La habitación esta ocupada no puede ser demolida");
                     return;
                 }
-            }else {
-                System.out.println("Esta habitación no existe");
-                return;
             }
+            
         }
+        System.out.println("Esta habitación no existe");
     }
 }
