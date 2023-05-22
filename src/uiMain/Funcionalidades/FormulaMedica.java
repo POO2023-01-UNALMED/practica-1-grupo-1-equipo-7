@@ -47,6 +47,7 @@ public class FormulaMedica {
         Enfermedad enfermedadTratar = null;
         if (paciente.getHistoriaClinica().getEnfermedades().size() == 0){
             System.out.println("No hay enfermedades registradas, por favor diríjase a la sección de registrar enfermedades.");
+            return;
         }
         while (true) {
             for (int i = 0; i < paciente.getHistoriaClinica().getEnfermedades().size(); i++) {
