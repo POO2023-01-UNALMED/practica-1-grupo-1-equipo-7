@@ -9,28 +9,28 @@ usar las funcionalidades destinadas al paciente y las funcionalidades encargadas
 
 ## Funcionalidades para pacientes
 
-### Agendamiento de citas médicas
+### 1. Agendamiento de citas médicas
 
 Se pueden agendar citas médicas a los pacientes por medio de su número de identificación registrado en el hospital, 
 puede elegir entre tres especialidades (oftalmología, general y odontología). Tendrá la libertad de elegir el doctor y la cita correspondiente (según disponibilidad). Todo esto quedará enlazado a su historia clínica.
 
-### Generar formula médica
+### 2. Generar formula médica
 
 Se pueden generar formulas médicas, dependiendo la enfermedad del paciente que sea atendida y que doctores han atendido al paciente, 
 posteriormente que se elije que doctor se encargara de formularle los medicamentos al paciente, hay una gran variedad de elección entre
 tipos de enfermedad y tipologías.
 
-### Reserva de habitaciones
+### 3. Reserva de habitaciones
 
 *agregar descripción
 
-### Aplicación de vacunas
+### 4. Aplicación de vacunas
 
 Según la EPS y la disponibilidad de vacunas en el hospital, se puede elegir que vacuna requiere un paciente, de acuerdo a su tipología y su historial, ya
 que no es posible aplicarse una misma vacuna en reiteradas ocasiones, se mostrará la agenda de citas con el personal de enfermería asociado a la 
 vacuna elegida. Para un correcto manejo de información en el hospital, la vacuna aplicada quedará en el historial del paciente.
 
-### Pagos de facturas
+### 5. Pagos de facturas
 
 *agregar descripción
 
