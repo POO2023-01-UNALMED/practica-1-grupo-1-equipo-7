@@ -1,12 +1,10 @@
 package uiMain.Gestion.gestionHospital;
 
 import gestorAplicacion.administracion.Hospital;
-import gestorAplicacion.personas.Paciente;
 import gestorAplicacion.servicios.Habitacion;
 import gestorAplicacion.administracion.CategoriaHabitacion;
 
 import java.util.Scanner;
-
 
 public class ConstruirHabitacion {
     static Scanner sc = new Scanner(System.in);
@@ -52,15 +50,16 @@ public class ConstruirHabitacion {
             }
         } while (eleccion != 1 && eleccion != 2 && eleccion != 3 && eleccion != 4 && eleccion != 5 && eleccion != 6);
         boolean ocupada=false;
-        Paciente paciente=null;
         int dias=0;
 
         for (Habitacion habitacion : Hospital.habitaciones) {
-            if (habitacion.getNumero()==numero && habitacion.getCategoria()==categoriaHabitacion)
-            System.out.println("La habitación ya existe");
-            return;
+            if (habitacion.getNumero()==numero && habitacion.getCategoria()==categoriaHabitacion){
+                System.out.println("La habitación ya existe");
+                return;
+            }
+
         }
-        Habitacion habitacion= new Habitacion(numero, categoriaHabitacion, ocupada, paciente, dias);
+        Habitacion habitacion= new Habitacion(numero, categoriaHabitacion, ocupada, null, dias);
         System.out.println("Ya se ha construido la nueva habitación");
         hospital.getHabitaciones().add(habitacion);
         System.out.println(habitacion);
