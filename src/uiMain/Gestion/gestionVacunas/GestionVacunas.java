@@ -14,6 +14,7 @@ public class GestionVacunas {
             System.out.println("\nMENU Gestion Vacunas");
             System.out.println("1. Registrar vacuna");
             System.out.println("2. Eliminar vacuna");
+            System.out.println("3. Ver información de una vacuna");
             System.out.println("4. Regresar al menu anterior");
             System.out.println("5. Salir");
             System.out.println("Ingrese una opcion: ");
@@ -21,6 +22,7 @@ public class GestionVacunas {
             switch (opcion) {
                 case 1 -> RegistrarVacuna.registrarVacuna(hospital);
                 case 2 -> EliminarVacuna.eliminarVacuna(hospital);
+                case 3 -> VerVacuna.verVacuna(hospital);
                 case 4 -> {
                     return;
                 }

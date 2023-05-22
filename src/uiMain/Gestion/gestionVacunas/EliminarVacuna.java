@@ -1,7 +1,6 @@
 package uiMain.Gestion.gestionVacunas;
 
 import gestorAplicacion.administracion.Hospital;
-import gestorAplicacion.administracion.Vacuna;
 
 import java.util.Objects;
 import java.util.Scanner;
