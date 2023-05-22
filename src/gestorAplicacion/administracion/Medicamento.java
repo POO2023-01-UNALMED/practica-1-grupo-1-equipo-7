@@ -11,9 +11,18 @@ public class Medicamento implements Serializable {
     private int cantidad;
     private float precio;
 
+    public Medicamento (String nombre, Enfermedad enfermedad, String descripcion, int cantidad, float precio) {
+        this.nombre = nombre;
+        this.enfermedad = enfermedad;
+        this.descripcion = descripcion;
+        this.cantidad = cantidad;
+        this.precio = precio;
+    }
+
     public void eliminarCantidad() {
         this.cantidad -= 1;
     }
+
     public String getNombre() {
         return nombre;
     }
