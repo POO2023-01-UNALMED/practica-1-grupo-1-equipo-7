@@ -35,7 +35,9 @@ vacuna elegida. Para un correcto manejo de información en el hospital, la vacun
 
 ### 5. Pagos de facturas
 
-*agregar descripción
+Cada servicio anteriormente presentado generará una factura enlazada a su respectivo paciente, en esta sección se presentará gracias a un filtro las facturas no pagas,
+y de acuerdo al tipo de EPS a la que está asociado el paciente y al tipo de servicio, se calculará un precio, donde posteriormente se podrá realizar el pago al usuario de 
+este servicio en específico.
 
 ## Funcionalidades de gestión
 
