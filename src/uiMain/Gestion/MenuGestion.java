@@ -3,6 +3,7 @@ package uiMain.Gestion;
 import baseDatos.Serializador;
 import gestorAplicacion.administracion.Hospital;
 import uiMain.Gestion.gestionDoctores.GestionDoctor;
+import uiMain.Gestion.gestionHospital.GestionHospital;
 import uiMain.Gestion.gestionPacientes.GestionPaciente;
 import uiMain.Gestion.gestionVacunas.GestionVacunas;
 
