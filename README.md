@@ -20,15 +20,12 @@ Se pueden generar formulas médicas, dependiendo la enfermedad del paciente que 
 posteriormente que se elije que doctor se encargara de formularle los medicamentos al paciente, hay una gran variedad de elección entre
 tipos de enfermedad y tipologías.
 
-### Asignar Habitacion
+### 3. Asignar Habitacion
 
 Nuestro sistema permite a los pacientes registrados en el hospital elegir entre categorías específicas de habitaciones, basadas en su EPS. 
 Cada categoría ofrece una selección única de habitaciones, brindando la flexibilidad de elegir la que mejor se adapte a sus preferencias. 
 Además, cada categoría tiene un valor asociado, lo que garantiza una tarifa ajustada a la cobertura de la EPS.
 
-### 3. Reserva de habitaciones
-
-*agregar descripción
 
 ### 4. Aplicación de vacunas
 
