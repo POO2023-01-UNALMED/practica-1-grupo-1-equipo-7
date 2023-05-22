@@ -17,8 +17,9 @@ public class GestionHospital {
             System.out.println("3. Destruir Habitación");
             System.out.println("4. Agregar Medicamentos");
             System.out.println("5. Ver Inventario de medicamentos");
-            System.out.println("6. Regresar al menu anterior");
-            System.out.println("7. Salir");
+            System.out.println("6. Ver personas registradas en el hospital");
+            System.out.println("7. Regresar al menu anterior");
+            System.out.println("8. Salir");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextByte();
             switch (opcion) {
@@ -27,10 +28,11 @@ public class GestionHospital {
                 case 3 -> DestruirHabitacion.destruirHabitacion(hospital);
                 case 4 -> AgregarMedicamentos.agregarMedicamentos(hospital);
                 case 5 -> VerMedicamentos.verMedicamentos(hospital);
-                case 6 -> {
+                case 6 -> VerPersonasRegistradas.verPersonasRegistradas(hospital);
+                case 7 -> {
                     return;
                 }
-                case 7 -> {
+                case 8 -> {
                     Serializador.serializar(hospital);
                     System.exit(0);
                 }

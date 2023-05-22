@@ -51,7 +51,7 @@ public class AgregarMedicamentos {
                             System.out.println(i + 1 + "." + enfermedades.get(i));
                         }
                         byte opcEnf = sc.nextByte();
-
+                        sc.nextLine();
                         if (opcEnf == 0) {
                             System.out.println("Ingrese el nombre de la enfermedad");
                             String nombreEnf = sc.nextLine();

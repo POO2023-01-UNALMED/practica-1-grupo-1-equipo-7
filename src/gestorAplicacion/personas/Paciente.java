@@ -25,7 +25,7 @@ public class Paciente extends Persona{
         ArrayList<Medicamento> medicamentos = hospital.medicamentosDisponibles();
         ArrayList<Medicamento> medEnfermedades = new ArrayList<Medicamento>();
         for (Medicamento med : medicamentos){
-            if (enfermedad.getNombre().equals(med.getEnfermedad().getNombre())){
+            if (enfermedad.getNombre().equals(med.getEnfermedad().getNombre()) && enfermedad.getTipologia().equals(med.getEnfermedad().getTipologia())){
                 medEnfermedades.add(med);
             }
 
@@ -191,7 +191,7 @@ public class Paciente extends Persona{
     @Override
 
     public String toString(){
-        return "\nNombre: "+ getNombre() + "\nCédula: " + getCedula() + "\nTipo de EPS: " + getTipoEps() + "\nHistoria Clinica: " + historiaClinica;
+        return "---------------------------\nNombre: "+ getNombre() + "\nCédula: " + getCedula() + "\nTipo de EPS: " + getTipoEps() + "\n---------------------------";
     }
 
     //Despedida para funcionalidad Vacunas

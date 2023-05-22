@@ -3,6 +3,7 @@ package uiMain.Gestion;
 import baseDatos.Serializador;
 import gestorAplicacion.administracion.Hospital;
 import uiMain.Gestion.gestionDoctores.GestionDoctor;
+import uiMain.Gestion.gestionHospital.GestionHospital;
 import uiMain.Gestion.gestionPacientes.GestionPaciente;
 import uiMain.Gestion.gestionVacunas.GestionVacunas;
 
@@ -19,7 +20,7 @@ public class MenuGestion {
             System.out.println("1. Gestionar Pacientes");
             System.out.println("2. Gestionar apartado de vacunas");
             System.out.println("3. Gestionar Doctores");
-            System.out.println("4. Gestionar Habitaciones");
+            System.out.println("4. Gestionar Hospital");
             System.out.println("6. Regresar al menu inicial");
             System.out.println("7. Salir");
             System.out.println("Ingrese una opcion: ");
