@@ -14,9 +14,9 @@ public class MenuFuncionalidades {
         do {
             System.out.println("\nMENU FUNCIONALIDADES");
             System.out.println("1. Agendar una cita medica");
-            System.out.println("2. Aplicarse una vacuna");
+            System.out.println("2. Generar fórmula médica");
             System.out.println("3. Asignar habitación a un paciente");
-            System.out.println("4. Generar fórmula médica");
+            System.out.println("4. Aplicarse una vacuna");
             System.out.println("5. Facturacion");
             System.out.println("6. Regresar al menu inicial");
             System.out.println("7. Salir");
@@ -25,9 +25,9 @@ public class MenuFuncionalidades {
 
             switch (opcion) {
                 case 1 -> AgendarCitas.agendarCitas(hospital);
-                case 2 -> Vacunacion.vacunacion(hospital);
+                case 2 -> FormulaMedica.formulaMedica(hospital);
                 case 3 -> AsignarHabitacion.asignarHabitacion(hospital);
-                case 4 -> FormulaMedica.formulaMedica(hospital);
+                case 4 -> Vacunacion.vacunacion(hospital);
                 case 5 -> Facturacion.facturacion(hospital);
                 case 6 -> {
                     return;
