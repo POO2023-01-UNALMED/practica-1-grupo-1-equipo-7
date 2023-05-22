@@ -25,6 +25,8 @@ public class Vacunacion {
         //Se busca el paciente por el numero de cédula
         Paciente pacienteAsignado= hospital.buscarPaciente(numeroCedula);
 
+        System.out.println(pacienteAsignado.mensaje());
+
         //Verificación que el paciente se encuentre en la base de datos del hospital
 
         if (pacienteAsignado == null){
@@ -128,6 +130,12 @@ public class Vacunacion {
         //Se busca la agenda disponible de la vacuna seleccionada
         Vacuna vacunaAsignada = vacunasDisponibles.get(numeroVacuna-1);
         agendaDisponible = vacunaAsignada.mostrarAgendaDisponible();
+
+        //Caso en el que no hayan citas disponibles de esa vacuna
+        if(agendaDisponible.size()==0){
+            System.out.println("No hay citas disponibles para esta vacuna");
+            return;
+        }
 
         for(int i=1; i<=agendaDisponible.size();i++){
             System.out.println(i + ". "+ agendaDisponible.get(i-1).getFecha());

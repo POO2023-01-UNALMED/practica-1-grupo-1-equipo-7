@@ -53,6 +53,11 @@ public class Doctor extends Persona{
     }
 
     @Override
+    public String mensaje() {
+        return "Hola doctor, "+getNombre();
+    }
+
+    @Override
 
     public String toString(){
         return "---------------------------\nNombre: "+ getNombre() + "\nCédula: " + getCedula() + "\nTipo de EPS: " + getTipoEps() + "\nEspecialidad: " + getEspecialidad() + "\n---------------------------";
