@@ -20,8 +20,10 @@ public class DestruirHabitacion {
             if ((habitacion.getNumero() == numero) && (habitacion.getCategoria()==habitacionSeleccionada)){
                 if (!habitacion.isOcupada()){
                     hospital.getHabitaciones().remove(habitacion);
+                    System.out.println("La habitación ha sido demolida con exito");
                 } else {
                     System.out.println("La habitacion esta ocupada no puede ser demolida");
+                    return;
                 }
             }else {
                 System.out.println("Esta habitación no existe");
