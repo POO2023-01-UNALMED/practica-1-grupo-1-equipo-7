@@ -37,6 +37,7 @@ public class AgregarMedicamentos {
                             break;
                         }
                     }
+                    break;
 
                 case 2:
                     System.out.println("Ingrese el nombre del medicamento: ");
@@ -75,6 +76,7 @@ public class AgregarMedicamentos {
                     float precio = sc.nextFloat();
                     Medicamento medicamento = new Medicamento(nombre, enfermedad, descripcion, cantidad, precio);
                     hospital.getListaMedicamentos().add(medicamento);
+                    break;
                 default:
                     System.out.println("Opción Inválida");
             }

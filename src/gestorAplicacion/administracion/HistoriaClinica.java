@@ -27,7 +27,7 @@ public class HistoriaClinica implements Serializable {
         ArrayList<Doctor> docCita = new ArrayList<>();
         for (Doctor doc : doctoresDisp){
             for (Cita cita : historialCitas){
-                if (doc == cita.getDoctor()){
+                if (doc.getCedula() == cita.getDoctor().getCedula()){
                     docCita.add(doc);
                 }
             }

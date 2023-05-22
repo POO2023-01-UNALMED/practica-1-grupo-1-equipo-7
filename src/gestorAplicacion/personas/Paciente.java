@@ -25,7 +25,7 @@ public class Paciente extends Persona{
         ArrayList<Medicamento> medicamentos = hospital.medicamentosDisponibles();
         ArrayList<Medicamento> medEnfermedades = new ArrayList<Medicamento>();
         for (Medicamento med : medicamentos){
-            if (enfermedad == med.getEnfermedad()){
+            if (enfermedad.getNombre().equals(med.getEnfermedad().getNombre())){
                 medEnfermedades.add(med);
             }
 
