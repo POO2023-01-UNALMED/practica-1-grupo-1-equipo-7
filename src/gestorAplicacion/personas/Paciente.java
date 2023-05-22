@@ -171,6 +171,12 @@ public class Paciente extends Persona{
         }
         return vacunasDisponibles;
     }
+    //Método para bienvenida de doctor
+    public String mensajeDoctor(Doctor doctor){
+        Persona persona=doctor;
+        //Hay ligadura dinámica
+        return persona.mensaje()+ "\nPor favor selecciona los medicamentos que vas a formularle a: "+getNombre();
+    }
 
     //Getter y setter
     public void actualizarHistorialVacunas(CitaVacuna citaAsignada){
@@ -210,10 +216,6 @@ public class Paciente extends Persona{
         return "---------------------------\nNombre: "+ getNombre() + "\nCédula: " + getCedula() + "\nTipo de EPS: " + getTipoEps() + "\n---------------------------";
     }
 
-    public String mensajeDoctor(Doctor doctor){
-        Persona persona=doctor;
-        return persona.mensaje()+ "\nPor favor selecciona los medicamentos que vas a formularle a: "+getNombre();
-    }
 
     //Despedida para funcionalidad Vacunas
     public String despedida(CitaVacuna citaAsignada ){
