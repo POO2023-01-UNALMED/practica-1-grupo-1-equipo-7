@@ -7,6 +7,7 @@ import gestorAplicacion.administracion.Hospital;
 import gestorAplicacion.servicios.Cita;
 import gestorAplicacion.personas.Doctor;
 import gestorAplicacion.personas.Paciente;
+import uiMain.Gestion.gestionPacientes.RegistrarPaciente;
 
 public class AgendarCitas {
 	

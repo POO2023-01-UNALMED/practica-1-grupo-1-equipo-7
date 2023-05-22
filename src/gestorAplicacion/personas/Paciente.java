@@ -62,7 +62,6 @@ public class Paciente extends Persona{
         for (Medicamento med : formula.getListaMedicamentos()){
             precio += med.getPrecio();
         }
-        formula.setPrecio(precio);
         return precio;
     }
     
