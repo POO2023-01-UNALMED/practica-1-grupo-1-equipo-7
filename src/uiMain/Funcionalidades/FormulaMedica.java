@@ -45,11 +45,11 @@ public class FormulaMedica {
         // se pregunta al paciente que enfermedad desea tratar y se busca la lista de enfermedades en su historia
         System.out.println("¿Que enfermedad deseas tratar?");
         Enfermedad enfermedadTratar = null;
-        if (paciente.getHistoriaClinica().getEnfermedades().size() == 0){
+        if (paciente.getHistoriaClinica().getEnfermedades().size() == 0){ //Caso en el que el paciente no tenga enfermedades registradas
             System.out.println("No hay enfermedades registradas, por favor diríjase a la sección de registrar enfermedades.");
             return;
         }
-        while (true) {
+        while (true) { //Bucle para el caso en el que elija opciones fuera de rango
             for (int i = 0; i < paciente.getHistoriaClinica().getEnfermedades().size(); i++) {
                 System.out.println(i + 1 + "." + paciente.getHistoriaClinica().getEnfermedades().get(i));
             }
@@ -62,7 +62,6 @@ public class FormulaMedica {
                 System.out.println("Opción Inválida");
             }
         }
-        System.out.println("Los doctores que lo han atendido y están disponibles para formular " + enfermedadTratar.getNombre() + " " + enfermedadTratar.getTipologia() + " son: ");
         ArrayList<Doctor> doctoresCita = paciente.getHistoriaClinica().buscarCitaDoc(enfermedadTratar.getEspecialidad(), hospital); /* metodo de la historia del paciente
          para buscar que doctor trata la enfermedad y que haya tenido una cita con el paciente */
         if (doctoresCita.size() == 0) { //Caso donde no tenga citas con ningún doctor que trate su enfermedad
@@ -70,7 +69,7 @@ public class FormulaMedica {
             return;
         }
         Doctor doctorEscogido = null;
-        while (true) {
+        while (true) { //Bucle para el caso en el que elija opciones fuera de rango
             System.out.println("Los doctores que lo han atendido y están disponibles para formular " + enfermedadTratar.getNombre() + " " + enfermedadTratar.getTipologia() + " son: ");
             //Imprime la cita de los doctores que tratan su enfermedad y tuvieron una cita con él
             for (int i = 0; i < doctoresCita.size(); i++) {
@@ -90,12 +89,12 @@ public class FormulaMedica {
             System.out.println("Hola doctor, " + doctorEscogido.getNombre() + "\nPor favor selecciona los medicamentos que vas a formularle a: " + paciente.getNombre());
             //Aquí buscamos los medicamentos disponibles y los medicamentos que traten la enfermedad del paciente
             ArrayList<Medicamento> disponibleEnf = paciente.medEnfermedad(enfermedadTratar, hospital);
-            //Condicion para que cuando ya no hayan medicamentos disponibles no siga el bucle y lo termine
+            //Condicion para que cuando ya no haya medicamentos disponibles no siga el bucle y lo termine
             if (disponibleEnf.size()==0){
                 System.out.println("No hay más medicamentos disponibles");
                 break;
             }
-            while (true) {
+            while (true) { //Bucle para el caso en el que elija opciones fuera de rango
                 //esto solo se usa para imprimir la lista de la forma 1. Nombre, etc..
                 for (int i = 0; i < disponibleEnf.size(); i++) {
                     System.out.println(i + 1 + "." + disponibleEnf.get(i) + ", Cantidad: " + disponibleEnf.get(i).getCantidad() + ", Precio: " + disponibleEnf.get(i).getPrecio());
@@ -122,7 +121,7 @@ public class FormulaMedica {
             for (int i = 0; i < listMedicamento.size(); i++) {
                 System.out.println(i + 1 + "." + listMedicamento.get(i));
             }
-            while (true) {
+            while (true) { //Bucle para el caso en el que se ingresen opciones incorrectas
                 System.out.println("¿Desea agregar otro medicamento? (s/n)");
                 char agregar = sc.next().charAt(0);
                 if (agregar == 's' || agregar == 'n') {
@@ -133,6 +132,10 @@ public class FormulaMedica {
                 }
             }
         } while (agregarOtro);
+        if (listMedicamento.size() == 0) { /* En caso de que listaMedicamentos este vacía significa que no formulo medicamentos
+         entonces que esa formula vacía creada al inicio de la funcionalidad no se guarde en la historia del paciente */
+            return;
+        }
         paciente.getHistoriaClinica().agregarFormula(formulaPaciente);
         //esto solo imprime el toString de la formula
         System.out.println(formulaPaciente);

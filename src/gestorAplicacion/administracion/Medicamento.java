@@ -1,3 +1,5 @@
+/* Clase usada en FormulaMedica, practicamente es el pilar de esta funcionalidad porque son los
+* medicamentos que se eligen allí */
 package gestorAplicacion.administracion;
 
 import gestorAplicacion.personas.Enfermedad;
@@ -5,12 +7,14 @@ import gestorAplicacion.personas.Enfermedad;
 import java.io.Serializable;
 
 public class Medicamento implements Serializable {
+    // Atributos
     private String nombre;
     private Enfermedad enfermedad;
     private String descripcion;
     private int cantidad;
     private float precio;
 
+    // Constructor
     public Medicamento (String nombre, Enfermedad enfermedad, String descripcion, int cantidad, float precio) {
         this.nombre = nombre;
         this.enfermedad = enfermedad;
@@ -19,10 +23,14 @@ public class Medicamento implements Serializable {
         this.precio = precio;
     }
 
+    // Métodos
+
+    //Método que elimina una unidad de la cantidad total de medicamentos
     public void eliminarCantidad() {
         this.cantidad -= 1;
     }
 
+    // Getter y setter
     public String getNombre() {
         return nombre;
     }
@@ -62,6 +70,7 @@ public class Medicamento implements Serializable {
     public void setPrecio(float precio) {
         this.precio = precio;
     }
+    // toString
     @Override
     public String toString() {
         return "Nombre: " + nombre + ", " + "Enfermedad: " + enfermedad.getNombre() + " " + enfermedad.getTipologia() + ", " + "Descripcion: " + descripcion;

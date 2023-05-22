@@ -1,3 +1,5 @@
+/* Clase que usa las funcionalidades del programa.
+ Hereda de la clase Persona */
 package gestorAplicacion.personas;
 
 import gestorAplicacion.administracion.*;
@@ -8,19 +10,26 @@ import java.util.Objects;
 
 public class Paciente extends Persona{
 
+    // Atributos
 	private final HistoriaClinica historiaClinica;
     private CategoriaHabitacion categoriaHabitacion;
     private Habitacion habitacionAsignada;
 
+    // Constructores
     public Paciente(int cedula, String nombre, String tipoEps,CategoriaHabitacion categoriaHabitacion) {
         super(cedula,nombre,tipoEps);
         this.categoriaHabitacion=categoriaHabitacion;
         this.historiaClinica = new HistoriaClinica(this);
     }
+    // Sobrecarga de constructor
     public Paciente(int cedula, String nombre, String tipoEps){
         this(cedula, nombre, tipoEps, null);
     }
 
+    // Métodos
+
+    /* Método que se encarga de buscar los medicamentos disponibles y posteriormente busca los medicamentos
+    que traten la enfermedad ingresada como parámetro */
     public ArrayList<Medicamento> medEnfermedad(Enfermedad enfermedad, Hospital hospital) {
         ArrayList<Medicamento> medicamentos = hospital.medicamentosDisponibles();
         ArrayList<Medicamento> medEnfermedades = new ArrayList<Medicamento>();
@@ -32,11 +41,12 @@ public class Paciente extends Persona{
         }
         return medEnfermedades;
     }
-    
+
+    /* Método que busca los doctores por especialidad y por el tipo de eps del paciente */
     public ArrayList<Doctor> buscarDoctorEps(String especialidad, Hospital hospital){
     	ArrayList<Doctor> doctoresPorEspecialidad = hospital.buscarTipoDoctor(especialidad);
     	ArrayList<Doctor> doctoresDisponibles = new ArrayList<Doctor>();
-    	
+
     	for(int i=1; i<=doctoresPorEspecialidad.size(); i++) {
     		if (Objects.equals(doctoresPorEspecialidad.get(i-1).getTipoEps(), getTipoEps())) {
     			doctoresDisponibles.add(doctoresPorEspecialidad.get(i-1));
@@ -44,11 +54,13 @@ public class Paciente extends Persona{
     }
 		return doctoresDisponibles;
   }
-    
+
+  /* Método que agrega una cita a la lista de citas de la historia clínica del paciente */
     public void actualizarHistorialCitas(Cita citaAsignada) {
     	historiaClinica.getHistorialCitas().add(citaAsignada);
     }
-    
+
+    /* Método que muestra la historia clínica del paciente */
     public void mostrarHistorial() {
     	for(int i=1; i<=historiaClinica.getHistorialCitas().size(); i++) {
     		System.out.println("Fecha: " + historiaClinica.getHistorialCitas().get(i-1).getFecha());
@@ -57,6 +69,7 @@ public class Paciente extends Persona{
     	}
     }
 
+    //Sobre carga de métodos con calcular precio de los distintos servicios
     public double calcularPrecio(Formula formula){
         double precio = 0;
         for (Medicamento med : formula.getListaMedicamentos()){
@@ -64,36 +77,36 @@ public class Paciente extends Persona{
         }
         return precio;
     }
-    
+
     public double calcularPrecio(Cita citaAsignada) {
-    	
+
     	final double IVA = 0.19;
     	double precioTotal = 0;
-    	
+
     	if (citaAsignada.getDoctor().getEspecialidad() == "General") {
     		precioTotal += 5000;
     	}
-    	
+
     	if (citaAsignada.getDoctor().getEspecialidad() == "Oftalmologia") {
     		precioTotal += 7000;
     	}
-    	
+
     	if (citaAsignada.getDoctor().getEspecialidad() == "Odontologia") {
     		precioTotal += 10000;
     	}
-    	
+
     	if (citaAsignada.getPaciente().getTipoEps() == "Contributivo") {
     		precioTotal += 2000;
     	}
-    	
+
     	if (citaAsignada.getPaciente().getTipoEps() == "Subsidiado") {
     		precioTotal += 500;
     	}
-    	
+
     	if (citaAsignada.getPaciente().getTipoEps() == "Particular") {
     		precioTotal += 10000;
     	}
-    	
+
     	precioTotal = precioTotal*(1+IVA);
     	return precioTotal;
     }
@@ -142,6 +155,8 @@ public class Paciente extends Persona{
         }
     }
 
+    /* Método que busca las vacunas por tipo ingresada en el parámetro, invocando el método
+     de hospital, y con el for filtrandolas por eps */
     public ArrayList<Vacuna> buscarVacunaPorEps(String tipo, Hospital hospital){
         ArrayList<Vacuna> vacunasPorTipo= hospital.buscarTipoVacuna(tipo);
         ArrayList<Vacuna> vacunasDisponibles= new ArrayList<Vacuna>();
@@ -157,6 +172,7 @@ public class Paciente extends Persona{
         return vacunasDisponibles;
     }
 
+    //Getter y setter
     public void actualizarHistorialVacunas(CitaVacuna citaAsignada){
         historiaClinica.getHistorialVacunas().add(citaAsignada);
     }

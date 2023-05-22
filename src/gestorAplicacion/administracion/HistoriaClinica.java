@@ -1,3 +1,4 @@
+/* Clase que guarda la información médica del paciente */
 package gestorAplicacion.administracion;
 
 import gestorAplicacion.personas.Doctor;
@@ -11,17 +12,22 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class HistoriaClinica implements Serializable {
+    //Atributos
     private final Paciente paciente;
     private ArrayList<Formula> listaFormulas = new ArrayList<>();
     private ArrayList<Cita> historialCitas = new ArrayList<>();
     private ArrayList<Enfermedad> enfermedades = new ArrayList<>();
     private ArrayList<CitaVacuna> historialVacunas= new ArrayList<>();
 
+    //Constructor
     public HistoriaClinica(Paciente paciente) {
         this.paciente = paciente;
     }
 
+    //Métodos
 
+    /* Método que busca los doctores que estén disponibles y también los doctores con los que el paciente
+    asociado a esta historia haya tenido alguna cita */
     public ArrayList<Doctor> buscarCitaDoc(String especialidad, Hospital hospital) {
         ArrayList<Doctor> doctoresDisp = hospital.buscarTipoDoctor(especialidad);
         ArrayList<Doctor> docCita = new ArrayList<>();
@@ -35,11 +41,13 @@ public class HistoriaClinica implements Serializable {
         return docCita;
     }
 
+    // Método que agrega las fórmulas médicas ingresadas como parámetro a listaFormulas
     public void agregarFormula(Formula formulaPaciente) {
         listaFormulas.add(formulaPaciente);
     }
 
 
+    //Getter y setter
     public Paciente getPaciente() {
         return paciente;
     }
