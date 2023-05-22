@@ -38,7 +38,7 @@ public class Paciente extends Persona{
     	ArrayList<Doctor> doctoresDisponibles = new ArrayList<Doctor>();
     	
     	for(int i=1; i<=doctoresPorEspecialidad.size(); i++) {
-    		if (doctoresPorEspecialidad.get(i-1).getTipoEps() == getTipoEps() ) {
+    		if (Objects.equals(doctoresPorEspecialidad.get(i-1).getTipoEps(), getTipoEps())) {
     			doctoresDisponibles.add(doctoresPorEspecialidad.get(i-1));
     		}
     }
