@@ -45,6 +45,9 @@ public class FormulaMedica {
         // se pregunta al paciente que enfermedad desea tratar y se busca la lista de enfermedades en su historia
         System.out.println("¿Que enfermedad deseas tratar?");
         Enfermedad enfermedadTratar = null;
+        if (paciente.getHistoriaClinica().getEnfermedades().size() == 0){
+            System.out.println("No hay enfermedades registradas, por favor diríjase a la sección de registrar enfermedades.");
+        }
         while (true) {
             for (int i = 0; i < paciente.getHistoriaClinica().getEnfermedades().size(); i++) {
                 System.out.println(i + 1 + "." + paciente.getHistoriaClinica().getEnfermedades().get(i));
