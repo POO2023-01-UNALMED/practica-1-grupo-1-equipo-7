@@ -55,7 +55,7 @@ public class RegistrarNuevaEnfermedad {
 
                 if (opcEnf == 0) {
                     System.out.println("Ingrese el nombre de la enfermedad");
-                    String nombre = sc.next();
+                    String nombre = sc.nextLine();
                     System.out.println("Ingrese el nombre la tipología de la enfermedad");
                     String tipologia = sc.next();
                     System.out.println("Ingrese la especialidad que trata la enfermedad");

@@ -11,7 +11,7 @@ public class RegistrarPaciente {
 
         System.out.println("Por favor introduce la información del paciente para su registro");
         System.out.println("Ingrese el nombre del paciente:");
-        String nombre = sc.next();
+        String nombre = sc.nextLine();
         System.out.println("Ingrese el número de cédula: ");
         int id = sc.nextInt();
         if (hospital.buscarPaciente(id) != null) {

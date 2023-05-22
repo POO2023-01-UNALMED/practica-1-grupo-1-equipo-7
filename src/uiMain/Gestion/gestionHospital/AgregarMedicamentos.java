@@ -38,7 +38,7 @@ public class AgregarMedicamentos {
 
                 case 2:
                     System.out.println("Ingrese el nombre del medicamento: ");
-                    String nombre = sc.next();
+                    String nombre = sc.nextLine();
                     Enfermedad enfermedad = null;
                     ArrayList<Enfermedad> enfermedades = Enfermedad.getEnfermedadesRegistradas();
                     while (true) {
@@ -51,7 +51,7 @@ public class AgregarMedicamentos {
 
                         if (opcEnf == 0) {
                             System.out.println("Ingrese el nombre de la enfermedad");
-                            String nombreEnf = sc.next();
+                            String nombreEnf = sc.nextLine();
                             System.out.println("Ingrese el nombre la tipología de la enfermedad");
                             String tipologia = sc.next();
                             System.out.println("Ingrese la especialidad que trata la enfermedad");
@@ -66,7 +66,7 @@ public class AgregarMedicamentos {
                         }
                     }
                     System.out.println("Ingresa una descripción del medicamento");
-                    String descripcion = sc.next();
+                    String descripcion = sc.nextLine();
                     System.out.println("Ingresa la cantidad de medicamentos: ");
                     int cantidad = sc.nextInt();
                     System.out.println("Ingresa el precio: ");
