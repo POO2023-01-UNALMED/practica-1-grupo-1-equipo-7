@@ -32,8 +32,8 @@ public class EliminarCitas {
                 }
             }
         }
-        System.out.println("Seleccione la cita que desea eliminar, (solo podra eliminar citas que " +
-                "no tengan un paciente asigando: ");
+        System.out.println("Seleccione la cita que desea eliminar, (solo se muestran las citas que " +
+                "no tienen un paciente asigando: ");
 
         ArrayList<Cita> agendaDisponible = doctor.mostrarAgendaDisponible();
         for(int i=1; i<=agendaDisponible.size(); i++) {

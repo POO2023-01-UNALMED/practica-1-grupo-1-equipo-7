@@ -60,6 +60,6 @@ public class Doctor extends Persona{
     @Override
 
     public String toString(){
-        return "---------------------------\nNombre: "+ getNombre() + "\nCédula: " + getCedula() + "\nTipo de EPS: " + getTipoEps() + "\nEspecialidad: " + getEspecialidad() + "\n---------------------------";
+        return "Nombre: "+ getNombre() + "\nCédula: " + getCedula() + "\nTipo de EPS: " + getTipoEps() + "\nEspecialidad: " + getEspecialidad() ;
     }
 }
