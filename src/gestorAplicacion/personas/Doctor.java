@@ -11,6 +11,9 @@ public class Doctor extends Persona{
     public Doctor(int cedula, String nombre, String tipoEps, String especialidad) {
     	super(cedula, nombre, tipoEps);
     	this.especialidad = especialidad;
+        agenda.add(new Cita(this,"3 de Abril, 8:00 am", null));
+        agenda.add(new Cita(this,"4 de Abril, 3:00 pm", null));
+        agenda.add(new Cita(this,"5 de Abril, 10:00 am", null));
     	}
     
     public String getEspecialidad() {
@@ -47,5 +50,11 @@ public class Doctor extends Persona{
     		}
     	}
 		return citaAsignada;
+    }
+
+    @Override
+
+    public String toString(){
+        return "\nNombre: "+ getNombre() + "\nCédula: " + getCedula() + "\nTipo de EPS: " + getTipoEps() + "\nEspecialidad: " + getEspecialidad();
     }
 }

@@ -24,7 +24,7 @@ public class Hospital implements Serializable {
     public ArrayList<Doctor> buscarTipoDoctor(String especialidad) {
         ArrayList<Doctor> doctoresDisponibles = new ArrayList<Doctor>();
         for(int i=1; i<=listaDoctores.size(); i++) {
-            if (listaDoctores.get(i-1).getEspecialidad() == especialidad) {
+            if (Objects.equals(listaDoctores.get(i-1).getEspecialidad(), especialidad)) {
                 doctoresDisponibles.add(listaDoctores.get(i-1));
             }
         }
@@ -39,6 +39,17 @@ public class Hospital implements Serializable {
         }
         return null;
     }
+
+    public Doctor buscarDoctor(int ceduladoctor){
+        for (Doctor doctor :
+                listaDoctores) {
+            if (doctor.getCedula() == ceduladoctor) {
+                return doctor;
+            }
+        }
+        return null;
+    }
+
     public ArrayList<Medicamento> medicamentosDisponibles() {
         ArrayList<Medicamento> disponibles = new ArrayList<Medicamento>();
         for(int i=0; i<listaMedicamentos.size();i++) {
