@@ -3,9 +3,7 @@ package uiMain.Funcionalidades;
 import gestorAplicacion.administracion.Factura;
 import gestorAplicacion.administracion.Hospital;
 import gestorAplicacion.personas.Paciente;
-import gestorAplicacion.servicios.CitaVacuna;
-import gestorAplicacion.servicios.Formula;
-import gestorAplicacion.servicios.Servicio;
+import gestorAplicacion.servicios.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -58,6 +56,10 @@ public class Facturacion {
             precioServicioSeleccionado = pacienteSeleccionado.calcularPrecio((Formula) servicioSeleccionado);
         else if (servicioSeleccionado instanceof CitaVacuna)
             precioServicioSeleccionado = pacienteSeleccionado.calcularPrecio((CitaVacuna) servicioSeleccionado);
+        else if (servicioSeleccionado instanceof Habitacion)
+            precioServicioSeleccionado = pacienteSeleccionado.calcularPrecio((Habitacion) servicioSeleccionado);
+        else if (servicioSeleccionado instanceof Cita)
+            precioServicioSeleccionado = pacienteSeleccionado.calcularPrecio((Cita) servicioSeleccionado);
 
         System.out.println("Total a pagar: $" + precioServicioSeleccionado);
 

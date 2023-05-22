@@ -26,6 +26,9 @@ public abstract class Servicio implements Serializable {
         // Obtiene todos los servicios brindados al paciente
         serviciosSinPagar.addAll(historiaClinicaPaciente.getHistorialCitas());
         serviciosSinPagar.addAll(historiaClinicaPaciente.getListaFormulas());
+        if (paciente.getHabitacionAsignada() != null)
+            serviciosSinPagar.add(paciente.getHabitacionAsignada());
+        serviciosSinPagar.addAll(historiaClinicaPaciente.getHistorialVacunas());
 
         // Filtra los servicios pagados
         serviciosSinPagar.removeIf(Servicio::isEstadoPago);
