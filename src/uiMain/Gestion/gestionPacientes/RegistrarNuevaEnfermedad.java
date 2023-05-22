@@ -9,10 +9,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RegistrarNuevaEnfermedad {
+    static Scanner sc = new Scanner(System.in);
     public static void registrarNuevaEnfermedad(Hospital hospital) {
-        Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese la cédula del paciente para registrar nuevas enfermedades: ");
         int cedula = sc.nextInt();
+        sc.nextLine();
         Paciente paciente = hospital.buscarPaciente(cedula);
         if (paciente == null) { /*Si el paciente es null, quiere decir que no lo encontró, por lo que
         preguntamos si desea registrar este paciente */
@@ -20,6 +21,7 @@ public class RegistrarNuevaEnfermedad {
                 System.out.println("El paciente no esta registrado.\n¿Desea registrarlo?");
                 System.out.println("1. Si\n2. No \nSeleccione una opción");
                 byte opcion = sc.nextByte();
+                sc.nextLine();
                 switch (opcion) {
                     case 1:
                         RegistrarPaciente.registrarPaciente(hospital);
@@ -52,7 +54,7 @@ public class RegistrarNuevaEnfermedad {
                     System.out.println(i + 1 + "." + enfermedades.get(i));
                 }
                 byte opcEnf = sc.nextByte();
-
+                sc.nextLine();
                 if (opcEnf == 0) {
                     System.out.println("Ingrese el nombre de la enfermedad");
                     String nombre = sc.nextLine();

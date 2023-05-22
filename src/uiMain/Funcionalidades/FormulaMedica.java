@@ -86,7 +86,7 @@ public class FormulaMedica {
         boolean agregarOtro = false; //condicion para el while para ir agregando medicamentos
         //bucle para agregar medicamentos, cada vez q pregunte si desea otro y responda si se repite
         do {
-            System.out.println("Hola doctor, " + doctorEscogido.getNombre() + "\nPor favor selecciona los medicamentos que vas a formularle a: " + paciente.getNombre());
+            System.out.println(paciente.mensajeDoctor(doctorEscogido));
             //Aquí buscamos los medicamentos disponibles y los medicamentos que traten la enfermedad del paciente
             ArrayList<Medicamento> disponibleEnf = paciente.medEnfermedad(enfermedadTratar, hospital);
             //Condicion para que cuando ya no haya medicamentos disponibles no siga el bucle y lo termine
