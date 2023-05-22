@@ -210,6 +210,11 @@ public class Paciente extends Persona{
         return "---------------------------\nNombre: "+ getNombre() + "\nCédula: " + getCedula() + "\nTipo de EPS: " + getTipoEps() + "\n---------------------------";
     }
 
+    public String mensajeDoctor(Doctor doctor){
+        Persona persona=doctor;
+        return persona.mensaje()+ "\nPor favor selecciona los medicamentos que vas a formularle a: "+getNombre();
+    }
+
     //Despedida para funcionalidad Vacunas
     public String despedida(CitaVacuna citaAsignada ){
         Cita servicio=citaAsignada;
@@ -219,7 +224,6 @@ public class Paciente extends Persona{
     //Despedida para funcionalidad Cita médica
     public String despedida(Cita citaAsignada ){
         Cita servicio=citaAsignada;
-        //Hay ligadura dinámica
         return "¡Adiós "+getNombre()+" "+servicio.mensaje();
     }
 }
