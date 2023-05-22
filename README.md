@@ -14,6 +14,12 @@ usar las funcionalidades destinadas al paciente y las funcionalidades encargadas
 Se pueden agendar citas médicas a los pacientes por medio de su número de identificación registrado en el hospital, 
 puede elegir entre tres especialidades (oftalmología, general y odontología). Tendrá la libertad de elegir el doctor y la cita correspondiente (según disponibilidad). Todo esto quedará enlazado a su historia clínica.
 
+### Generar Formula Médica
+
+Se pueden generar formulas médicas, dependiendo la enfermedad del paciente que sea atendida y que doctores han atendido al paciente, 
+posteriormente que se elije que doctor se encargara de formularle los medicamentos al paciente, hay una gran variedad de elección entre
+tipos de enfermedad y tipologías.
+
 
 
 
