@@ -24,15 +24,6 @@ public class EliminarVacuna {
                     hospital.getListaVacunas().remove(hospital.getListaVacunas().get(i-1));
                 }
             }
-            /*
-            for (Vacuna vacuna: hospital.getListaVacunas()){
-                if (Objects.equals(vacuna.getNombre(), nombre)){
-                    System.out.println(vacuna.getNombre()+" acaba de ser eliminada");
-                    hospital.getListaVacunas().remove(vacuna);
-                }
-            }
-             */
         }
-
     }
 }
