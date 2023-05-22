@@ -8,7 +8,7 @@ import gestorAplicacion.servicios.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Paciente extends Persona{
+public class Paciente extends Persona implements Pago{
 
     // Atributos
 	private final HistoriaClinica historiaClinica;
@@ -70,17 +70,18 @@ public class Paciente extends Persona{
     }
 
     //Sobre carga de métodos con calcular precio de los distintos servicios
+    @Override
     public double calcularPrecio(Formula formula){
         double precio = 0;
         for (Medicamento med : formula.getListaMedicamentos()){
             precio += med.getPrecio();
         }
-        return precio;
+        return precio*(1+IVA);
     }
 
+    @Override
     public double calcularPrecio(Cita citaAsignada) {
 
-    	final double IVA = 0.19;
     	double precioTotal = 0;
 
     	if (citaAsignada.getDoctor().getEspecialidad() == "General") {
@@ -111,8 +112,8 @@ public class Paciente extends Persona{
     	return precioTotal;
     }
 
+    @Override
     public double calcularPrecio(CitaVacuna citaAsignada){
-        final double IVA= 0.19;
         double precioTotal=citaAsignada.getVacuna().getPrecio();
 
         if(citaAsignada.getVacuna().getTipo()=="Obligatoria"){
@@ -135,23 +136,24 @@ public class Paciente extends Persona{
         return precioTotal;
     }
 
+    @Override
     public  double calcularPrecio(Habitacion habitacionAsignada)
     {
         double precio=0;
         if (getTipoEps()=="subsidiado")
         {
             precio=habitacionAsignada.getCategoria().getValor()*0;
-            return precio;
+            return precio*(1+IVA);
         }
         else if (getTipoEps()=="contributivo")
         {
             precio=(habitacionAsignada.getCategoria().getValor()/2)*habitacionAsignada.getDias();
-            return precio;
+            return precio*(1+IVA);
         }
         else
         {
             precio=habitacionAsignada.getCategoria().getValor()*habitacionAsignada.getDias();
-            return precio;
+            return precio*(1+IVA);
         }
     }
 
