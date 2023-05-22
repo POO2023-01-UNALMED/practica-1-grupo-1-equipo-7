@@ -23,7 +23,10 @@ public class GestionDoctor {
             opcion = sc.nextByte();
             switch (opcion) {
                 case 1 -> RegistrarDoctor.registrarDoctor(hospital);
+                case 2 -> EliminarDoctor.eliminarDoctor(hospital);
                 case 3 -> VerDoctor.verDoctor(hospital);
+                case 4 -> AñadirCitas.añadirCitas(hospital);
+                case 5 -> EliminarCitas.eliminarCitas(hospital);
                 case 6 -> {
                     return;
                 }
