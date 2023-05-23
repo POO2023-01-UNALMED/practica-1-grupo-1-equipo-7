@@ -15,7 +15,7 @@ public class GestionDoctor {
             System.out.println("1. Registrar doctor");
             System.out.println("2. Eliminar doctor");
             System.out.println("3. Ver doctor");
-            System.out.println("4. Añadir citas");
+            System.out.println("4. Agregar citas");
             System.out.println("5. Eliminar citas");
             System.out.println("6. Regresar al menu anterior");
             System.out.println("7. Salir");
@@ -25,7 +25,7 @@ public class GestionDoctor {
                 case 1 -> RegistrarDoctor.registrarDoctor(hospital);
                 case 2 -> EliminarDoctor.eliminarDoctor(hospital);
                 case 3 -> VerDoctor.verDoctor(hospital);
-                case 4 -> AñadirCitas.añadirCitas(hospital);
+                case 4 -> AgregarCitas.agregarCitas(hospital);
                 case 5 -> EliminarCitas.eliminarCitas(hospital);
                 case 6 -> {
                     return;
