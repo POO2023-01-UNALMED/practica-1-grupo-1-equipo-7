@@ -31,7 +31,15 @@ public class Facturacion {
         ArrayList<Servicio> serviciosSinPagar = Servicio.obtenerServiciosSinPagar(pacienteSeleccionado);
         for (Servicio servicio :
                 serviciosSinPagar) {
-            System.out.println(servicio);
+            if (servicio instanceof Formula)
+                System.out.println(servicio.getIdServicio() + " - Formula");
+            else if (servicio instanceof CitaVacuna)
+                System.out.println(servicio.getIdServicio() + " - Cita Vacuna");
+            else if (servicio instanceof Habitacion)
+                System.out.println(servicio.getIdServicio() + " - Habitacion");
+            else if (servicio instanceof Cita) 
+                System.out.println(servicio.getIdServicio() + " - Cita");
+
         }
 
         // Seleccionar servicio a pagar
