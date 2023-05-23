@@ -9,7 +9,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
+//Clase destinada a crear el hospital
 public class Hospital implements Serializable {
+
+    //Atributos
 
     private ArrayList<Doctor> listaDoctores = new ArrayList<>();
     private ArrayList<Paciente> listaPacientes = new ArrayList<>();
@@ -17,10 +20,14 @@ public class Hospital implements Serializable {
     private ArrayList<Vacuna> listaVacunas= new ArrayList<Vacuna>();
     public static ArrayList<Habitacion> habitaciones= new ArrayList<>();
 
+    //Constructor
     public Hospital() {
         Deserializador.deserializar(this);
     }
 
+    //Métodos
+
+    //Método que busca doctores por especialidad
     public ArrayList<Doctor> buscarTipoDoctor(String especialidad) {
         ArrayList<Doctor> doctoresDisponibles = new ArrayList<Doctor>();
         for(int i=1; i<=listaDoctores.size(); i++) {
@@ -30,6 +37,7 @@ public class Hospital implements Serializable {
         }
         return doctoresDisponibles;
     }
+    //Método que busca un paciente por su número de cédula
     public Paciente buscarPaciente(int cedulaPaciente) {
         for (Paciente paciente :
                 listaPacientes) {
@@ -40,6 +48,7 @@ public class Hospital implements Serializable {
         return null;
     }
 
+    //Método que busca un doctor por su número de cédula
     public Doctor buscarDoctor(int ceduladoctor){
         for (Doctor doctor :
                 listaDoctores) {
@@ -50,6 +59,7 @@ public class Hospital implements Serializable {
         return null;
     }
 
+    //Método que busca una vacuna por su nombre
     public Vacuna buscarVacuna(String nombre){
         for (Vacuna vacuna: listaVacunas){
             if (Objects.equals(vacuna.getNombre(), nombre)){
@@ -59,6 +69,7 @@ public class Hospital implements Serializable {
         return null;
     }
 
+    //Método que busca medicamentos disponibles en el hospital
     public ArrayList<Medicamento> medicamentosDisponibles() {
         ArrayList<Medicamento> disponibles = new ArrayList<Medicamento>();
         for(int i=0; i<listaMedicamentos.size();i++) {
@@ -69,6 +80,7 @@ public class Hospital implements Serializable {
         return disponibles;
     }
 
+    //Método que busca vacunas por su tipo
     public ArrayList<Vacuna> buscarTipoVacuna(String tipo){
         ArrayList<Vacuna> vacunasDisponibles = new ArrayList<Vacuna>();
         for (int i=1; i<=listaVacunas.size(); i++){
@@ -79,6 +91,7 @@ public class Hospital implements Serializable {
         return vacunasDisponibles;
     }
 
+    //Getters y Setters
     public ArrayList<Doctor> getListaDoctores() {
         return listaDoctores;
     }

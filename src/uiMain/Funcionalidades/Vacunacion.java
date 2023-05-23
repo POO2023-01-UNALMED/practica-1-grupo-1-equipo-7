@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
+//Clase destinada para la funcionalidad de vacunas.
 public class Vacunacion {
 
     static Scanner sc = new Scanner(System.in);
@@ -25,13 +26,14 @@ public class Vacunacion {
         //Se busca el paciente por el numero de cédula
         Paciente pacienteAsignado= hospital.buscarPaciente(numeroCedula);
 
+        //Mensaje de bienvenida
         System.out.println(pacienteAsignado.mensaje());
 
         //Verificación que el paciente se encuentre en la base de datos del hospital
 
         if (pacienteAsignado == null){
             while(true){
-                //Se da la posibilidad de registrar ese paciente
+                //Se da la posibilidad de registrar ese paciente nuevo
                 System.out.println("El paciente no está registrado.\n¿Desea registrarlo?");
                 System.out.println("1. Si\n2.No \nSeleccione una opción");
                 byte opcion= sc.nextByte();
@@ -73,21 +75,27 @@ public class Vacunacion {
         //Busca las vacunas disponibles según su Eps y tipo de Vacuna
         switch (tipoVacuna){
             case 1:
+                //Se busca vacunas disponibles para la EPS del paciente, y que sean obligatorias.
                 vacunasDisponibles= pacienteAsignado.buscarVacunaPorEps("Obligatoria",hospital);
+                //Validación por si no tiene vacunas disponibles
                 if (vacunasDisponibles.size()==0){
                     System.out.println("No hay vacunas disponibles para usted");
                     return;
                 }
+                //Impresión de esas vacunas disponibles
                 for (int i=1; i<=vacunasDisponibles.size(); i++){
                     System.out.println(i + "."+vacunasDisponibles.get(i-1).getNombre());
                 }
                 break;
             case 2:
+                //Se busca vacunas disponibles para la EPS del paciente, y que no sean obligatorias
                 vacunasDisponibles= pacienteAsignado.buscarVacunaPorEps("No obligatoria",hospital);
+                //Validación por si no tiene vacunas disponibles
                 if (vacunasDisponibles.size()==0){
                     System.out.println("No hay vacunas disponibles para usted");
                     return;
                 }
+                //Impresión de esas vacunas disponibles
                 for (int i=1; i<=vacunasDisponibles.size(); i++){
                     System.out.println(i + "."+vacunasDisponibles.get(i-1).getNombre());
                 }
@@ -99,7 +107,7 @@ public class Vacunacion {
         byte numeroVacuna;
         numeroVacuna = sc.nextByte();
 
-        //Si verificar vacuna es false, el paciente no se ha puesto esa vacuna anteriormente.
+        //Si la variable verificarVacuna es false, el paciente no se ha puesto esa vacuna anteriormente.
         boolean verificarVacuna=false;
 
         do{
@@ -137,6 +145,7 @@ public class Vacunacion {
             return;
         }
 
+        //Se imprime las citas disponibles
         for(int i=1; i<=agendaDisponible.size();i++){
             System.out.println(i + ". "+ agendaDisponible.get(i-1).getFecha());
         }
@@ -147,13 +156,13 @@ public class Vacunacion {
         byte numeroCita;
         numeroCita= sc.nextByte();
 
-        //Se actualiza la agenda de la vacuna
+        //Se actualiza la agenda de la vacuna (Se asigna el paciente a esa cita de vacuna)
 
         CitaVacuna citaAsignada = vacunaAsignada.actualizarAgenda(pacienteAsignado, numeroCita,agendaDisponible);
 
         System.out.println("\nCita asignada correctamente, puede acudir al centro asistencial con la siguiente informacion: ");
 
-        //Se agrega esa vacuna al historial de vacunas del paciente
+        //Se agrega esa vacuna al historial de vacunas del paciente de la historia clínica
         pacienteAsignado.actualizarHistorialVacunas(citaAsignada);
 
         System.out.println("\nResumen de su cita: ");

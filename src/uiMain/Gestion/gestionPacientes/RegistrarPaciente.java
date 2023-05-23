@@ -20,7 +20,7 @@ public class RegistrarPaciente {
             System.out.println("Este paciente ya esta registrado");
             return;
         }
-        System.out.println("Ingrese su tipo de EPS 'subsidiado','contributivo' o 'particular': ");
+        System.out.println("Ingrese su tipo de EPS 'Subsidiado','Contributivo' o 'Particular': ");
         String eps = sc.next();
         Paciente paciente = new Paciente(id, nombre, eps);
         System.out.println("¡El paciente ha sido registrado con éxito!");

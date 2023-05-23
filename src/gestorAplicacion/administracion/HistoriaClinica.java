@@ -11,6 +11,7 @@ import gestorAplicacion.servicios.Formula;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+//Clase destinada a crear historias clínicas a pacientes
 public class HistoriaClinica implements Serializable {
     //Atributos
     private final Paciente paciente;

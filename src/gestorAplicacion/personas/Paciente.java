@@ -8,6 +8,7 @@ import gestorAplicacion.servicios.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
+//Clase destinada a crear pacientes
 public class Paciente extends Persona implements Pago{
 
     // Atributos
@@ -158,7 +159,7 @@ public class Paciente extends Persona implements Pago{
     }
 
     /* Método que busca las vacunas por tipo ingresada en el parámetro, invocando el método
-     de hospital, y con el for filtrandolas por eps */
+     de hospital, y con el for filtrandolas por eps del paciente */
     public ArrayList<Vacuna> buscarVacunaPorEps(String tipo, Hospital hospital){
         ArrayList<Vacuna> vacunasPorTipo= hospital.buscarTipoVacuna(tipo);
         ArrayList<Vacuna> vacunasDisponibles= new ArrayList<Vacuna>();
@@ -181,10 +182,13 @@ public class Paciente extends Persona implements Pago{
     }
 
     //Getter y setter
+
+    //Agrega una cita de vacuna al historial de vacunas del paciente
     public void actualizarHistorialVacunas(CitaVacuna citaAsignada){
         historiaClinica.getHistorialVacunas().add(citaAsignada);
     }
 
+    //Muestra las vacunas que se ha puesto el paciente
     public void mostrarHistorialVacunas() {
         for (int i=1; i<=historiaClinica.getHistorialVacunas().size();i++){
             System.out.println(i + ". Vacuna: "+historiaClinica.getHistorialVacunas().get(i-1).getVacuna().getNombre());
