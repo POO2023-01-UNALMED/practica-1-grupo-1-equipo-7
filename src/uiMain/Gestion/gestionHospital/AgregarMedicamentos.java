@@ -9,9 +9,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AgregarMedicamentos {
-    static Scanner sc = new Scanner(System.in);
+
 
     public static void agregarMedicamentos(Hospital hospital) {
+        Scanner sc= new Scanner(System.in);
         boolean agregarOtro = false; //condicion para el while para ir agregando medicamentos
         do {
             System.out.println("Bienvenido! ¿Deseas aumentar el stock de algún medicamentos existente o agregar nuevos?");

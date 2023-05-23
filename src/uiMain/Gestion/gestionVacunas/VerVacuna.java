@@ -8,9 +8,9 @@ import java.util.Scanner;
 
 public class VerVacuna {
 
-    static Scanner sc= new Scanner(System.in);
-
     public static void verVacuna(Hospital hospital){
+
+        Scanner sc= new Scanner(System.in);
 
         System.out.println("Por favor ingrese el nombre de la vacuna a la que quiere ver su información: ");
 

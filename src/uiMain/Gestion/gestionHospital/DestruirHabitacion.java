@@ -7,8 +7,9 @@ import gestorAplicacion.servicios.Habitacion;
 import java.util.Scanner;
 
 public class DestruirHabitacion {
-    static Scanner sc = new Scanner(System.in);
+
     public static void destruirHabitacion (Hospital hospital){
+        Scanner sc= new Scanner(System.in);
         System.out.println("Por favor introduce la información de la habitación que se va ha destruir");
         System.out.println("Ingrese el número de la habitación:");
         int numero = sc.nextInt();

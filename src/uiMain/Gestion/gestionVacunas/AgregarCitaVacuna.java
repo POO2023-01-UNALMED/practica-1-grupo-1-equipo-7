@@ -8,9 +8,10 @@ import java.util.Scanner;
 
 public class AgregarCitaVacuna {
 
-    static Scanner sc= new Scanner(System.in);
 
     public static void agregarCitaVacuna(Hospital hospital){
+
+        Scanner sc= new Scanner(System.in);
 
         System.out.println("Ingrese el nombre de la vacuna: ");
         String nombre= sc.nextLine();

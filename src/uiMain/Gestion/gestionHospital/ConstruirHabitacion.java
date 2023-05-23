@@ -7,8 +7,9 @@ import gestorAplicacion.administracion.CategoriaHabitacion;
 import java.util.Scanner;
 
 public class ConstruirHabitacion {
-    static Scanner sc = new Scanner(System.in);
     public static void construirHabitacion (Hospital hospital){
+
+        Scanner sc= new Scanner(System.in);
 
         System.out.println("Por favor introduce la información de la nueva habitación");
         System.out.println("Ingrese el número de la habitación:");

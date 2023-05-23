@@ -6,8 +6,8 @@ import gestorAplicacion.personas.Paciente;
 import java.util.Scanner;
 
 public class EliminarPaciente {
-    static Scanner sc = new Scanner(System.in);
     public static void eliminarPaciente(Hospital hospital) {
+        Scanner sc= new Scanner(System.in);
         System.out.println("Ingrese la cédula del paciente que se eliminará: ");
         int cedula = sc.nextInt();
         Paciente paciente = hospital.buscarPaciente(cedula);

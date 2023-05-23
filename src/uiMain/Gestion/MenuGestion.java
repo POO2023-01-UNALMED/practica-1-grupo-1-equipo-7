@@ -25,7 +25,6 @@ public class MenuGestion {
             System.out.println("7. Salir");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextByte();
-
             switch (opcion) {
                 case 1 -> GestionPaciente.menuGestionPaciente(hospital);
                 case 2 -> GestionVacunas.menuGestionVacunas(hospital);

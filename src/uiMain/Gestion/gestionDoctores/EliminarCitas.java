@@ -9,8 +9,9 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class EliminarCitas {
-    static Scanner sc = new Scanner(System.in);
+
     public static void eliminarCitas(Hospital hospital) {
+        Scanner sc= new Scanner(System.in);
         System.out.println("Ingrese la cédula del doctor al que se le eliminará una cita: ");
         int cedula = sc.nextInt();
         Doctor doctor = hospital.buscarDoctor(cedula);

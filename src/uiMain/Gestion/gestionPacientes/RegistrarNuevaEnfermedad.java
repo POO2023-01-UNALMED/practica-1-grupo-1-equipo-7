@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RegistrarNuevaEnfermedad {
-    static Scanner sc = new Scanner(System.in);
     public static void registrarNuevaEnfermedad(Hospital hospital) {
+        Scanner sc= new Scanner(System.in);
         System.out.println("Ingrese la cédula del paciente para registrar nuevas enfermedades: ");
         int cedula = sc.nextInt();
         sc.nextLine();

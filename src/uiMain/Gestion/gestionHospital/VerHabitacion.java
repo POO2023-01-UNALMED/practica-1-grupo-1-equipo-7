@@ -7,8 +7,9 @@ import gestorAplicacion.servicios.Habitacion;
 import java.util.Scanner;
 
 public class VerHabitacion {
-    static Scanner sc = new Scanner(System.in);
+
     public static void verHabitacion (Hospital hospital){
+        Scanner sc= new Scanner(System.in);
         System.out.println("Ingrese el tipo de habitacion que desea ver: ");
         System.out.println("'CAMILLA', 'INDIVIDUAL', 'DOBLE', 'OBSERVACION', 'UCI', 'UCC'");
         String categoriaSeleccionada = sc.next();

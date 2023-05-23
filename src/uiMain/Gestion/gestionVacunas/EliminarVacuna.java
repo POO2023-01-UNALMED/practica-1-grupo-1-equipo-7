@@ -7,8 +7,9 @@ import java.util.Scanner;
 
 public class EliminarVacuna {
 
-    static Scanner sc= new Scanner(System.in);
     public static void eliminarVacuna(Hospital hospital){
+
+        Scanner sc= new Scanner(System.in);
 
         System.out.println("Por favor ingresa el nombre de la vacuna que quiere eliminar: ");
 

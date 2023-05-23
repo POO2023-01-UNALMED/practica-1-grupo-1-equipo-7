@@ -10,9 +10,9 @@ import java.util.Scanner;
 
 public class EliminarCitaVacuna {
 
-    static Scanner sc= new Scanner(System.in);
-
     public static void eliminarCitaVacuna(Hospital hospital){
+
+        Scanner sc= new Scanner(System.in);
 
         System.out.println("Ingrese el nombre de la vacuna a la que se le eliminará la cita");
         String nombre= sc.nextLine();
@@ -57,7 +57,6 @@ public class EliminarCitaVacuna {
             for (CitaVacuna agenda : vacuna.getAgenda()){
                 System.out.println(agenda.getFecha());
             }
-
         }
     }
 

@@ -6,8 +6,10 @@ import gestorAplicacion.personas.Paciente;
 import java.util.Scanner;
 
 public class RegistrarPaciente {
-    static Scanner sc = new Scanner(System.in);
+
     public static void registrarPaciente (Hospital hospital){
+
+        Scanner sc= new Scanner(System.in);
 
         System.out.println("Por favor introduce la información del paciente para su registro");
         System.out.println("Ingrese el nombre del paciente:");

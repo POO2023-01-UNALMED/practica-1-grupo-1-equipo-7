@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class RegistrarVacuna {
-    static Scanner sc= new Scanner(System.in);
+
     public static boolean verificarExistenciaVacuna(String nombre,Hospital hospital){
         boolean valor= false;
         
@@ -25,6 +25,8 @@ public class RegistrarVacuna {
     }
     
     public static void registrarVacuna (Hospital hospital){
+
+        Scanner sc= new Scanner(System.in);
 
         System.out.println("A continuación ingrese la información de la nueva vacuna: ");
         System.out.println("Ingrese el nombre de la vacuna (Recuerda empezar con mayúscula) : ");
@@ -71,6 +73,9 @@ public class RegistrarVacuna {
         System.out.println("Vacuna: "+vacunaNueva.getNombre());
         System.out.println("Tipo: "+vacunaNueva.getTipo());
         System.out.println("Precio: "+ vacunaNueva.getPrecio());
+
+        sc.nextLine();
+
     }
     
 }
