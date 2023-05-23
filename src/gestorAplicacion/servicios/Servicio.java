@@ -19,6 +19,8 @@ public abstract class Servicio implements Serializable {
         this.estadoPago = false;
     }
 
+    public abstract void validarPago(Paciente paciente, long idServicio);
+
     public static ArrayList<Servicio> obtenerServiciosSinPagar(Paciente paciente) {
         HistoriaClinica historiaClinicaPaciente = paciente.getHistoriaClinica();
         ArrayList<Servicio> serviciosSinPagar = new ArrayList<>();

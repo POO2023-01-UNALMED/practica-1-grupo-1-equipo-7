@@ -32,4 +32,13 @@ public class Cita extends Servicio {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
+
+    @Override
+    public void validarPago(Paciente paciente, long idServicio) {
+        for (Cita cita :
+                paciente.getHistoriaClinica().getHistorialCitas()) {
+            if (cita.getIdServicio() == idServicio)
+                cita.setEstadoPago(true);
+        }
+    }
 }

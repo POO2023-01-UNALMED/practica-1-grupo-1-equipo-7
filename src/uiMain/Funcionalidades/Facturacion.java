@@ -1,6 +1,5 @@
 package uiMain.Funcionalidades;
 
-import gestorAplicacion.administracion.Factura;
 import gestorAplicacion.administracion.Hospital;
 import gestorAplicacion.personas.Paciente;
 import gestorAplicacion.servicios.*;
@@ -15,12 +14,12 @@ public class Facturacion {
     public static void facturacion(Hospital hospital) {
         // Buscar paciente
         Paciente pacienteSeleccionado;
-        System.out.println("Ingrese la cedula del paciente:");
+
         do {
-            pacienteSeleccionado = hospital.buscarPaciente(sc.nextInt());
+            System.out.println("Ingrese la cedula del paciente:");
+            pacienteSeleccionado = hospital.buscarPaciente(Integer.parseInt(sc.nextLine()));
             if (pacienteSeleccionado == null) {
                 System.out.println("No existe un paciente registrado con esta cedula. Desea intentar de nuevo? (S/N)");
-
                 if (sc.nextLine().equalsIgnoreCase("n")) {
                     return;
                 }
@@ -39,7 +38,7 @@ public class Facturacion {
         Servicio servicioSeleccionado = null;
         System.out.println("Ingrese la ID del servicio que va a pagar:");
         do {
-            long idSeleccionada = sc.nextLong();
+            long idSeleccionada = Long.parseLong(sc.nextLine());
             for (Servicio servicio :
                     serviciosSinPagar) {
                 if (servicio.getIdServicio() == idSeleccionada)
@@ -61,19 +60,16 @@ public class Facturacion {
         else if (servicioSeleccionado instanceof Cita)
             precioServicioSeleccionado = pacienteSeleccionado.calcularPrecio((Cita) servicioSeleccionado);
 
-        System.out.println("Total a pagar: $" + precioServicioSeleccionado);
-
         // Realizar pago
-        Factura facturaServicioSeleccionado = new Factura(servicioSeleccionado.getIdServicio(), pacienteSeleccionado);
-
+        System.out.println("Total a pagar: $" + precioServicioSeleccionado);
         System.out.println("Realizar pago? (S/N)");
 
         if (sc.nextLine().equalsIgnoreCase("s")) {
-            facturaServicioSeleccionado.realizarPago();
-            System.out.println("Pago registrado\n");
+            servicioSeleccionado.validarPago(pacienteSeleccionado, servicioSeleccionado.getIdServicio());
+            System.out.println("Pago realizado");
         }
         else {
-            System.out.println("Pago cancelado\n");
+            System.out.println("Pago cancelado");
         }
 
         // Limpiar la lista de servicios sin pagar

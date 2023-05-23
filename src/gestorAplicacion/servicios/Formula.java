@@ -37,6 +37,15 @@ public class Formula extends Servicio {
     }
 
     @Override
+    public void validarPago(Paciente paciente, long idServicio) {
+        for (Formula formula :
+                paciente.getHistoriaClinica().getListaFormulas()) {
+            if (formula.getIdServicio() == idServicio)
+                formula.setEstadoPago(true);
+        }
+    }
+
+    @Override
     public String toString() {
         return "Hola "+paciente.getNombre()+"\nEstos son tus medicamentos formulados:\n"+listaMedicamentos;
     }

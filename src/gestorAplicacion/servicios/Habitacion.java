@@ -114,4 +114,10 @@ public class Habitacion  extends Servicio{
         this.dias = dias;
     }
 
+    @Override
+    public void validarPago(Paciente paciente, long idServicio) {
+        if (paciente.getHabitacionAsignada().getIdServicio() == idServicio)
+            paciente.getHabitacionAsignada().setEstadoPago(true);
+    }
+
 }
