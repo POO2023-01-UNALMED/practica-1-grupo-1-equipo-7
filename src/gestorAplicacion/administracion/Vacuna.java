@@ -62,5 +62,10 @@ public class Vacuna implements Serializable {
     public double getPrecio() {
         return precio;
     }
+
+    public ArrayList<CitaVacuna> getAgenda() {
+        return agenda;
+    }
+
 }
 
