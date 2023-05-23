@@ -11,15 +11,16 @@ public class GestionHospital {
     public static void menuGetionHospital(Hospital hospital) {
         byte opcion;
         do {
-            System.out.println("---Menu Gestion Hospital---");
+            System.out.println("\n---Menu Gestion Hospital---");
             System.out.println("1. Construir Habitación");
             System.out.println("2. Ver lista de Habitaciones");
             System.out.println("3. Destruir Habitación");
             System.out.println("4. Agregar Medicamentos");
             System.out.println("5. Ver Inventario de medicamentos");
             System.out.println("6. Ver personas registradas en el hospital");
-            System.out.println("7. Regresar al menu anterior");
-            System.out.println("8. Salir");
+            System.out.println("7. Ver vacunas registradas en el hospital");
+            System.out.println("8. Regresar al menu anterior");
+            System.out.println("9. Salir");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextByte();
             switch (opcion) {
@@ -29,10 +30,11 @@ public class GestionHospital {
                 case 4 -> AgregarMedicamentos.agregarMedicamentos(hospital);
                 case 5 -> VerMedicamentos.verMedicamentos(hospital);
                 case 6 -> VerPersonasRegistradas.verPersonasRegistradas(hospital);
-                case 7 -> {
+                case 7 -> VerVacunas.verVacunas(hospital);
+                case 8 -> {
                     return;
                 }
-                case 8 -> {
+                case 9 -> {
                     Serializador.serializar(hospital);
                     System.exit(0);
                 }

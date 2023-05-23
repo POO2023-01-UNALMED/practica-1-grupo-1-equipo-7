@@ -5,6 +5,7 @@ import gestorAplicacion.personas.Doctor;
 import gestorAplicacion.servicios.Cita;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class EliminarCitas {
@@ -42,8 +43,15 @@ public class EliminarCitas {
 
         System.out.println("Seleccione la cita que desea eliminar: ");
         byte numeroCita = sc.nextByte();
+
+        //Se valida la opción
+        while (numeroCita<1 || numeroCita>agendaDisponible.size()){
+            System.out.println("Opción inválida, por favor ingrese otra opción: ");
+            numeroCita= sc.nextByte();
+        }
+
         for(int i=1; i<=doctor.getAgenda().size(); i++) {
-            if (doctor.getAgenda().get(i-1).getFecha() == agendaDisponible.get(numeroCita-1).getFecha()) {
+            if (Objects.equals(doctor.getAgenda().get(i - 1).getFecha(), agendaDisponible.get(numeroCita - 1).getFecha())) {
                 doctor.getAgenda().remove(doctor.getAgenda().get(i-1));
             }
         }

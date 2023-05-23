@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class VerPersonasRegistradas {
-    static Scanner sc = new Scanner(System.in);
 
     public static void verPersonasRegistradas (Hospital hospital){
         ArrayList<Doctor> listaDoctores = hospital.getListaDoctores();

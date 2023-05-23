@@ -4,6 +4,7 @@ import baseDatos.Serializador;
 import gestorAplicacion.administracion.Hospital;
 
 
+
 import java.util.Scanner;
 
 public class GestionVacunas {
@@ -16,8 +17,9 @@ public class GestionVacunas {
             System.out.println("2. Eliminar vacuna");
             System.out.println("3. Ver información de una vacuna");
             System.out.println("4. Agregar cita a una vacuna");
-            System.out.println("5. Regresar al menu anterior");
-            System.out.println("6. Salir");
+            System.out.println("5. Eliminar cita a una vacuna");
+            System.out.println("6. Regresar al menu anterior");
+            System.out.println("7. Salir");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextByte();
             switch (opcion) {
@@ -25,10 +27,11 @@ public class GestionVacunas {
                 case 2 -> EliminarVacuna.eliminarVacuna(hospital);
                 case 3 -> VerVacuna.verVacuna(hospital);
                 case 4 -> AgregarCitaVacuna.agregarCitaVacuna(hospital);
-                case 5 -> {
+                case 5 -> EliminarCitaVacuna.eliminarCitaVacuna(hospital);
+                case 6 -> {
                     return;
                 }
-                case 6 -> {
+                case 7 -> {
                     Serializador.serializar(hospital);
                     System.exit(0);
                 }
