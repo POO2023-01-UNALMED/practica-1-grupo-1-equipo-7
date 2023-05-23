@@ -15,18 +15,20 @@ public class GestionVacunas {
             System.out.println("1. Registrar vacuna");
             System.out.println("2. Eliminar vacuna");
             System.out.println("3. Ver información de una vacuna");
-            System.out.println("4. Regresar al menu anterior");
-            System.out.println("5. Salir");
+            System.out.println("4. Agregar cita a una vacuna");
+            System.out.println("5. Regresar al menu anterior");
+            System.out.println("6. Salir");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextByte();
             switch (opcion) {
                 case 1 -> RegistrarVacuna.registrarVacuna(hospital);
                 case 2 -> EliminarVacuna.eliminarVacuna(hospital);
                 case 3 -> VerVacuna.verVacuna(hospital);
-                case 4 -> {
+                case 4 -> AgregarCitaVacuna.agregarCitaVacuna(hospital);
+                case 5 -> {
                     return;
                 }
-                case 5 -> {
+                case 6 -> {
                     Serializador.serializar(hospital);
                     System.exit(0);
                 }

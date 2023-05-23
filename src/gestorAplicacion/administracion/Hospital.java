@@ -50,6 +50,15 @@ public class Hospital implements Serializable {
         return null;
     }
 
+    public Vacuna buscarVacuna(String nombre){
+        for (Vacuna vacuna: listaVacunas){
+            if (Objects.equals(vacuna.getNombre(), nombre)){
+                return vacuna;
+            }
+        }
+        return null;
+    }
+
     public ArrayList<Medicamento> medicamentosDisponibles() {
         ArrayList<Medicamento> disponibles = new ArrayList<Medicamento>();
         for(int i=0; i<listaMedicamentos.size();i++) {
@@ -68,10 +77,6 @@ public class Hospital implements Serializable {
             }
         }
         return vacunasDisponibles;
-    }
-
-    public void registrarPaciente(Paciente paciente) {
-        listaPacientes.add(paciente);
     }
 
     public ArrayList<Doctor> getListaDoctores() {
