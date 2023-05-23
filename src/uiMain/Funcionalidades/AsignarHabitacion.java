@@ -54,7 +54,7 @@ public class AsignarHabitacion {
                                     // se recorre la lista que nos retorno y muestran en la consola una lista numerada de las habitaciones disponibles, donde cada habitación se identifica por su índice y número
                                     for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                         Habitacion habi = habitacionesDisponibles.get(i);
-                                        System.out.println(i + ". " + habi.getNumero());
+                                        System.out.println(i + ". " + "Número ID: "+ habi.getNumero());
                                     }
                                     sc = new Scanner(System.in);
                                     int opcion;
@@ -101,7 +101,7 @@ public class AsignarHabitacion {
                                     // se recorre la lista que nos retorno y muestran en la consola una lista numerada de las habitaciones disponibles, donde cada habitación se identifica por su índice y número
                                     for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                         Habitacion habi = habitacionesDisponibles.get(i);
-                                        System.out.println(i + ". " + habi.getNumero());
+                                        System.out.println(i + ". " + "Número ID: "+ habi.getNumero());
                                     }
                                     sc = new Scanner(System.in);
                                     int opcion1;
@@ -142,7 +142,7 @@ public class AsignarHabitacion {
                                     System.out.println("Habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion() + ":");
                                     for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                         Habitacion habi = habitacionesDisponibles.get(i);
-                                        System.out.println(i + ". " + habi.getNumero());
+                                        System.out.println(i + ". " + "Número ID: "+ habi.getNumero());
                                     }
                                     sc = new Scanner(System.in);
                                     int opcion2;
@@ -206,7 +206,7 @@ public class AsignarHabitacion {
                                     System.out.println("Habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion() + ":");
                                     for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                         Habitacion habi = habitacionesDisponibles.get(i);
-                                        System.out.println(i + ". " + habi.getNumero());
+                                        System.out.println(i + ". " + "Número ID: "+ habi.getNumero());
                                     }
                                     sc = new Scanner(System.in);
                                     int opcion;
@@ -246,7 +246,7 @@ public class AsignarHabitacion {
                                     System.out.println("Habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion() + ":");
                                     for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                         Habitacion habi = habitacionesDisponibles.get(i);
-                                        System.out.println(i + ". " + habi.getNumero());
+                                        System.out.println(i + ". " + "Número ID: "+ habi.getNumero());
                                     }
                                     sc = new Scanner(System.in);
                                     int opcion1;
@@ -286,7 +286,7 @@ public class AsignarHabitacion {
                                     System.out.println("Habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion() + ":");
                                     for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                         Habitacion habi = habitacionesDisponibles.get(i);
-                                        System.out.println(i + ". " + habi.getNumero());
+                                        System.out.println(i + ". " + "Número ID: "+ habi.getNumero());
                                     }
                                     sc = new Scanner(System.in);
                                     int opcion2;
@@ -326,7 +326,7 @@ public class AsignarHabitacion {
                                     System.out.println("Habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion() + ":");
                                     for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                         Habitacion habi = habitacionesDisponibles.get(i);
-                                        System.out.println(i + ". " + habi.getNumero());
+                                        System.out.println(i + ". " + "Número ID: "+ habi.getNumero());
                                     }
                                     sc = new Scanner(System.in);
                                     int opcion3;
@@ -366,7 +366,7 @@ public class AsignarHabitacion {
                                     System.out.println("Habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion() + ":");
                                     for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                         Habitacion habi = habitacionesDisponibles.get(i);
-                                        System.out.println(i + ". " + habi.getNumero());
+                                        System.out.println(i + ". " + "Número ID: "+ habi.getNumero());
                                     }
                                     sc = new Scanner(System.in);
                                     int opcion4;
@@ -425,7 +425,7 @@ public class AsignarHabitacion {
                                     System.out.println("Habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion() + ":");
                                     for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                         Habitacion habi = habitacionesDisponibles.get(i);
-                                        System.out.println(i + ". " + habi.getNumero());
+                                        System.out.println(i + ". " + "Número ID: "+ habi.getNumero());
                                     }
                                     sc = new Scanner(System.in);
                                     int opcion;
@@ -465,7 +465,7 @@ public class AsignarHabitacion {
                                     System.out.println("Habitaciones disponibles de la categoría " + paciente.getCategoriaHabitacion() + ":");
                                     for (int i = 0; i < habitacionesDisponibles.size(); i++) {
                                         Habitacion habi = habitacionesDisponibles.get(i);
-                                        System.out.println(i + ". " + habi.getNumero());
+                                        System.out.println(i + ". " + "Número ID: "+ habi.getNumero());
                                     }
                                     sc = new Scanner(System.in);
                                     int opcion1;
@@ -537,7 +537,7 @@ public class AsignarHabitacion {
                             System.out.println("Habitaciones disponibles de la categoría inferor:");
                             for (int i = 0; i < otraHabitacionDisponibles.size(); i++) {
                                 Habitacion habi = otraHabitacionDisponibles.get(i);
-                                System.out.println(i + ". " + habi.getNumero());
+                                System.out.println(i + ". " + "Número ID: "+ habi.getNumero());
                             }
                             sc = new Scanner(System.in);
                             int opcion;

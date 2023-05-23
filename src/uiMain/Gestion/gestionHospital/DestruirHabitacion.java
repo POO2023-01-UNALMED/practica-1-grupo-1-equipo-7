@@ -14,7 +14,7 @@ public class DestruirHabitacion {
         System.out.println("Ingrese el número de la habitación:");
         int numero = sc.nextInt();
         System.out.println("Ingrese el tipo de habitacion que se desea Destruir: ");
-        System.out.println("'CAMILLA', 'INDIVIDUAL', 'DOBLE', 'OBSERVACION', 'UCI', 'UCC'");
+        System.out.println("'CAMILLA', 'INDIVIDUAL', 'DOBLE', 'OBSERVACION', 'UCI'o 'UCC'");
         String categoriaSeleccionada = sc.next();
         CategoriaHabitacion habitacionSeleccionada = CategoriaHabitacion.valueOf(categoriaSeleccionada);
         for (Habitacion habitacion: hospital.habitaciones){

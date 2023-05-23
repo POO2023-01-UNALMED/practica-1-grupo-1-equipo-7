@@ -11,7 +11,7 @@ public class VerHabitacion {
     public static void verHabitacion (Hospital hospital){
         Scanner sc= new Scanner(System.in);
         System.out.println("Ingrese el tipo de habitacion que desea ver: ");
-        System.out.println("'CAMILLA', 'INDIVIDUAL', 'DOBLE', 'OBSERVACION', 'UCI', 'UCC'");
+        System.out.println("'CAMILLA', 'INDIVIDUAL', 'DOBLE', 'OBSERVACION', 'UCI'o 'UCC'");
         String categoriaSeleccionada = sc.next();
         CategoriaHabitacion habitacionSeleccionada = CategoriaHabitacion.valueOf(categoriaSeleccionada);
         for (Habitacion habitacion: hospital.habitaciones){
