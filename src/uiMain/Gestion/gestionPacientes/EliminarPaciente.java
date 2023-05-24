@@ -1,3 +1,6 @@
+/* Esta clase se usa para eliminar pacientes del programa
+* Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+ * y Santiago Arboleda Acevedo */
 package uiMain.Gestion.gestionPacientes;
 
 import gestorAplicacion.administracion.Hospital;
@@ -11,24 +14,8 @@ public class EliminarPaciente {
         System.out.println("Ingrese la cédula del paciente que se eliminará: ");
         int cedula = sc.nextInt();
         Paciente paciente = hospital.buscarPaciente(cedula);
-        if (paciente == null) { /*Si el paciente es null, quiere decir que no lo encontró, por lo que
-        preguntamos si desea registrar este paciente */
-            while (true) {
-                System.out.println("El paciente no esta registrado.\n¿Desea registrarlo?");
-                System.out.println("1. Si\n2. No \nSeleccione una opción");
-                byte opcion = sc.nextByte();
-                switch (opcion) {
-                    case 1:
-                        RegistrarPaciente.registrarPaciente(hospital);
-                        return;
-
-                    case 2:
-                        System.out.println("Adios");
-                        return;
-                    default:
-                        System.out.println("Opción Inválida");
-                }
-            }
+        if (paciente == null) { /*Si el paciente es null, quiere decir que no lo encontró */
+            System.out.println("¡El paciente no existe o ya fue eliminado!");
         }
         hospital.getListaPacientes().remove(paciente);
         System.out.println("¡Paciente eliminado!");

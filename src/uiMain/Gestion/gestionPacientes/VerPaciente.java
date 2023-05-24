@@ -1,3 +1,6 @@
+/* Esta clase se encarga de mostrar la información de algun Paciente, incluida la información de su historiaClinica
+ * Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+ * y Santiago Arboleda Acevedo */
 package uiMain.Gestion.gestionPacientes;
 
 import gestorAplicacion.administracion.Hospital;

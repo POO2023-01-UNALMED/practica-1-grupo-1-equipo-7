@@ -1,3 +1,6 @@
+/* Esta clase se encarga de registrar nuevas enfermedades a la historiaClinica de algun Paciente
+* Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+ * y Santiago Arboleda Acevedo */
 package uiMain.Gestion.gestionPacientes;
 
 import gestorAplicacion.administracion.HistoriaClinica;
@@ -13,7 +16,7 @@ public class RegistrarNuevaEnfermedad {
         Scanner sc= new Scanner(System.in);
         System.out.println("Ingrese la cédula del paciente para registrar nuevas enfermedades: ");
         int cedula = sc.nextInt();
-        sc.nextLine();
+        sc.nextLine(); // nextLine para que no quede guardado el Int y se salte el siguiente scanner
         Paciente paciente = hospital.buscarPaciente(cedula);
         if (paciente == null) { /*Si el paciente es null, quiere decir que no lo encontró, por lo que
         preguntamos si desea registrar este paciente */
@@ -55,7 +58,7 @@ public class RegistrarNuevaEnfermedad {
                 }
                 byte opcEnf = sc.nextByte();
                 sc.nextLine();
-                if (opcEnf == 0) {
+                if (opcEnf == 0) { // Se preguntan los datos de la enfermedad que se desea agregar y no esta registrada
                     System.out.println("Ingrese el nombre de la enfermedad");
                     String nombre = sc.nextLine();
                     System.out.println("Ingrese el nombre la tipología de la enfermedad");
@@ -79,7 +82,7 @@ public class RegistrarNuevaEnfermedad {
             while (true) {
                 System.out.println("¿Desea agregar otra enfermedad? (s/n)");
                 char agregar = sc.next().charAt(0);
-                if (agregar == 's' || agregar == 'n') {
+                if (agregar == 's' || agregar == 'n') { //If con el caso para seguir o terminar el bucle
                     agregarOtro = agregar == 's';
                     break;
                 } else {
