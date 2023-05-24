@@ -1,3 +1,5 @@
+/* Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+y Santiago Arboleda Acevedo */
 package uiMain.Funcionalidades;
 
 import gestorAplicacion.administracion.Hospital;
