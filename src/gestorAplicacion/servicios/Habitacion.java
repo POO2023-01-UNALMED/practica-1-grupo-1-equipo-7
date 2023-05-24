@@ -15,7 +15,7 @@ public class Habitacion  extends Servicio{
     private CategoriaHabitacion categoria;
     private boolean ocupada;
     private int dias;
-
+// Se define el constructor con sus respectivos atributos
     public Habitacion(int numero, CategoriaHabitacion categoria, boolean ocupada,Paciente paciente,int dias)
     {
         super(paciente);
@@ -27,40 +27,53 @@ public class Habitacion  extends Servicio{
 
     }
 
-
+//Se crea el metodo estatico, el cual se encarga de filtrar y retornar un ArrayList de las habitaciones vacias de la categoria que se selecciono
     public static ArrayList<Habitacion> BuscarHabitacionDisponible(CategoriaHabitacion categoria)
     {
+        //se instacia una nueva variable tipo ArrayList de clase habitacion
         ArrayList<Habitacion>habitacionesDisponibles=new ArrayList<>();
-
+//se recorre la lista estatica que se encuentra en hospital
         for (Habitacion habitacion : Hospital.habitaciones)
         {
+            //se comprueba si la habitacion esta no ocupada y si la categoria que se ingreso es la misma que la del objeto habitacion de la lista
             if (!habitacion.isOcupada() && habitacion.getCategoria() == categoria)
             {
+                // se agrega el objeto habitacion que cumpla y se retorna
                 habitacionesDisponibles.add(habitacion);
             }
         }
 
+        //se comprueba si la lista esta vacia y si lo esta retorna null
         if (habitacionesDisponibles.isEmpty()) {
             return null;
         }
+        //retorna la nueva lista
         return habitacionesDisponibles;
     }
 
 
+    //Este metodo se encarga de cambiar la categoria a una inferior 
     public static CategoriaHabitacion BuscarOtraCategoria(CategoriaHabitacion categoria)
     {
+        //contiene switch que comprueba la categoria que ingresa y retorna la categoria inferior 
         switch (categoria)
         {
+            //si la categoria que ingresa es UCC retorna UCI
             case UCC:
                 return CategoriaHabitacion.UCI;
+            //si la categoria que ingresa es UCI retorna OBSERVACION    
             case UCI:
                 return CategoriaHabitacion.OBSERVACION;
+            //si la categoria que ingresa es OBSERVACION retorna DOBLE    
             case OBSERVACION:
                 return CategoriaHabitacion.DOBLE;
+            //si la categoria que ingresa es DOBLE retorna INDIVIDUAL    
             case DOBLE:
                 return CategoriaHabitacion.INDIVIDUAL;
+            //si la categoria que ingresa es INDIVIDUAL retorna CAMILLA    
             case INDIVIDUAL:
                 return CategoriaHabitacion.CAMILLA;
+            //Aqui lo que hace es que para CAMILLA no hay una categoria inferior por lo tanto nos retorna null y termina el proceso    
             default:
                 return null;
         }
@@ -116,6 +129,7 @@ public class Habitacion  extends Servicio{
         this.dias = dias;
     }
 
+    //Se implementa para cambiar el estado de pago a los servicios 
     @Override
     public void validarPago(Paciente paciente, long idServicio) {
         if (paciente.getHabitacionAsignada().getIdServicio() == idServicio)

@@ -32,7 +32,7 @@ public class AsignarHabitacion {
                 ArrayList<Habitacion> habitacionesDisponibles = new ArrayList<>();
                 ArrayList<Habitacion> otraHabitacionDisponibles = new ArrayList<>();
                 //del atributo tipoEps se comprueba si es tipo sucidiado para mostrar la categoria de habitaciones disponibles que la eps le permite
-                if (paciente.getTipoEps().equals("subsidiado")) {
+                if (paciente.getTipoEps().equals("Subsidiado")) {
                     int eleccion;
                     do { // se emplea un swicth para mostrar las categorias disponibles
                         System.out.println("Elija el tipo de habitacion que desee, recuerde que segun el tipo va el costo del servicio");
@@ -186,7 +186,7 @@ public class AsignarHabitacion {
 
                 }//del atributo tipoEps se comprueba si es tipo contributivo para mostrar la categoria de habitaciones disponibles que la eps le permite y se hace lo mismo con las categorias que en sucidiado
                 //cabe aclarar que contributivo tiene mas categorias disponibles
-                else if (paciente.getTipoEps().equals("contributivo")) {
+                else if (paciente.getTipoEps().equals("Contributivo")) {
                     int eleccion;
                     do {
                         System.out.println("Elija el tipo de habitacion que desee, recuerde que segun el tipo va el costo del servicio");
@@ -515,7 +515,7 @@ public class AsignarHabitacion {
                     paciente.setHabitacionAsignada(habitacion);
                     //se asigna la habitacion al paciente
                     sc = new Scanner(System.in);
-                    System.out.println("Ingrese el número de dias de estadia en la habitacion:");
+                    System.out.println("Ingrese el número estimado de dias para la estadia en la habitacion:");
                     //se pide los dias estimados de la estadia en la habitacion
                     int dias = sc.nextInt();
                     sc.nextLine();
@@ -574,7 +574,7 @@ public class AsignarHabitacion {
                             otraHabitacion.setPaciente(paciente);
                             paciente.setHabitacionAsignada(otraHabitacion);
                             sc = new Scanner(System.in);
-                            System.out.println("Ingrese el número de dias de estadia en la habitacion:");
+                            System.out.println("\"Ingrese el número estimado de dias para la estadia en la habitacion:");
                             int dias = sc.nextInt();
                             sc.nextLine();
                             paciente.getHabitacionAsignada().setDias(dias);
