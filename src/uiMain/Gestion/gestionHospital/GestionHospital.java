@@ -1,3 +1,6 @@
+/* Esta clase se encarga de mostrar el menu para gestionar las clases Hospital, Habitacion y Medicamento.
+ * Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+ * y Santiago Arboleda Acevedo */
 package uiMain.Gestion.gestionHospital;
 
 import baseDatos.Serializador;
@@ -11,6 +14,7 @@ public class GestionHospital {
     public static void menuGetionHospital(Hospital hospital) {
         byte opcion;
         do {
+            // Menu para gestionar las clases Hospital, Habitacion y Medicamento
             System.out.println("\n---Menu Gestion Hospital---");
             System.out.println("1. Construir Habitación");
             System.out.println("2. Ver lista de Habitaciones");
@@ -19,8 +23,8 @@ public class GestionHospital {
             System.out.println("5. Ver Inventario de medicamentos");
             System.out.println("6. Ver personas registradas en el hospital");
             System.out.println("7. Ver vacunas registradas en el hospital");
-            System.out.println("8. Regresar al menu anterior");
-            System.out.println("9. Salir");
+            System.out.println("8. --Regresar al menu anterior--");
+            System.out.println("9. --Salir--");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextByte();
             switch (opcion) {

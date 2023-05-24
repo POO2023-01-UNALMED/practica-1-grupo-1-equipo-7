@@ -1,3 +1,6 @@
+/* Esta clase se encarga de mostrar el menu para gestionar la clase Doctor
+ * Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+ * y Santiago Arboleda Acevedo */
 package uiMain.Gestion.gestionDoctores;
 
 import baseDatos.Serializador;
@@ -11,14 +14,15 @@ public class GestionDoctor {
     public static void menuGestionDoctor(Hospital hospital) {
         byte opcion;
         do {
+            // Menu para gestionar la clase Doctor
             System.out.println("\nMENU Gestion Doctor");
             System.out.println("1. Registrar doctor");
             System.out.println("2. Eliminar doctor");
             System.out.println("3. Ver doctor");
             System.out.println("4. Agregar citas");
             System.out.println("5. Eliminar citas");
-            System.out.println("6. Regresar al menu anterior");
-            System.out.println("7. Salir");
+            System.out.println("6. --Regresar al menu anterior--");
+            System.out.println("7. --Salir--");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextByte();
             switch (opcion) {

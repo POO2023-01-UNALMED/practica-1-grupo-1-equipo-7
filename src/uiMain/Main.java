@@ -1,3 +1,6 @@
+/* Esta clase se encarga iniciar el programa.
+ * Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+ * y Santiago Arboleda Acevedo */
 package uiMain;
 
 import baseDatos.Serializador;
@@ -12,19 +15,20 @@ public class Main {
     private static final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Hospital hospital = new Hospital();
+        Hospital hospital = new Hospital(); // Inicio de instancia de hospital para serialización
         menuInicial(hospital);
     }
 
     public static void menuInicial(Hospital hospital) {
 
-        byte opcion;
+        byte opcion; // Se inicia la variable para elegir la opción que se selecciona
 
         do {
+            // Inicio del programa, solo se selecciona a que menú se desea acceder
             System.out.println("\nMENU INICIAL");
             System.out.println("1. Servicios para pacientes");
             System.out.println("2. Gestionar registros");
-            System.out.println("3. Salir");
+            System.out.println("3. --Salir--");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextByte();
 

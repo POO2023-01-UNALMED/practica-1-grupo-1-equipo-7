@@ -1,3 +1,6 @@
+/* Esta clase se encarga de administrar el menu de la gestion de las clases Paciente y Enfermedad
+* Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+* y Santiago Arboleda Acevedo */
 package uiMain.Gestion.gestionPacientes;
 
 import baseDatos.Serializador;
@@ -11,13 +14,14 @@ public class GestionPaciente {
     public static void menuGestionPaciente(Hospital hospital) {
         byte opcion;
         do {
+            // Menu para gestionar la clase Paciente
             System.out.println("\nMENU Gestion Paciente");
             System.out.println("1. Registrar paciente");
             System.out.println("2. Registrar enfermedad");
             System.out.println("3. Eliminar Paciente");
             System.out.println("4. Ver Paciente");
-            System.out.println("5. Regresar al menu anterior");
-            System.out.println("6. Salir");
+            System.out.println("5. --Regresar al menu anterior--");
+            System.out.println("6. --Salir--");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextByte();
             switch (opcion) {

@@ -1,3 +1,6 @@
+/* Esta clase se encarga de mostrar el menu de gestion de las clases Vacuna y CitaVacuna
+ * Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+ * y Santiago Arboleda Acevedo */
 package uiMain.Gestion.gestionVacunas;
 
 import baseDatos.Serializador;
@@ -12,14 +15,15 @@ public class GestionVacunas {
     public static void menuGestionVacunas(Hospital hospital){
         byte opcion;
         do {
+            // Menu para gestionar la clase Vacuna y CitaVacuna
             System.out.println("\nMENU Gestion Vacunas");
             System.out.println("1. Registrar vacuna");
             System.out.println("2. Eliminar vacuna");
             System.out.println("3. Ver información de una vacuna");
             System.out.println("4. Agregar cita a una vacuna");
             System.out.println("5. Eliminar cita a una vacuna");
-            System.out.println("6. Regresar al menu anterior");
-            System.out.println("7. Salir");
+            System.out.println("6. --Regresar al menu anterior--");
+            System.out.println("7. --Salir--");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextByte();
             switch (opcion) {

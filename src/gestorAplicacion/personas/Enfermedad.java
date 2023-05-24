@@ -1,15 +1,20 @@
+/* Clase que crea enfermedades, las cuales son usadas para recomendarle al paciente
+* distintos servicios que estén relacionados con su enfermedad */
 package gestorAplicacion.personas;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Enfermedad implements Serializable {
+    // Atributos
     private String especialidad;
     private String nombre;
     private String tipologia;
     private int enfermos = 1;
+    // Lista de las enfermedades registradas en el hospital
     private static ArrayList<Enfermedad> enfermedadesRegistradas = new ArrayList<>();
 
+    // Constructor
     public Enfermedad(String especialidad, String nombre, String tipologia) {
         this.especialidad = especialidad;
         this.nombre = nombre;
@@ -17,9 +22,14 @@ public class Enfermedad implements Serializable {
         enfermedadesRegistradas.add(this);
     }
 
+    // Métodos
+
+    // Método que aumenta los enfermos en una unidad
     public void nuevoEnfermo(){
         enfermos+=1;
     }
+
+    // Getters y Setters
     public String getEspecialidad() {
         return especialidad;
     }
@@ -60,6 +70,7 @@ public class Enfermedad implements Serializable {
         this.enfermos = enfermos;
     }
 
+    // toString
     @Override
     public String toString(){
         return nombre + " " + tipologia + " Especialidad que la trata: " + especialidad;
