@@ -81,7 +81,7 @@ public class Vacunacion {
                 vacunasDisponibles= pacienteAsignado.buscarVacunaPorEps("Obligatoria",hospital);
                 //Validación por si no tiene vacunas disponibles
                 if (vacunasDisponibles.size()==0){
-                    System.out.println("No hay vacunas disponibles para usted");
+                    System.out.println("No hay vacunas disponibles para usted de tipo obligatoria");
                     return;
                 }
                 //Impresión de esas vacunas disponibles
@@ -94,7 +94,7 @@ public class Vacunacion {
                 vacunasDisponibles= pacienteAsignado.buscarVacunaPorEps("No obligatoria",hospital);
                 //Validación por si no tiene vacunas disponibles
                 if (vacunasDisponibles.size()==0){
-                    System.out.println("No hay vacunas disponibles para usted");
+                    System.out.println("No hay vacunas disponibles para usted de tipo no obligatoria");
                     return;
                 }
                 //Impresión de esas vacunas disponibles
