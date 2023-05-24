@@ -43,7 +43,7 @@ public class Persona implements Serializable {
         this.tipoEps = tipoEps;
     }
 
-    public String mensaje(){
+    public String bienvenida(){
         return "Bienvenido Usuario "+nombre;
     }
 }

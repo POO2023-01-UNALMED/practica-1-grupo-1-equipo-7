@@ -49,7 +49,7 @@ static Scanner sc = new Scanner(System.in);
         }
 
 		//Mensaje de bienvenida
-		System.out.println(pacienteAsignado.mensaje());
+		System.out.println(pacienteAsignado.bienvenida());
 
 		//se crea un arraylit de doctores que se usara mas adelante
 		ArrayList<Doctor> doctoresDisponibles = new ArrayList<Doctor>();

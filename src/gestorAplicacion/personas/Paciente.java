@@ -173,10 +173,9 @@ public class Paciente extends Persona implements Pago{
         return vacunasDisponibles;
     }
     //Método para bienvenida de doctor
-    public String mensajeDoctor(Doctor doctor){
-        Persona persona=doctor;
+    public String mensajeDoctor(Persona doctor){
         //Hay ligadura dinámica
-        return persona.mensaje()+ "\nPor favor selecciona los medicamentos que vas a formularle a: "+getNombre();
+        return doctor.bienvenida()+ "\nPor favor selecciona los medicamentos que vas a formularle a: "+getNombre();
     }
 
     //Getter y setter
@@ -213,16 +212,12 @@ public class Paciente extends Persona implements Pago{
         return "---------------------------\nNombre: "+ getNombre() + "\nCédula: " + getCedula() + "\nTipo de EPS: " + getTipoEps() + "\n---------------------------";
     }
 
-
-    //Despedida para funcionalidad Vacunas
-    public String despedida(CitaVacuna citaAsignada ){
-        Cita servicio=citaAsignada;
-        //Hay ligadura dinámica
-        return "¡Adiós "+getNombre()+" "+servicio.mensaje();
-    }
-    //Despedida para funcionalidad Cita médica
     public String despedida(Cita citaAsignada ){
-        Cita servicio=citaAsignada;
-        return "¡Adiós "+getNombre()+" "+servicio.mensaje();
+        /*Hay ligadura dinámica ya que la referencia
+        citaAsignada puede apuntar a una cita o a una cita vacuna
+        y dependiendo de eso ejecutará el método más específico
+        de mensaje().
+         */
+        return "¡Adiós "+getNombre()+" "+citaAsignada.mensaje();
     }
 }

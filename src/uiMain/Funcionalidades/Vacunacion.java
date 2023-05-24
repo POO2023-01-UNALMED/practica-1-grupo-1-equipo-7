@@ -52,7 +52,7 @@ public class Vacunacion {
         }
 
         //Mensaje de bienvenida
-        System.out.println(pacienteAsignado.mensaje());
+        System.out.println(pacienteAsignado.bienvenida());
 
         //Se pregunta por el tipo de vacuna que requiere el paciente
         byte tipoVacuna;
