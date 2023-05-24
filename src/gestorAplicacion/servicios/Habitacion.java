@@ -122,4 +122,10 @@ public class Habitacion  extends Servicio{
             paciente.getHabitacionAsignada().setEstadoPago(true);
     }
 
+    // Metodo que imprime una descripcion del servicio
+    @Override
+    public String descripcionServicio() {
+        return idServicio + " - Habitacion " + numero + " ocupada " + dias + " dias";
+    }
+
 }

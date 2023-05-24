@@ -47,6 +47,12 @@ public class Formula extends Servicio {
         }
     }
 
+    // Metodo que imprime una descripcion del servicio
+    @Override
+    public String descripcionServicio() {
+        return idServicio + " - Formula prescrita por " + doctor.getNombre();
+    }
+
     @Override
     public String toString() {
         return "Hola "+paciente.getNombre()+"\nEstos son tus medicamentos formulados:\n"+listaMedicamentos;

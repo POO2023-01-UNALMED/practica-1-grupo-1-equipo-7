@@ -20,6 +20,7 @@ public class Facturacion {
         do {
             System.out.println("Ingrese la cedula del paciente:");
             pacienteSeleccionado = hospital.buscarPaciente(Integer.parseInt(sc.nextLine()));
+
             if (pacienteSeleccionado == null) {
                 System.out.println("No existe un paciente registrado con esta cedula. Desea intentar de nuevo? (S/N)");
                 if (sc.nextLine().equalsIgnoreCase("n")) {
@@ -29,24 +30,17 @@ public class Facturacion {
         } while (pacienteSeleccionado == null);
 
         // Buscar servicios pendientes de pago
-        System.out.println("Servicios pendientes de pago:");
         ArrayList<Servicio> serviciosSinPagar = Servicio.obtenerServiciosSinPagar(pacienteSeleccionado);
+
         if (serviciosSinPagar.size()==0){
-            System.out.println("Usted no tiene ningún servicio por pagar pendiente");
+            System.out.println("Usted no tiene ningún servicio pendiente de pago");
             return;
         }
-        for (Servicio servicio :
-                serviciosSinPagar) {
-            if (servicio instanceof Formula)
-                System.out.println(servicio.getIdServicio() + " - Formula");
-            else if (servicio instanceof CitaVacuna)
-                System.out.println(servicio.getIdServicio() + " - Vacuna");
-            else if (servicio instanceof Habitacion)
-                System.out.println(servicio.getIdServicio() + " - Habitacion");
-            else if (servicio instanceof Cita) 
-                System.out.println(servicio.getIdServicio() + " - Cita medica");
+        System.out.println("Servicios pendientes de pago:");
 
-        }
+        for (Servicio servicio :
+                serviciosSinPagar)
+            System.out.println(servicio.descripcionServicio());
 
         // Seleccionar servicio a pagar
         Servicio servicioSeleccionado = null;
@@ -55,8 +49,10 @@ public class Facturacion {
             long idSeleccionada = Long.parseLong(sc.nextLine());
             for (Servicio servicio :
                     serviciosSinPagar) {
-                if (servicio.getIdServicio() == idSeleccionada)
+                if (servicio.getIdServicio() == idSeleccionada){
                     servicioSeleccionado = servicio;
+                    break;
+                }
             }
             if (servicioSeleccionado == null) {
                 System.out.println("No existe el servicio seleccionado. Intente de nuevo.");

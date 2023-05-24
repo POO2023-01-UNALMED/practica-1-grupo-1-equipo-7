@@ -4,7 +4,6 @@ package gestorAplicacion.servicios;
 
 import gestorAplicacion.administracion.Vacuna;
 import gestorAplicacion.personas.Paciente;
-import gestorAplicacion.personas.Persona;
 
 //Clase destinada a las citas que son de vacunas
 public class CitaVacuna extends Cita{
@@ -28,6 +27,12 @@ public class CitaVacuna extends Cita{
             if (citaVacuna.getIdServicio() == idServicio)
                 citaVacuna.setEstadoPago(true);
         }
+    }
+
+    // Metodo que imprime una descripcion del servicio
+    @Override
+    public String descripcionServicio() {
+        return idServicio + " - Vacuna " + vacuna.getNombre() + " (" + fecha + ")";
     }
 
     //Getters y Setters

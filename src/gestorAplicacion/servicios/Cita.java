@@ -9,7 +9,7 @@ import gestorAplicacion.personas.Paciente;
 public class Cita extends Servicio {
     //Atributos
     private Doctor doctor;
-    private String fecha;
+    protected String fecha;
 
     //Constructor
     public Cita(Doctor doctor, String fecha, Paciente paciente){
@@ -29,6 +29,13 @@ public class Cita extends Servicio {
                 cita.setEstadoPago(true);
         }
     }
+
+    // Metodo que imprime una descripcion del servicio
+    @Override
+    public String descripcionServicio() {
+        return idServicio + " - Cita medica con " + doctor.getNombre() + " (" + fecha + ")";
+    }
+
 
     //Getters y Setters
 
