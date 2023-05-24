@@ -108,22 +108,21 @@ public class Paciente extends Persona implements Pago{
     public double calcularPrecio(CitaVacuna citaAsignada){
         double precioTotal=citaAsignada.getVacuna().getPrecio();
 
-        if(citaAsignada.getVacuna().getTipo()=="Obligatoria"){
+        if(Objects.equals(citaAsignada.getVacuna().getTipo(), "Obligatoria")){
             precioTotal += 1000;
         }
-        if(citaAsignada.getVacuna().getTipo()=="No obligatoria"){
+        if(Objects.equals(citaAsignada.getVacuna().getTipo(), "No obligatoria")){
             precioTotal += 3000;
         }
-        if (citaAsignada.getPaciente().getTipoEps()=="Contributivo"){
+        if (Objects.equals(citaAsignada.getPaciente().getTipoEps(), "Contributivo")){
             precioTotal += 2000;
         }
-        if (citaAsignada.getPaciente().getTipoEps()=="Subsidiado"){
+        if (Objects.equals(citaAsignada.getPaciente().getTipoEps(), "Subsidiado")){
             precioTotal += 500;
         }
-        if (citaAsignada.getPaciente().getTipoEps()=="Particular"){
+        if (Objects.equals(citaAsignada.getPaciente().getTipoEps(), "Particular")){
             precioTotal += 10000;
         }
-
         precioTotal=precioTotal*(1+IVA);
         return precioTotal;
     }
@@ -132,12 +131,12 @@ public class Paciente extends Persona implements Pago{
     public  double calcularPrecio(Habitacion habitacionAsignada)
     {
         double precio=0;
-        if (getTipoEps()=="subsidiado")
+        if (Objects.equals(getTipoEps(), "Subsidiado"))
         {
             precio=habitacionAsignada.getCategoria().getValor()*0;
             return precio*(1+IVA);
         }
-        else if (getTipoEps()=="contributivo")
+        else if (Objects.equals(getTipoEps(), "Contributivo"))
         {
             precio=(habitacionAsignada.getCategoria().getValor()/2)*habitacionAsignada.getDias();
             return precio*(1+IVA);
@@ -177,13 +176,6 @@ public class Paciente extends Persona implements Pago{
     //Agrega una cita de vacuna al historial de vacunas del paciente
     public void actualizarHistorialVacunas(CitaVacuna citaAsignada){
         historiaClinica.getHistorialVacunas().add(citaAsignada);
-    }
-
-    //Muestra las vacunas que se ha puesto el paciente
-    public void mostrarHistorialVacunas() {
-        for (int i=1; i<=historiaClinica.getHistorialVacunas().size();i++){
-            System.out.println(i + ". Vacuna: "+historiaClinica.getHistorialVacunas().get(i-1).getVacuna().getNombre());
-        }
     }
 
     public HistoriaClinica getHistoriaClinica() {

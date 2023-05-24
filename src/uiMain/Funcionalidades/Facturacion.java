@@ -29,6 +29,10 @@ public class Facturacion {
         // Buscar servicios pendientes de pago
         System.out.println("Servicios pendientes de pago:");
         ArrayList<Servicio> serviciosSinPagar = Servicio.obtenerServiciosSinPagar(pacienteSeleccionado);
+        if (serviciosSinPagar.size()==0){
+            System.out.println("Usted no tiene ningún servicio por pagar pendiente");
+            return;
+        }
         for (Servicio servicio :
                 serviciosSinPagar) {
             if (servicio instanceof Formula)

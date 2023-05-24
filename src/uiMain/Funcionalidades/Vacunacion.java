@@ -26,9 +26,6 @@ public class Vacunacion {
         //Se busca el paciente por el numero de cédula
         Paciente pacienteAsignado= hospital.buscarPaciente(numeroCedula);
 
-        //Mensaje de bienvenida
-        System.out.println(pacienteAsignado.mensaje());
-
         //Verificación que el paciente se encuentre en la base de datos del hospital
 
         if (pacienteAsignado == null){
@@ -51,6 +48,9 @@ public class Vacunacion {
                 }
             }
         }
+
+        //Mensaje de bienvenida
+        System.out.println(pacienteAsignado.mensaje());
 
         //Se pregunta por el tipo de vacuna que requiere el paciente
         byte tipoVacuna;
@@ -177,7 +177,10 @@ public class Vacunacion {
 
         //Por último se muestra el historial de vacunas del paciente
         System.out.println("\nEste es el historial de vacunas aplicadas del paciente seleccionado: ");
-        pacienteAsignado.mostrarHistorialVacunas();
+        //pacienteAsignado.mostrarHistorialVacunas();
+        for (int i=1; i<=pacienteAsignado.getHistoriaClinica().getHistorialVacunas().size();i++){
+            System.out.println(i + ". Vacuna: "+pacienteAsignado.getHistoriaClinica().getHistorialVacunas().get(i-1).getVacuna().getNombre());
+        }
 
         //Despedida
         System.out.println("\n"+pacienteAsignado.despedida(citaAsignada));
