@@ -61,16 +61,6 @@ public class Paciente extends Persona implements Pago{
     	historiaClinica.getHistorialCitas().add(citaAsignada);
     }
 
-    /* Método que muestra la historia clínica del paciente */
-    public void mostrarHistorial() {
-    	for(int i=1; i<=historiaClinica.getHistorialCitas().size(); i++) {
-            System.out.println("");
-    		System.out.println("Fecha: " + historiaClinica.getHistorialCitas().get(i-1).getFecha());
-    		System.out.println("Paciente: " + historiaClinica.getHistorialCitas().get(i-1).getPaciente().getNombre());
-    		System.out.println("Doctor: " + historiaClinica.getHistorialCitas().get(i-1).getDoctor().getNombre());
-    	}
-    }
-
     //Sobre carga de métodos con calcular precio de los distintos servicios
     @Override
     public double calcularPrecio(Formula formula){

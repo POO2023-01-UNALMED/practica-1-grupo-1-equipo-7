@@ -8,7 +8,7 @@ import gestorAplicacion.servicios.Cita;
 import gestorAplicacion.personas.Doctor;
 import gestorAplicacion.personas.Paciente;
 import uiMain.Gestion.gestionPacientes.RegistrarPaciente;
-
+//Clase destinada para la funcionalidad de agendar citas medicas.
 public class AgendarCitas {
 	
 static Scanner sc = new Scanner(System.in);
@@ -45,7 +45,11 @@ static Scanner sc = new Scanner(System.in);
                 }
             }
         }
-		
+
+		//Mensaje de bienvenida
+		System.out.println(pacienteAsignado.mensaje());
+
+		//se crea un arraylit de doctores que se usara mas adelante
 		ArrayList<Doctor> doctoresDisponibles = new ArrayList<Doctor>();
 		
 		//ciclo while para cuando no hay doctores con citas disponibles de la especialidad seleccionada
@@ -123,10 +127,10 @@ static Scanner sc = new Scanner(System.in);
             System.out.print("Opción fuera de rango, por favor ingrese otro número: ");
             numeroDoctor = sc.nextByte();
 		}
-		
-		ArrayList<Cita> agendaDisponible = new ArrayList<Cita>();
-		
+
 		//muestra la agenda disponible del doctor seleccionado
+		ArrayList<Cita> agendaDisponible = new ArrayList<Cita>();
+
 		System.out.println("\nCitas disponibles: ");
 		
 		Doctor doctorAsignado = doctoresDisponibles.get(numeroDoctor-1);
@@ -167,9 +171,15 @@ static Scanner sc = new Scanner(System.in);
 		//limpia los arrays de doctores y agenda disponibles al haberse asignado un paciente a una cita
 		agendaDisponible.clear();
 		doctoresDisponibles.clear();
-		
+
+		//muestra el historial de las citas que ha tenido el paciente
 		System.out.println("\nhistorial citas de historia clinica del paciente: ");
-		pacienteAsignado.mostrarHistorial();
+		for(int i=1; i<=pacienteAsignado.getHistoriaClinica().getHistorialCitas().size(); i++) {
+			System.out.println("");
+			System.out.println("Fecha: " + pacienteAsignado.getHistoriaClinica().getHistorialCitas().get(i-1).getFecha());
+			System.out.println("Paciente: " + pacienteAsignado.getHistoriaClinica().getHistorialCitas().get(i-1).getPaciente().getNombre());
+			System.out.println("Doctor: " + pacienteAsignado.getHistoriaClinica().getHistorialCitas().get(i-1).getDoctor().getNombre());
+		}
 		
 		//Despedida
 		System.out.println("\n"+pacienteAsignado.despedida(citaAsignada));
