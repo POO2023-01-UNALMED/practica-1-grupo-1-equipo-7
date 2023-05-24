@@ -64,6 +64,7 @@ public class Paciente extends Persona implements Pago{
     /* Método que muestra la historia clínica del paciente */
     public void mostrarHistorial() {
     	for(int i=1; i<=historiaClinica.getHistorialCitas().size(); i++) {
+            System.out.println("");
     		System.out.println("Fecha: " + historiaClinica.getHistorialCitas().get(i-1).getFecha());
     		System.out.println("Paciente: " + historiaClinica.getHistorialCitas().get(i-1).getPaciente().getNombre());
     		System.out.println("Doctor: " + historiaClinica.getHistorialCitas().get(i-1).getDoctor().getNombre());
@@ -85,27 +86,27 @@ public class Paciente extends Persona implements Pago{
 
     	double precioTotal = 0;
 
-    	if (citaAsignada.getDoctor().getEspecialidad() == "General") {
+    	if (Objects.equals(citaAsignada.getDoctor().getEspecialidad(),"General")) {
     		precioTotal += 5000;
     	}
 
-    	if (citaAsignada.getDoctor().getEspecialidad() == "Oftalmologia") {
+    	if (Objects.equals(citaAsignada.getDoctor().getEspecialidad(),"Oftalmologia")) {
     		precioTotal += 7000;
     	}
 
-    	if (citaAsignada.getDoctor().getEspecialidad() == "Odontologia") {
+    	if (Objects.equals(citaAsignada.getDoctor().getEspecialidad(),"Odontologia")) {
     		precioTotal += 10000;
     	}
 
-    	if (citaAsignada.getPaciente().getTipoEps() == "Contributivo") {
+    	if (Objects.equals(citaAsignada.getPaciente().getTipoEps(),"Contributivo")) {
     		precioTotal += 2000;
     	}
 
-    	if (citaAsignada.getPaciente().getTipoEps() == "Subsidiado") {
+    	if (Objects.equals(citaAsignada.getPaciente().getTipoEps(),"Subsidiado")) {
     		precioTotal += 500;
     	}
 
-    	if (citaAsignada.getPaciente().getTipoEps() == "Particular") {
+    	if (Objects.equals(citaAsignada.getPaciente().getTipoEps(),"Particular")) {
     		precioTotal += 10000;
     	}
 

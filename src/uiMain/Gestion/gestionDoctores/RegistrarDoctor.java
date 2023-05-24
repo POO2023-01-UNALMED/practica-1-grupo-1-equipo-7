@@ -22,9 +22,9 @@ public class RegistrarDoctor {
             return;
         }
 
-        System.out.println("Ingrese su tipo de eps: ");
+        System.out.println("Ingrese su tipo de EPS 'Subsidiado','Contributivo' o 'Particular':");
         String eps = sc.next();
-        System.out.println("Ingrese su especialidad: ");
+        System.out.println("Ingrese su especialidad 'General', 'Odontologia' o 'Oftalmologia': ");
         String especialidad = sc.next();
 
         Doctor doctor = new Doctor(id, nombre, eps, especialidad);
