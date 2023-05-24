@@ -66,13 +66,13 @@ public class Paciente extends Persona implements Pago{
     public double calcularPrecio(Formula formula){
         double precio = 0;
         for (Medicamento med : formula.getListaMedicamentos()){
-            if (formula.getPaciente().getTipoEps()=="Contributivo"){
+            if (formula.getPaciente().getTipoEps().equals("Contributivo")){
                 precio += med.getPrecio()*0.8;
             }
-            if (formula.getPaciente().getTipoEps()=="Subsidiado"){
+            if (formula.getPaciente().getTipoEps().equals("Subsidiado")){
                 precio += med.getPrecio()*0.7;
             }
-            if (formula.getPaciente().getTipoEps()=="Particular"){
+            if (formula.getPaciente().getTipoEps().equals("Particular")){
                 precio += med.getPrecio();
             }
         }
