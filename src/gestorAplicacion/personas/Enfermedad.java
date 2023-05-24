@@ -1,10 +1,13 @@
-/* Clase que crea enfermedades, las cuales son usadas para recomendarle al paciente
-* distintos servicios que estén relacionados con su enfermedad */
+/* Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+y Santiago Arboleda Acevedo */
+
 package gestorAplicacion.personas;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/* Clase que crea enfermedades, las cuales son usadas para recomendarle al paciente
+distintos servicios que estén relacionados con su enfermedad */
 public class Enfermedad implements Serializable {
     // Atributos
     private String especialidad;

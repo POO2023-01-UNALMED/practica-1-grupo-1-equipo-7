@@ -1,5 +1,5 @@
-/* Clase que usa las funcionalidades del programa.
- Hereda de la clase Persona */
+/* Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+y Santiago Arboleda Acevedo */
 package gestorAplicacion.personas;
 
 import gestorAplicacion.administracion.*;

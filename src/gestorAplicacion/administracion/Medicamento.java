@@ -1,11 +1,13 @@
-/* Clase usada en FormulaMedica, practicamente es el pilar de esta funcionalidad porque son los
-* medicamentos que se eligen allí */
+/* Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+y Santiago Arboleda Acevedo */
 package gestorAplicacion.administracion;
 
 import gestorAplicacion.personas.Enfermedad;
 
 import java.io.Serializable;
 
+/* Clase usada en FormulaMedica, practicamente es el pilar de esta funcionalidad porque son los
+medicamentos que se eligen allí */
 public class Medicamento implements Serializable {
     // Atributos
     private String nombre;

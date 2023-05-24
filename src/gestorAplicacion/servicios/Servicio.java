@@ -1,3 +1,5 @@
+/* Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+y Santiago Arboleda Acevedo */
 package gestorAplicacion.servicios;
 
 import gestorAplicacion.administracion.HistoriaClinica;
@@ -6,21 +8,30 @@ import gestorAplicacion.personas.Paciente;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+//Clase Abstracta destinada a herencia de servicios del hospital
 public abstract class Servicio implements Serializable {
 
+    //Atributos
     protected static long generadorID = 1;
     protected final long idServicio;
     protected Paciente paciente;
     private boolean estadoPago;
 
+    //Constructor
     public Servicio(Paciente paciente) {
         this.idServicio = generadorID++;
         this.paciente = paciente;
         this.estadoPago = false;
     }
 
+    //Métodos
+
+    /* Método abstracto que debe implementarse en las clases hijas para
+    validar el pago
+     */
     public abstract void validarPago(Paciente paciente, long idServicio);
 
+    //Método estático para obtener servicios sin pagar
     public static ArrayList<Servicio> obtenerServiciosSinPagar(Paciente paciente) {
         HistoriaClinica historiaClinicaPaciente = paciente.getHistoriaClinica();
         ArrayList<Servicio> serviciosSinPagar = new ArrayList<>();
@@ -37,6 +48,8 @@ public abstract class Servicio implements Serializable {
 
         return serviciosSinPagar;
     }
+
+    //Getters y Setters
     public boolean isEstadoPago() {
         return estadoPago;
     }

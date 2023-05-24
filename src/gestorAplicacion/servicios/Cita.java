@@ -1,3 +1,5 @@
+/* Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+y Santiago Arboleda Acevedo */
 package gestorAplicacion.servicios;
 
 import gestorAplicacion.personas.Doctor;
