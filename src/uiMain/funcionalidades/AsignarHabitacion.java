@@ -456,19 +456,7 @@ public class AsignarHabitacion {
                                         (otraHabitacionDisponibles.size() - 1) + "):");
                                 opcion = sc.nextInt();
                             } while (opcion < 0 || opcion >= otraHabitacionDisponibles.size());
-                            // Actualizar la habitación seleccionada en la lista del hospital
                             habitacionSeleccionada = otraHabitacionDisponibles.get(opcion);
-                            habitacionSeleccionada.setOcupada(true);
-                            int index = -1;
-                            for (int i = 0; i < hospital.habitaciones.size(); i++) {
-                                if (hospital.habitaciones.get(i).equals(habitacionSeleccionada)) {
-                                    index = i;
-                                    break;
-                                }
-                            }
-                            if (index != -1) {
-                                hospital.habitaciones.set(index, habitacionSeleccionada);
-                            }
 
                             // Eliminar la habitación seleccionada de la lista de habitaciones disponibles
                             otraHabitacionDisponibles.remove(opcion);
