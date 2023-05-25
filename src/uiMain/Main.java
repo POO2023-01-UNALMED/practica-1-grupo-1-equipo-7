@@ -5,8 +5,8 @@ package uiMain;
 
 import baseDatos.Serializador;
 import gestorAplicacion.administracion.Hospital;
-import uiMain.Funcionalidades.MenuFuncionalidades;
-import uiMain.Gestion.MenuGestion;
+import uiMain.funcionalidades.MenuFuncionalidades;
+import uiMain.gestion.MenuGestion;
 
 import java.util.Scanner;
 
