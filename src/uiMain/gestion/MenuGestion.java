@@ -24,8 +24,8 @@ public class MenuGestion {
             System.out.println("2. Gestionar apartado de vacunas");
             System.out.println("3. Gestionar Doctores");
             System.out.println("4. Gestionar Hospital");
-            System.out.println("6. --Regresar al menu inicial--");
-            System.out.println("7. --Salir--");
+            System.out.println("5. --Regresar al menu inicial--");
+            System.out.println("6. --Salir--");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextByte();
             switch (opcion) {
@@ -33,10 +33,10 @@ public class MenuGestion {
                 case 2 -> GestionVacunas.menuGestionVacunas(hospital);
                 case 3 -> GestionDoctor.menuGestionDoctor(hospital);
                 case 4 -> GestionHospital.menuGetionHospital(hospital);
-                case 6 -> {
+                case 5 -> {
                     return;
                 }
-                case 7 -> {
+                case 6 -> {
                     Serializador.serializar(hospital);
                     System.exit(0);
                 }

@@ -20,8 +20,8 @@ public class MenuFuncionalidades {
             System.out.println("3. Asignar habitación a un paciente");
             System.out.println("4. Aplicarse una vacuna");
             System.out.println("5. Facturacion");
-            System.out.println("6. Regresar al menu inicial");
-            System.out.println("7. Salir");
+            System.out.println("6. --Regresar al menu inicial--");
+            System.out.println("7. --Salir--");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextByte();
 
