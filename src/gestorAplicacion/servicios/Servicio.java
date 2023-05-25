@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public abstract class Servicio implements Serializable {
 
     //Atributos
-    protected static long generadorID = 1;
+    protected static long generadorID = 1000;
     protected final long idServicio;
     protected Paciente paciente;
     private boolean estadoPago;

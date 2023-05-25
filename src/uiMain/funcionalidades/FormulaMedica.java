@@ -86,6 +86,8 @@ public class FormulaMedica {
             }
         }
         boolean agregarOtro = false; //condicion para el while para ir agregando medicamentos
+
+        formulaPaciente.setDoctor(doctorEscogido);
         //bucle para agregar medicamentos, cada vez q pregunte si desea otro y responda si se repite
         do {
             System.out.println(paciente.mensajeDoctor(doctorEscogido));

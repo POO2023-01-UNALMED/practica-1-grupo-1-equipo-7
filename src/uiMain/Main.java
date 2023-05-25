@@ -4,7 +4,13 @@
 package uiMain;
 
 import baseDatos.Serializador;
+import gestorAplicacion.administracion.CategoriaHabitacion;
 import gestorAplicacion.administracion.Hospital;
+import gestorAplicacion.administracion.Medicamento;
+import gestorAplicacion.personas.Doctor;
+import gestorAplicacion.personas.Enfermedad;
+import gestorAplicacion.personas.Paciente;
+import gestorAplicacion.servicios.Habitacion;
 import uiMain.funcionalidades.MenuFuncionalidades;
 import uiMain.gestion.MenuGestion;
 
