@@ -18,6 +18,7 @@ def menu_inicial(hospital):
         elif opcion == 2:
             pass
         elif opcion == 3:
+            hospital.serializar()
             sys.exit(0)
 
 
@@ -47,6 +48,7 @@ def menu_funcionalidades(hospital):
         elif opcion == 6:
             return
         elif opcion == 7:
+            hospital.serializar()
             sys.exit(0)
 
 

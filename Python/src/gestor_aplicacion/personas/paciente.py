@@ -34,3 +34,7 @@ class Paciente(Persona):
     @property
     def historia_clinica(self):
         return self._HISTORIA_CLINICA
+
+    @habitacion_asignada.setter
+    def habitacion_asignada(self, hab):
+        self._habitacion_asignada = hab
