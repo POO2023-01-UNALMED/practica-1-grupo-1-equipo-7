@@ -1,7 +1,12 @@
 class Hospital:
 
+    _habitaciones = []
+
     def __init__(self):
         self._lista_pacientes = []
+        self._lista_doctores = []
+        self._lista_medicamentos = []
+        self._lista_vacunas = []
 
     @property
     def lista_pacientes(self):
