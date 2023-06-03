@@ -1,7 +1,7 @@
 from Python.src.gestor_aplicacion.servicios.servicio import Servicio
 
 
-def facturacion(hospital):
+def facturacion_consola(hospital):
     # Buscar paciente
     paciente_seleccionado = None
 
