@@ -28,6 +28,7 @@ def implementacion_default(frame_implementacion):
     for widget in frame_implementacion.winfo_children():
         widget.destroy()
 
+    # Ejecuta la implementacion por defecto
     label_inicial = tk.Label(frame_implementacion, text="Seleccione una opcion para continuar")
     label_inicial.pack()
     label_inicial.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
