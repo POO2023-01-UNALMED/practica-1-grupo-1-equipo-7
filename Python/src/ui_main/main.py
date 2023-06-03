@@ -1,9 +1,26 @@
 import sys
 
 from Python.src.gestor_aplicacion.administracion.hospital import Hospital
-from Python.src.ui_main.facturacion import facturacion
+import tkinter as tk
+
+from Python.src.ui_main.temp.facturacion_consola import facturacion
+from Python.src.ui_main.ventana_principal import ventana_principal
 
 
+def ventana_inicial(hospital):
+    ventana = tk.Tk()
+    ventana.title("Sistema de gestion hospitalaria")
+    ventana.geometry("400x300")
+    # ventana.protocol("WM_DELETE_WINDOW", hospital.serializar())
+
+    boton = tk.Button(ventana, text="Ingresar a la aplicacion",
+                      command=lambda: [ventana.destroy(), ventana_principal(hospital)])
+    boton.pack()
+
+    ventana.mainloop()
+
+
+# Menu por consola temporal para ensayar las funcionalidades
 def menu_inicial(hospital):
     while True:
         print("\nMENU INICIAL")
@@ -18,7 +35,7 @@ def menu_inicial(hospital):
         elif opcion == 2:
             pass
         elif opcion == 3:
-            hospital.serializar()
+            # hospital.serializar()
             sys.exit(0)
 
 
@@ -48,10 +65,15 @@ def menu_funcionalidades(hospital):
         elif opcion == 6:
             return
         elif opcion == 7:
-            hospital.serializar()
+            # hospital.serializar()
             sys.exit(0)
 
 
 if __name__ == '__main__':
     hospital = Hospital()
-    menu_inicial(hospital)
+
+    # Descomenten este y comenten el otro para ver la interfaz grafica
+    ventana_inicial(hospital)
+
+    # Descomenten este y comenten el otro para ver la interfaz por consola
+    # menu_inicial(hospital)
