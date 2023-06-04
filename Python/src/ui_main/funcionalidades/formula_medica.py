@@ -1,7 +1,7 @@
 import tkinter as tk
 
 
-def formula_medica(frame_implementacion):
+def formula_medica(hospital, frame_implementacion):
     # Implementacion
     label_inicial = tk.Label(frame_implementacion, text="Generar formula medica")
     label_inicial.pack()

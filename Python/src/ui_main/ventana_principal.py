@@ -4,7 +4,7 @@ from Python.src.ui_main.funcionalidades import agendar_citas, formula_medica, as
 from Python.src.ui_main.gestion import gestion_temp
 
 
-def cambiar_contenido(opcion, frame_implementacion):
+def cambiar_contenido(opcion, hospital, frame_implementacion):
     # Limpia el frame
     for widget in frame_implementacion.winfo_children():
         widget.destroy()
@@ -20,7 +20,7 @@ def cambiar_contenido(opcion, frame_implementacion):
     }
 
     if opcion in opciones:
-        opciones[opcion](frame_implementacion)
+        opciones[opcion](hospital, frame_implementacion)
 
 
 def implementacion_default(frame_implementacion):
@@ -60,18 +60,18 @@ def ventana_principal(hospital):
     opcion_funcionalidades = tk.Menu(barra_menu, tearoff=0)
     barra_menu.add_cascade(label="Procesos y Consultas", menu=opcion_funcionalidades)
     opcion_funcionalidades.add_command(label="Agendar citas",
-                                       command=lambda: cambiar_contenido("cita", frame_implementacion))
+                                       command=lambda: cambiar_contenido("cita", hospital, frame_implementacion))
     opcion_funcionalidades.add_command(label="Generar formula medica",
-                                       command=lambda: cambiar_contenido("formula", frame_implementacion))
+                                       command=lambda: cambiar_contenido("formula", hospital, frame_implementacion))
     opcion_funcionalidades.add_command(label="Asignar habitacion",
-                                       command=lambda: cambiar_contenido("habitacion", frame_implementacion))
+                                       command=lambda: cambiar_contenido("habitacion", hospital, frame_implementacion))
     opcion_funcionalidades.add_command(label="Aplicarse una vacuna",
-                                       command=lambda: cambiar_contenido("vacuna", frame_implementacion))
+                                       command=lambda: cambiar_contenido("vacuna", hospital, frame_implementacion))
     opcion_funcionalidades.add_command(label="Facturacion",
-                                       command=lambda: cambiar_contenido("pago", frame_implementacion))
+                                       command=lambda: cambiar_contenido("pago", hospital, frame_implementacion))
     opcion_funcionalidades.add_separator()
     opcion_funcionalidades.add_command(label="Uno por uno lo de gestion",
-                                       command=lambda: cambiar_contenido("gestion1", frame_implementacion))
+                                       command=lambda: cambiar_contenido("gestion1", hospital, frame_implementacion))
 
     opcion_ayuda = tk.Menu(barra_menu, tearoff=0)
     barra_menu.add_cascade(label="Ayuda", menu=opcion_ayuda)
