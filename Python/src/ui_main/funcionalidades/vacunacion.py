@@ -1,7 +1,7 @@
 import tkinter as tk
 
 
-def vacunacion(frame_implementacion):
+def vacunacion(hospital, frame_implementacion):
     # Implementacion
     label_inicial = tk.Label(frame_implementacion, text="Aplicarse una vacuna")
     label_inicial.pack()

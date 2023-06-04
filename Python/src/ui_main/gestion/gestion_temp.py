@@ -1,7 +1,7 @@
 import tkinter as tk
 
 
-def gestion1(frame_implementacion):
+def gestion1(hospital, frame_implementacion):
     # Implementacion
     label_inicial = tk.Label(frame_implementacion, text="Gestion temp")
     label_inicial.pack()

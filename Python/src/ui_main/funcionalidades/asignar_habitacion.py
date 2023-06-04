@@ -1,7 +1,7 @@
 import tkinter as tk
 
 
-def asignar_habitacion(frame_implementacion):
+def asignar_habitacion(hospital, frame_implementacion):
     # Implementacion
     label_inicial = tk.Label(frame_implementacion, text="Asignar habitacion")
     label_inicial.pack()

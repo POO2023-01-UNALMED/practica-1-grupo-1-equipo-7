@@ -1,7 +1,7 @@
 import tkinter as tk
 
 
-def agendar_citas(frame_implementacion):
+def agendar_citas(hospital, frame_implementacion):
     # Implementacion
     label_inicial = tk.Label(frame_implementacion, text="Agendar citas")
     label_inicial.pack()

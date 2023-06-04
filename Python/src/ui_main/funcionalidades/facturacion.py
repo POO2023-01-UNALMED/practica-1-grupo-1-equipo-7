@@ -1,7 +1,8 @@
 import tkinter as tk
 
 
-def facturacion(frame_implementacion):
+
+def facturacion(hospital, frame_implementacion):
     # Implementacion
     label_inicial = tk.Label(frame_implementacion, text="Facturacion")
     label_inicial.pack()
