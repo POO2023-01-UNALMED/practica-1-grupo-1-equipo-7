@@ -44,5 +44,6 @@ class Servicio(ABC):
 
         # Filtra los servicios pagados
         servicios_sin_pagar = [servicio for servicio in servicios_sin_pagar if not servicio.estado_pago]
+        servicios_sin_pagar.sort(key=lambda servicio: servicio.id_servicio)
 
         return servicios_sin_pagar
