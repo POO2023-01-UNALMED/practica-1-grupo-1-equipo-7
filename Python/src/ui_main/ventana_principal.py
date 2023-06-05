@@ -29,7 +29,7 @@ def implementacion_default(frame_implementacion):
         widget.destroy()
 
     # Ejecuta la implementacion por defecto
-    label_inicial = tk.Label(frame_implementacion, text="Seleccione una opcion para continuar")
+    label_inicial = tk.Label(frame_implementacion, text="Seleccione una opcion para continuar", bg="white")
     label_inicial.pack()
     label_inicial.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
@@ -39,9 +39,6 @@ def ventana_principal(hospital):
     ventana.title("Sistema de gestion hospitalaria")
     ventana.geometry("1280x720")
     # ventana.protocol("WM_DELETE_WINDOW", hospital.serializar())
-
-    frame_principal = tk.Frame(ventana)
-    frame_principal.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
 
     # Menu de opciones (Zona 1)
     barra_menu = tk.Menu(ventana)
@@ -78,8 +75,9 @@ def ventana_principal(hospital):
     opcion_ayuda.add_command(label="Acerca de")
 
     # Implementacion de las funcionalidades (Zona 2)
-    frame_implementacion = tk.Frame(frame_principal)
+    frame_implementacion = tk.Frame(ventana)
     frame_implementacion.pack(fill=tk.BOTH, expand=True)
+    frame_implementacion.configure(bg="white")
 
     implementacion_default(frame_implementacion)
 
