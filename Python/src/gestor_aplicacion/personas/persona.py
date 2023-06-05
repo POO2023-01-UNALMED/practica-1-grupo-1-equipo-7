@@ -7,3 +7,7 @@ class Persona:
     @property
     def cedula(self):
         return self._cedula
+
+    @property
+    def nombre(self):
+        return self._nombre
