@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 
-from Python.src.gestor_aplicacion.servicios.servicio import Servicio
+from src.gestor_aplicacion.servicios.servicio import Servicio
 
 
 def imprimir_titulo(frame):

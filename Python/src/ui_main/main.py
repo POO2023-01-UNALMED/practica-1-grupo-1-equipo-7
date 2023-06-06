@@ -1,10 +1,10 @@
 import sys
 
-from Python.src.gestor_aplicacion.administracion.hospital import Hospital
+from src.gestor_aplicacion.administracion.hospital import Hospital
 import tkinter as tk
 
-from Python.src.ui_main.temp.facturacion_consola import facturacion_consola
-from Python.src.ui_main.ventana_principal import ventana_principal
+from src.ui_main.temp.facturacion_consola import facturacion_consola
+from src.ui_main.ventana_principal import ventana_principal
 
 
 def ventana_inicial(hospital):
@@ -76,4 +76,4 @@ if __name__ == '__main__':
     ventana_inicial(hospital)
 
     # Descomenten este y comenten el otro para ver la interfaz por consola
-    # menu_inicial(hospital)
+    #menu_inicial(hospital)

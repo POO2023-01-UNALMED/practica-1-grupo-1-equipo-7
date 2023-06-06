@@ -1,4 +1,4 @@
-from Python.src.gestor_aplicacion.servicios.cita import Cita
+from src.gestor_aplicacion.servicios.cita import Cita
 
 
 class CitaVacuna(Cita):

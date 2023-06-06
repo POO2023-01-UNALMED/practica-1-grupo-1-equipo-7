@@ -1,9 +1,9 @@
-from Python.src.gestor_aplicacion.administracion.historia_clinica import HistoriaClinica
-from Python.src.gestor_aplicacion.personas.persona import Persona
-from Python.src.gestor_aplicacion.servicios.cita import Cita
-from Python.src.gestor_aplicacion.servicios.cita_vacuna import CitaVacuna
-from Python.src.gestor_aplicacion.servicios.formula import Formula
-from Python.src.gestor_aplicacion.servicios.habitacion import Habitacion
+from src.gestor_aplicacion.administracion.historia_clinica import HistoriaClinica
+from src.gestor_aplicacion.personas.persona import Persona
+from src.gestor_aplicacion.servicios.cita import Cita
+from src.gestor_aplicacion.servicios.cita_vacuna import CitaVacuna
+from src.gestor_aplicacion.servicios.formula import Formula
+from src.gestor_aplicacion.servicios.habitacion import Habitacion
 
 
 class Paciente(Persona):
@@ -26,6 +26,7 @@ class Paciente(Persona):
         elif isinstance(servicio, Cita):
             # Implementacion
             pass
+
 
     @property
     def habitacion_asignada(self):

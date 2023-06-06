@@ -1,7 +1,7 @@
 import os
 import pickle
 
-from Python.src.gestor_aplicacion.personas.enfermedad import Enfermedad
+from src.gestor_aplicacion.personas.enfermedad import Enfermedad
 
 
 class Hospital:

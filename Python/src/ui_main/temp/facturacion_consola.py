@@ -1,4 +1,4 @@
-from Python.src.gestor_aplicacion.servicios.servicio import Servicio
+from src.gestor_aplicacion.servicios.servicio import Servicio
 
 
 def facturacion_consola(hospital):

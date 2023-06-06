@@ -1,7 +1,7 @@
 import tkinter as tk
-from Python.src.ui_main.funcionalidades import agendar_citas, formula_medica, asignar_habitacion, vacunacion, \
+from src.ui_main.funcionalidades import agendar_citas, formula_medica, asignar_habitacion, vacunacion, \
     facturacion
-from Python.src.ui_main.gestion import gestion_temp
+from src.ui_main.gestion import gestion_temp
 
 
 def cambiar_contenido(opcion, hospital, frame_implementacion):
@@ -49,7 +49,7 @@ def ventana_principal(hospital):
     opcion_archivo.add_command(label="Aplicacion")
 
     # Se importa aca para evitar una referencia circular
-    from Python.src.ui_main.main import ventana_inicial
+    from src.ui_main.main import ventana_inicial
 
     opcion_archivo.add_command(label="Salir",
                                command=lambda: [ventana.destroy(), ventana_inicial(hospital)])
