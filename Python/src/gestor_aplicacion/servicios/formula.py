@@ -7,6 +7,7 @@ class Formula(Servicio):
         super().__init__(paciente)
         self._lista_meds = None
         self._doctor = None
+
     def descripcion_servicio(self):
         return f"{self._id_servicio} - Formula prescrita por <doctor>"
 
@@ -15,3 +16,18 @@ class Formula(Servicio):
             if formula.id_servicio == id_servicio:
                 formula.estado_pago = True
                 break
+    @property
+    def doctor(self):
+        return self._doctor
+
+    @doctor.setter
+    def doctor(self, value):
+        self._doctor = value
+
+    @property
+    def lista_meds(self):
+        return self._lista_meds
+
+    @lista_meds.setter
+    def lista_meds(self, value):
+        self._lista_meds = value

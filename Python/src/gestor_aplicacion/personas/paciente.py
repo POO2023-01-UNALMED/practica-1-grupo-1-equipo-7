@@ -27,7 +27,13 @@ class Paciente(Persona):
             # Implementacion
             pass
 
-
+    def med_enfermedad(self, enfermedad, hospital):
+        meds = hospital.meds_disponibles()
+        med_enfermedades = []
+        for med in meds:
+            if med.enfermedad().nombre() == enfermedad.nombre() and med.enfermedad().tipologia() == enfermedad.tipologia():
+                med_enfermedades.append(med)
+        return med_enfermedades
     @property
     def habitacion_asignada(self):
         return self._habitacion_asignada

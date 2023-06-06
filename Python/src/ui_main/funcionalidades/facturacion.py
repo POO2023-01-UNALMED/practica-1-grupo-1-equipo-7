@@ -24,7 +24,7 @@ def facturacion(hospital, frame):
             messagebox.showinfo("Pago cancelado", "El pago ha sido cancelado")
 
         # Se importa aca para evitar una referencia circular
-        from Python.src.ui_main.ventana_principal import implementacion_default
+        from src.ui_main.ventana_principal import implementacion_default
         implementacion_default(frame)
 
     def calcular_precio(paciente, servicio):
@@ -83,7 +83,7 @@ def facturacion(hospital, frame):
                                                         "¿Desea intentar de nuevo?")
             if not respuesta:
                 # Se importa aca para evitar una referencia circular
-                from Python.src.ui_main.ventana_principal import implementacion_default
+                from src.ui_main.ventana_principal import implementacion_default
                 implementacion_default(frame)
 
     imprimir_titulo(frame)

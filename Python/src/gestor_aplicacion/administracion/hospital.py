@@ -5,7 +5,6 @@ from src.gestor_aplicacion.personas.enfermedad import Enfermedad
 
 
 class Hospital:
-
     _habitaciones = []
 
     def __init__(self):
@@ -17,9 +16,23 @@ class Hospital:
 
     def buscar_paciente(self, cedula):
         for paciente in self._lista_pacientes:
-            if paciente.cedula == cedula:
+            if paciente.cedula() == cedula:
                 return paciente
         return None
+
+    def meds_disponibles(self):
+        disponibles = []
+        for med in self._lista_medicamentos:
+            if med.cantidad() > 0:
+                disponibles.append(med)
+        return disponibles
+
+    def buscar_tipo_doctor(self, especialidad):
+        disponibles = []
+        for doc in self._lista_doctores:
+            if doc.especialidad() == especialidad:
+                disponibles.append(doc)
+        return disponibles
 
     def serializar(self):
         with open(os.path.abspath("../base_datos/temp/registro_doctores.pickle"), "wb") as file:
@@ -62,3 +75,11 @@ class Hospital:
     @lista_pacientes.setter
     def lista_pacientes(self, lista):
         self._lista_pacientes = lista
+
+    @property
+    def lista_medicamentos(self):
+        return self._lista_medicamentos
+
+    @lista_medicamentos.setter
+    def lista_medicamentos(self, value):
+        self._lista_medicamentos = value

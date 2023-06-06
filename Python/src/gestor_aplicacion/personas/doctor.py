@@ -5,3 +5,21 @@ class Doctor(persona):
         super().__init__(cedula, nombre, tipo_eps)
         self._especialidad = especialidad
         self._agenda = agenda
+
+    @property
+    def agenda(self):
+        return self._agenda
+
+    @agenda.setter
+    def agenda(self, value):
+        self._agenda = value
+
+    @property
+    def especialidad(self):
+        return self._especialidad
+
+    @especialidad.setter
+    def especialidad(self, value):
+        self._especialidad = value
+
+
