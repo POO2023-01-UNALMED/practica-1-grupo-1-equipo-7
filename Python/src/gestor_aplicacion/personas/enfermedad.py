@@ -44,12 +44,10 @@ class Enfermedad:
     def especialidad(self, value):
         self._especialidad = value
 
-    @classmethod
     @property
-    def enfermedades_registradas(cls):
-        return cls._enfermedades_registradas
+    def enfermedades_registradas(self):
+        return self._enfermedades_registradas
 
-    @classmethod
     @enfermedades_registradas.setter
-    def enfermedades_registradas(cls, lista):
-        cls._enfermedades_registradas = lista
+    def enfermedades_registradas(self, lista):
+        self._enfermedades_registradas = lista
