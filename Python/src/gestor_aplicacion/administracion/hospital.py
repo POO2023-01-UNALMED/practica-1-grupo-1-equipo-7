@@ -34,6 +34,13 @@ class Hospital:
                 disponibles.append(doc)
         return disponibles
 
+    def buscar_tipo_vacuna(self, tipo):
+        disponibles = []
+        for vacuna in self._lista_vacunas:
+            if vacuna.tipo == tipo:
+                disponibles.append(vacuna)
+        return disponibles
+
     def serializar(self):
         with open(os.path.abspath("../base_datos/temp/registro_doctores.pickle"), "wb") as file:
             file.truncate()

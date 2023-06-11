@@ -30,6 +30,14 @@ class Servicio(ABC):
     def estado_pago(self, estado_pago):
         self._estado_pago = estado_pago
 
+    @property
+    def paciente(self):
+        return self._paciente
+
+    @paciente.setter
+    def paciente(self, value):
+        self._paciente = value
+
     @classmethod
     def obtener_servicios_sin_pagar(cls, paciente):
         historia_clinica_paciente = paciente.historia_clinica

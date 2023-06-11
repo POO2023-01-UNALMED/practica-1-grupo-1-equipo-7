@@ -3,8 +3,9 @@ from src.gestor_aplicacion.servicios.cita import Cita
 
 class CitaVacuna(Cita):
 
-    def __init__(self, paciente):
-        super().__init__(paciente)
+    def __init__(self, fecha, paciente, vacuna):
+        super().__init__(paciente, None, fecha)
+        self._vacuna = vacuna
 
     def descripcion_servicio(self):
         return f"{self._id_servicio} - Vacuna <vacuna> (<fecha>))"
@@ -14,3 +15,11 @@ class CitaVacuna(Cita):
             if cita_vacuna.id_servicio == id_servicio:
                 cita_vacuna.estado_pago = True
                 break
+
+    @property
+    def vacuna(self):
+        return self._vacuna
+
+    @vacuna.setter
+    def vacuna(self, vacuna):
+        self._vacuna = vacuna
