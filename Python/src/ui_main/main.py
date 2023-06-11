@@ -3,6 +3,7 @@ import sys
 from src.gestor_aplicacion.administracion.hospital import Hospital
 import tkinter as tk
 
+from src.ui_main.temp.agendar_citas_consola import agendar_citas_consola
 from src.ui_main.temp.facturacion_consola import facturacion_consola
 from src.ui_main.ventana_principal import ventana_principal
 
@@ -54,7 +55,7 @@ def menu_funcionalidades(hospital):
         opcion = int(input("Ingrese una opcion: "))
 
         if opcion == 1:
-            pass
+            agendar_citas_consola(hospital)
         elif opcion == 2:
             pass
         elif opcion == 3:
@@ -74,7 +75,7 @@ if __name__ == '__main__':
     hospital = Hospital()
 
     # Descomenten este y comenten el otro para ver la interfaz grafica
-    ventana_inicial(hospital)
+    #ventana_inicial(hospital)
 
     # Descomenten este y comenten el otro para ver la interfaz por consola
-    #menu_inicial(hospital)
+    menu_inicial(hospital)

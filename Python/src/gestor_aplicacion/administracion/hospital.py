@@ -1,15 +1,17 @@
 import os
 import pickle
 
+from src.gestor_aplicacion.personas.doctor import Doctor
 from src.gestor_aplicacion.personas.enfermedad import Enfermedad
+from src.gestor_aplicacion.personas.paciente import Paciente
 
 
 class Hospital:
     _habitaciones = []
 
     def __init__(self):
-        self._lista_pacientes = []
-        self._lista_doctores = []
+        self._lista_pacientes = [Paciente(111, "Diego", "Particular")]
+        self._lista_doctores = [Doctor(222, "Andres", "Particular", "General"), Doctor(333, "Camilo", "Particular", "General"), Doctor(444, "Santiago", "Particular", "Oftalmologia")]
         self._lista_medicamentos = []
         self._lista_vacunas = []
         # self.deserializar()
@@ -30,7 +32,7 @@ class Hospital:
     def buscar_tipo_doctor(self, especialidad):
         disponibles = []
         for doc in self._lista_doctores:
-            if doc.especialidad() == especialidad:
+            if doc.especialidad == especialidad:
                 disponibles.append(doc)
         return disponibles
 

@@ -17,6 +17,28 @@ class Paciente(Persona):
         if isinstance(servicio, Formula):
             # Implementacion
             pass
+        elif isinstance(servicio, Cita):
+            IVA = 0.19
+            precio_total = 0
+            tipo_eps = servicio.paciente.tipo_eps
+            especialidad = servicio.doctor.especialidad
+
+            if especialidad == "General":
+                precio_total += 5000
+            if especialidad == "Odontologia":
+                precio_total += 10000
+            if especialidad == "Oftalmologia":
+                precio_total += 7000
+            if tipo_eps == "Contributivo":
+                precio_total += 2000
+            if tipo_eps == "Subsidiado":
+                precio_total += 500
+            if tipo_eps == "Particular":
+                precio_total += 10000
+
+            precio_total *= (1 + IVA)
+            return precio_total
+
         elif isinstance(servicio, CitaVacuna):
             IVA = 0.19
             precio_total = servicio.vacuna.precio
@@ -51,6 +73,16 @@ class Paciente(Persona):
                 med_enfermedades.append(med)
         return med_enfermedades
 
+    def buscar_doctor_por_eps(self, especialidad, hospital):
+        doctores_por_especialidad = hospital.buscar_tipo_doctor(especialidad)
+        doctores_disponibles = []
+
+        for doctor in doctores_por_especialidad:
+            if doctor.tipo_eps == self.tipo_eps:
+                doctores_disponibles.append(doctor)
+        return doctores_disponibles
+
+
     def buscar_vacuna_por_eps(self, tipo, hospital):
         vacunas_por_tipo = hospital.buscar_tipo_vacuna(tipo)
         vacunas_disponibles = []
@@ -60,6 +92,9 @@ class Paciente(Persona):
                 if eps == self.tipo_eps:
                     vacunas_disponibles.append(vacuna)
         return vacunas_disponibles
+
+    def actualizar_historial_citas(self, cita_seleccionada):
+        self.historia_clinica.historial_citas.append(cita_seleccionada)
 
     def actualizar_historial_vacunas(self,cita_asignada):
         self.historia_clinica.historial_vacunas.append(cita_asignada)
