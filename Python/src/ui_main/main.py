@@ -8,6 +8,7 @@ from src.ui_main.ventana_principal import ventana_principal
 
 
 def ventana_inicial(hospital):
+
     ventana = tk.Tk()
     ventana.title("Sistema de gestion hospitalaria")
     ventana.geometry("400x300")

@@ -16,7 +16,7 @@ class Hospital:
 
     def buscar_paciente(self, cedula):
         for paciente in self._lista_pacientes:
-            if paciente.cedula() == cedula:
+            if paciente.cedula == cedula:
                 return paciente
         return None
 
