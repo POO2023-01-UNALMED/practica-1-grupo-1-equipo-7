@@ -10,4 +10,4 @@ def vacunacion_consola(hospital):
             respuesta = input("No existe un paciente registrado con esta cedula. ¿Desea intentar de nuevo? (S/N): ")
             if respuesta.lower() == "n":
                 return
-    #Continuara...
+    #Continuara... interacciones
