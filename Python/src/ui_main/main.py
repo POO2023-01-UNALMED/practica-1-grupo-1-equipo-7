@@ -75,7 +75,7 @@ if __name__ == '__main__':
     hospital = Hospital()
 
     # Descomenten este y comenten el otro para ver la interfaz grafica
-    #ventana_inicial(hospital)
+    ventana_inicial(hospital)
 
     # Descomenten este y comenten el otro para ver la interfaz por consola
-    menu_inicial(hospital)
+    #menu_inicial(hospital)
