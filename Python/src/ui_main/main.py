@@ -1,81 +1,61 @@
-import sys
-
-from src.gestor_aplicacion.administracion.hospital import Hospital
 import tkinter as tk
 
-from src.ui_main.temp.agendar_citas_consola import agendar_citas_consola
-from src.ui_main.temp.facturacion_consola import facturacion_consola
+from src.gestor_aplicacion.administracion.hospital import Hospital
 from src.ui_main.ventana_principal import ventana_principal
 
 
 def ventana_inicial(hospital):
-
     ventana = tk.Tk()
     ventana.title("Sistema de gestion hospitalaria")
-    ventana.geometry("400x300")
+    ventana.geometry("1280x720")
+    ventana.columnconfigure(0, weight=1)
+    ventana.columnconfigure(1, weight=1)
+    ventana.grid_columnconfigure(0, weight=1, minsize=ventana.winfo_width() // 2)
+    ventana.grid_columnconfigure(1, weight=1, minsize=ventana.winfo_width() // 2)
     # ventana.protocol("WM_DELETE_WINDOW", hospital.serializar())
 
-    boton = tk.Button(ventana, text="Ingresar a la aplicacion",
-                      command=lambda: [ventana.destroy(), ventana_principal(hospital)])
-    boton.pack()
+    # Frame P1
+    p1 = tk.Frame(ventana)
+    p1.grid(row=0, column=0, sticky="nsew")
+    p1.columnconfigure(0, weight=1)
+    p1.rowconfigure(0, weight=1)
+
+    # Frame P2
+    p2 = tk.Frame(ventana)
+    p2.grid(row=0, column=1, sticky="nsew")
+    p2.columnconfigure(0, weight=1)
+    p2.rowconfigure(0, weight=1)
+
+    # Frame P3: Saludo de bienvenida
+    p3 = tk.Frame(p1)
+    p3.pack(expand=True, fill="both")
+
+    label_saludo = tk.Label(p3, text="Bienvenidos a MedPlus")
+    label_saludo.pack(fill="both")
+
+    # Frame P4: Fotos e ingresar a la aplicacion
+    p4 = tk.Frame(p1)
+    p4.pack(expand=True, fill="both")
+
+    # Botón de ingresar a la aplicación
+    boton_ingresar = tk.Button(p4, text="Ingresar a la aplicación",
+                               command=lambda: [ventana.destroy(), ventana_principal(hospital)])
+    boton_ingresar.pack(side="bottom")
+
+    # Hoja de Vida
+    # Frame P5: Descripcion
+    p5 = tk.Frame(p2)
+    p5.pack(expand=True, fill="both")
+    label_saludo = tk.Label(p5, text="Descripcion hoja de vida")
+    label_saludo.pack(fill="both")
+
+    # Frame P6: Fotos
+    p6 = tk.Frame(p2)
+    p6.pack(expand=True, fill="both")
 
     ventana.mainloop()
 
 
-# Menu por consola temporal para ensayar las funcionalidades
-def menu_inicial(hospital):
-    while True:
-        print("\nMENU INICIAL")
-        print("1. Servicios para pacientes")
-        print("2. Gestionar registros")
-        print("3. --Salir--")
-
-        opcion = int(input("Ingrese una opcion: "))
-
-        if opcion == 1:
-            menu_funcionalidades(hospital)
-        elif opcion == 2:
-            pass
-        elif opcion == 3:
-            # hospital.serializar()
-            sys.exit(0)
-
-
-def menu_funcionalidades(hospital):
-    while True:
-        print("\nMENU FUNCIONALIDADES")
-        print("1. Agendar una cita medica")
-        print("2. Generar fórmula médica")
-        print("3. Asignar habitación a un paciente")
-        print("4. Aplicarse una vacuna")
-        print("5. Facturacion")
-        print("6. --Regresar al menu inicial--")
-        print("7. --Salir--")
-
-        opcion = int(input("Ingrese una opcion: "))
-
-        if opcion == 1:
-            agendar_citas_consola(hospital)
-        elif opcion == 2:
-            pass
-        elif opcion == 3:
-            pass
-        elif opcion == 4:
-            pass
-        elif opcion == 5:
-            facturacion_consola(hospital)
-        elif opcion == 6:
-            return
-        elif opcion == 7:
-            # hospital.serializar()
-            sys.exit(0)
-
-
 if __name__ == '__main__':
-    hospital = Hospital()
-
-    # Descomenten este y comenten el otro para ver la interfaz grafica
-    #ventana_inicial(hospital)
-
-    # Descomenten este y comenten el otro para ver la interfaz por consola
-    menu_inicial(hospital)
+    medplus = Hospital()
+    ventana_inicial(medplus)
