@@ -10,7 +10,7 @@ def asignar_habitacion(hospital, frame_implementacion):
     # Funcionalidad para regresar a la ventana principal
 
     # Se importa aca para evitar una referencia circular
-    from Python.src.ui_main.ventana_principal import implementacion_default
+    from src.ui_main.ventana_principal import implementacion_default
 
     boton_regresar = tk.Button(frame_implementacion, text="Regresar",
                                command=lambda: implementacion_default(frame_implementacion))
