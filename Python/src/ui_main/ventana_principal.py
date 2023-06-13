@@ -36,7 +36,7 @@ def implementacion_default(frame_implementacion):
 
 def ventana_principal(hospital):
     ventana = tk.Tk()
-    ventana.title("Sistema de gestion hospitalaria")
+    ventana.title("MedPlus")
     ventana.geometry("1280x720")
     # ventana.protocol("WM_DELETE_WINDOW", hospital.serializar())
 

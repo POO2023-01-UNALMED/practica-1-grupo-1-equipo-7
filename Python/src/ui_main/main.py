@@ -6,8 +6,8 @@ from src.ui_main.ventana_principal import ventana_principal
 
 def ventana_inicial(hospital):
     ventana = tk.Tk()
-    ventana.title("Sistema de gestion hospitalaria")
-    ventana.geometry("1280x720")
+    ventana.title("MedPlus")
+    ventana.geometry("400x300")
     ventana.columnconfigure(0, weight=1)
     ventana.columnconfigure(1, weight=1)
     ventana.grid_columnconfigure(0, weight=1, minsize=ventana.winfo_width() // 2)
