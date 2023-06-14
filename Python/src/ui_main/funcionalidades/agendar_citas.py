@@ -11,8 +11,43 @@ def imprimir_titulo(frame):
     titulo = tk.Label(frame, text="Agendar citas", bg="white")
     titulo.pack()
 def agendar_citas(hospital, frame):
+    def mostrar_historial_citas(paciente):
+        imprimir_titulo(frame)
+        info_historial = tk.Label(frame, text=f"Historial de citas de {paciente.nombre} - CC: {paciente.cedula}", bg="white")
+        info_historial.pack()
+
+        frame_citas = tk.Frame(frame)
+        frame_citas.pack()
+        for cita in paciente.historia_clinica.historial_citas:
+            frame_cita = tk.Frame(frame_citas)
+
+            label_tipo_cita = tk.Label(frame_cita, text="Tipo de cita: ", bg="white")
+            label_tipo_cita.grid(row=0, column=0, padx=10, pady=10, sticky="w")
+            label_especialidad_doctor = tk.Label(frame_cita, text=cita.doctor.especialidad, bg="white")
+            label_especialidad_doctor.grid(row=0, column=1, padx=10, pady=10, sticky="w")
+
+            label_doctor = tk.Label(frame_cita,text="Doctor: ", bg="white")
+            label_doctor.grid(row=1,column=0,padx=10,pady=10,sticky="w")
+            label_nombre_doctor = tk.Label(frame_cita,text=cita.doctor.nombre, bg="white")
+            label_nombre_doctor.grid(row=1, column=1, padx=10, pady=10, sticky="w")
+
+            label_fecha = tk.Label(frame_cita, text="Fecha: ", bg="white")
+            label_fecha.grid(row=2, column=0, padx=10, pady=10, sticky="w")
+            label_fecha_cita = tk.Label(frame_cita, text=cita.fecha, bg="white")
+            label_fecha_cita.grid(row=2, column=1, padx=10, pady=10, sticky="w")
+
+            frame_cita.pack(padx=10,pady=10)
+
+
+        # Se importa aca para evitar una referencia circular
+        from src.ui_main.ventana_principal import implementacion_default
+
+        boton_regresar = tk.Button(frame, text="Regresar", command=lambda: implementacion_default(frame))
+        boton_regresar.pack()
+
 
     def agendamiento_de_la_cita(paciente):
+
         def confirmar_cita():
             eleccion = combo_elegir_cita.get()
             if eleccion:
@@ -23,12 +58,13 @@ def agendar_citas(hospital, frame):
                             cita_agendada = doctor.actualizar_agenda(paciente,combo_elegir_cita.current()+1,doctor.mostrar_agenda_disponible())
                             paciente.actualizar_historial_citas(cita_agendada)
                     messagebox.showinfo("Cita agendada", "La cita se ha agendado exitosamente")
+                    mostrar_historial_citas(paciente)
                 else:
                     messagebox.showinfo("Cita cancelada", "La cita ha sido cancelada")
+                    # Se importa aca para evitar una referencia circular
+                    from src.ui_main.ventana_principal import implementacion_default
+                    implementacion_default(frame)
 
-                # Se importa aca para evitar una referencia circular
-                from src.ui_main.ventana_principal import implementacion_default
-                implementacion_default(frame)
             else:
                 messagebox.showerror("Informacion incompleta", "Necesita completar todos los espacios para agendar la cita")
 
@@ -58,6 +94,8 @@ def agendar_citas(hospital, frame):
         def habilitar_elegir_doctor(event):
             eleccion = combo_tipo_cita.get()
             combo_elegir_doctor.set("")
+            combo_elegir_cita.set("")
+            combo_elegir_cita['state'] = 'disabled'
             if eleccion:
                 combo_elegir_doctor['state'] = 'readonly'
                 combo_elegir_doctor['values'] = lista_doctores()
