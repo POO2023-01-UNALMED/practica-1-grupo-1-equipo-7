@@ -15,14 +15,14 @@ def imprimir_titulo(frame):
 def formula_medica(hospital, frame):
     def doctor_formula(paciente):
 
-        def habilitar_elegir_enfermedad(event):
+        def habilitar_elegir_doctor(event):
             eleccion = combo_enfermedades.get()
-            combo_enfermedades.set("")
+            combo_elegir_doctor.set("")
             if eleccion:
-                combo_enfermedades['state'] = 'readonly'
-                combo_enfermedades['values'] = paciente.historia_clinica.enfermedades
+                combo_elegir_doctor['state'] = 'readonly'
+                combo_elegir_doctor['values'] = hospital.meds_disponibles()
             else:
-                combo_enfermedades['state'] = 'disabled'
+                combo_elegir_doctor['state'] = 'disabled'
 
         imprimir_titulo(frame)  # Imprime el titulo de "Formular medicamentos"
         # Label que muestra la informacion del paciente en la parte superior
@@ -37,8 +37,8 @@ def formula_medica(hospital, frame):
         enfermedad_tratar = tk.Label(frame_datos, text="Seleccione la enfermedad a tratar: ", bg="white")
         enfermedad_tratar.grid(row=0, column=0, padx=10, pady=10, sticky="w")
         valor_defecto1 = tk.StringVar
-        combo_enfermedades = ttk.Combobox(frame_datos, values=paciente.historia_clinica.enfermedades, textvariable=valor_defecto1, state="disabled")
-        combo_enfermedades.bind("<<ComboboxSelected>>", habilitar_elegir_enfermedad)
+        combo_enfermedades = ttk.Combobox(frame_datos, values=paciente.historia_clinica.enfermedades, textvariable=valor_defecto1, state="readonly")
+        combo_enfermedades.bind("<<ComboboxSelected>>", habilitar_elegir_doctor)
         combo_enfermedades.grid(row=0, column=1, padx=10, pady=10, sticky="w")
 
         # Label con instruccion de seleccionar doctor que formulara y combobox de doctores

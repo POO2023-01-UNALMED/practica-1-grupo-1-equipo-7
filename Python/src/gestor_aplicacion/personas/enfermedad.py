@@ -13,7 +13,7 @@ class Enfermedad:
         self._enfermos += 1
 
     def __str__(self):
-        return f"Enfermedad | Nombre: {self._nombre} | {self._tipologia} | Especialidad que la trata: {self._especialidad}"
+        return f"{self._nombre} {self._tipologia}"
 
     @property
     def tipologia(self):
