@@ -216,11 +216,11 @@ def ventana_inicial(hospital):
     frame_p4 = ttk.Frame(frame_p1)
     p4_imagenes = ttk.Frame(frame_p4)
     canvas_imagenes_aplicacion = tk.Canvas(p4_imagenes)
-    lista_imagenes = [Image.open("src/ui_main/imagenes/aplicacion/imagen1.jpg").resize((1000, 1000)),
-                      Image.open("src/ui_main/imagenes/aplicacion/imagen2.jpg").resize((1000, 1000)),
-                      Image.open("src/ui_main/imagenes/aplicacion/imagen3.jpg").resize((1000, 1000)),
-                      Image.open("src/ui_main/imagenes/aplicacion/imagen4.jpg").resize((1000, 1000)),
-                      Image.open("src/ui_main/imagenes/aplicacion/imagen5.jpg").resize((1000, 1000))]
+    lista_imagenes = [Image.open("imagenes/aplicacion/imagen1.jpg").resize((1000, 1000)),
+                      Image.open("imagenes/aplicacion/imagen2.jpg").resize((1000, 1000)),
+                      Image.open("imagenes/aplicacion/imagen3.jpg").resize((1000, 1000)),
+                      Image.open("imagenes/aplicacion/imagen4.jpg").resize((1000, 1000)),
+                      Image.open("imagenes/aplicacion/imagen5.jpg").resize((1000, 1000))]
 
     # Boton para continuar
     p4_continuar = ttk.Frame(frame_p4)
@@ -234,38 +234,39 @@ def ventana_inicial(hospital):
     github = ttk.Label(frame_p5, anchor="center")
     carrera = ttk.Label(frame_p5, anchor="center")
 
+    nombre.config(text="Alpaca")
+    email.config(text="alpaca@unal.edu.co")
+    github.config(text="github.com/alpacadev")
+    carrera.config(text="Ciencias/Sistemas")
+
     # Fotos desarrolladores
     frame_p6 = ttk.Frame(frame_p2)
-    lista_fotos = [[Image.open("src/ui_main/imagenes/desarrolladores/alpaca/foto1.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/alpaca/foto2.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/alpaca/foto3.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/alpaca/foto4.jpg").resize((1000, 1000))],
+    lista_fotos = [[Image.open("imagenes/desarrolladores/alpaca/foto1.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/alpaca/foto2.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/alpaca/foto3.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/alpaca/foto4.jpg").resize((1000, 1000))],
 
-                   [Image.open("src/ui_main/imagenes/desarrolladores/loro/foto1.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/loro/foto2.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/loro/foto3.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/loro/foto4.jpg").resize((1000, 1000))],
+                   [Image.open("imagenes/desarrolladores/loro/foto1.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/loro/foto2.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/loro/foto3.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/loro/foto4.jpg").resize((1000, 1000))],
 
-                   [Image.open("src/ui_main/imagenes/desarrolladores/mapache/foto1.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/mapache/foto2.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/mapache/foto3.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/mapache/foto4.jpg").resize((1000, 1000))],
+                   [Image.open("imagenes/desarrolladores/mapache/foto1.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/mapache/foto2.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/mapache/foto3.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/mapache/foto4.jpg").resize((1000, 1000))],
 
-                   [Image.open("src/ui_main/imagenes/desarrolladores/marmota/foto1.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/marmota/foto2.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/marmota/foto3.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/marmota/foto4.jpg").resize((1000, 1000))],
+                   [Image.open("imagenes/desarrolladores/marmota/foto1.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/marmota/foto2.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/marmota/foto3.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/marmota/foto4.jpg").resize((1000, 1000))],
 
-                   [Image.open("src/ui_main/imagenes/desarrolladores/puffin/foto1.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/puffin/foto2.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/puffin/foto3.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/puffin/foto4.jpg").resize((1000, 1000))],
+                   [Image.open("imagenes/desarrolladores/puffin/foto1.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/puffin/foto2.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/puffin/foto3.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/puffin/foto4.jpg").resize((1000, 1000))],
                    ]
 
-    '''foto1 = Image.open("src/ui_main/imagenes/desarrolladores/puffin/foto1.jpg").resize((1000, 1000))
-    foto2 = Image.open("src/ui_main/imagenes/desarrolladores/puffin/foto2.jpg").resize((1000, 1000))
-    foto3 = Image.open("src/ui_main/imagenes/desarrolladores/puffin/foto3.jpg").resize((1000, 1000))
-    foto4 = Image.open("src/ui_main/imagenes/desarrolladores/puffin/foto4.jpg").resize((1000, 1000))'''
     foto00 = tk.Canvas(frame_p6)
     foto01 = tk.Canvas(frame_p6)
     foto10 = tk.Canvas(frame_p6)
