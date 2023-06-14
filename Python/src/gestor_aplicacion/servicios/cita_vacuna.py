@@ -23,3 +23,4 @@ class CitaVacuna(Cita):
     @vacuna.setter
     def vacuna(self, vacuna):
         self._vacuna = vacuna
+

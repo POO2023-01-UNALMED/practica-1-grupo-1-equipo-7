@@ -1,3 +1,4 @@
+
 class HistoriaClinica:
 
     def __init__(self, paciente):
