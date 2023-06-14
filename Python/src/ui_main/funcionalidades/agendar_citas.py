@@ -8,14 +8,14 @@ def imprimir_titulo(frame):
         item.destroy()
 
     # Imprime el titulo
-    titulo = tk.Label(frame, text="Agendar citas", bg="white")
-    titulo.pack()
+    titulo = tk.Label(frame, text="Agendar citas", bg="white", font=("Helvetica", 16, "bold"))
+    titulo.pack(pady=20)
 def agendar_citas(hospital, frame):
     def mostrar_historial_citas(paciente):
         imprimir_titulo(frame)
         info_historial = tk.Label(frame, text=f"Historial de citas de {paciente.nombre} - CC: {paciente.cedula}",
-                                  bg="white")
-        info_historial.pack()
+                                  bg="white",font=("Helvetica", 12))
+        info_historial.pack(pady=10)
 
         frame_citas = tk.Frame(frame)
         frame_citas.pack(fill=tk.BOTH, expand=True)
@@ -39,20 +39,20 @@ def agendar_citas(hospital, frame):
         for cita in paciente.historia_clinica.historial_citas:
             frame_cita = tk.Frame(inner_frame, bg="white")
 
-            label_tipo_cita = tk.Label(frame_cita, text="Tipo de cita: ", bg="white")
-            label_tipo_cita.grid(row=0, column=0, padx=10, pady=10, sticky="w")
+            label_tipo_cita = tk.Label(frame_cita, text="Tipo de cita: ", bg="white", font=("Helvetica", 10, "bold"))
+            label_tipo_cita.grid(row=0, column=0, padx=10, pady=5, sticky="w")
             label_especialidad_doctor = tk.Label(frame_cita, text=cita.doctor.especialidad, bg="white")
-            label_especialidad_doctor.grid(row=0, column=1, padx=10, pady=10, sticky="w")
+            label_especialidad_doctor.grid(row=0, column=1, padx=10, pady=5, sticky="w")
 
-            label_doctor = tk.Label(frame_cita, text="Doctor: ", bg="white")
-            label_doctor.grid(row=1, column=0, padx=10, pady=10, sticky="w")
+            label_doctor = tk.Label(frame_cita, text="Doctor: ", bg="white", font=("Helvetica", 10, "bold"))
+            label_doctor.grid(row=1, column=0, padx=10, pady=5, sticky="w")
             label_nombre_doctor = tk.Label(frame_cita, text=cita.doctor.nombre, bg="white")
-            label_nombre_doctor.grid(row=1, column=1, padx=10, pady=10, sticky="w")
+            label_nombre_doctor.grid(row=1, column=1, padx=10, pady=5, sticky="w")
 
-            label_fecha = tk.Label(frame_cita, text="Fecha: ", bg="white")
-            label_fecha.grid(row=2, column=0, padx=10, pady=10, sticky="w")
+            label_fecha = tk.Label(frame_cita, text="Fecha: ", bg="white", font=("Helvetica", 10, "bold"))
+            label_fecha.grid(row=2, column=0, padx=10, pady=5, sticky="w")
             label_fecha_cita = tk.Label(frame_cita, text=cita.fecha, bg="white")
-            label_fecha_cita.grid(row=2, column=1, padx=10, pady=10, sticky="w")
+            label_fecha_cita.grid(row=2, column=1, padx=10, pady=5, sticky="w")
 
             frame_cita.pack(padx=10, pady=10)
 
@@ -71,7 +71,7 @@ def agendar_citas(hospital, frame):
         # Se importa aca para evitar una referencia circular
         from src.ui_main.ventana_principal import implementacion_default
 
-        boton_regresar = tk.Button(frame, text="Regresar", command=lambda: implementacion_default(frame))
+        boton_regresar = tk.Button(inner_frame, text="Regresar", command=lambda: implementacion_default(frame))
         boton_regresar.pack()
 
 
@@ -133,40 +133,40 @@ def agendar_citas(hospital, frame):
 
         imprimir_titulo(frame)
 
-        info_paciente = tk.Label(frame, text=f"{paciente.nombre} - CC: {paciente.cedula}", bg="white")
-        info_paciente.pack()
+        info_paciente = tk.Label(frame, text=f"{paciente.nombre} - CC: {paciente.cedula}", bg="white", font=("Helvetica", 12))
+        info_paciente.pack(pady=10)
 
-        frame1 = tk.Frame(frame)
+        frame1 = tk.Frame(frame, bg="white")
         frame1.pack()
 
-        tipo_cita = tk.Label(frame1, text="Seleccione el tipo de cita:", bg="white")
+        tipo_cita = tk.Label(frame1, text="Seleccione el tipo de cita:", bg="white", font=("Helvetica", 10, "bold"))
         tipo_cita.grid(row=0,column=0,padx=10,pady=10,sticky="w")
         valor_defecto1 = tk.StringVar
         combo_tipo_cita = ttk.Combobox(frame1, values=["General", "Odontologia", "Oftalmologia"], textvariable=valor_defecto1, state="readonly")
         combo_tipo_cita.bind("<<ComboboxSelected>>", habilitar_elegir_doctor)
         combo_tipo_cita.grid(row=0,column=1,padx=10,pady=10,sticky="w")
 
-        elegir_doctor = tk.Label(frame1, text="Seleccione el doctor de su preferencia:", bg="white")
+        elegir_doctor = tk.Label(frame1, text="Seleccione el doctor de su preferencia:", bg="white", font=("Helvetica", 10, "bold"))
         elegir_doctor.grid(row=1, column=0, padx=10, pady=10, sticky="w")
         valor_defecto2 = tk.StringVar
         combo_elegir_doctor = ttk.Combobox(frame1,textvariable=valor_defecto2,state="disabled")
         combo_elegir_doctor.bind("<<ComboboxSelected>>", habilitar_elegir_cita)
         combo_elegir_doctor.grid(row=1,column=1,padx=10,pady=10,sticky="w")
 
-        elegir_cita = tk.Label(frame1, text="Seleccione una fecha para su cita:", bg="white")
+        elegir_cita = tk.Label(frame1, text="Seleccione una fecha para su cita:", bg="white", font=("Helvetica", 10, "bold"))
         elegir_cita.grid(row=2, column=0, padx=10, pady=10, sticky="w")
         valor_defecto3 = tk.StringVar
         combo_elegir_cita = ttk.Combobox(frame1,textvariable=valor_defecto3,state="disabled")
         combo_elegir_cita.grid(row=2,column=1,padx=10,pady=10,sticky="w")
 
         boton_aceptar = tk.Button(frame, text="Aceptar", command=confirmar_cita)
-        boton_aceptar.pack()
+        boton_aceptar.pack(pady=5)
 
         # Se importa aca para evitar una referencia circular
         from src.ui_main.ventana_principal import implementacion_default
 
         boton_regresar = tk.Button(frame, text="Regresar", command=lambda: implementacion_default(frame))
-        boton_regresar.pack()
+        boton_regresar.pack(pady=5)
 
 
 
@@ -189,14 +189,14 @@ def agendar_citas(hospital, frame):
     imprimir_titulo(frame)
 
     # Pide la cedula del paciente
-    label_ingreso_cedula = tk.Label(frame, text="Ingrese la cédula del paciente:", bg="white")
+    label_ingreso_cedula = tk.Label(frame, text="Ingrese la cédula del paciente:", bg="white", font=("Helvetica", 10, "bold"))
     label_ingreso_cedula.pack()
 
     ingreso_cedula = tk.Entry(frame)
-    ingreso_cedula.pack()
+    ingreso_cedula.pack(pady=5)
 
     boton_buscar_paciente = tk.Button(frame, text="Buscar", command=buscar_paciente)
-    boton_buscar_paciente.pack()
+    boton_buscar_paciente.pack(pady=10)
 
 
 
