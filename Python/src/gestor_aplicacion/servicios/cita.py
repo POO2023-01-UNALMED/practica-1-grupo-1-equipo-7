@@ -8,7 +8,7 @@ class Cita(Servicio):
         self._doctor = doctor
         self._fecha = fecha
     def descripcion_servicio(self):
-        return f"{self._id_servicio} - Cita medica con <doctor> (<fecha>))"
+        return f"{self._id_servicio} - Cita medica con {self._doctor.nombre} ({self._fecha}))"
 
     def validar_pago(self, paciente, id_servicio):
         for cita in paciente.historia_clinica.historial_citas:

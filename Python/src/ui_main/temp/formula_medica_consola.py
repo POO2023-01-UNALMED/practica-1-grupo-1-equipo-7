@@ -16,7 +16,7 @@ def facturacion_consola(hospital):
     lista_medicamentos = []
     print("¿Que enfermedad deseas tratar?")
     enfermedad_tratar = None
-    if len(paciente_seleccionado.historia_clinica().enfermedades()) < 0:
+    if len(paciente_seleccionado.historia_clinica.enfermedades()) < 0:
         print("Sin enfermedades")
     while True:
         for i in range(len(paciente_seleccionado.historia_clinica().enfermedades())):
@@ -46,7 +46,7 @@ def facturacion_consola(hospital):
             print("Opcion invalida")
 
         while True:
-            print(f"Hola {doctor_escogido.nombre()}")
+            print(f"Hola {doctor_escogido.nombre}")
             medicamentos_enf = paciente_seleccionado.med_enfermedad(enfermedad_tratar, hospital)
             if len(medicamentos_enf) == 0:
                 print("No hay medicamentos disponibles")

@@ -2,7 +2,7 @@ class Enfermedad:
 
     _enfermedades_registradas = []
 
-    def __init__(self, especialidad, nombre, tipologia):
+    def __init__(self, nombre, tipologia, especialidad):
         self._especialidad = especialidad
         self._nombre = nombre
         self._tipologia = tipologia
@@ -11,6 +11,9 @@ class Enfermedad:
 
     def nuevo_enfermo(self):
         self._enfermos += 1
+
+    def __str__(self):
+        return f"Enfermedad | Nombre: {self._nombre} | {self._tipologia} | Especialidad que la trata: {self._especialidad}"
 
     @property
     def tipologia(self):
