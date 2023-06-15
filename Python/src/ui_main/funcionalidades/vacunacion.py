@@ -12,7 +12,82 @@ def imprimir_titulo(frame):
 
 def vacunacion(hospital, frame):
 
+
+    def mostrar_historial_vacunas(paciente):
+        imprimir_titulo(frame)
+        info_historial = tk.Label(frame, text=f"Historial de vacunas de {paciente.nombre} - CC: {paciente.cedula}",
+                                  bg="white", font=("Helvetica", 12))
+        info_historial.pack(pady=10)
+
+        frame_citas = tk.Frame(frame)
+        frame_citas.pack(fill=tk.BOTH, expand=True)
+
+        canvas = tk.Canvas(frame_citas, bg="white")
+        canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+
+        scrollbar = tk.Scrollbar(frame_citas, orient=tk.VERTICAL, command=canvas.yview)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+        canvas.configure(yscrollcommand=scrollbar.set)
+
+        inner_frame = tk.Frame(canvas, bg="white")
+        inner_frame_id = canvas.create_window((0, 0), window=inner_frame, anchor=tk.NW)
+
+        def configure_canvas(event):
+            canvas.configure(scrollregion=canvas.bbox("all"))
+
+        inner_frame.bind("<Configure>", configure_canvas)
+
+        for CitaVacuna in paciente.historia_clinica.historial_vacunas:
+            frame_vacuna = tk.Frame(inner_frame, bg="white")
+
+            label_tipo_vacuna = tk.Label(frame_vacuna, text="Vacuna: ", bg="white", font=("Helvetica", 10, "bold"))
+            label_tipo_vacuna.grid(row=0, column=0, padx=10, pady=5, sticky="w")
+            label_nombre_vacuna = tk.Label(frame_vacuna, text=CitaVacuna.vacuna.nombre, bg="white")
+            label_nombre_vacuna.grid(row=0, column=1, padx=10, pady=5, sticky="w")
+
+            frame_vacuna.pack(padx=10, pady=10)
+
+        def resize_canvas(event):
+            canvas.itemconfig(inner_frame_id, width=canvas.winfo_width())
+
+        canvas.bind("<Configure>", resize_canvas)
+
+        def on_canvas_scroll(event):
+            canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
+
+        canvas.bind_all("<MouseWheel>", on_canvas_scroll)
+        canvas.bind_all("<Button-4>", on_canvas_scroll)
+        canvas.bind_all("<Button-5>", on_canvas_scroll)
+
+        # Se importa aca para evitar una referencia circular
+        from src.ui_main.ventana_principal import implementacion_default
+
+        boton_regresar = tk.Button(inner_frame, text="Regresar", command=lambda: implementacion_default(frame))
+        boton_regresar.pack()
+
+
     def agendamiento_de_la_vacuna(paciente):
+
+        def confirmar_cita():
+            eleccion = combo_elegir_cita.get()
+            if eleccion:
+                respuesta = tk.messagebox.askyesno("Confirmar cita de vacuna", "¿Estas seguro de agendar esta cita?")
+                if respuesta:
+                    for vacuna in paciente.buscar_vacuna_por_eps(combo_tipo_vacuna.get(), hospital):
+                        if vacuna.nombre == combo_elegir_vacuna.get():
+                            cita_agendada = vacuna.actualizar_agenda(paciente,combo_elegir_cita.current()+1,vacuna.mostrar_agenda_disponible())
+                            paciente.actualizar_historial_vacunas(cita_agendada)
+                    messagebox.showinfo("Vacuna agendada", "La cita se ha agendado exitosamente")
+                    mostrar_historial_vacunas(paciente)
+                else:
+                    messagebox.showinfo("Vacuna cancelada", "La cita ha sido cancelada")
+                    # Se importa aca para evitar una referencia circular
+                    from src.ui_main.ventana_principal import implementacion_default
+                    implementacion_default(frame)
+
+            else:
+                messagebox.showerror("Informacion incompleta", "Necesita completar todos los espacios para agendar la vacuna")
 
         def lista_citas():
             lista_citas = []
@@ -85,7 +160,7 @@ def vacunacion(hospital, frame):
         combo_elegir_cita = ttk.Combobox(frame1, textvariable=valor_defecto3, state="disabled")
         combo_elegir_cita.grid(row=2, column=1, padx=10, pady=10, sticky="w")
 
-        boton_aceptar = tk.Button(frame, text="Aceptar")
+        boton_aceptar = tk.Button(frame, text="Aceptar", command=confirmar_cita)
         boton_aceptar.pack()
 
         # Se importa aca para evitar una referencia circular

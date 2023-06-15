@@ -25,8 +25,9 @@ class Vacuna:
         cita_asignada = None
         for cita in self._agenda:
             if cita.fecha == agenda_disponible[numero_cita - 1].fecha:
-                cita.paciente(paciente_asignado)
+                cita.paciente=paciente_asignado
                 cita_asignada = cita
+        print(cita_asignada.fecha)
         return cita_asignada
 
     @property
