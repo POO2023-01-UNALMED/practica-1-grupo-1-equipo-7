@@ -13,7 +13,7 @@ class HistoriaClinica:
         doc_cita = []
         for doc in disponibles:
             for cita in self._historial_citas:
-                if doc.cedula() == cita.doctor().cedula():
+                if doc.cedula == cita.doctor.cedula:
                     doc_cita.append(doc)
         return doc_cita
 

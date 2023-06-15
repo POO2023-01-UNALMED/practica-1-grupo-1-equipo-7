@@ -5,6 +5,7 @@ from src.gestor_aplicacion.administracion.vacuna import Vacuna
 from src.gestor_aplicacion.personas.doctor import Doctor
 from src.gestor_aplicacion.personas.enfermedad import Enfermedad
 from src.gestor_aplicacion.personas.paciente import Paciente
+from src.gestor_aplicacion.administracion.medicamento import Medicamento
 
 
 
@@ -12,9 +13,12 @@ class Hospital:
     _habitaciones = []
 
     def __init__(self):
-        self._lista_pacientes = [Paciente(111, "Diego", "Particular"),Paciente(123,"Bolillo","Subsidiado")]
+        pac = Paciente(111, "Diego", "Particular")
+        self._lista_pacientes = [pac, Paciente(123,"Bolillo","Subsidiado") ]
+        enf = Enfermedad("Tos", "II", "General")
+        pac.historia_clinica.enfermedades.append(enf)
         self._lista_doctores = [Doctor(222, "Andres", "Particular", "General"), Doctor(333, "Camilo", "Particular", "General"), Doctor(444, "Santiago", "Particular", "Oftalmologia")]
-        self._lista_medicamentos = []
+        self._lista_medicamentos = [Medicamento("Quita tos", enf, "ae", 10, 12000)]
         self._lista_vacunas = [Vacuna("Obligatoria","Covid",["Particular","Subsidiado"],5000),Vacuna("Obligatoria","Neumococo",["Subsidiado"],2000)]
         # self.deserializar()
 
@@ -27,7 +31,7 @@ class Hospital:
     def meds_disponibles(self):
         disponibles = []
         for med in self._lista_medicamentos:
-            if med.cantidad() > 0:
+            if med.cantidad > 0:
                 disponibles.append(med)
         return disponibles
 

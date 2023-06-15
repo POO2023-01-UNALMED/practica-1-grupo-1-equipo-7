@@ -14,13 +14,17 @@ def imprimir_titulo(frame):
 
 def formula_medica(hospital, frame):
     def doctor_formula(paciente):
-
-        def habilitar_elegir_doctor(event):
+        def habilitar_doctor(event):
+            global valor_defecto1
+            indice_seleccionado = combo_enfermedades.current()
+            objeto_seleccionado = paciente.historia_clinica.enfermedades[indice_seleccionado]
+            valor_defecto1 = objeto_seleccionado.nombre + objeto_seleccionado.tipologia  # Acceder al nombre del objeto seleccionado
             eleccion = combo_enfermedades.get()
             combo_elegir_doctor.set("")
             if eleccion:
                 combo_elegir_doctor['state'] = 'readonly'
-                combo_elegir_doctor['values'] = hospital.meds_disponibles()
+                combo_elegir_doctor['values'] = paciente.historia_clinica.buscar_cita(objeto_seleccionado.especialidad,
+                                                                                      hospital)
             else:
                 combo_elegir_doctor['state'] = 'disabled'
 
@@ -37,8 +41,9 @@ def formula_medica(hospital, frame):
         enfermedad_tratar = tk.Label(frame_datos, text="Seleccione la enfermedad a tratar: ", bg="white")
         enfermedad_tratar.grid(row=0, column=0, padx=10, pady=10, sticky="w")
         valor_defecto1 = tk.StringVar
-        combo_enfermedades = ttk.Combobox(frame_datos, values=paciente.historia_clinica.enfermedades, textvariable=valor_defecto1, state="readonly")
-        combo_enfermedades.bind("<<ComboboxSelected>>", habilitar_elegir_doctor)
+        combo_enfermedades = ttk.Combobox(frame_datos, values=paciente.historia_clinica.enfermedades,
+                                          textvariable=valor_defecto1, state="readonly")
+        combo_enfermedades.bind("<<ComboboxSelected>>", habilitar_doctor)
         combo_enfermedades.grid(row=0, column=1, padx=10, pady=10, sticky="w")
 
         # Label con instruccion de seleccionar doctor que formulara y combobox de doctores
@@ -47,34 +52,40 @@ def formula_medica(hospital, frame):
         valor_defecto2 = tk.StringVar
         combo_elegir_doctor = ttk.Combobox(frame_datos, textvariable=valor_defecto2, state="disabled")
         combo_elegir_doctor.grid(row=1, column=1, padx=10, pady=10, sticky="w")
-        #seleccion_medicamentos(combo_elegir_doctor.get(), combo_enfermedades.get(), paciente)
-    def seleccion_medicamentos(doctor, enfermedad, paciente):
+        indice_enfermedad = combo_enfermedades.current()
+        enf_objeto = paciente.historia_clinica.enfermedades[indice_enfermedad]
+        boton_seleccionar = tk.Button(frame, text="Seleccionar medicamentos", command=seleccion_medicamentos)
+        boton_seleccionar.pack()
 
-        # Imprime todos los medicamentos disponibles en un frame
-        frame_medicamentos = tk.Frame(frame, bg="white")
-        frame_medicamentos.pack()
-
+    def seleccion_medicamentos():
+        # Crear el nuevo frame para la selección de medicamentos
         imprimir_titulo(frame)
-        label_seleccion_meds = tk.Label(frame_medicamentos, text=f"Hola {doctor}\nSeleccione los medicamentos que desea formular para tratar {enfermedad}", bg="white")
-        label_seleccion_meds.pack()
-        # Lista de medicamentos disponibles
-        medicamentos_disponibles = paciente.med_enfermedad()
-        # ListBox para seleccionar varios medicamentos
-        listbox_medicamentos = tk.Listbox(frame_medicamentos, width=200, selectmode=tk.MULTIPLE)
-        listbox_medicamentos.pack(fill="both", expand=True)
-        # Agregar medicamentos al listbox
+        frame_seleccion = tk.Frame(frame, bg="white")
+        frame_seleccion.pack()
+        medicamentos_disponibles = hospital.meds_disponibles()
+
+        # Título de la selección de medicamentos
+        titulo_seleccion = tk.Label(frame_seleccion, text="Seleccione los medicamentos:", bg="white")
+        titulo_seleccion.pack()
+
+        # Listbox para la selección de medicamentos
+        listbox_medicamentos = tk.Listbox(frame_seleccion, selectmode=tk.MULTIPLE, width=50)
+        listbox_medicamentos.pack()
+
+        # Agregar los medicamentos disponibles al listbox
         for med in medicamentos_disponibles:
             listbox_medicamentos.insert(tk.END, med)
-        seleccionados(listbox_medicamentos.curselection(), medicamentos_disponibles, paciente, doctor)
-    def seleccionados(indices, disponibles, paciente, doctor):
-        imprimir_titulo(frame)
-        lab = tk.Label(frame, text="Estos son los medicamentos del paciente")
-        lab.pack()
-        med_seleccionados = [disponibles[idx] for idx in indices]
-        for med in med_seleccionados:
-            label_med = tk.Label(frame, text=med)
-            label_med.pack()
 
+        # Botón para finalizar la selección
+        boton_finalizar = tk.Button(frame_seleccion, text="Finalizar selección", command=lambda: obtener_seleccion)
+        boton_finalizar.pack()
+
+        def obtener_seleccion():
+            # Obtener los índices seleccionados en el Listbox
+            indices_seleccionados = listbox_medicamentos.curselection()
+
+            # Obtener los medicamentos seleccionados utilizando los índices
+            medicamentos_seleccionados = [medicamentos_disponibles[indice] for indice in indices_seleccionados]
 
 
     def buscar_paciente():
@@ -91,6 +102,7 @@ def formula_medica(hospital, frame):
                 # Se importa aca para evitar una referencia circular
                 from src.ui_main.ventana_principal import implementacion_default
                 implementacion_default(frame)
+
     imprimir_titulo(frame)
 
     # Pide la cedula del paciente
@@ -102,4 +114,3 @@ def formula_medica(hospital, frame):
 
     boton_buscar_paciente = tk.Button(frame, text="Buscar", command=buscar_paciente)
     boton_buscar_paciente.pack()
-

@@ -27,6 +27,9 @@ class Doctor(Persona):
                 cita.paciente = paciente_seleccionado
                 cita_seleccionada = cita
         return cita_seleccionada
+
+    def __str__(self):
+        return self._nombre + "Especialidad: " + self._especialidad
     @property
     def agenda(self):
         return self._agenda
