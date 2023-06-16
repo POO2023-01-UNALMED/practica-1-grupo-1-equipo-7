@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 
+from src.ui_main.gestion.field_frame import FieldFrame
+
 
 def imprimir_titulo(frame):
     # Limpia el frame
@@ -169,10 +171,8 @@ def agendar_citas(hospital, frame):
         boton_regresar.pack(pady=5)
 
 
-
-
     def buscar_paciente():
-        cedula = ingreso_cedula.get()
+        cedula = fp.getValue(1)
         paciente = hospital.buscar_paciente(int(cedula))
 
         # Continua si el paciente esta registrado en el hospital
@@ -189,16 +189,16 @@ def agendar_citas(hospital, frame):
     imprimir_titulo(frame)
 
     # Pide la cedula del paciente
-    label_ingreso_cedula = tk.Label(frame, text="Ingrese la cédula del paciente:", bg="white", font=("Helvetica", 10, "bold"))
-    label_ingreso_cedula.pack()
 
-    ingreso_cedula = tk.Entry(frame)
-    ingreso_cedula.pack(pady=5)
+    titulo_ingreso_cedula = tk.Label(frame, text="Ingrese la cédula del paciente:", bg="white",font=("Helvetica", 10, "bold"))
+    titulo_ingreso_cedula.pack()
+
+    criterios = ["Cédula"]
+    fp = FieldFrame(frame, "", criterios, "", None, None)
+    fp.pack()
 
     boton_buscar_paciente = tk.Button(frame, text="Buscar", command=buscar_paciente)
     boton_buscar_paciente.pack(pady=10)
-
-
 
     # Funcionalidad para regresar a la ventana principal
 
