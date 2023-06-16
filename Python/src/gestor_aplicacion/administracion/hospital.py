@@ -8,18 +8,20 @@ from src.gestor_aplicacion.personas.paciente import Paciente
 from src.gestor_aplicacion.administracion.medicamento import Medicamento
 
 
-
 class Hospital:
     _habitaciones = []
 
     def __init__(self):
         pac = Paciente(111, "Diego", "Particular")
-        self._lista_pacientes = [pac, Paciente(123,"Bolillo","Subsidiado") ]
+        self._lista_pacientes = [pac, Paciente(123, "Bolillo", "Subsidiado")]
         enf = Enfermedad("Tos", "II", "General")
         pac.historia_clinica.enfermedades.append(enf)
-        self._lista_doctores = [Doctor(222, "Andres", "Particular", "General"), Doctor(333, "Camilo", "Particular", "General"), Doctor(444, "Santiago", "Particular", "Oftalmologia")]
+        self._lista_doctores = [Doctor(222, "Andres", "Particular", "General"),
+                                Doctor(333, "Camilo", "Particular", "General"),
+                                Doctor(444, "Santiago", "Particular", "Oftalmologia")]
         self._lista_medicamentos = [Medicamento("Quita tos", enf, "ae", 10, 12000)]
-        self._lista_vacunas = [Vacuna("Obligatoria","Covid",["Particular","Subsidiado"],5000),Vacuna("Obligatoria","Neumococo",["Subsidiado"],2000)]
+        self._lista_vacunas = [Vacuna("Obligatoria", "Covid", ["Particular", "Subsidiado"], 5000),
+                               Vacuna("Obligatoria", "Neumococo", ["Subsidiado"], 2000)]
         # self.deserializar()
 
     def buscar_paciente(self, cedula):
@@ -98,3 +100,11 @@ class Hospital:
     @lista_medicamentos.setter
     def lista_medicamentos(self, value):
         self._lista_medicamentos = value
+
+    @property
+    def lista_doctores(self):
+        return self._lista_doctores
+
+    @lista_doctores.setter
+    def lista_doctores(self, value):
+        self._lista_doctores = value

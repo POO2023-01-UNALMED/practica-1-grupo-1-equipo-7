@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
+from src.gestor_aplicacion.servicios.formula import Formula
 
 
 def imprimir_titulo(frame):
@@ -54,15 +55,19 @@ def formula_medica(hospital, frame):
         combo_elegir_doctor.grid(row=1, column=1, padx=10, pady=10, sticky="w")
         indice_enfermedad = combo_enfermedades.current()
         enf_objeto = paciente.historia_clinica.enfermedades[indice_enfermedad]
-        boton_seleccionar = tk.Button(frame, text="Seleccionar medicamentos", command=seleccion_medicamentos)
+        indice_doctor = combo_elegir_doctor.current()
+        doc_objeto = paciente.historia_clinica.buscar_cita(enf_objeto.especialidad, hospital)[indice_doctor]
+        formula_paciente = Formula(paciente, doc_objeto)
+        boton_seleccionar = tk.Button(frame, text="Seleccionar medicamentos",
+                                      command=lambda: seleccion_medicamentos(enf_objeto, paciente, formula_paciente))
         boton_seleccionar.pack()
 
-    def seleccion_medicamentos():
+    def seleccion_medicamentos(enfermedad, paciente, formula):
         # Crear el nuevo frame para la selección de medicamentos
         imprimir_titulo(frame)
         frame_seleccion = tk.Frame(frame, bg="white")
         frame_seleccion.pack(fill="both", expand=True)
-        medicamentos_disponibles = hospital.meds_disponibles()
+        medicamentos_disponibles = paciente.med_enfermedad(enfermedad, hospital)
 
         # Título de la selección de medicamentos
         titulo_seleccion = tk.Label(frame_seleccion, text="Seleccione los medicamentos:", bg="white")
@@ -77,16 +82,56 @@ def formula_medica(hospital, frame):
             listbox_medicamentos.insert(tk.END, med)
 
         # Botón para finalizar la selección
-        boton_finalizar = tk.Button(frame_seleccion, text="Finalizar selección", command=lambda: obtener_seleccion)
+        boton_finalizar = tk.Button(frame_seleccion, text="Finalizar selección",
+                                    command=lambda: obtener_seleccion(listbox_medicamentos.curselection(),
+                                                                      medicamentos_disponibles, formula, paciente))
         boton_finalizar.pack()
 
-        def obtener_seleccion():
-            # Obtener los índices seleccionados en el Listbox
-            indices_seleccionados = listbox_medicamentos.curselection()
+    def obtener_seleccion(seleccion, disponibles, formula, paciente):
+        imprimir_titulo(frame)
+        # Obtener los índices seleccionados en el Listbox
+        indices_seleccionados = seleccion
 
-            # Obtener los medicamentos seleccionados utilizando los índices
-            medicamentos_seleccionados = [medicamentos_disponibles[indice] for indice in indices_seleccionados]
+        # Obtener los medicamentos seleccionados utilizando los índices
+        medicamentos_seleccionados = [disponibles[indice] for indice in indices_seleccionados]
+        frame_meds_seleccionados = tk.Frame(frame)
+        frame_meds_seleccionados.pack(fill="both", expand=True)
+        label_meds_seleccionados = tk.Label(frame_meds_seleccionados, text="Estos son sus medicamentos", bg="white")
+        label_meds_seleccionados.pack()
+        formula.lista_meds = medicamentos_seleccionados
+        for med in medicamentos_seleccionados:
+            label_med = tk.Label(frame_meds_seleccionados, text=med, bg="white")
+            label_med.pack()
+        boton_generar_formula = tk.Button(frame_meds_seleccionados, text="Generar Formula",
+                                          command=lambda: generar_formula(paciente, formula))
+        boton_generar_formula.pack()
 
+    def generar_formula(paciente, formula_paciente):
+        respuesta = tk.messagebox.askyesno("Confirmar Formula", "¿Estas seguro de agendar esta cita?")
+        if respuesta:
+            paciente.historia_clinica.lista_formulas.append(formula_paciente)
+            messagebox.showinfo("Formula Generada", "La formula se ha generado exitosamente")
+            mostrar_historial(paciente)
+        else:
+            messagebox.showinfo("Cita cancelada", "La cita ha sido cancelada")
+            # Se importa aca para evitar una referencia circular
+            from src.ui_main.ventana_principal import implementacion_default
+            implementacion_default(frame)
+
+    def mostrar_historial(paciente):
+        imprimir_titulo(frame)
+        frame_formulas = tk.Frame(frame)
+        frame_formulas.pack(fill="both", expand=True)
+        label = tk.Label(frame_formulas, text="Historial de formulas", bg="white")
+        label.pack(fill="both")
+        for formula in paciente.historia_clinica.lista_formulas:
+            formula_label = tk.Label(frame_formulas, text=formula)
+            formula_label.pack(fill="both", expand=True)
+        # Se importa aca para evitar una referencia circular
+        from src.ui_main.ventana_principal import implementacion_default
+
+        boton_regresar = tk.Button(frame_formulas, text="Regresar", command=lambda: implementacion_default(frame))
+        boton_regresar.pack()
 
     def buscar_paciente():
         cedula = ingreso_cedula.get()

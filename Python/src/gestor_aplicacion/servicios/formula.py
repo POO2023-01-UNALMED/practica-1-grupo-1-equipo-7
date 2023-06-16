@@ -3,10 +3,10 @@ from src.gestor_aplicacion.servicios.servicio import Servicio
 
 class Formula(Servicio):
 
-    def __init__(self, paciente):
+    def __init__(self, paciente, doctor):
         super().__init__(paciente)
-        self._lista_meds = None
-        self._doctor = None
+        self._lista_meds = []
+        self._doctor = doctor
 
     def descripcion_servicio(self):
         return f"{self._id_servicio} - Formula prescrita por <doctor>"
@@ -16,6 +16,7 @@ class Formula(Servicio):
             if formula.id_servicio == id_servicio:
                 formula.estado_pago = True
                 break
+
     @property
     def doctor(self):
         return self._doctor
