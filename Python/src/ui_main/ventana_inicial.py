@@ -96,10 +96,10 @@ def ventana_inicial(hospital):
     def desarrollador0():
         global tk_foto1_nueva, tk_foto2_nueva, tk_foto3_nueva, tk_foto4_nueva
 
-        nombre.config(text="Alpaca")
-        email.config(text="alpaca@unal.edu.co")
-        github.config(text="github.com/alpacadev")
-        carrera.config(text="Ciencias/Sistemas")
+        nombre.config(text="Juan Camilo Gutiérrez Martínez")
+        email.config(text="juagutierrezma@unal.edu.co")
+        github.config(text="github.com/Camilog2004")
+        carrera.config(text="Ingeniería de Sistemas e Informática")
 
         foto1_nueva = lista_fotos[desarrollador][0]
         foto2_nueva = lista_fotos[desarrollador][1]
@@ -234,10 +234,10 @@ def ventana_inicial(hospital):
     github = ttk.Label(frame_p5, anchor="center")
     carrera = ttk.Label(frame_p5, anchor="center")
 
-    nombre.config(text="Alpaca")
-    email.config(text="alpaca@unal.edu.co")
-    github.config(text="github.com/alpacadev")
-    carrera.config(text="Ciencias/Sistemas")
+    nombre.config(text="Juan Camilo Gutiérrez Martínez")
+    email.config(text="juagutierrezma@unal.edu.co")
+    github.config(text="github.com/Camilog2004")
+    carrera.config(text="Ingeniería de Sistemas e Informática")
 
     # Fotos desarrolladores
     frame_p6 = ttk.Frame(frame_p2)
