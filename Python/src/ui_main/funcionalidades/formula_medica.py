@@ -61,7 +61,7 @@ def formula_medica(hospital, frame):
         # Crear el nuevo frame para la selección de medicamentos
         imprimir_titulo(frame)
         frame_seleccion = tk.Frame(frame, bg="white")
-        frame_seleccion.pack()
+        frame_seleccion.pack(fill="both", expand=True)
         medicamentos_disponibles = hospital.meds_disponibles()
 
         # Título de la selección de medicamentos
@@ -69,8 +69,8 @@ def formula_medica(hospital, frame):
         titulo_seleccion.pack()
 
         # Listbox para la selección de medicamentos
-        listbox_medicamentos = tk.Listbox(frame_seleccion, selectmode=tk.MULTIPLE, width=50)
-        listbox_medicamentos.pack()
+        listbox_medicamentos = tk.Listbox(frame_seleccion, selectmode=tk.MULTIPLE, bg="white")
+        listbox_medicamentos.pack(fill="both", expand=True)
 
         # Agregar los medicamentos disponibles al listbox
         for med in medicamentos_disponibles:
