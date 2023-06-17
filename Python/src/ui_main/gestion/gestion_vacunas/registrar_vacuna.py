@@ -1,7 +1,7 @@
 import tkinter as tk
 
 
-def gestion1(hospital, frame_implementacion):
+def registrar_vacuna(hospital, frame_implementacion):
     # Implementacion
     label_inicial = tk.Label(frame_implementacion, text="Gestion temp")
     label_inicial.pack()
@@ -10,7 +10,7 @@ def gestion1(hospital, frame_implementacion):
     # Funcionalidad para regresar a la ventana principal
 
     # Se importa aca para evitar una referencia circular
-    from Python.src.ui_main.ventana_principal import implementacion_default
+    from src.ui_main.ventana_principal import implementacion_default
 
     boton_regresar = tk.Button(frame_implementacion, text="Regresar",
                                command=lambda: implementacion_default(frame_implementacion))
