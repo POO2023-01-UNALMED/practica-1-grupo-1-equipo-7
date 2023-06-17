@@ -26,13 +26,13 @@ class FieldFrame(Frame):
             Label(self, text=criterio,bg="white", font=("Helvetica", 10, "bold")).grid(row=i, column=0, padx=20, pady=5, sticky="w")
             entry = Entry(self)
             entry.grid(row=i, column=1, padx=5, pady=5, sticky="w")
-            #
-            if habilitado is not None and not habilitado[i - 1]:
-                entry.config(state='readonly')  # Campo no editable
             # Se inserta los valores por defecto que queramos
             if valores is not None:
                 #el número 0 indica que se inserta desde el inicio del string
                 entry.insert(0, valores[i - 1])
+            #Para deshabilitar el entry
+            if habilitado is not None and not habilitado[i - 1]:
+                entry.config(state='readonly')
 
             #Se guarda la referencia de ese entry
             self.valores.append(entry)

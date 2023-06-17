@@ -51,6 +51,13 @@ class Hospital:
                 disponibles.append(vacuna)
         return disponibles
 
+    def buscar_vacuna(self, nombre):
+        vacuna_seleccionada=None
+        for vacuna in self._lista_vacunas:
+            if vacuna.nombre == nombre:
+                vacuna_seleccionada=vacuna
+        return vacuna_seleccionada
+
     def serializar(self):
         with open(os.path.abspath("../base_datos/temp/registro_doctores.pickle"), "wb") as file:
             file.truncate()
