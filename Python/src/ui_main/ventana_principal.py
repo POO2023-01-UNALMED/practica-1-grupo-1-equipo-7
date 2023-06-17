@@ -3,6 +3,7 @@ from src.ui_main.funcionalidades import agendar_citas, formula_medica, asignar_h
     facturacion
 from src.ui_main.gestion.gestion_doctores import agregar_doctor, ver_doctor, eliminar_doctor, agregar_cita
 from src.ui_main.gestion.gestion_vacunas import registrar_vacuna, ver_vacuna
+from src.ui_main.gestion.gestion_hospital import ver_vacunas
 
 
 def cambiar_contenido(opcion, hospital, frame_implementacion):
@@ -17,6 +18,8 @@ def cambiar_contenido(opcion, hospital, frame_implementacion):
         "habitacion": asignar_habitacion.asignar_habitacion,
         "vacuna": vacunacion.vacunacion,
         "pago": facturacion.facturacion,
+        #Gestion hospital
+        "ver_vacunas": ver_vacunas.ver_vacunas,
         #Gestion vacunas
         "registrar_vacuna": registrar_vacuna.registrar_vacuna,
         "ver_vacuna": ver_vacuna.ver_vacuna,
@@ -74,11 +77,16 @@ def ventana_principal(hospital):
     opcion_funcionalidades.add_command(label="Facturacion",
                                        command=lambda: cambiar_contenido("pago", hospital, frame_implementacion))
     opcion_funcionalidades.add_separator()
+    #Gestión hospital con un submenú
+    opcion_gestion_hospital= tk.Menu(opcion_funcionalidades, tearoff=0)
+    opcion_funcionalidades.add_cascade(label="Gestión hospital", menu=opcion_gestion_hospital)
+    opcion_gestion_hospital.add_command(label="Vacunas del hospital",command=lambda: cambiar_contenido("ver_vacunas", hospital,frame_implementacion))
     #Gestion vacunas con un submenú
     opcion_gestion_vacuna= tk.Menu(opcion_funcionalidades, tearoff=0)
     opcion_funcionalidades.add_cascade(label="Gestión vacunas", menu=opcion_gestion_vacuna)
     opcion_gestion_vacuna.add_command(label="Registrar Vacuna",command=lambda: cambiar_contenido("registrar_vacuna", hospital, frame_implementacion))
     opcion_gestion_vacuna.add_command(label="Ver vacuna",command=lambda: cambiar_contenido("ver_vacuna", hospital, frame_implementacion))
+    opcion_gestion_vacuna.add_command(label="Registrar Vacuna",command=lambda: cambiar_contenido("registrar_vacuna", hospital,frame_implementacion))
     #Gestión doctores con un submenú
     opcion_gestion_doctores = tk.Menu(opcion_funcionalidades, tearoff=0)
     opcion_funcionalidades.add_cascade(label="Gestión doctores", menu=opcion_gestion_doctores)
