@@ -1,6 +1,7 @@
 import tkinter as tk
 from src.ui_main.funcionalidades import agendar_citas, formula_medica, asignar_habitacion, vacunacion, \
     facturacion
+from src.ui_main.gestion.gestion_doctores import agregar_doctor
 from src.ui_main.gestion.gestion_vacunas import registrar_vacuna
 
 
@@ -19,7 +20,7 @@ def cambiar_contenido(opcion, hospital, frame_implementacion):
         #Gestion vacunas
         "registrar_vacuna": registrar_vacuna.registrar_vacuna,
         #Gestion Doctores
-        #....
+        "agregar_doctor": agregar_doctor.agregar_doctor,
     }
 
     if opcion in opciones:
@@ -75,7 +76,9 @@ def ventana_principal(hospital):
     opcion_funcionalidades.add_cascade(label="Gestión vacunas", menu=opcion_gestion_vacuna)
     opcion_gestion_vacuna.add_command(label="Registrar Vacuna",command=lambda: cambiar_contenido("registrar_vacuna", hospital, frame_implementacion))
     #Gestión doctores con un submenú
-    #...
+    opcion_gestion_doctores = tk.Menu(opcion_funcionalidades, tearoff=0)
+    opcion_funcionalidades.add_cascade(label="Gestión doctores", menu=opcion_gestion_doctores)
+    opcion_gestion_doctores.add_command(label="Agregar doctor",command=lambda: cambiar_contenido("agregar_doctor", hospital, frame_implementacion))
 
 
     opcion_ayuda = tk.Menu(barra_menu, tearoff=0)
