@@ -10,52 +10,103 @@ def imprimir_titulo(frame):
         item.destroy()
 
     # Imprime el titulo
-    titulo = tk.Label(frame, text="Facturación", bg="white")
-    titulo.pack()
+    titulo = tk.Label(frame, text="Facturación", bg="white", font=("Helvetica", 16, "bold"))
+    titulo.pack(pady=20)
 
 
 def facturacion(hospital, frame):
-    def validar_pago(paciente, servicio):
+    def validar_pago(paciente, servicios):
         respuesta = tk.messagebox.askyesno("Confirmar pago", "¿Desea realizar el pago?")
         if respuesta:
-            servicio.validar_pago(paciente, servicio.id_servicio)
+            for servicio in servicios:
+                servicio.validar_pago(paciente, servicio.id_servicio)
             messagebox.showinfo("Pago realizado", "El pago se ha realizado exitosamente")
         else:
             messagebox.showinfo("Pago cancelado", "El pago ha sido cancelado")
 
-        # Se importa aca para evitar una referencia circular
-        from src.ui_main.ventana_principal import implementacion_default
         implementacion_default(frame)
 
-    def calcular_precio(paciente, servicio):
+    def calcular_precio(paciente, servicios):
+        def calcular_precio_servicio(s, ls):
+            # Permite editar la variable desde la funcion sin pasarla como argumento
+            nonlocal precio_final
+
+            if s in servicios:
+                servicios.remove(s)
+                ls.config(bg="white")
+                precio_final -= paciente.calcular_precio(s)
+            else:
+                servicios.append(s)
+                ls.config(bg="yellow")
+                precio_final += paciente.calcular_precio(s)
+
+            label_precio_final.config(text=f"Precio total: ${precio_final:,}")
+
         imprimir_titulo(frame)
 
-        info_servicio = tk.Label(frame, text=f"{servicio.descripcion_servicio()}", bg="white")
-        info_servicio.pack()
+        precio_final = 0
 
-        precio_servicio_seleccionado = paciente.calcular_precio(servicio)
+        label_servicios = tk.Label(frame, text="Confirme los servicios que va a pagar:", bg="white", font=("Helvetica", 10, "bold"))
+        label_servicios.pack(pady=10)
 
-        precio = tk.Label(frame, text=f"Total a pagar: ${precio_servicio_seleccionado}", bg="white")
-        precio.pack()
+        servicios.sort(key=lambda s: s.id_servicio)
+
+        for servicio in servicios:
+            precio_servicio = paciente.calcular_precio(servicio)
+            precio_final += precio_servicio
+            label_servicio = tk.Label(frame, text=f"{servicio.descripcion_servicio()} - "
+                                                  f"Precio: ${precio_servicio:,}", bg="white")
+            label_servicio.pack()
+            label_servicio.config(bg="yellow")
+
+            # Permite seleccionar el servicio al hacer click izquierdo (<Button-1>)
+            label_servicio.bind(
+                "<Button-1>",
+                lambda event, s=servicio, ls=label_servicio: calcular_precio_servicio(s, ls))
+
+            # Resalta el label donde se pone el cursor
+            label_servicio.bind("<Enter>",
+                                lambda event: event.widget.config(highlightthickness=2, highlightbackground="black"))
+            label_servicio.bind("<Leave>", lambda event: event.widget.config(highlightthickness=0))
+
+            # Seleccionado por defecto
+
+        label_precio_final = tk.Label(frame, text=f"Precio total: ${precio_final:,}", bg="white")
+        label_precio_final.pack(pady=10)
 
         boton_pagar = tk.Button(frame, text="Realizar pago",
-                                command=lambda: validar_pago(paciente, servicio))
-        boton_pagar.pack()
+                                command=lambda: validar_pago(paciente, servicios))
+        boton_pagar.pack(pady=10)
+
+        boton_regresar = tk.Button(frame, text="Regresar",
+                                   command=lambda: implementacion_default(frame))
+        boton_regresar.pack()
 
     def obtener_servicios_sin_pagar(paciente):
-        imprimir_titulo(frame)
-
-        info_paciente = tk.Label(frame, text=f"{paciente.nombre} - CC: {paciente.cedula}", bg="white")
-        info_paciente.pack()
-
-        label_servicios = tk.Label(frame, text="Lista de servicios sin pagar:", bg="white")
-        label_servicios.pack()
+        def seleccionar_servicio(s, ls):
+            if s in servicios_seleccionados:
+                servicios_seleccionados.remove(s)
+                ls.config(bg="white")
+            else:
+                servicios_seleccionados.append(s)
+                ls.config(bg="yellow")
 
         lista_servicios_sin_pagar = Servicio.obtener_servicios_sin_pagar(paciente)
 
         if len(lista_servicios_sin_pagar) == 0:
             tk.messagebox.showinfo("Sin servicios pendientes", "Usted no tiene ningún servicio pendiente de pago")
+            implementacion_default(frame)
             return
+
+        imprimir_titulo(frame)
+
+        info_paciente = tk.Label(frame, text=f"{paciente.nombre} - CC: {paciente.cedula}", bg="white", font=("Helvetica", 12))
+        info_paciente.pack(pady=10)
+
+        label_servicios = tk.Label(frame, text="Lista de servicios sin pagar:", bg="white", font=("Helvetica", 10, "bold"))
+        label_servicios.pack(pady=10)
+
+        servicios_seleccionados = []
 
         # Imprime cada servicio en un label
         for servicio in lista_servicios_sin_pagar:
@@ -65,11 +116,20 @@ def facturacion(hospital, frame):
             # Permite seleccionar el servicio al hacer click izquierdo (<Button-1>)
             label_servicio.bind(
                 "<Button-1>",
-                lambda event, servicio_seleccionado=servicio: calcular_precio(paciente, servicio_seleccionado))
+                lambda event, s=servicio, ls=label_servicio: seleccionar_servicio(s, ls))
 
             # Resalta el label donde se pone el cursor
-            label_servicio.bind("<Enter>", lambda event: event.widget.config(bg="yellow"))
-            label_servicio.bind("<Leave>", lambda event: event.widget.config(bg="white"))
+            label_servicio.bind("<Enter>",
+                                lambda event: event.widget.config(highlightthickness=2, highlightbackground="black"))
+            label_servicio.bind("<Leave>", lambda event: event.widget.config(highlightthickness=0))
+
+        boton_precio = tk.Button(frame, text="Continuar",
+                                 command=lambda: calcular_precio(paciente, servicios_seleccionados))
+        boton_precio.pack(pady=10)
+
+        boton_regresar = tk.Button(frame, text="Regresar",
+                                   command=lambda: implementacion_default(frame))
+        boton_regresar.pack()
 
     def buscar_paciente():
         cedula = ingreso_cedula.get()
@@ -89,11 +149,20 @@ def facturacion(hospital, frame):
     imprimir_titulo(frame)
 
     # Pide la cedula del paciente
-    label_ingreso_cedula = tk.Label(frame, text="Ingrese la cédula del paciente:", bg="white")
+    label_ingreso_cedula = tk.Label(frame, text="Ingrese la cédula del paciente:", bg="white",
+                                    font=("Helvetica", 10, "bold"))
     label_ingreso_cedula.pack()
 
     ingreso_cedula = tk.Entry(frame)
     ingreso_cedula.pack()
 
     boton_buscar_paciente = tk.Button(frame, text="Buscar", command=buscar_paciente)
-    boton_buscar_paciente.pack()
+    boton_buscar_paciente.pack(pady=10)
+
+    # Funcionalidad para regresar a la ventana principal
+    # Se importa aca para evitar una referencia circular
+    from src.ui_main.ventana_principal import implementacion_default
+
+    boton_regresar = tk.Button(frame, text="Regresar",
+                               command=lambda: implementacion_default(frame))
+    boton_regresar.pack()
