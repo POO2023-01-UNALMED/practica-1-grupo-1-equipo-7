@@ -9,10 +9,11 @@ class FieldFrame(Frame):
     quiere que tengan valores por default basta con poner None
     habilitado: es una lista de True o False, si se usa False el campo en esa posicion va a estar deshablitado,
     si se quiere que todos estén hablitados, entonces se usa None. (Recuerde incluir los valores en []
-    Ejemplo: [False]).
+    Ejemplo: [False])
+    ancho_entry=Es el ancho del entry que por defecto es 20.
     """
 
-    def __init__(self, frame,tituloCriterios, criterios, tituloValores, valores, habilitado):
+    def __init__(self, frame,tituloCriterios, criterios, tituloValores, valores, habilitado,ancho_entry=20):
         super().__init__(frame,bg="white")
 
         self.valores=[]
@@ -24,7 +25,7 @@ class FieldFrame(Frame):
         # Etiquetas y campos de entrada para cada criterio
         for i, criterio in enumerate(criterios, start=1):
             Label(self, text=criterio,bg="white", font=("Helvetica", 10, "bold")).grid(row=i, column=0, padx=20, pady=5, sticky="w")
-            entry = Entry(self)
+            entry = Entry(self,width=ancho_entry)
             entry.grid(row=i, column=1, padx=5, pady=5, sticky="w")
             # Se inserta los valores por defecto que queramos
             if valores is not None:

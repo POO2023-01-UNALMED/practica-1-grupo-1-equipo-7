@@ -22,7 +22,7 @@ def ver_vacuna(hospital,frame_implementacion):
         cadena_tipo_eps=",".join(vacuna.tipo_eps)
 
         fp = FieldFrame(frame_implementacion, "Criterio", criterios, "Valor",[vacuna.nombre,
-        vacuna.tipo,cadena_tipo_eps,vacuna.precio],[False,False,False,False])
+        vacuna.tipo,cadena_tipo_eps,vacuna.precio],[False,False,False,False],34)
 
         fp.pack()
 
