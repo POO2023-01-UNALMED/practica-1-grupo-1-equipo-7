@@ -17,28 +17,6 @@ class Paciente(Persona):
         if isinstance(servicio, Formula):
             # Implementacion
             pass
-        elif isinstance(servicio, Cita):
-            IVA = 0.19
-            precio_total = 0
-            tipo_eps = servicio.paciente.tipo_eps
-            especialidad = servicio.doctor.especialidad
-
-            if especialidad == "General":
-                precio_total += 5000
-            if especialidad == "Odontologia":
-                precio_total += 10000
-            if especialidad == "Oftalmologia":
-                precio_total += 7000
-            if tipo_eps == "Contributivo":
-                precio_total += 2000
-            if tipo_eps == "Subsidiado":
-                precio_total += 500
-            if tipo_eps == "Particular":
-                precio_total += 10000
-
-            precio_total *= (1 + IVA)
-            return precio_total
-
         elif isinstance(servicio, CitaVacuna):
             IVA = 0.19
             precio_total = servicio.vacuna.precio
@@ -62,8 +40,26 @@ class Paciente(Persona):
             # Implementacion
             pass
         elif isinstance(servicio, Cita):
-            # Implementacion
-            pass
+            IVA = 0.19
+            precio_total = 0
+            tipo_eps = servicio.paciente.tipo_eps
+            especialidad = servicio.doctor.especialidad
+
+            if especialidad == "General":
+                precio_total += 5000
+            if especialidad == "Odontologia":
+                precio_total += 10000
+            if especialidad == "Oftalmologia":
+                precio_total += 7000
+            if tipo_eps == "Contributivo":
+                precio_total += 2000
+            if tipo_eps == "Subsidiado":
+                precio_total += 500
+            if tipo_eps == "Particular":
+                precio_total += 10000
+
+            precio_total *= (1 + IVA)
+            return precio_total
 
     def med_enfermedad(self, enfermedad, hospital):
         meds = hospital.meds_disponibles()
