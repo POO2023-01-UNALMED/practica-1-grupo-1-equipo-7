@@ -30,6 +30,12 @@ class Hospital:
                 return paciente
         return None
 
+    def buscar_doctor(self, cedula):
+        for doctor in self._lista_doctores:
+            if doctor.cedula == cedula:
+                return doctor
+        return None
+
     def meds_disponibles(self):
         disponibles = []
         for med in self._lista_medicamentos:

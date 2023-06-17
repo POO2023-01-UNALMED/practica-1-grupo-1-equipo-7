@@ -1,7 +1,7 @@
 import tkinter as tk
 from src.ui_main.funcionalidades import agendar_citas, formula_medica, asignar_habitacion, vacunacion, \
     facturacion
-from src.ui_main.gestion.gestion_doctores import agregar_doctor
+from src.ui_main.gestion.gestion_doctores import agregar_doctor, ver_doctor, eliminar_doctor, agregar_cita
 from src.ui_main.gestion.gestion_vacunas import registrar_vacuna, ver_vacuna
 
 
@@ -22,6 +22,8 @@ def cambiar_contenido(opcion, hospital, frame_implementacion):
         "ver_vacuna": ver_vacuna.ver_vacuna,
         #Gestion Doctores
         "agregar_doctor": agregar_doctor.agregar_doctor,
+        "ver_doctor": ver_doctor.ver_doctor,
+        "eliminar_doctor": eliminar_doctor.eliminar_doctor,
     }
 
     if opcion in opciones:
@@ -81,6 +83,8 @@ def ventana_principal(hospital):
     opcion_gestion_doctores = tk.Menu(opcion_funcionalidades, tearoff=0)
     opcion_funcionalidades.add_cascade(label="Gestión doctores", menu=opcion_gestion_doctores)
     opcion_gestion_doctores.add_command(label="Agregar doctor",command=lambda: cambiar_contenido("agregar_doctor", hospital, frame_implementacion))
+    opcion_gestion_doctores.add_command(label="Ver doctor",command=lambda: cambiar_contenido("ver_doctor", hospital, frame_implementacion))
+    opcion_gestion_doctores.add_command(label="Eliminar doctor",command=lambda: cambiar_contenido("eliminar_doctor", hospital, frame_implementacion))
 
 
     opcion_ayuda = tk.Menu(barra_menu, tearoff=0)

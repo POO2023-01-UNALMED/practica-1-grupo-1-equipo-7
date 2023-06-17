@@ -64,6 +64,12 @@ def agregar_doctor(hospital, frame):
             messagebox.showinfo("Doctor agregado", "El doctor se ha agregado exitosamente")
             ver_doctor(cedula, nombre, tipo_eps, especialidad)
 
+        else:
+            messagebox.showinfo("Doctor no agregado", "No se ha agregado el doctor")
+            # Se importa aca para evitar una referencia circular
+            from src.ui_main.ventana_principal import implementacion_default
+            implementacion_default(frame)
+
     def borrar_campos():
         for entry in fp.valores:
             entry.delete(0,tk.END)
@@ -71,7 +77,7 @@ def agregar_doctor(hospital, frame):
 
     imprimir_titulo(frame)
 
-    criterios = ["Cédula", "Nombre", "Tipo de eps", "Especialidad"]
+    criterios = ["Cédula", "Nombre", "Tipo de eps (Subsidado, Contributivo o Particular)", "Especialidad (General, Oftalmologia u Odontologia)"]
     fp = FieldFrame(frame, "Criterio", criterios, "Valor", None, None)
     fp.pack()
 
