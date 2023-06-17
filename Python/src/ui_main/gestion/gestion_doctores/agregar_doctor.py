@@ -64,17 +64,25 @@ def agregar_doctor(hospital, frame):
             messagebox.showinfo("Doctor agregado", "El doctor se ha agregado exitosamente")
             ver_doctor(cedula, nombre, tipo_eps, especialidad)
 
-
+    def borrar_campos():
+        for entry in fp.valores:
+            entry.delete(0,tk.END)
 
 
     imprimir_titulo(frame)
 
     criterios = ["Cédula", "Nombre", "Tipo de eps", "Especialidad"]
-    fp = FieldFrame(frame, "", criterios, "", None, None)
+    fp = FieldFrame(frame, "Criterio", criterios, "Valor", None, None)
     fp.pack()
 
-    boton_Aceptar = tk.Button(frame, text="Aceptar", command=agregar_a_lista_doctores)
-    boton_Aceptar.pack(pady=10)
+    botones_frame = tk.Frame(frame, bg="white")
+    botones_frame.pack()
+
+    boton_guardar = tk.Button(botones_frame, text="Guardar", command=agregar_a_lista_doctores)
+    boton_guardar.grid(row=0, column=0, padx=10, pady=10, sticky="w")
+
+    boton_borrar = tk.Button(botones_frame, text="Borrar", command=borrar_campos)
+    boton_borrar.grid(row=0, column=1, padx=10, pady=10, sticky="w")
 
     # Funcionalidad para regresar a la ventana principal
 
