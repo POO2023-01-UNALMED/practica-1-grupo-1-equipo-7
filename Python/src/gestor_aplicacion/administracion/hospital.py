@@ -108,3 +108,12 @@ class Hospital:
     @lista_doctores.setter
     def lista_doctores(self, value):
         self._lista_doctores = value
+
+    @property
+    def lista_vacunas(self):
+        return self._lista_vacunas
+
+    @lista_vacunas.setter
+    def lista_vacunas(self, value):
+        self._lista_vacunas = value
+

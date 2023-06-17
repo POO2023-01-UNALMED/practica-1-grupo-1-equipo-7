@@ -10,8 +10,8 @@ def imprimir_titulo(frame):
         item.destroy()
 
     # Imprime el titulo
-    titulo = tk.Label(frame, text="VACUNACIÓN", bg="white")
-    titulo.pack()
+    titulo = tk.Label(frame, text="Vacunación", bg="white",font=("Helvetica", 16, "bold"))
+    titulo.pack(pady=20)
 
 
 def vacunacion(hospital, frame):
@@ -137,13 +137,13 @@ def vacunacion(hospital, frame):
 
         imprimir_titulo(frame)
 
-        info_paciente = tk.Label(frame, text=f"{paciente.nombre} - CC: {paciente.cedula}", bg="white")
-        info_paciente.pack()
+        info_paciente = tk.Label(frame, text=f"{paciente.nombre} - CC: {paciente.cedula}", bg="white",font=("Helvetica", 12))
+        info_paciente.pack(pady=20)
 
-        frame1 = tk.Frame(frame)
+        frame1 = tk.Frame(frame,bg="white")
         frame1.pack()
 
-        tipo_vacuna = tk.Label(frame1, text="Seleccione el tipo de vacuna:", bg="white")
+        tipo_vacuna = tk.Label(frame1, text="Seleccione el tipo de vacuna:", bg="white",font=("Helvetica", 10, "bold"))
         tipo_vacuna.grid(row=0, column=0, padx=10, pady=10, sticky="w")
         valor_defecto1 = tk.StringVar
         combo_tipo_vacuna = ttk.Combobox(frame1, values=["Obligatoria", "No obligatoria"],
@@ -151,27 +151,27 @@ def vacunacion(hospital, frame):
         combo_tipo_vacuna.bind("<<ComboboxSelected>>", habilitar_elegir_vacuna)
         combo_tipo_vacuna.grid(row=0, column=1, padx=10, pady=10, sticky="w")
 
-        elegir_vacuna = tk.Label(frame1, text="Seleccione la vacuna de su preferencia:", bg="white")
+        elegir_vacuna = tk.Label(frame1, text="Seleccione la vacuna de su preferencia:", bg="white",font=("Helvetica", 10, "bold"))
         elegir_vacuna.grid(row=1, column=0, padx=10, pady=10, sticky="w")
         valor_defecto2 = tk.StringVar
         combo_elegir_vacuna = ttk.Combobox(frame1, textvariable=valor_defecto2, state="disabled")
         combo_elegir_vacuna.bind("<<ComboboxSelected>>", habilitar_elegir_cita)
         combo_elegir_vacuna.grid(row=1, column=1, padx=10, pady=10, sticky="w")
 
-        elegir_cita = tk.Label(frame1, text="Seleccione una fecha para su cita en enfermería:", bg="white")
+        elegir_cita = tk.Label(frame1, text="Seleccione una fecha para su cita en enfermería:", bg="white",font=("Helvetica", 10, "bold"))
         elegir_cita.grid(row=2, column=0, padx=10, pady=10, sticky="w")
         valor_defecto3 = tk.StringVar
         combo_elegir_cita = ttk.Combobox(frame1, textvariable=valor_defecto3, state="disabled")
         combo_elegir_cita.grid(row=2, column=1, padx=10, pady=10, sticky="w")
 
-        boton_aceptar = tk.Button(frame, text="Aceptar", command=confirmar_cita)
-        boton_aceptar.pack()
+        boton_aceptar = tk.Button(frame, text="Aceptar", command=confirmar_cita,font=("Helvetica", 10, "bold"))
+        boton_aceptar.pack(pady=5)
 
         # Se importa aca para evitar una referencia circular
         from src.ui_main.ventana_principal import implementacion_default
 
-        boton_regresar = tk.Button(frame, text="Regresar", command=lambda: implementacion_default(frame))
-        boton_regresar.pack()
+        boton_regresar = tk.Button(frame, text="Regresar", command=lambda: implementacion_default(frame),font=("Helvetica", 10, "bold"))
+        boton_regresar.pack(pady=5)
 
     def buscar_paciente():
         cedula = fp.getValue(1)
@@ -192,15 +192,15 @@ def vacunacion(hospital, frame):
 
     # Pide la cedula del paciente
 
-    titulo_ingreso_cedula = tk.Label(frame, text="Ingrese la cédula del paciente:", bg="white")
+    titulo_ingreso_cedula = tk.Label(frame, text="Ingrese la cédula del paciente:", bg="white",font=("Helvetica", 10, "bold"))
     titulo_ingreso_cedula.pack()
 
     criterios = ["Cédula"]
     fp = FieldFrame(frame,"", criterios, "", None, None)
     fp.pack()
 
-    boton_buscar_paciente = tk.Button(frame, text="Buscar", command=buscar_paciente)
-    boton_buscar_paciente.pack()
+    boton_buscar_paciente = tk.Button(frame, text="Buscar", command=buscar_paciente,font=("Helvetica", 10, "bold"))
+    boton_buscar_paciente.pack(pady=5)
 
 
     # Funcionalidad para regresar a la ventana principal
@@ -209,7 +209,7 @@ def vacunacion(hospital, frame):
     from src.ui_main.ventana_principal import implementacion_default
 
     boton_regresar = tk.Button(frame, text="Regresar",
-                               command=lambda: implementacion_default(frame))
-    boton_regresar.pack()
+                               command=lambda: implementacion_default(frame),font=("Helvetica", 10, "bold"))
+    boton_regresar.pack(pady=5)
 
 

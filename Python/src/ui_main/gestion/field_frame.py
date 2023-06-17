@@ -18,12 +18,12 @@ class FieldFrame(Frame):
         self.valores=[]
 
         #Etiquetas para los títulos de las columnas
-        Label(self, text=tituloCriterios,bg="white").grid(row=0, column=0)
-        Label(self, text=tituloValores,bg="white").grid(row=0, column=1)
+        Label(self, text=tituloCriterios,bg="white",font=("Helvetica", 10, "bold")).grid(row=0, column=0)
+        Label(self, text=tituloValores,bg="white",font=("Helvetica", 10, "bold")).grid(row=0, column=1)
 
         # Etiquetas y campos de entrada para cada criterio
         for i, criterio in enumerate(criterios, start=1):
-            Label(self, text=criterio,bg="white").grid(row=i, column=0, padx=5, pady=5, sticky="w")
+            Label(self, text=criterio,bg="white").grid(row=i, column=0, padx=20, pady=5, sticky="w")
             entry = Entry(self)
             entry.grid(row=i, column=1, padx=5, pady=5, sticky="w")
             #
