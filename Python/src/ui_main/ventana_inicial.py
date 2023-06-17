@@ -12,10 +12,10 @@ def ventana_inicial(hospital):
     def desarrollador4():
         global tk_foto1_nueva, tk_foto2_nueva, tk_foto3_nueva, tk_foto4_nueva
 
-        nombre.config(text="Puffin")
-        email.config(text="puffin@unal.edu.co")
-        github.config(text="github.com/puffindev")
-        carrera.config(text="Ciencias/Sistemas")
+        nombre.config(text="Santiago Arboleda Acevedo")
+        email.config(text="saarboledaa@unal.edu.co")
+        github.config(text="github.com/saarboledaa")
+        carrera.config(text="Ciencias de la Computacion")
 
         foto1_nueva = lista_fotos[desarrollador][0]
         foto2_nueva = lista_fotos[desarrollador][1]
