@@ -12,7 +12,7 @@ def imprimir_titulo(frame_implementacion):
 def ver_vacunas(hospital,frame_implementacion):
     imprimir_titulo(frame_implementacion)
 
-    titulo_ver_vacunas = tk.Label(frame_implementacion, text="Estas son todas las vacunas presentes en el hospital (Recuerda si es necesario, desplazarse hacia abajo)",
+    titulo_ver_vacunas = tk.Label(frame_implementacion, text="Estas son todas las vacunas presentes en el hospital (Recuerda, si es necesario, desplazarse hacia abajo)",
     bg="white",font=("Helvetica", 10, "bold"))
     titulo_ver_vacunas.pack(pady=10)
 
@@ -35,5 +35,12 @@ def ver_vacunas(hospital,frame_implementacion):
         # Insertar el texto de la vacuna en el widget Text
         vacunas_text.insert(tk.END, texto_vacuna)
 
-        vacunas_text.config(padx=30)
-        vacunas_text.config(highlightthickness=5, highlightbackground="blue")
+    vacunas_text.config(padx=30)
+    vacunas_text.config(highlightthickness=5, highlightbackground="blue")
+
+    from src.ui_main.ventana_principal import implementacion_default
+
+    boton_regresar = tk.Button(frame_implementacion, text="Regresar",
+                               command=lambda: implementacion_default(frame_implementacion),
+                               font=("Helvetica", 10, "bold"))
+    boton_regresar.pack(pady=20)
