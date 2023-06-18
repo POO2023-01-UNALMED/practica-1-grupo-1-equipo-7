@@ -71,7 +71,9 @@ def administrar_paciente(hospital, frame):
 
 
 
-    def habilitar_entrys(fp, paciente):
+    def habilitar_entrys(fp, paciente, boton, boton2):
+        boton2.destroy()
+        boton.destroy()
         fp.habilitarEntry(2, True)
         guardar_cambios = tk.Button(frame, text="Guardar", command=lambda: actualizar_paciente(fp, paciente))
         guardar_cambios.pack()
@@ -87,7 +89,7 @@ def administrar_paciente(hospital, frame):
                         [False, False, False, False])
         fp.pack()
 
-        boton_editar = tk.Button(frame, text="Editar", command=lambda: habilitar_entrys(fp, paciente))
+        boton_editar = tk.Button(frame, text="Editar", command=lambda: habilitar_entrys(fp, paciente, boton_editar, boton_borrar))
         boton_editar.pack(pady=10)
         boton_borrar = tk.Button(frame, text="Borrar", command=lambda: borrar(paciente))
         boton_borrar.pack(pady=10)

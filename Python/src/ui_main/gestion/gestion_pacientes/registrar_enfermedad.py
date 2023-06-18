@@ -71,12 +71,12 @@ def registrar_enfermedad(hospital, frame):
 
     def registrar_enf(paciente):
         imprimir_titulo(frame)
-        label_enfs = tk.Label(frame, text="Enfermedades actuales", bg="white", font=("Helvetica", 12))
+        label_enfs = tk.Label(frame, text="Enfermedades actuales", bg="white", font=("Helvetica", 12, "bold"))
         label_enfs.pack(pady=10)
         frame_enfermedades = tk.Frame(frame, bg="white")
         frame_enfermedades.pack()
         for enf in paciente.historia_clinica.enfermedades:
-            enf_label = tk.Label(frame_enfermedades, text=enf, font=("Helvetica", 12), bg="white")
+            enf_label = tk.Label(frame_enfermedades, text=enf, font=("Helvetica", 10), bg="white")
             enf_label.pack()
         label_opcion = tk.Label(frame, text="Elija que enfermedad registrar", font=("Helvetica", 12, "bold"), bg="white")
         label_opcion.pack()

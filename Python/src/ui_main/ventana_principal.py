@@ -4,7 +4,8 @@ from src.ui_main.funcionalidades import agendar_citas, formula_medica, asignar_h
 from src.ui_main.gestion.gestion_doctores import agregar_doctor, ver_doctor, eliminar_doctor, agregar_cita
 from src.ui_main.gestion.gestion_pacientes import registrar_paciente, administrar_paciente, registrar_enfermedad
 from src.ui_main.gestion.gestion_vacunas import registrar_vacuna, ver_vacuna,eliminar_vacuna
-from src.ui_main.gestion.gestion_hospital import ver_vacunas,ver_pacientes,ver_doctores
+from src.ui_main.gestion.gestion_hospital import ver_vacunas, ver_pacientes, ver_doctores, agregar_medicamento, \
+    ver_medicamentos
 
 
 def cambiar_contenido(opcion, hospital, frame_implementacion):
@@ -23,6 +24,8 @@ def cambiar_contenido(opcion, hospital, frame_implementacion):
         "ver_vacunas": ver_vacunas.ver_vacunas,
         "ver_pacientes": ver_pacientes.ver_pacientes,
         "ver_doctores" : ver_doctores.ver_doctores,
+        "agregar-medicamento":agregar_medicamento.agregar_medicamento,
+        "ver-medicamentos": ver_medicamentos.ver_medicamentos,
         #Gestion vacunas
         "registrar_vacuna": registrar_vacuna.registrar_vacuna,
         "ver_vacuna": ver_vacuna.ver_vacuna,
@@ -93,6 +96,9 @@ def ventana_principal(hospital):
     opcion_gestion_hospital.add_command(label="Vacunas del hospital",command=lambda: cambiar_contenido("ver_vacunas", hospital,frame_implementacion))
     opcion_gestion_hospital.add_command(label="Pacientes del hospital",command=lambda: cambiar_contenido("ver_pacientes", hospital,frame_implementacion))
     opcion_gestion_hospital.add_command(label="Doctores del hospital",command=lambda: cambiar_contenido("ver_doctores", hospital,frame_implementacion))
+    opcion_gestion_hospital.add_command(label="Agregar medicamento",command=lambda: cambiar_contenido("agregar-medicamento", hospital,frame_implementacion))
+    opcion_gestion_hospital.add_command(label="Ver medicamentos",command=lambda: cambiar_contenido("ver-medicamentos", hospital,frame_implementacion))
+
     #Gestion vacunas con un submenú
     opcion_gestion_vacuna= tk.Menu(opcion_funcionalidades, tearoff=0)
     opcion_funcionalidades.add_cascade(label="Gestión vacunas", menu=opcion_gestion_vacuna)

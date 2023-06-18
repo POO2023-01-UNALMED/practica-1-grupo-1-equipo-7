@@ -101,7 +101,8 @@ def formula_medica(hospital, frame):
         label_meds_seleccionados.pack()
         formula.lista_meds = medicamentos_seleccionados
         for med in medicamentos_seleccionados:
-            label_med = tk.Label(frame_meds_seleccionados, text=med, bg="white")
+            string_info = med.mostrar_info()
+            label_med = tk.Label(frame_meds_seleccionados, text=string_info, bg="white")
             label_med.pack()
         boton_generar_formula = tk.Button(frame_meds_seleccionados, text="Generar Formula",
                                           command=lambda: generar_formula(paciente, formula))
@@ -126,7 +127,7 @@ def formula_medica(hospital, frame):
         label = tk.Label(frame_formulas, text="Historial de formulas", bg="white", font=("Helvetica", 10, "bold"))
         label.pack(fill="both")
         for formula in paciente.historia_clinica.lista_formulas:
-            formula_label = tk.Label(frame_formulas, text=formula)
+            formula_label = tk.Label(frame_formulas, text=formula.descripcion_servicio())
             formula_label.pack(fill="both", expand=True)
         # Se importa aca para evitar una referencia circular
         from src.ui_main.ventana_principal import implementacion_default

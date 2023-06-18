@@ -9,8 +9,11 @@ class Medicamento:
     def eliminar_cantidad(self):
         self._cantidad -= 1
 
-    def __str__(self):
+    def mostrar_info(self):
         return f"Nombre: {self._nombre} | Trata la enfermedad: {self.enfermedad} | Descripcion: {self._descripcion} | Precio: {self._precio}"
+
+    def __str__(self):
+        return f"Nombre: {self._nombre} | Trata la enfermedad: {self.enfermedad} | Descripcion: {self._descripcion} | Precio: {self._precio} | Cantidad: {self._cantidad}"
 
     @property
     def enfermedad(self):
