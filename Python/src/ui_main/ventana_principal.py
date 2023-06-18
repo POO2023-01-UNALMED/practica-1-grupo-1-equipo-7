@@ -87,7 +87,7 @@ def ventana_principal(hospital):
     opcion_funcionalidades.add_cascade(label="Gestión vacunas", menu=opcion_gestion_vacuna)
     opcion_gestion_vacuna.add_command(label="Registrar Vacuna",command=lambda: cambiar_contenido("registrar_vacuna", hospital, frame_implementacion))
     opcion_gestion_vacuna.add_command(label="Ver vacuna",command=lambda: cambiar_contenido("ver_vacuna", hospital, frame_implementacion))
-    opcion_gestion_vacuna.add_command(label="Eliminar vacuna",command=lambda: cambiar_contenido("registrar_vacuna", hospital,frame_implementacion))
+    opcion_gestion_vacuna.add_command(label="Eliminar vacuna",command=lambda: cambiar_contenido("eliminar_vacuna", hospital,frame_implementacion))
     #Gestión doctores con un submenú
     opcion_gestion_doctores = tk.Menu(opcion_funcionalidades, tearoff=0)
     opcion_funcionalidades.add_cascade(label="Gestión doctores", menu=opcion_gestion_doctores)

@@ -26,12 +26,10 @@ def ver_vacuna(hospital,frame_implementacion):
 
         fp.pack()
 
-        print(vacuna.nombre)
-
         from src.ui_main.ventana_principal import implementacion_default
 
         boton_regresar = tk.Button(frame_implementacion, text="Regresar",
-                                   command=lambda: implementacion_default(frame_implementacion))
+                                   command=lambda: implementacion_default(frame_implementacion),font=("Helvetica", 10, "bold"))
         boton_regresar.pack(pady=20)
 
 
@@ -64,5 +62,5 @@ def ver_vacuna(hospital,frame_implementacion):
     from src.ui_main.ventana_principal import implementacion_default
 
     boton_regresar = tk.Button(frame_implementacion, text="Regresar",
-                               command=lambda: implementacion_default(frame_implementacion))
+                               command=lambda: implementacion_default(frame_implementacion),font=("Helvetica", 10, "bold"))
     boton_regresar.pack(pady=20)

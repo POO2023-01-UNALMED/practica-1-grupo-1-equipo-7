@@ -1,6 +1,4 @@
 from tkinter import messagebox
-
-from src.gestor_aplicacion.personas.doctor import Doctor
 from src.ui_main.gestion.field_frame import FieldFrame
 import tkinter as tk
 
@@ -30,7 +28,7 @@ def eliminar_doctor(hospital, frame):
 
     def elementos_doctor(doctor):
         imprimir_titulo(frame)
-        info_doctor = tk.Label(frame, text=f"Informacion del doctor", bg="white", font=("Helvetica", 12))
+        info_doctor = tk.Label(frame, text=f"Información del doctor", bg="white", font=("Helvetica", 12))
         info_doctor.pack(pady=10)
 
         criterios = ["Cedula", "Nombre","Tipo de eps","Especialidad"]

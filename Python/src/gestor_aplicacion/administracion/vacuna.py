@@ -8,10 +8,10 @@ class Vacuna:
         self._precio = precio
         self._tipo_eps = tipo_eps
         self._agenda = [
-            CitaVacuna("3 de Abril, 8:00 am", None, self),
-            CitaVacuna("3 de Abril, 11:00 am", None, self),
-            CitaVacuna("4 de Abril, 3:00 pm", None, self),
-            CitaVacuna("5 de Abril, 10:00 am", None, self)
+            CitaVacuna("9 de Enero, 8:00 am", None, self),
+            CitaVacuna("25 de Junio, 10:00 am", None, self),
+            CitaVacuna("31 de Diciembre, 3:00 pm", None, self),
+            CitaVacuna("24 de Diciembre, 6:00 am", None, self)
         ]
 
     def mostrar_agenda_disponible(self):
