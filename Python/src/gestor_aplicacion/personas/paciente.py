@@ -15,8 +15,16 @@ class Paciente(Persona):
 
     def calcular_precio(self, servicio):
         if isinstance(servicio, Formula):
-            # Implementacion
-            pass
+            IVA = 1.19
+            precio_total = 0
+            for med in servicio.lista_meds:
+                if self._tipo_eps == "Subsidiado":
+                    precio_total += med.precio * 1.3
+                if self._tipo_eps == "Contributivo":
+                    precio_total += med.precio * 1.2
+                if self._tipo_eps == "Particular":
+                    precio_total += med.precio
+            return precio_total * IVA
         elif isinstance(servicio, CitaVacuna):
             IVA = 0.19
             precio_total = servicio.vacuna.precio
