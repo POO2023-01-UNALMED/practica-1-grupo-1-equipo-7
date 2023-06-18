@@ -1,9 +1,6 @@
-from tkinter import messagebox
-
-from src.gestor_aplicacion.servicios.cita import Cita
+from tkinter import messagebox, ttk
 from src.ui_main.gestion.field_frame import FieldFrame
 import tkinter as tk
-
 
 def imprimir_titulo(frame):
     # Limpia el frame
@@ -11,14 +8,15 @@ def imprimir_titulo(frame):
         item.destroy()
 
     # Imprime el titulo
-    titulo = tk.Label(frame, text="Agregar cita", bg="white", font=("Helvetica", 16, "bold"))
+    titulo = tk.Label(frame, text="Eliminar cita", bg="white", font=("Helvetica", 16, "bold"))
     titulo.pack(pady=20)
 
-def agregar_cita(hospital, frame):
+def eliminar_cita(hospital, frame):
     def ver_citas_doctor(doctor):
         imprimir_titulo(frame)
 
-        info_doctor = tk.Label(frame, text=f"Citas en la agenda de {doctor.nombre} - CC: {doctor.cedula}", bg="white", font=("Helvetica", 12))
+        info_doctor = tk.Label(frame, text=f"Citas en la agenda de {doctor.nombre} - CC: {doctor.cedula}", bg="white",
+                               font=("Helvetica", 12))
         info_doctor.pack(pady=10)
 
         frame_citas = tk.Frame(frame)
@@ -68,46 +66,55 @@ def agregar_cita(hospital, frame):
         boton_regresar = tk.Button(inner_frame, text="Regresar", command=lambda: implementacion_default(frame))
         boton_regresar.pack()
 
-    def agregar_fecha_cita(doctor):
-        def confirmar_cita():
-            respuesta = tk.messagebox.askyesno("Confirmar cita", "¿Estas seguro de agregar esta cita?")
-            if respuesta:
-                fecha = str(fp2.getValue(1))
+    def busqueda_cita(doctor):
+        def lista_citas():
+            lista_citas = []
+            for cita in doctor.agenda:
+                lista_citas.append(cita.fecha)
+            return lista_citas
 
-                cita = Cita(None, doctor, fecha)
-                doctor.agenda.append(cita)
-                messagebox.showinfo("Cita agregada", "La cita se ha agregado exitosamente")
-                ver_citas_doctor(doctor)
-            else:
-                messagebox.showinfo("Cita cancelada", "La cita no ha sido agregada")
-                # Se importa aca para evitar una referencia circular
-                from src.ui_main.ventana_principal import implementacion_default
-                implementacion_default(frame)
+        def eliminacion_cita(doctor,fecha):
+            imprimir_titulo(frame)
+
+            for cita in doctor.agenda:
+                if cita.fecha == fecha:
+                    respuesta = tk.messagebox.askyesno("Confirmar eliminacion", "¿Estas seguro de eliminar esta cita?")
+                    if respuesta:
+                        doctor.agenda.remove(cita)
+                        messagebox.showinfo("Cita eliminada", "La cita se ha eliminado exitosamente")
+                        ver_citas_doctor(doctor)
+                    else:
+                        messagebox.showinfo("Eliminacion cancelada", "La cita no ha sido eliminada")
+                        # Se importa aca para evitar una referencia circular
+                        from src.ui_main.ventana_principal import implementacion_default
+                        implementacion_default(frame)
 
         imprimir_titulo(frame)
 
-        info_doctor = tk.Label(frame, text=f"{doctor.nombre} - CC: {doctor.cedula}", bg="white",font=("Helvetica", 12))
-        info_doctor.pack(pady=10)
+        titulo_ingreso_fecha = tk.Label(frame, text="Ingrese la fecha de la que se eliminara:",bg="white", font=("Helvetica", 10, "bold"))
+        titulo_ingreso_fecha.pack()
 
-        criterios = ["Fecha de la cita"]
-        fp2 = FieldFrame(frame, "", criterios, "", None, None)
-        fp2.pack()
+        valor_defecto = tk.StringVar
+        combo_elegir_cita = ttk.Combobox(frame, values= lista_citas(), textvariable=valor_defecto, state="readonly")
+        combo_elegir_cita.pack(pady=5)
 
-        boton_guardar = tk.Button(frame, text="Guardar", command=lambda: confirmar_cita())
-        boton_guardar.pack(pady=5)
+        fecha = combo_elegir_cita.get()
+        print(fecha)
+
+        boton_eliminar_cita = tk.Button(frame, text="Eliminar", command=lambda: eliminacion_cita(doctor,fecha))
+        boton_eliminar_cita.pack(pady=5)
 
         from src.ui_main.ventana_principal import implementacion_default
 
         boton_regresar = tk.Button(frame, text="Regresar", command=lambda: implementacion_default(frame))
         boton_regresar.pack()
 
-
     def busqueda_doctor():
         cedula= fp1.getValue(1)
         doctor= hospital.buscar_doctor(int(cedula))
 
         if doctor is not None:
-            agregar_fecha_cita(doctor)
+            busqueda_cita(doctor)
         else:
             respuesta = tk.messagebox.askyesno("Error", "No existe un doctor registrado con esa cedula. " "¿Desea intentar de nuevo?")
             if not respuesta:
@@ -117,7 +124,7 @@ def agregar_cita(hospital, frame):
 
     imprimir_titulo(frame)
 
-    titulo_ingreso_cedula = tk.Label(frame, text="Ingrese la cedula del doctor al que se le agregara la cita:", bg="white",font=("Helvetica", 10, "bold"))
+    titulo_ingreso_cedula = tk.Label(frame, text="Ingrese la cedula del doctor al que se le eliminara una cita:", bg="white",font=("Helvetica", 10, "bold"))
     titulo_ingreso_cedula.pack()
 
     criterios = ["Cedula"]
