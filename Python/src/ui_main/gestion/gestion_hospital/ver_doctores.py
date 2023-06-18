@@ -36,7 +36,7 @@ def ver_doctores(hospital,frame_implementacion):
         doctores_text.insert(tk.END, texto_doctor)
 
     doctores_text.config(padx=30)
-    doctores_text.config(highlightthickness=5, highlightbackground="blue")
+    doctores_text.config(highlightthickness=5, highlightbackground="#4D5BE4")
     doctores_text.config(state="disabled")
 
     from src.ui_main.ventana_principal import implementacion_default
