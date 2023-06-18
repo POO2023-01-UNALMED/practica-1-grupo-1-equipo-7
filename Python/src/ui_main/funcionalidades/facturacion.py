@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 
 from src.gestor_aplicacion.servicios.servicio import Servicio
+from src.ui_main.gestion.field_frame import FieldFrame
 
 
 def imprimir_titulo(frame):
@@ -132,7 +133,7 @@ def facturacion(hospital, frame):
         boton_regresar.pack()
 
     def buscar_paciente():
-        cedula = ingreso_cedula.get()
+        cedula = ingreso_cedula.getValue(1)
         paciente = hospital.buscar_paciente(int(cedula))
 
         # Continua si el paciente esta registrado en el hospital
@@ -153,7 +154,8 @@ def facturacion(hospital, frame):
                                     font=("Helvetica", 10, "bold"))
     label_ingreso_cedula.pack()
 
-    ingreso_cedula = tk.Entry(frame)
+    criterios = ["Cédula:"]
+    ingreso_cedula = FieldFrame(frame, "", criterios, "", None, None)
     ingreso_cedula.pack()
 
     boton_buscar_paciente = tk.Button(frame, text="Buscar", command=buscar_paciente)

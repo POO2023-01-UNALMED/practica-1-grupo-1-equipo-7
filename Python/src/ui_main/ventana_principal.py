@@ -20,22 +20,22 @@ def cambiar_contenido(opcion, hospital, frame_implementacion):
         "habitacion": asignar_habitacion.asignar_habitacion,
         "vacuna": vacunacion.vacunacion,
         "pago": facturacion.facturacion,
-        #Gestion hospital
+        # Gestion hospital
         "ver_vacunas": ver_vacunas.ver_vacunas,
         "ver_pacientes": ver_pacientes.ver_pacientes,
         "ver_doctores" : ver_doctores.ver_doctores,
         "agregar-medicamento":agregar_medicamento.agregar_medicamento,
         "ver-medicamentos": ver_medicamentos.ver_medicamentos,
-        #Gestion vacunas
+        # Gestion vacunas
         "registrar_vacuna": registrar_vacuna.registrar_vacuna,
         "ver_vacuna": ver_vacuna.ver_vacuna,
         "eliminar_vacuna": eliminar_vacuna.eliminar_vacuna,
-        #Gestion Doctores
+        # Gestion Doctores
         "agregar_doctor": agregar_doctor.agregar_doctor,
         "ver_doctor": ver_doctor.ver_doctor,
         "eliminar_doctor": eliminar_doctor.eliminar_doctor,
         "agregar_cita": agregar_cita.agregar_cita,
-        #Gestion pacientes
+        # Gestion pacientes
         "registrar-paciente": registrar_paciente.registrar_paciente,
         "administrar-paciente": administrar_paciente.administrar_paciente,
         "registrar-enfermedad": registrar_enfermedad.registrar_enfermedad,
@@ -59,7 +59,7 @@ def implementacion_default(frame_implementacion):
 
 def ventana_principal(hospital):
     ventana = tk.Tk()
-    ventana.title("MedPlus")
+    ventana.title("MedPlus - Sistema de gestion hospitalaria")
     ventana.geometry("1280x720")
     # ventana.protocol("WM_DELETE_WINDOW", hospital.serializar())
 

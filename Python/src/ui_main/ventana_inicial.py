@@ -12,10 +12,10 @@ def ventana_inicial(hospital):
     def desarrollador4():
         global tk_foto1_nueva, tk_foto2_nueva, tk_foto3_nueva, tk_foto4_nueva
 
-        nombre.config(text="Santiago Arboleda Acevedo",font=("Helvetica", 12))
-        email.config(text="saarboledaa@unal.edu.co",font=("Helvetica", 12))
-        github.config(text="github.com/saarboledaa",font=("Helvetica", 12))
-        carrera.config(text="Ciencias de la Computacion",font=("Helvetica", 12))
+        nombre.config(text="Santiago Arboleda Acevedo", font=("Helvetica", 12))
+        email.config(text="saarboledaa@unal.edu.co", font=("Helvetica", 12))
+        github.config(text="github.com/saarboledaa", font=("Helvetica", 12))
+        carrera.config(text="Ciencias de la Computacion", font=("Helvetica", 12))
 
         foto1_nueva = lista_fotos[desarrollador][0]
         foto2_nueva = lista_fotos[desarrollador][1]
@@ -33,10 +33,10 @@ def ventana_inicial(hospital):
     def desarrollador3():
         global tk_foto1_nueva, tk_foto2_nueva, tk_foto3_nueva, tk_foto4_nueva
 
-        nombre.config(text="Marmota",font=("Helvetica", 12))
-        email.config(text="marmota@unal.edu.co",font=("Helvetica", 12))
-        github.config(text="github.com/marmotadev",font=("Helvetica", 12))
-        carrera.config(text="Ciencias/Sistemas",font=("Helvetica", 12))
+        nombre.config(text="Marmota", font=("Helvetica", 12))
+        email.config(text="marmota@unal.edu.co", font=("Helvetica", 12))
+        github.config(text="github.com/marmotadev", font=("Helvetica", 12))
+        carrera.config(text="Ciencias/Sistemas", font=("Helvetica", 12))
 
         foto1_nueva = lista_fotos[desarrollador][0]
         foto2_nueva = lista_fotos[desarrollador][1]
@@ -54,10 +54,10 @@ def ventana_inicial(hospital):
     def desarrollador2():
         global tk_foto1_nueva, tk_foto2_nueva, tk_foto3_nueva, tk_foto4_nueva
 
-        nombre.config(text="Diego Andres Gracia Granados",font=("Helvetica", 12))
-        email.config(text="dgraciag@unal.edu.co",font=("Helvetica", 12))
-        github.config(text="github.com/DiegoGG512",font=("Helvetica", 12))
-        carrera.config(text="Ingeniería de Sistemas e Informática",font=("Helvetica", 12))
+        nombre.config(text="Diego Andres Gracia Granados", font=("Helvetica", 12))
+        email.config(text="dgraciag@unal.edu.co", font=("Helvetica", 12))
+        github.config(text="github.com/DiegoGG512", font=("Helvetica", 12))
+        carrera.config(text="Ingeniería de Sistemas e Informática", font=("Helvetica", 12))
 
         foto1_nueva = lista_fotos[desarrollador][0]
         foto2_nueva = lista_fotos[desarrollador][1]
@@ -75,10 +75,10 @@ def ventana_inicial(hospital):
     def desarrollador1():
         global tk_foto1_nueva, tk_foto2_nueva, tk_foto3_nueva, tk_foto4_nueva
 
-        nombre.config(text="Daniel Giraldo Vanegas",font=("Helvetica", 12))
-        email.config(text="dangiraldova@unal.edu.co",font=("Helvetica", 12))
-        github.config(text="github.com/dangv31",font=("Helvetica", 12))
-        carrera.config(text="Ingenieria de Sistemas e Informática",font=("Helvetica", 12))
+        nombre.config(text="Daniel Giraldo Vanegas", font=("Helvetica", 12))
+        email.config(text="dangiraldova@unal.edu.co", font=("Helvetica", 12))
+        github.config(text="github.com/dangv31", font=("Helvetica", 12))
+        carrera.config(text="Ingenieria de Sistemas e Informática", font=("Helvetica", 12))
 
         foto1_nueva = lista_fotos[desarrollador][0]
         foto2_nueva = lista_fotos[desarrollador][1]
@@ -96,10 +96,10 @@ def ventana_inicial(hospital):
     def desarrollador0():
         global tk_foto1_nueva, tk_foto2_nueva, tk_foto3_nueva, tk_foto4_nueva
 
-        nombre.config(text="Juan Camilo Gutiérrez Martínez",font=("Helvetica", 12))
-        email.config(text="juagutierrezma@unal.edu.co",font=("Helvetica", 12))
-        github.config(text="github.com/Camilog2004",font=("Helvetica", 12))
-        carrera.config(text="Ingeniería de Sistemas e Informática",font=("Helvetica", 12))
+        nombre.config(text="Juan Camilo Gutiérrez Martínez", font=("Helvetica", 12))
+        email.config(text="juagutierrezma@unal.edu.co", font=("Helvetica", 12))
+        github.config(text="github.com/Camilog2004", font=("Helvetica", 12))
+        carrera.config(text="Ingeniería de Sistemas e Informática", font=("Helvetica", 12))
 
         foto1_nueva = lista_fotos[desarrollador][0]
         foto2_nueva = lista_fotos[desarrollador][1]
@@ -202,7 +202,8 @@ def ventana_inicial(hospital):
 
     ventana = tk.Tk()
     ventana.title("MedPlus - Sistema de gestion hospitalaria")
-    # ventana.geometry("1280x720")
+    ventana.geometry("1280x720")
+    # ventana.protocol("WM_DELETE_WINDOW", hospital.serializar())
 
     # Frames principales
     frame_p1 = ttk.Frame(ventana)
@@ -210,8 +211,7 @@ def ventana_inicial(hospital):
 
     # Mensaje de bienvenida
     frame_p3 = ttk.Frame(frame_p1)
-    bienvenida = ttk.Label(frame_p3, text="Bienvenido a MedPlus", anchor="center",font=("Helvetica", 14, "bold"))
-
+    bienvenida = ttk.Label(frame_p3, text="Bienvenido a MedPlus", anchor="center", font=("Helvetica", 14, "bold"))
 
     # Imagenes de la aplicacion
     frame_p4 = ttk.Frame(frame_p1)
@@ -227,28 +227,22 @@ def ventana_inicial(hospital):
     # Boton para continuar
     p4_continuar = ttk.Frame(frame_p4)
     style = ttk.Style()
-    style.configure("My.TButton.TButton", foreground="black", background="#4D5BE4",font=("Helvetica", 10, "bold"))
+    style.configure("My.TButton.TButton", foreground="black", background="#4D5BE4", font=("Helvetica", 10, "bold"))
 
-    continuar = ttk.Button(p4_continuar, text="Ingresar a la aplicación",style="My.TButton.TButton",
+    continuar = ttk.Button(p4_continuar, text="Ingresar a la aplicación", style="My.TButton.TButton",
                            command=lambda: [ventana.destroy(), ventana_principal(hospital)])
-
-
-
 
     # Hoja de vida desarrolladores
     frame_p5 = ttk.Frame(frame_p2)
     nombre = ttk.Label(frame_p5, anchor="center")
-    separator1 = ttk.Separator(nombre, orient="horizontal")
     email = ttk.Label(frame_p5, anchor="center")
     github = ttk.Label(frame_p5, anchor="center")
     carrera = ttk.Label(frame_p5, anchor="center")
 
-
-
-    nombre.config(text="Juan Camilo Gutiérrez Martínez",font=("Helvetica", 12))
-    email.config(text="juagutierrezma@unal.edu.co",font=("Helvetica", 12))
-    github.config(text="github.com/Camilog2004",font=("Helvetica", 12))
-    carrera.config(text="Ingeniería de Sistemas e Informática",font=("Helvetica", 12))
+    nombre.config(text="Juan Camilo Gutiérrez Martínez", font=("Helvetica", 12))
+    email.config(text="juagutierrezma@unal.edu.co", font=("Helvetica", 12))
+    github.config(text="github.com/Camilog2004", font=("Helvetica", 12))
+    carrera.config(text="Ingeniería de Sistemas e Informática", font=("Helvetica", 12))
 
     # Fotos desarrolladores
     frame_p6 = ttk.Frame(frame_p2)
