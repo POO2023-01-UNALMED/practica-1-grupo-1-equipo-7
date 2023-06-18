@@ -252,10 +252,10 @@ def ventana_inicial(hospital):
 
     # Fotos desarrolladores
     frame_p6 = ttk.Frame(frame_p2)
-    lista_fotos = [[Image.open("imagenes/desarrolladores/alpaca/foto1.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/alpaca/foto2.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/alpaca/foto3.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/alpaca/foto4.jpg").resize((1000, 1000))],
+    lista_fotos = [[Image.open("imagenes/desarrolladores/camilo/foto1.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/camilo/foto2.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/camilo/foto3.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/camilo/foto4.jpg").resize((1000, 1000))],
 
                    [Image.open("imagenes/desarrolladores/loro/foto1.jpg").resize((1000, 1000)),
                     Image.open("imagenes/desarrolladores/loro/foto2.jpg").resize((1000, 1000)),
