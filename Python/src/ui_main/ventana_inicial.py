@@ -54,10 +54,10 @@ def ventana_inicial(hospital):
     def desarrollador2():
         global tk_foto1_nueva, tk_foto2_nueva, tk_foto3_nueva, tk_foto4_nueva
 
-        nombre.config(text="Mapache",font=("Helvetica", 12))
-        email.config(text="mapache@unal.edu.co",font=("Helvetica", 12))
-        github.config(text="github.com/mapachedev",font=("Helvetica", 12))
-        carrera.config(text="Ciencias/Sistemas",font=("Helvetica", 12))
+        nombre.config(text="Diego Andres Gracia Granados",font=("Helvetica", 12))
+        email.config(text="dgraciag@unal.edu.co",font=("Helvetica", 12))
+        github.config(text="github.com/DiegoGG512",font=("Helvetica", 12))
+        carrera.config(text="Ingeniería de Sistemas e Informática",font=("Helvetica", 12))
 
         foto1_nueva = lista_fotos[desarrollador][0]
         foto2_nueva = lista_fotos[desarrollador][1]
@@ -262,10 +262,10 @@ def ventana_inicial(hospital):
                     Image.open("imagenes/desarrolladores/daniel/foto3.jpg").resize((1000, 1000)),
                     Image.open("imagenes/desarrolladores/daniel/foto4.jpg").resize((1000, 1000))],
 
-                   [Image.open("imagenes/desarrolladores/mapache/foto1.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/mapache/foto2.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/mapache/foto3.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/mapache/foto4.jpg").resize((1000, 1000))],
+                   [Image.open("imagenes/desarrolladores/diego/foto1.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/diego/foto2.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/diego/foto3.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/diego/foto4.jpg").resize((1000, 1000))],
 
                    [Image.open("imagenes/desarrolladores/marmota/foto1.jpg").resize((1000, 1000)),
                     Image.open("imagenes/desarrolladores/marmota/foto2.jpg").resize((1000, 1000)),
