@@ -8,7 +8,7 @@ class CitaVacuna(Cita):
         self._vacuna = vacuna
 
     def descripcion_servicio(self):
-        return f"{self._id_servicio} - Vacuna <vacuna> (<fecha>))"
+        return f"{self._id_servicio} - Vacuna ({self.vacuna.nombre})"
 
     def validar_pago(self, paciente, id_servicio):
         for cita_vacuna in paciente.historia_clinica.historial_vacunas:
