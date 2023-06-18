@@ -47,10 +47,7 @@ class Enfermedad:
     def especialidad(self, value):
         self._especialidad = value
 
-    @property
-    def enfermedades_registradas(self):
-        return self._enfermedades_registradas
+    @classmethod
+    def getEnfermedadesRegistradas(cls):
+        return cls._enfermedades_registradas
 
-    @enfermedades_registradas.setter
-    def enfermedades_registradas(self, lista):
-        self._enfermedades_registradas = lista

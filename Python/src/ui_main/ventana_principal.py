@@ -2,7 +2,7 @@ import tkinter as tk
 from src.ui_main.funcionalidades import agendar_citas, formula_medica, asignar_habitacion, vacunacion, \
     facturacion
 from src.ui_main.gestion.gestion_doctores import agregar_doctor, ver_doctor, eliminar_doctor, agregar_cita
-from src.ui_main.gestion.gestion_pacientes import registrar_paciente, administrar_paciente
+from src.ui_main.gestion.gestion_pacientes import registrar_paciente, administrar_paciente, registrar_enfermedad
 from src.ui_main.gestion.gestion_vacunas import registrar_vacuna, ver_vacuna,eliminar_vacuna
 from src.ui_main.gestion.gestion_hospital import ver_vacunas,ver_pacientes,ver_doctores
 
@@ -35,6 +35,8 @@ def cambiar_contenido(opcion, hospital, frame_implementacion):
         #Gestion pacientes
         "registrar-paciente": registrar_paciente.registrar_paciente,
         "administrar-paciente": administrar_paciente.administrar_paciente,
+        "registrar-enfermedad": registrar_enfermedad.registrar_enfermedad,
+
     }
 
     if opcion in opciones:
@@ -109,6 +111,8 @@ def ventana_principal(hospital):
     opcion_funcionalidades.add_cascade(label="Gestión pacientes", menu=opcion_gestion_pacientes)
     opcion_gestion_pacientes.add_command(label="Registrar paciente",command=lambda: cambiar_contenido("registrar-paciente", hospital, frame_implementacion))
     opcion_gestion_pacientes.add_command(label="Administrar paciente",command=lambda: cambiar_contenido("administrar-paciente", hospital, frame_implementacion))
+    opcion_gestion_pacientes.add_command(label="Registrar enfermedad",command=lambda: cambiar_contenido("registrar-enfermedad", hospital, frame_implementacion))
+
 
 
 

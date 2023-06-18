@@ -75,7 +75,7 @@ def administrar_paciente(hospital, frame):
         fp.habilitarEntry(2, True)
         guardar_cambios = tk.Button(frame, text="Guardar", command=lambda: actualizar_paciente(fp, paciente))
         guardar_cambios.pack()
-    def administrar_paciente(paciente):
+    def administracion_paciente(paciente):
         imprimir_titulo(frame)
         info_doctor = tk.Label(frame, text=f"Informacion del paciente", bg="white", font=("Helvetica", 12))
         info_doctor.pack(pady=10)
@@ -99,7 +99,7 @@ def administrar_paciente(hospital, frame):
 
         # Continua si el paciente esta registrado en el hospital
         if paciente is not None:
-            administrar_paciente(paciente)
+            administracion_paciente(paciente)
         else:
             respuesta = tk.messagebox.askyesno("Error", "No existe un paciente registrado con esta cedula. "
                                                         "¿Desea intentar de nuevo?")
