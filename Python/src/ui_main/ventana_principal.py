@@ -1,8 +1,7 @@
 import tkinter as tk
 from src.ui_main.funcionalidades import agendar_citas, formula_medica, asignar_habitacion, vacunacion, \
     facturacion
-from src.ui_main.gestion.gestion_doctores import agregar_doctor, ver_doctor, eliminar_doctor, agregar_cita, \
-    eliminar_cita
+from src.ui_main.gestion.gestion_doctores import agregar_doctor, ver_doctor, eliminar_doctor, agregar_cita
 from src.ui_main.gestion.gestion_vacunas import registrar_vacuna, ver_vacuna,eliminar_vacuna
 from src.ui_main.gestion.gestion_hospital import ver_vacunas
 
@@ -30,7 +29,6 @@ def cambiar_contenido(opcion, hospital, frame_implementacion):
         "ver_doctor": ver_doctor.ver_doctor,
         "eliminar_doctor": eliminar_doctor.eliminar_doctor,
         "agregar_cita": agregar_cita.agregar_cita,
-        "eliminar_cita": eliminar_cita.eliminar_cita,
     }
 
     if opcion in opciones:
@@ -98,7 +96,6 @@ def ventana_principal(hospital):
     opcion_gestion_doctores.add_command(label="Ver doctor",command=lambda: cambiar_contenido("ver_doctor", hospital, frame_implementacion))
     opcion_gestion_doctores.add_command(label="Eliminar doctor",command=lambda: cambiar_contenido("eliminar_doctor", hospital, frame_implementacion))
     opcion_gestion_doctores.add_command(label="Agregar cita",command=lambda: cambiar_contenido("agregar_cita", hospital, frame_implementacion))
-    opcion_gestion_doctores.add_command(label="Eliminar cita",command=lambda: cambiar_contenido("eliminar_cita", hospital, frame_implementacion))
 
 
     opcion_ayuda = tk.Menu(barra_menu, tearoff=0)
