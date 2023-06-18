@@ -36,7 +36,8 @@ def ver_vacunas(hospital,frame_implementacion):
         vacunas_text.insert(tk.END, texto_vacuna)
 
     vacunas_text.config(padx=30)
-    vacunas_text.config(highlightthickness=5, highlightbackground="blue")
+    vacunas_text.config(highlightthickness=5, highlightcolor="blue")
+    vacunas_text.config(state="disabled")
 
     from src.ui_main.ventana_principal import implementacion_default
 

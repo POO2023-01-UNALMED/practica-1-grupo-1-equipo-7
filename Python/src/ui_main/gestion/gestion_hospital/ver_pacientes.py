@@ -32,6 +32,7 @@ def ver_pacientes(hospital,frame_implementacion):
 
     pacientes_text.config(padx=30)
     pacientes_text.config(highlightthickness=5, highlightbackground="blue")
+    pacientes_text.config(state="disabled")
 
     from src.ui_main.ventana_principal import implementacion_default
 
