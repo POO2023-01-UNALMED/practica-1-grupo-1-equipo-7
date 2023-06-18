@@ -38,5 +38,11 @@ class FieldFrame(Frame):
             #Se guarda la referencia de ese entry
             self.valores.append(entry)
 
+    def habilitarEntry(self, indice, habilitar):
+        if habilitar:
+            return self.valores[indice - 1].config(state="normal")
+        else:
+            return self.valores[indice - 1].config(state="readonly")
+
     def getValue(self, criterio):
         return self.valores[criterio-1].get()

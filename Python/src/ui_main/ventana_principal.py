@@ -2,6 +2,7 @@ import tkinter as tk
 from src.ui_main.funcionalidades import agendar_citas, formula_medica, asignar_habitacion, vacunacion, \
     facturacion
 from src.ui_main.gestion.gestion_doctores import agregar_doctor, ver_doctor, eliminar_doctor, agregar_cita
+from src.ui_main.gestion.gestion_pacientes import registrar_paciente, administrar_paciente
 from src.ui_main.gestion.gestion_vacunas import registrar_vacuna, ver_vacuna,eliminar_vacuna
 from src.ui_main.gestion.gestion_hospital import ver_vacunas,ver_pacientes
 
@@ -30,6 +31,9 @@ def cambiar_contenido(opcion, hospital, frame_implementacion):
         "ver_doctor": ver_doctor.ver_doctor,
         "eliminar_doctor": eliminar_doctor.eliminar_doctor,
         "agregar_cita": agregar_cita.agregar_cita,
+        #Gestion pacientes
+        "registrar-paciente": registrar_paciente.registrar_paciente,
+        "administrar-paciente": administrar_paciente.administrar_paciente,
     }
 
     if opcion in opciones:
@@ -98,6 +102,13 @@ def ventana_principal(hospital):
     opcion_gestion_doctores.add_command(label="Ver doctor",command=lambda: cambiar_contenido("ver_doctor", hospital, frame_implementacion))
     opcion_gestion_doctores.add_command(label="Eliminar doctor",command=lambda: cambiar_contenido("eliminar_doctor", hospital, frame_implementacion))
     opcion_gestion_doctores.add_command(label="Agregar cita",command=lambda: cambiar_contenido("agregar_cita", hospital, frame_implementacion))
+    #Gestion pacientes submenu
+    opcion_gestion_pacientes= tk.Menu(opcion_funcionalidades, tearoff=0)
+    opcion_funcionalidades.add_cascade(label="Gestión pacientes", menu=opcion_gestion_pacientes)
+    opcion_gestion_pacientes.add_command(label="Registrar paciente",command=lambda: cambiar_contenido("registrar-paciente", hospital, frame_implementacion))
+    opcion_gestion_pacientes.add_command(label="Administrar paciente",command=lambda: cambiar_contenido("administrar-paciente", hospital, frame_implementacion))
+
+
 
 
     opcion_ayuda = tk.Menu(barra_menu, tearoff=0)
