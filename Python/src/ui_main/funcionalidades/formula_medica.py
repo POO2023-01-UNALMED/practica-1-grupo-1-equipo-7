@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from src.gestor_aplicacion.servicios.formula import Formula
+from src.ui_main.gestion.field_frame import FieldFrame
 
 
 def imprimir_titulo(frame):
@@ -107,13 +108,13 @@ def formula_medica(hospital, frame):
         boton_generar_formula.pack()
 
     def generar_formula(paciente, formula_paciente):
-        respuesta = tk.messagebox.askyesno("Confirmar Formula", "¿Estas seguro de agendar esta cita?")
+        respuesta = tk.messagebox.askyesno("Confirmar Formula", "¿Estas seguro de generar esta formula?")
         if respuesta:
             paciente.historia_clinica.lista_formulas.append(formula_paciente)
             messagebox.showinfo("Formula Generada", "La formula se ha generado exitosamente")
             mostrar_historial(paciente)
         else:
-            messagebox.showinfo("Cita cancelada", "La cita ha sido cancelada")
+            messagebox.showinfo("Formula cancelada", "La formula ha sido cancelada")
             # Se importa aca para evitar una referencia circular
             from src.ui_main.ventana_principal import implementacion_default
             implementacion_default(frame)
@@ -134,7 +135,7 @@ def formula_medica(hospital, frame):
         boton_regresar.pack()
 
     def buscar_paciente():
-        cedula = ingreso_cedula.get()
+        cedula = fp.getValue(1)
         paciente = hospital.buscar_paciente(int(cedula))
 
         # Continua si el paciente esta registrado en el hospital
@@ -154,8 +155,9 @@ def formula_medica(hospital, frame):
     label_ingreso_cedula = tk.Label(frame, text="Ingrese la cédula del paciente:", bg="white")
     label_ingreso_cedula.pack()
 
-    ingreso_cedula = tk.Entry(frame)
-    ingreso_cedula.pack()
+    criterios = ["Cédula"]
+    fp = FieldFrame(frame, "", criterios, "", None, None)
+    fp.pack()
 
     boton_buscar_paciente = tk.Button(frame, text="Buscar", command=buscar_paciente)
     boton_buscar_paciente.pack()
