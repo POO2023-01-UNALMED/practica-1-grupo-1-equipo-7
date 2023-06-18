@@ -52,7 +52,7 @@ def formula_medica(hospital, frame):
         elegir_doctor = tk.Label(frame_datos, text="Seleccione el doctor que hará la formula:", bg="white", font=("Helvetica", 10, "bold"))
         elegir_doctor.grid(row=1, column=0, padx=10, pady=10, sticky="w")
         valor_defecto2 = tk.StringVar
-        combo_elegir_doctor = ttk.Combobox(frame_datos, textvariable=valor_defecto2, state="disabled")
+        combo_elegir_doctor = ttk.Combobox(frame_datos, textvariable=valor_defecto2, state="disabled",width=30)
         combo_elegir_doctor.grid(row=1, column=1, padx=10, pady=10, sticky="w")
         indice_enfermedad = combo_enfermedades.current()
         enf_objeto = paciente.historia_clinica.enfermedades[indice_enfermedad]
