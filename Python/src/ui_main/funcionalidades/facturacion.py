@@ -38,7 +38,7 @@ def facturacion(hospital, frame):
                 precio_final -= paciente.calcular_precio(s)
             else:
                 servicios.append(s)
-                ls.config(bg="yellow")
+                ls.config(bg="#d2d5f9")
                 precio_final += paciente.calcular_precio(s)
 
             label_precio_final.config(text=f"Precio total: ${precio_final:,}")
@@ -58,7 +58,7 @@ def facturacion(hospital, frame):
             label_servicio = tk.Label(frame, text=f"{servicio.descripcion_servicio()} - "
                                                   f"Precio: ${precio_servicio:,}", bg="white")
             label_servicio.pack()
-            label_servicio.config(bg="yellow")
+            label_servicio.config(bg="#d2d5f9")
 
             # Permite seleccionar el servicio al hacer click izquierdo (<Button-1>)
             label_servicio.bind(
@@ -90,7 +90,7 @@ def facturacion(hospital, frame):
                 ls.config(bg="white")
             else:
                 servicios_seleccionados.append(s)
-                ls.config(bg="yellow")
+                ls.config(bg="#d2d5f9")
 
         lista_servicios_sin_pagar = Servicio.obtener_servicios_sin_pagar(paciente)
 
