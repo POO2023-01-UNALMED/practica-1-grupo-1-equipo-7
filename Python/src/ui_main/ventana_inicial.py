@@ -75,10 +75,10 @@ def ventana_inicial(hospital):
     def desarrollador1():
         global tk_foto1_nueva, tk_foto2_nueva, tk_foto3_nueva, tk_foto4_nueva
 
-        nombre.config(text="Loro",font=("Helvetica", 12))
-        email.config(text="loro@unal.edu.co",font=("Helvetica", 12))
-        github.config(text="github.com/lorodev",font=("Helvetica", 12))
-        carrera.config(text="Ciencias/Sistemas",font=("Helvetica", 12))
+        nombre.config(text="Daniel Giraldo Vanegas",font=("Helvetica", 12))
+        email.config(text="dangiraldova@unal.edu.co",font=("Helvetica", 12))
+        github.config(text="github.com/dangv31",font=("Helvetica", 12))
+        carrera.config(text="Ingenieria de Sistemas e Informática",font=("Helvetica", 12))
 
         foto1_nueva = lista_fotos[desarrollador][0]
         foto2_nueva = lista_fotos[desarrollador][1]
@@ -257,10 +257,10 @@ def ventana_inicial(hospital):
                     Image.open("imagenes/desarrolladores/camilo/foto3.jpg").resize((1000, 1000)),
                     Image.open("imagenes/desarrolladores/camilo/foto4.jpg").resize((1000, 1000))],
 
-                   [Image.open("imagenes/desarrolladores/loro/foto1.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/loro/foto2.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/loro/foto3.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/loro/foto4.jpg").resize((1000, 1000))],
+                   [Image.open("imagenes/desarrolladores/daniel/foto1.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/daniel/foto2.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/daniel/foto3.jpg").resize((1000, 1000)),
+                    Image.open("imagenes/desarrolladores/daniel/foto4.jpg").resize((1000, 1000))],
 
                    [Image.open("imagenes/desarrolladores/mapache/foto1.jpg").resize((1000, 1000)),
                     Image.open("imagenes/desarrolladores/mapache/foto2.jpg").resize((1000, 1000)),
