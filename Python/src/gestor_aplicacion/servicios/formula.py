@@ -11,7 +11,7 @@ class Formula(Servicio):
     def descripcion_servicio(self):
         return f"{self._id_servicio} - Formula prescrita por {self._doctor}"
 
-    def validar_pago(self, paciente, id_servicio):
+    def confirmar_pago(self, paciente, id_servicio):
         for formula in paciente.historia_clinica.lista_formulas:
             if formula.id_servicio == id_servicio:
                 formula.estado_pago = True
