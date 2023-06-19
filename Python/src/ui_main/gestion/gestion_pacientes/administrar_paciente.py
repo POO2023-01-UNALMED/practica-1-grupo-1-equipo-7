@@ -17,10 +17,10 @@ def imprimir_titulo(frame):
 def administrar_paciente(hospital, frame):
 
     def borrar(paciente):
-        respuesta = tk.messagebox.askyesno("Confirmar eliminacion", "¿Estas seguro de eliminar este doctor?")
+        respuesta = tk.messagebox.askyesno("Confirmar eliminacion", "¿Estas seguro de eliminar este paciente?")
         if respuesta:
             hospital.lista_pacientes.remove(paciente)
-            messagebox.showinfo("Doctor eliminado", "El paciente se ha eliminado exitosamente")
+            messagebox.showinfo("Paciente eliminado", "El paciente se ha eliminado exitosamente")
             # Se importa aca para evitar una referencia circular
             from src.ui_main.ventana_principal import implementacion_default
             implementacion_default(frame)

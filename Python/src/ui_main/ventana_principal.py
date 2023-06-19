@@ -114,7 +114,7 @@ def ventana_principal(hospital):
         6. Gestion: Se encarga de procesos como agregar pacientes, agregar vacunas, agregar medicamentos, etc...
         """
 
-        label_descripcion = tk.Label(ventana_descripcion, text=texto_descripcion, padx=10, pady=10, anchor="w", width=60, height=20, wraplength=480)
+        label_descripcion = tk.Label(ventana_descripcion, text=texto_descripcion, padx=10, pady=10, anchor="w", width=70, height=20, wraplength=480)
         label_descripcion.pack()
 
         boton_continuar_descripcion = tk.Button(ventana_descripcion, text="Continuar",
