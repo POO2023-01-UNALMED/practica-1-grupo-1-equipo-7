@@ -1,6 +1,7 @@
 from tkinter import messagebox
 
 from src.gestor_aplicacion.servicios.cita import Cita
+from src.manejo_errores.error_aplicacion import DatosFalsos, CampoVacio, TipoIncorrecto
 from src.ui_main.gestion.field_frame import FieldFrame
 import tkinter as tk
 
@@ -76,17 +77,24 @@ def agregar_cita(hospital, frame):
 
 
     def busqueda_doctor():
-        cedula= fp1.getValue(1)
-        doctor= hospital.buscar_doctor(int(cedula))
+        cedula = fp1.getValue(1)
 
-        if doctor is not None:
-            agregar_fecha_cita(doctor)
+        if len(cedula) != 0:
+            try:
+                doctor = hospital.buscar_doctor(int(cedula))
+                if doctor is not None:
+                    agregar_fecha_cita(doctor)
+                else:
+                    raise DatosFalsos
+            except DatosFalsos as e:
+                e.enviar_mensaje()
+            except ValueError:
+                TipoIncorrecto().enviar_mensaje()
         else:
-            respuesta = tk.messagebox.askyesno("Error", "No existe un doctor registrado con esa cedula. " "¿Desea intentar de nuevo?")
-            if not respuesta:
-                # Se importa aca para evitar una referencia circular
-                from src.ui_main.ventana_principal import implementacion_default
-                implementacion_default(frame)
+            try:
+                raise CampoVacio()
+            except CampoVacio as e:
+                e.enviar_mensaje()
 
     imprimir_titulo(frame)
 

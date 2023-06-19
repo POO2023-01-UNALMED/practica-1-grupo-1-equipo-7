@@ -1,6 +1,7 @@
 from tkinter import messagebox
 
 from src.gestor_aplicacion.personas.doctor import Doctor
+from src.manejo_errores.error_aplicacion import CampoVacio, TipoIncorrecto, DatoDuplicado
 from src.ui_main.gestion.field_frame import FieldFrame
 import tkinter as tk
 
@@ -51,24 +52,80 @@ def agregar_doctor(hospital, frame):
         boton_regresar.pack()
 
     def agregar_a_lista_doctores():
-        respuesta = tk.messagebox.askyesno("Confirmacion del doctor", "¿Estas seguro de agregar este doctor?")
+        cedula = fp.getValue(1)
+        nombre = fp.getValue(2)
+        tipo_eps = fp.getValue(3)
+        especialidad = fp.getValue(4)
 
-        if respuesta:
-            cedula = int(fp.getValue(1))
-            nombre = str(fp.getValue(2))
-            tipo_eps = str(fp.getValue(3))
-            especialidad = str(fp.getValue(4))
+        # Variable de control para verificar si hay errores
+        hay_errores = False
 
-            doctor = Doctor(cedula, nombre, tipo_eps, especialidad)
-            hospital.lista_doctores.append(doctor)
-            messagebox.showinfo("Doctor agregado", "El doctor se ha agregado exitosamente")
-            ver_doctor(cedula, nombre, tipo_eps, especialidad)
+        if len(cedula) != 0:
+            try:
+                cedula = int(fp.getValue(1))
+                if hospital.buscar_doctor(cedula) is not None:
+                    hay_errores = True
+                    try:
+                        raise DatoDuplicado()
+                    except DatoDuplicado as e:
+                        e.enviar_mensaje()
+            except ValueError:
+                hay_errores = True
+                TipoIncorrecto().enviar_mensaje()
 
-        else:
-            messagebox.showinfo("Doctor no agregado", "No se ha agregado el doctor")
-            # Se importa aca para evitar una referencia circular
-            from src.ui_main.ventana_principal import implementacion_default
-            implementacion_default(frame)
+        if len(nombre) != 0:
+            try:
+                if nombre.isdigit():
+                    hay_errores = True
+                    raise ValueError
+                else:
+                    nombre = str(fp.getValue(2))
+            except ValueError:
+                hay_errores = True
+                TipoIncorrecto().enviar_mensaje()
+
+        if len(tipo_eps) != 0:
+            try:
+                if tipo_eps != "Subsidiado" and tipo_eps != "Contributivo" and tipo_eps != "Particular":
+                    hay_errores = True
+                    raise ValueError
+                else:
+                    tipo_eps = str(fp.getValue(3))
+            except ValueError:
+                hay_errores = True
+                TipoIncorrecto().enviar_mensaje()
+
+        if len(especialidad) != 0:
+            try:
+                if especialidad != "General" and especialidad != "Odontologia" and especialidad != "Oftalmologia":
+                    hay_errores = True
+                    raise ValueError
+                else:
+                    especialidad = str(fp.getValue(4))
+            except ValueError:
+                hay_errores = True
+                TipoIncorrecto().enviar_mensaje()
+
+        if not cedula or not nombre or not tipo_eps or not especialidad:
+            hay_errores = True
+            try:
+                raise CampoVacio()
+            except CampoVacio as e:
+                e.enviar_mensaje()
+
+        if not hay_errores:
+            respuesta = tk.messagebox.askyesno("Confirmacion del doctor", "¿Estás seguro de agregar este doctor?")
+            if respuesta:
+                doctor = Doctor(cedula, nombre, tipo_eps, especialidad)
+                hospital.lista_doctores.append(doctor)
+                messagebox.showinfo("Doctor agregado", "El doctor se ha agregado exitosamente")
+                ver_doctor(cedula, nombre, tipo_eps, especialidad)
+            else:
+                messagebox.showinfo("Doctor no agregado", "No se ha agregado el doctor")
+                # Se importa acá para evitar una referencia circular
+                from src.ui_main.ventana_principal import implementacion_default
+                implementacion_default(frame)
+
 
     def borrar_campos():
         for entry in fp.valores:

@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
+
+from src.manejo_errores.error_aplicacion import DatosFalsos, TipoIncorrecto, CampoVacio
 from src.ui_main.gestion.field_frame import FieldFrame
 
 def imprimir_titulo(frame):
@@ -29,17 +31,24 @@ def ver_doctor(hospital,frame):
         boton_regresar.pack(pady=20)
 
     def busqueda_doctor():
-        cedula= fp.getValue(1)
-        doctor= hospital.buscar_doctor(int(cedula))
+        cedula = fp.getValue(1)
 
-        if doctor is not None:
-            elementos_doctor(doctor)
+        if len(cedula) != 0:
+            try:
+                doctor = hospital.buscar_doctor(int(cedula))
+                if doctor is not None:
+                    elementos_doctor(doctor)
+                else:
+                    raise DatosFalsos
+            except DatosFalsos as e:
+                e.enviar_mensaje()
+            except ValueError:
+                TipoIncorrecto().enviar_mensaje()
         else:
-            respuesta = tk.messagebox.askyesno("Error", "No existe un doctor registrado con esa cedula. " "¿Desea intentar de nuevo?")
-            if not respuesta:
-                # Se importa aca para evitar una referencia circular
-                from src.ui_main.ventana_principal import implementacion_default
-                implementacion_default(frame)
+            try:
+                raise CampoVacio()
+            except CampoVacio as e:
+                e.enviar_mensaje()
 
     imprimir_titulo(frame)
 
