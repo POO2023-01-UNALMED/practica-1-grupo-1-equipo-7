@@ -21,51 +21,24 @@ def agregar_cita(hospital, frame):
         info_doctor = tk.Label(frame, text=f"Citas en la agenda de {doctor.nombre} - CC: {doctor.cedula}", bg="white", font=("Helvetica", 12))
         info_doctor.pack(pady=10)
 
-        frame_citas = tk.Frame(frame)
-        frame_citas.pack(fill=tk.BOTH, expand=True)
-
-        canvas = tk.Canvas(frame_citas, bg="white")
-        canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-
-        scrollbar = tk.Scrollbar(frame_citas, orient=tk.VERTICAL, command=canvas.yview)
-        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
-
-        canvas.configure(yscrollcommand=scrollbar.set)
-
-        inner_frame = tk.Frame(canvas, bg="white")
-        inner_frame_id = canvas.create_window((0, 0), window=inner_frame, anchor=tk.NW)
-
-        def configure_canvas(event):
-            canvas.configure(scrollregion=canvas.bbox("all"))
-
-        inner_frame.bind("<Configure>", configure_canvas)
+        agenda_text = tk.Text(frame, bg="white", font=("Helvetica", 14))
+        agenda_text.pack(fill=tk.BOTH, expand=True)
 
         for cita in doctor.agenda:
-            frame_cita = tk.Frame(inner_frame, bg="white")
+            fecha = cita.fecha
 
-            label_fecha = tk.Label(frame_cita, text="Fecha: ", bg="white", font=("Helvetica", 10, "bold"))
-            label_fecha.grid(row=0, column=0, padx=10, pady=5, sticky="w")
-            label_fecha_cita = tk.Label(frame_cita, text=cita.fecha, bg="white")
-            label_fecha_cita.grid(row=0, column=1, padx=10, pady=5, sticky="w")
+            texto_agenda = f"Fecha: {fecha}\n\n"
 
-            frame_cita.pack(padx=10, pady=10)
+            agenda_text.insert(tk.END, texto_agenda)
 
-        def resize_canvas(event):
-            canvas.itemconfig(inner_frame_id, width=canvas.winfo_width())
-
-        canvas.bind("<Configure>", resize_canvas)
-
-        def on_canvas_scroll(event):
-            canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
-
-        canvas.bind_all("<MouseWheel>", on_canvas_scroll)
-        canvas.bind_all("<Button-4>", on_canvas_scroll)
-        canvas.bind_all("<Button-5>", on_canvas_scroll)
+        agenda_text.config(padx=30)
+        agenda_text.config(highlightthickness=5, highlightbackground="#4D5BE4")
+        agenda_text.config(state="disabled")
 
         # Se importa aca para evitar una referencia circular
         from src.ui_main.ventana_principal import implementacion_default
 
-        boton_regresar = tk.Button(inner_frame, text="Regresar", command=lambda: implementacion_default(frame))
+        boton_regresar = tk.Button(frame, text="Regresar", command=lambda: implementacion_default(frame))
         boton_regresar.pack()
 
     def agregar_fecha_cita(doctor):

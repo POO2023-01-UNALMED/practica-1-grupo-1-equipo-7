@@ -19,63 +19,28 @@ def agendar_citas(hospital, frame):
                                   bg="white",font=("Helvetica", 12))
         info_historial.pack(pady=10)
 
-        frame_citas = tk.Frame(frame)
-        frame_citas.pack(fill=tk.BOTH, expand=True)
-
-        canvas = tk.Canvas(frame_citas, bg="white")
-        canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-
-        scrollbar = tk.Scrollbar(frame_citas, orient=tk.VERTICAL, command=canvas.yview)
-        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
-
-        canvas.configure(yscrollcommand=scrollbar.set)
-
-        inner_frame = tk.Frame(canvas, bg="white")
-        inner_frame_id = canvas.create_window((0, 0), window=inner_frame, anchor=tk.NW)
-
-        def configure_canvas(event):
-            canvas.configure(scrollregion=canvas.bbox("all"))
-
-        inner_frame.bind("<Configure>", configure_canvas)
+        historial_citas_text = tk.Text(frame, bg="white", font=("Helvetica", 14))
+        historial_citas_text.pack(fill=tk.BOTH, expand=True)
 
         for cita in paciente.historia_clinica.historial_citas:
-            frame_cita = tk.Frame(inner_frame, bg="white")
 
-            label_tipo_cita = tk.Label(frame_cita, text="Tipo de cita: ", bg="white", font=("Helvetica", 10, "bold"))
-            label_tipo_cita.grid(row=0, column=0, padx=10, pady=5, sticky="w")
-            label_especialidad_doctor = tk.Label(frame_cita, text=cita.doctor.especialidad, bg="white")
-            label_especialidad_doctor.grid(row=0, column=1, padx=10, pady=5, sticky="w")
+            tipo_de_cita = cita.doctor.especialidad
+            nombre_doctor = cita.doctor.nombre
+            fecha = cita.fecha
 
-            label_doctor = tk.Label(frame_cita, text="Doctor: ", bg="white", font=("Helvetica", 10, "bold"))
-            label_doctor.grid(row=1, column=0, padx=10, pady=5, sticky="w")
-            label_nombre_doctor = tk.Label(frame_cita, text=cita.doctor.nombre, bg="white")
-            label_nombre_doctor.grid(row=1, column=1, padx=10, pady=5, sticky="w")
+            texto_cita = f"Tipo de cita: {tipo_de_cita}\nDoctor: {nombre_doctor}\nFecha: {fecha}\n\n"
 
-            label_fecha = tk.Label(frame_cita, text="Fecha: ", bg="white", font=("Helvetica", 10, "bold"))
-            label_fecha.grid(row=2, column=0, padx=10, pady=5, sticky="w")
-            label_fecha_cita = tk.Label(frame_cita, text=cita.fecha, bg="white")
-            label_fecha_cita.grid(row=2, column=1, padx=10, pady=5, sticky="w")
+            historial_citas_text.insert(tk.END, texto_cita)
 
-            frame_cita.pack(padx=10, pady=10)
-
-        def resize_canvas(event):
-            canvas.itemconfig(inner_frame_id, width=canvas.winfo_width())
-
-        canvas.bind("<Configure>", resize_canvas)
-
-        def on_canvas_scroll(event):
-            canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
-
-        canvas.bind_all("<MouseWheel>", on_canvas_scroll)
-        canvas.bind_all("<Button-4>", on_canvas_scroll)
-        canvas.bind_all("<Button-5>", on_canvas_scroll)
+        historial_citas_text.config(padx=30)
+        historial_citas_text.config(highlightthickness=5, highlightbackground="#4D5BE4")
+        historial_citas_text.config(state="disabled")
 
         # Se importa aca para evitar una referencia circular
         from src.ui_main.ventana_principal import implementacion_default
 
-        boton_regresar = tk.Button(inner_frame, text="Regresar", command=lambda: implementacion_default(frame))
+        boton_regresar = tk.Button(frame, text="Regresar", command=lambda: implementacion_default(frame))
         boton_regresar.pack()
-
 
     def agendamiento_de_la_cita(paciente):
 
