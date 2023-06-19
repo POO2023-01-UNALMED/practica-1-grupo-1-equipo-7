@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 
+from src.manejo_errores.error_aplicacion import *
 from src.ui_main.gestion.field_frame import FieldFrame
 
 
@@ -158,18 +159,19 @@ def vacunacion(hospital, frame):
 
     def buscar_paciente():
         cedula = fp.getValue(1)
-        paciente = hospital.buscar_paciente(int(cedula))
-
-        # Continua si el paciente esta registrado en el hospital
-        if paciente is not None:
-            agendamiento_de_la_vacuna(paciente)
+        if len(cedula) !=0:
+            try:
+                paciente = hospital.buscar_paciente(int(cedula))
+                agendamiento_de_la_vacuna(paciente)
+            except DatosFalsos as e:
+                e.enviar_mensaje()
+            except ValueError:
+                messagebox.showerror("Error", "Error de tipo de dato")
         else:
-            respuesta = tk.messagebox.askyesno("Error", "No existe un paciente registrado con esta cedula. "
-                                                        "¿Desea intentar de nuevo?")
-            if not respuesta:
-                # Se importa aca para evitar una referencia circular
-                from src.ui_main.ventana_principal import implementacion_default
-                implementacion_default(frame)
+            try:
+                raise CampoVacio()
+            except CampoVacio as e:
+                e.enviar_mensaje()
 
     imprimir_titulo(frame)
 

@@ -6,6 +6,7 @@ from src.gestor_aplicacion.personas.doctor import Doctor
 from src.gestor_aplicacion.personas.enfermedad import Enfermedad
 from src.gestor_aplicacion.personas.paciente import Paciente
 from src.gestor_aplicacion.administracion.medicamento import Medicamento
+from src.manejo_errores.error_aplicacion import DatosFalsos
 
 
 class Hospital:
@@ -28,7 +29,7 @@ class Hospital:
         for paciente in self._lista_pacientes:
             if paciente.cedula == cedula:
                 return paciente
-        return None
+        raise DatosFalsos()
 
     def buscar_doctor(self, cedula):
         for doctor in self._lista_doctores:
