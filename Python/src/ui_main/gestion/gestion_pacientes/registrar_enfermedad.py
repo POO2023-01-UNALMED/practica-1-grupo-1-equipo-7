@@ -12,13 +12,17 @@ def imprimir_titulo(frame):
         item.destroy()
 
     # Imprime el titulo
-    titulo = tk.Label(frame, text="Registrar nueva enfermedad a un paciente", bg="white", font=("Helvetica", 16, "bold"))
+    titulo = tk.Label(frame, text="Registrar nueva enfermedad a un paciente", bg="white",
+                      font=("Helvetica", 16, "bold"))
     titulo.pack(pady=20)
+
+
 def registrar_enfermedad(hospital, frame):
     def nueva_enf(paciente):
         def borrar_campos():
             for entry in fp.valores:
                 entry.delete(0, tk.END)
+
         def crear_enf():
             respuesta = tk.messagebox.askyesno("Confirmacion Enfermedad", "¿Estas seguro de agregar esta enfermedad?")
 
@@ -41,7 +45,7 @@ def registrar_enfermedad(hospital, frame):
 
         imprimir_titulo(frame)
         criterios = ["Nombre", "Tipologia", "Especialidad que la trata(General, Oftalmologia u Odontologia)"]
-        fp = FieldFrame(frame, "Criterio",criterios, "Valor", None, None)
+        fp = FieldFrame(frame, "Criterio", criterios, "Valor", None, None)
         fp.pack()
 
         botones_frame = tk.Frame(frame, bg="white")
@@ -54,10 +58,10 @@ def registrar_enfermedad(hospital, frame):
         boton_borrar.grid(row=0, column=1, padx=10, pady=10, sticky="w")
 
     def agregar_enf(paciente, combo):
-        respuesta = tk.messagebox.askyesno("Confirmar eliminacion", "¿Estas seguro de eliminar este doctor?")
+        respuesta = tk.messagebox.askyesno("Confirmar eliminacion", "¿Estas seguro de agregar esta enfermedad?")
         if respuesta:
             indice_seleccionado = combo.current()
-            objeto_seleccionado = paciente.historia_clinica.comparar_enfermedad()[indice_seleccionado]
+            objeto_seleccionado = Enfermedad.getEnfermedadesRegistradas()[indice_seleccionado]
             paciente.historia_clinica.agregar_enfermedad(objeto_seleccionado)
             messagebox.showinfo("Enfermedad agregada", "La enfermedad se ha agregado exitosamente")
             # Se importa aca para evitar una referencia circular
@@ -78,7 +82,8 @@ def registrar_enfermedad(hospital, frame):
         for enf in paciente.historia_clinica.enfermedades:
             enf_label = tk.Label(frame_enfermedades, text=enf, font=("Helvetica", 10), bg="white")
             enf_label.pack()
-        label_opcion = tk.Label(frame, text="Elija que enfermedad registrar", font=("Helvetica", 12, "bold"), bg="white")
+        label_opcion = tk.Label(frame, text="Elija que enfermedad registrar", font=("Helvetica", 12, "bold"),
+                                bg="white")
         label_opcion.pack()
         combo_enfermedades = ttk.Combobox(frame, values=Enfermedad.getEnfermedadesRegistradas(), state="readonly")
         combo_enfermedades.pack()
@@ -86,7 +91,6 @@ def registrar_enfermedad(hospital, frame):
         boton_agregar.pack(pady=10)
         boton_registrar = tk.Button(frame, text="Registrar enfermedad nueva", command=lambda: nueva_enf(paciente))
         boton_registrar.pack()
-
 
     def buscar_paciente():
         cedula = fp.getValue(1)
@@ -102,6 +106,7 @@ def registrar_enfermedad(hospital, frame):
                 # Se importa aca para evitar una referencia circular
                 from src.ui_main.ventana_principal import implementacion_default
                 implementacion_default(frame)
+
     imprimir_titulo(frame)
 
     # Pide la cedula del paciente
