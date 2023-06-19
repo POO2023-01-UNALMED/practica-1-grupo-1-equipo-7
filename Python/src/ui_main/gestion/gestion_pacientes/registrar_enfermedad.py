@@ -80,7 +80,7 @@ def registrar_enfermedad(hospital, frame):
             enf_label.pack()
         label_opcion = tk.Label(frame, text="Elija que enfermedad registrar", font=("Helvetica", 12, "bold"), bg="white")
         label_opcion.pack()
-        combo_enfermedades = ttk.Combobox(frame, values=paciente.historia_clinica.comparar_enfermedad(), state="readonly")
+        combo_enfermedades = ttk.Combobox(frame, values=Enfermedad.getEnfermedadesRegistradas(), state="readonly")
         combo_enfermedades.pack()
         boton_agregar = tk.Button(frame, text="Agregar", command=lambda: agregar_enf(paciente, combo_enfermedades))
         boton_agregar.pack(pady=10)
