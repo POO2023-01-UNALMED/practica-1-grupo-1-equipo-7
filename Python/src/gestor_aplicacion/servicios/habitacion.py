@@ -77,9 +77,9 @@ class Habitacion(Servicio):
         self._dias = dias
 
     def descripcion_servicio(self):
-        return f"{self._id_servicio} - Habitacion <numero> ocupada <dias> dias"
+        return f"{self._id_servicio} - Habitacion {self.numero} ocupada {self.dias} dias"
 
-    def validar_pago(self, paciente, id_servicio):
+    def confirmar_pago(self, paciente, id_servicio):
         if paciente.habitacion_asignada.id_servicio == id_servicio:
             paciente.habitacion_asignada.estado_pago = True
 

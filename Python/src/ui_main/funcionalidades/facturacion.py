@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 
 from src.gestor_aplicacion.servicios.servicio import Servicio
-from src.manejo_errores.error_aplicacion import DatosFalsos, TipoIncorrecto, CampoVacio
+from src.manejo_errores.error_aplicacion import DatosFalsos, TipoIncorrecto, CampoVacio, SinServicioSeleccionado
 from src.ui_main.gestion.field_frame import FieldFrame
 
 
@@ -17,11 +17,23 @@ def imprimir_titulo(frame):
 
 
 def facturacion(hospital, frame):
-    def validar_pago(paciente, servicios):
+    def validar_lista_servicios(paciente, lista_servicios, opcion):
+        if len(lista_servicios) == 0:
+            try:
+                raise SinServicioSeleccionado()
+            except SinServicioSeleccionado as e:
+                e.enviar_mensaje()
+        else:
+            if opcion == 1:
+                calcular_precio(paciente, lista_servicios)
+            elif opcion == 2:
+                confirmar_pago(paciente, lista_servicios)
+
+    def confirmar_pago(paciente, servicios):
         respuesta = tk.messagebox.askyesno("Confirmar pago", "¿Desea realizar el pago?")
         if respuesta:
             for servicio in servicios:
-                servicio.validar_pago(paciente, servicio.id_servicio)
+                servicio.confirmar_pago(paciente, servicio.id_servicio)
             messagebox.showinfo("Pago realizado", "El pago se ha realizado exitosamente")
         else:
             messagebox.showinfo("Pago cancelado", "El pago ha sido cancelado")
@@ -78,7 +90,7 @@ def facturacion(hospital, frame):
         label_precio_final.pack(pady=10)
 
         boton_pagar = tk.Button(frame, text="Realizar pago",
-                                command=lambda: validar_pago(paciente, servicios))
+                                command=lambda: validar_lista_servicios(paciente, servicios, 2))
         boton_pagar.pack(pady=10)
 
         boton_regresar = tk.Button(frame, text="Regresar",
@@ -129,7 +141,7 @@ def facturacion(hospital, frame):
             label_servicio.bind("<Leave>", lambda event: event.widget.config(highlightthickness=0))
 
         boton_precio = tk.Button(frame, text="Continuar",
-                                 command=lambda: calcular_precio(paciente, servicios_seleccionados))
+                                 command=lambda: validar_lista_servicios(paciente, servicios_seleccionados, 1))
         boton_precio.pack(pady=10)
 
         boton_regresar = tk.Button(frame, text="Regresar",
@@ -142,17 +154,16 @@ def facturacion(hospital, frame):
         if len(cedula) != 0:
             try:
                 paciente = hospital.buscar_paciente(int(cedula))
-                if paciente is not None:
-                    obtener_servicios_sin_pagar(paciente)
-                else:
-                    try:
-                        raise DatosFalsos()
-                    except DatosFalsos as e:
-                        e.enviar_mensaje()
+                obtener_servicios_sin_pagar(paciente)
+            except DatosFalsos as e:
+                e.enviar_mensaje()
             except (ValueError, TypeError):
-                raise TipoIncorrecto().enviar_mensaje()
+                TipoIncorrecto().enviar_mensaje()
         else:
-            raise CampoVacio().enviar_mensaje()
+            try:
+                raise CampoVacio()
+            except CampoVacio as e:
+                e.enviar_mensaje()
 
     imprimir_titulo(frame)
 

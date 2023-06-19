@@ -10,7 +10,7 @@ class CitaVacuna(Cita):
     def descripcion_servicio(self):
         return f"{self._id_servicio} - Vacuna ({self.vacuna.nombre})"
 
-    def validar_pago(self, paciente, id_servicio):
+    def confirmar_pago(self, paciente, id_servicio):
         for cita_vacuna in paciente.historia_clinica.historial_vacunas:
             if cita_vacuna.id_servicio == id_servicio:
                 cita_vacuna.estado_pago = True

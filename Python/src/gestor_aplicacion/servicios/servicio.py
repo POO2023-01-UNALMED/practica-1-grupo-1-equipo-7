@@ -15,7 +15,7 @@ class Servicio(ABC):
         pass
 
     @abstractmethod
-    def validar_pago(self, paciente, id_servicio):
+    def confirmar_pago(self, paciente, id_servicio):
         pass
 
     @property
