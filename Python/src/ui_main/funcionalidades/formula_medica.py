@@ -35,11 +35,6 @@ def formula_medica(hospital, frame):
                 enf_objeto = paciente.historia_clinica.enfermedades[indice_enfermedad]
                 if len(paciente.historia_clinica.buscar_cita(enf_objeto.especialidad, hospital)) != 0:
                     formula_paciente = Formula(paciente)
-                    boton_seleccionar = tk.Button(frame, text="Seleccionar medicamentos",
-                                                  command=lambda: seleccion_medicamentos(enf_objeto,
-                                                                                         formula_paciente,
-                                                                                         combo_elegir_doctor.get()))
-                    boton_seleccionar.pack()
                     for widget in frame.winfo_children():
                         if isinstance(widget, tk.Button) and widget.cget("text") == "Seleccionar medicamentos":
                             widget.destroy()
