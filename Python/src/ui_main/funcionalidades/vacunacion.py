@@ -23,51 +23,34 @@ def vacunacion(hospital, frame):
                                   bg="white", font=("Helvetica", 12))
         info_historial.pack(pady=10)
 
-        frame_citas = tk.Frame(frame)
-        frame_citas.pack(fill=tk.BOTH, expand=True)
+        historial_vacunas_text = tk.Text(frame, bg="white", font=("Helvetica", 14))
+        historial_vacunas_text.pack(fill=tk.BOTH,expand=True)
 
-        canvas = tk.Canvas(frame_citas, bg="white")
-        canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        #Mostrar todas las vacunas que tiene el usuario
 
-        scrollbar = tk.Scrollbar(frame_citas, orient=tk.VERTICAL, command=canvas.yview)
-        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        vacunas_paciente=[]
 
-        canvas.configure(yscrollcommand=scrollbar.set)
+        for cita in paciente.historia_clinica.historial_vacunas:
+            vacunas_paciente.append(cita.vacuna)
 
-        inner_frame = tk.Frame(canvas, bg="white")
-        inner_frame_id = canvas.create_window((0, 0), window=inner_frame, anchor=tk.NW)
+        for vacuna in vacunas_paciente:
+            nombre = vacuna.nombre
+            tipo = vacuna.tipo
+            precio = vacuna.precio
 
-        def configure_canvas(event):
-            canvas.configure(scrollregion=canvas.bbox("all"))
+            texto_vacuna = f"Nombre: {nombre}\nTipo: {tipo}\nPrecio: {precio}\n\n"
 
-        inner_frame.bind("<Configure>", configure_canvas)
+            # Insertar el texto de la vacuna en el widget Text
+            historial_vacunas_text.insert(tk.END, texto_vacuna)
 
-        for CitaVacuna in paciente.historia_clinica.historial_vacunas:
-            frame_vacuna = tk.Frame(inner_frame, bg="white")
-
-            label_tipo_vacuna = tk.Label(frame_vacuna, text="Vacuna: ", bg="white", font=("Helvetica", 10, "bold"))
-            label_tipo_vacuna.grid(row=0, column=0, padx=10, pady=5, sticky="w")
-            label_nombre_vacuna = tk.Label(frame_vacuna, text=CitaVacuna.vacuna.nombre, bg="white")
-            label_nombre_vacuna.grid(row=0, column=1, padx=10, pady=5, sticky="w")
-
-            frame_vacuna.pack(padx=10, pady=10)
-
-        def resize_canvas(event):
-            canvas.itemconfig(inner_frame_id, width=canvas.winfo_width())
-
-        canvas.bind("<Configure>", resize_canvas)
-
-        def on_canvas_scroll(event):
-            canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
-
-        canvas.bind_all("<MouseWheel>", on_canvas_scroll)
-        canvas.bind_all("<Button-4>", on_canvas_scroll)
-        canvas.bind_all("<Button-5>", on_canvas_scroll)
+        historial_vacunas_text.config(padx=30)
+        historial_vacunas_text.config(highlightthickness=5, highlightbackground="#4D5BE4")
+        historial_vacunas_text.config(state="disabled")
 
         # Se importa aca para evitar una referencia circular
         from src.ui_main.ventana_principal import implementacion_default
 
-        boton_regresar = tk.Button(inner_frame, text="Regresar", command=lambda: implementacion_default(frame))
+        boton_regresar = tk.Button(frame, text="Regresar", command=lambda: implementacion_default(frame))
         boton_regresar.pack()
 
 
