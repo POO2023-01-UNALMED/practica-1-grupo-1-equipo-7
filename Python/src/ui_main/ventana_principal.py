@@ -5,7 +5,7 @@ from src.ui_main.funcionalidades import agendar_citas, formula_medica, asignar_h
     facturacion
 from src.ui_main.gestion.gestion_doctores import agregar_doctor, ver_doctor, eliminar_doctor, agregar_cita
 from src.ui_main.gestion.gestion_pacientes import registrar_paciente, administrar_paciente, registrar_enfermedad
-from src.ui_main.gestion.gestion_vacunas import registrar_vacuna, ver_vacuna, eliminar_vacuna
+from src.ui_main.gestion.gestion_vacunas import registrar_vacuna, ver_vacuna, eliminar_vacuna,agregar_cita_vacuna
 from src.ui_main.gestion.gestion_hospital import ver_vacunas, ver_pacientes, ver_doctores, agregar_medicamento, \
     ver_medicamentos
 
@@ -34,6 +34,7 @@ def cambiar_contenido(opcion, hospital, frame_implementacion):
         "registrar_vacuna": registrar_vacuna.registrar_vacuna,
         "ver_vacuna": ver_vacuna.ver_vacuna,
         "eliminar_vacuna": eliminar_vacuna.eliminar_vacuna,
+        "agregar_cita_vacuna": agregar_cita_vacuna.agregar_cita_vacuna,
 
         # Gestion Doctores
         "agregar_doctor": agregar_doctor.agregar_doctor,
@@ -184,6 +185,9 @@ def ventana_principal(hospital):
                                       command=lambda: cambiar_contenido("ver_vacuna", hospital, frame_implementacion))
     opcion_gestion_vacuna.add_command(label="Eliminar vacuna",
                                       command=lambda: cambiar_contenido("eliminar_vacuna", hospital,
+                                                                        frame_implementacion))
+    opcion_gestion_vacuna.add_command(label="Agregar Cita a vacuna",
+                                      command=lambda: cambiar_contenido("agregar_cita_vacuna", hospital,
                                                                         frame_implementacion))
 
     # Gestión doctores con un submenú

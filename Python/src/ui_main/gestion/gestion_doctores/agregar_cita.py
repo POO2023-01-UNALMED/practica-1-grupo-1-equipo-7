@@ -89,7 +89,7 @@ def agregar_cita(hospital, frame):
         info_doctor = tk.Label(frame, text=f"{doctor.nombre} - CC: {doctor.cedula}", bg="white",font=("Helvetica", 12))
         info_doctor.pack(pady=10)
 
-        criterios = ["Fecha de la cita"]
+        criterios = ["Fecha de la cita (ejm: 25 de Junio, 10:00 am)"]
         fp2 = FieldFrame(frame, "", criterios, "", None, None)
         fp2.pack()
 
