@@ -31,23 +31,14 @@ def formula_medica(hospital, frame):
                     combo_elegir_doctor['values'] = lista_doc_enf
                 else:
                     combo_elegir_doctor['state'] = 'disabled'
-            else:
-                try:
-                    raise SinCitaPrevia()
-                except SinCitaPrevia as e:
-                    e.enviar_mensaje()
-                    combo_elegir_doctor['state'] = 'disabled'
-                    # Se importa aca para evitar una referencia circular
-                    from src.ui_main.ventana_principal import implementacion_default
-                    implementacion_default(frame)
-            if len(paciente.historia_clinica.enfermedades) != 0:
                 indice_enfermedad = combo_enfermedades.current()
                 enf_objeto = paciente.historia_clinica.enfermedades[indice_enfermedad]
                 if len(paciente.historia_clinica.buscar_cita(enf_objeto.especialidad, hospital)) != 0:
                     formula_paciente = Formula(paciente)
                     boton_seleccionar = tk.Button(frame, text="Seleccionar medicamentos",
-                                                      command=lambda: seleccion_medicamentos(enf_objeto,
-                                                                                             formula_paciente, combo_elegir_doctor.get()))
+                                                  command=lambda: seleccion_medicamentos(enf_objeto,
+                                                                                         formula_paciente,
+                                                                                         combo_elegir_doctor.get()))
                     boton_seleccionar.pack()
                     for widget in frame.winfo_children():
                         if isinstance(widget, tk.Button) and widget.cget("text") == "Seleccionar medicamentos":
@@ -56,7 +47,8 @@ def formula_medica(hospital, frame):
                         # Crear y empaquetar el nuevo botón
                     boton_seleccionar = tk.Button(frame, text="Seleccionar medicamentos",
                                                   command=lambda: seleccion_medicamentos(enf_objeto,
-                                                                                         formula_paciente, combo_elegir_doctor.get()))
+                                                                                         formula_paciente,
+                                                                                         combo_elegir_doctor.get()))
                     boton_seleccionar.pack()
                 else:
                     try:
@@ -71,9 +63,11 @@ def formula_medica(hospital, frame):
                     raise SinCitaPrevia()
                 except SinCitaPrevia as e:
                     e.enviar_mensaje()
+                    combo_elegir_doctor['state'] = 'disabled'
                     # Se importa aca para evitar una referencia circular
                     from src.ui_main.ventana_principal import implementacion_default
                     implementacion_default(frame)
+
 
         imprimir_titulo(frame)  # Imprime el titulo de "Formular medicamentos"
         # Label que muestra la informacion del paciente en la parte superior

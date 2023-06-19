@@ -2,6 +2,7 @@ from tkinter import messagebox
 
 import tkinter as tk
 
+from src.manejo_errores.error_aplicacion import *
 from src.ui_main.gestion.field_frame import FieldFrame
 
 
@@ -97,18 +98,19 @@ def administrar_paciente(hospital, frame):
 
     def buscar_paciente():
         cedula = fp.getValue(1)
-        paciente = hospital.buscar_paciente(int(cedula))
-
-        # Continua si el paciente esta registrado en el hospital
-        if paciente is not None:
-            administracion_paciente(paciente)
+        if len(cedula) != 0:
+            try:
+                paciente = hospital.buscar_paciente(int(cedula))
+                administracion_paciente(paciente)
+            except DatosFalsos as e:
+                e.enviar_mensaje()
+            except ValueError:
+                TipoIncorrecto().enviar_mensaje()
         else:
-            respuesta = tk.messagebox.askyesno("Error", "No existe un paciente registrado con esta cedula. "
-                                                        "¿Desea intentar de nuevo?")
-            if not respuesta:
-                # Se importa aca para evitar una referencia circular
-                from src.ui_main.ventana_principal import implementacion_default
-                implementacion_default(frame)
+            try:
+                raise CampoVacio()
+            except CampoVacio as e:
+                e.enviar_mensaje()
     imprimir_titulo(frame)
 
     # Pide la cedula del paciente

@@ -3,6 +3,7 @@ from tkinter import messagebox
 import tkinter as tk
 
 from src.gestor_aplicacion.personas.paciente import Paciente
+from src.manejo_errores.error_aplicacion import *
 from src.ui_main.gestion.field_frame import FieldFrame
 
 
@@ -45,22 +46,28 @@ def registrar_paciente(hospital, frame):
         boton_regresar = tk.Button(frame, text="Regresar", command=lambda: implementacion_default(frame))
         boton_regresar.pack()
     def agregar_a_lista_pacientes():
-        respuesta = tk.messagebox.askyesno("Confirmacion del paciente", "¿Estas seguro de registrar este paciente?")
+        try:
+            respuesta = tk.messagebox.askyesno("Confirmacion del paciente", "¿Estas seguro de registrar este paciente?")
 
-        if respuesta:
-            cedula = int(fp.getValue(1))
-            nombre = str(fp.getValue(2))
-            tipo_eps = str(fp.getValue(3))
-            paciente = Paciente(cedula, nombre, tipo_eps)
-            hospital.lista_pacientes.append(paciente)
-            messagebox.showinfo("Paciente registrado", "El paciente se ha registrado exitosamente")
-            ver_paciente(cedula, nombre, tipo_eps)
+            if respuesta:
+                    cedula = int(fp.getValue(1))
+                    nombre = str(fp.getValue(2))
+                    tipo_eps = str(fp.getValue(3))
+                    paciente = Paciente(cedula, nombre, tipo_eps)
+                    hospital.lista_pacientes.append(paciente)
+                    messagebox.showinfo("Paciente registrado", "El paciente se ha registrado exitosamente")
+                    ver_paciente(cedula, nombre, tipo_eps)
 
-        else:
-            messagebox.showinfo("Paciente no registrado", "No se ha registrado el paciente")
-            # Se importa aca para evitar una referencia circular
-            from src.ui_main.ventana_principal import implementacion_default
-            implementacion_default(frame)
+
+            else:
+                messagebox.showinfo("Paciente no registrado", "No se ha registrado el paciente")
+                # Se importa aca para evitar una referencia circular
+                from src.ui_main.ventana_principal import implementacion_default
+                implementacion_default(frame)
+        except CampoVacio as e:
+            e.enviar_mensaje()
+        except ValueError:
+            TipoIncorrecto().enviar_mensaje()
     def borrar_campos():
         for entry in fp.valores:
             entry.delete(0, tk.END)
