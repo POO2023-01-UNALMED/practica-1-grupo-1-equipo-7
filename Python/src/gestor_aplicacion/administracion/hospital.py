@@ -130,3 +130,11 @@ class Hospital:
     def lista_vacunas(self, value):
         self._lista_vacunas = value
 
+    @classmethod
+    def get_habitaciones(cls):
+        return cls._habitaciones
+
+    @classmethod
+    def set_habitaciones(cls, habitaciones):
+        cls._habitaciones = habitaciones
+

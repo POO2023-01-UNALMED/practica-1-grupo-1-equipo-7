@@ -33,10 +33,10 @@ def ventana_inicial(hospital):
     def desarrollador3():
         global tk_foto1_nueva, tk_foto2_nueva, tk_foto3_nueva, tk_foto4_nueva
 
-        nombre.config(text="Marmota", font=("Helvetica", 12))
-        email.config(text="marmota@unal.edu.co", font=("Helvetica", 12))
-        github.config(text="github.com/marmotadev", font=("Helvetica", 12))
-        carrera.config(text="Ciencias/Sistemas", font=("Helvetica", 12))
+        nombre.config(text="Elian David Velandia Riveros", font=("Helvetica", 12))
+        email.config(text="e@unal.edu.co", font=("Helvetica", 12))
+        github.config(text="github.com/Daimon-22", font=("Helvetica", 12))
+        carrera.config(text="Ciencias de la computación", font=("Helvetica", 12))
 
         foto1_nueva = lista_fotos[desarrollador][0]
         foto2_nueva = lista_fotos[desarrollador][1]
@@ -275,10 +275,10 @@ def ventana_inicial(hospital):
                     Image.open("src/ui_main/imagenes/desarrolladores/diego/foto3.jpg").resize((1000, 1000)),
                     Image.open("src/ui_main/imagenes/desarrolladores/diego/foto4.jpg").resize((1000, 1000))],
 
-                   [Image.open("src/ui_main/imagenes/desarrolladores/marmota/foto1.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/marmota/foto2.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/marmota/foto3.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/marmota/foto4.jpg").resize((1000, 1000))],
+                   [Image.open("src/ui_main/imagenes/desarrolladores/elian/foto1.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/elian/foto2.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/elian/foto3.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/elian/foto4.jpg").resize((1000, 1000))],
 
                    [Image.open("src/ui_main/imagenes/desarrolladores/puffin/foto1.jpg").resize((1000, 1000)),
                     Image.open("src/ui_main/imagenes/desarrolladores/puffin/foto2.jpg").resize((1000, 1000)),

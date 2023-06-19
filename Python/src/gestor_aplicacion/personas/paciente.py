@@ -45,8 +45,17 @@ class Paciente(Persona):
             precio_total *= (1 + IVA)
             return precio_total
         elif isinstance(servicio, Habitacion):
-            # Implementacion
-            pass
+            IVA = 0.19
+            precio_total = 0
+            if self.tipo_eps == "Subsidiado":
+                precio_total = self._habitacion_asignada.categoria.valor * 0
+            elif self.tipo_eps == "Contributivo":
+                precio_total = (self._habitacion_asignada.categoria.valor / 2) * self._habitacion_asignada.dias
+            else:
+                precio_total = self._habitacion_asignada.categoria.valor * self._habitacion_asignada.dias
+            precio_total *= (1 + IVA)
+            return precio_total
+
         elif isinstance(servicio, Cita):
             IVA = 0.19
             precio_total = 0
