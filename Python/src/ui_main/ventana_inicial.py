@@ -232,11 +232,11 @@ def ventana_inicial(hospital):
     p4_imagenes = ttk.Frame(frame_p4)
     p4_imagenes.configure(borderwidth=7, relief="solid", padding=0)
     canvas_imagenes_aplicacion = tk.Canvas(p4_imagenes)
-    lista_imagenes = [Image.open("imagenes/aplicacion/imagen1.jpg").resize((1000, 1000)),
-                      Image.open("imagenes/aplicacion/imagen2.jpg").resize((1000, 1000)),
-                      Image.open("imagenes/aplicacion/imagen3.jpg").resize((1000, 1000)),
-                      Image.open("imagenes/aplicacion/imagen4.jpg").resize((1000, 1000)),
-                      Image.open("imagenes/aplicacion/imagen5.jpg").resize((1000, 1000))]
+    lista_imagenes = [Image.open("src/ui_main/imagenes/aplicacion/imagen1.jpg").resize((1000, 1000)),
+                      Image.open("src/ui_main/imagenes/aplicacion/imagen2.jpg").resize((1000, 1000)),
+                      Image.open("src/ui_main/imagenes/aplicacion/imagen3.jpg").resize((1000, 1000)),
+                      Image.open("src/ui_main/imagenes/aplicacion/imagen4.jpg").resize((1000, 1000)),
+                      Image.open("src/ui_main/imagenes/aplicacion/imagen5.jpg").resize((1000, 1000))]
 
     # Boton para continuar
     p4_continuar = ttk.Frame(frame_p4)
@@ -260,30 +260,30 @@ def ventana_inicial(hospital):
 
     # Fotos desarrolladores
     frame_p6 = ttk.Frame(frame_p2)
-    lista_fotos = [[Image.open("imagenes/desarrolladores/camilo/foto1.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/camilo/foto2.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/camilo/foto3.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/camilo/foto4.jpg").resize((1000, 1000))],
+    lista_fotos = [[Image.open("src/ui_main/imagenes/desarrolladores/camilo/foto1.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/camilo/foto2.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/camilo/foto3.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/camilo/foto4.jpg").resize((1000, 1000))],
 
-                   [Image.open("imagenes/desarrolladores/daniel/foto1.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/daniel/foto2.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/daniel/foto3.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/daniel/foto4.jpg").resize((1000, 1000))],
+                   [Image.open("src/ui_main/imagenes/desarrolladores/daniel/foto1.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/daniel/foto2.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/daniel/foto3.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/daniel/foto4.jpg").resize((1000, 1000))],
 
-                   [Image.open("imagenes/desarrolladores/diego/foto1.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/diego/foto2.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/diego/foto3.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/diego/foto4.jpg").resize((1000, 1000))],
+                   [Image.open("src/ui_main/imagenes/desarrolladores/diego/foto1.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/diego/foto2.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/diego/foto3.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/diego/foto4.jpg").resize((1000, 1000))],
 
-                   [Image.open("imagenes/desarrolladores/marmota/foto1.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/marmota/foto2.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/marmota/foto3.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/marmota/foto4.jpg").resize((1000, 1000))],
+                   [Image.open("src/ui_main/imagenes/desarrolladores/marmota/foto1.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/marmota/foto2.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/marmota/foto3.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/marmota/foto4.jpg").resize((1000, 1000))],
 
-                   [Image.open("imagenes/desarrolladores/puffin/foto1.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/puffin/foto2.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/puffin/foto3.jpg").resize((1000, 1000)),
-                    Image.open("imagenes/desarrolladores/puffin/foto4.jpg").resize((1000, 1000))],
+                   [Image.open("src/ui_main/imagenes/desarrolladores/puffin/foto1.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/puffin/foto2.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/puffin/foto3.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/puffin/foto4.jpg").resize((1000, 1000))],
                    ]
 
     foto00 = tk.Canvas(frame_p6)
