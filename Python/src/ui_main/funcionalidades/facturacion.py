@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 
 from src.gestor_aplicacion.servicios.servicio import Servicio
+from src.manejo_errores.error_aplicacion import DatosFalsos, TipoIncorrecto, CampoVacio
 from src.ui_main.gestion.field_frame import FieldFrame
 
 
@@ -47,7 +48,8 @@ def facturacion(hospital, frame):
 
         precio_final = 0
 
-        label_servicios = tk.Label(frame, text="Confirme los servicios que va a pagar:", bg="white", font=("Helvetica", 10, "bold"))
+        label_servicios = tk.Label(frame, text="Confirme los servicios que va a pagar:", bg="white",
+                                   font=("Helvetica", 10, "bold"))
         label_servicios.pack(pady=10)
 
         servicios.sort(key=lambda s: s.id_servicio)
@@ -101,10 +103,12 @@ def facturacion(hospital, frame):
 
         imprimir_titulo(frame)
 
-        info_paciente = tk.Label(frame, text=f"{paciente.nombre} - CC: {paciente.cedula}", bg="white", font=("Helvetica", 12))
+        info_paciente = tk.Label(frame, text=f"{paciente.nombre} - CC: {paciente.cedula}", bg="white",
+                                 font=("Helvetica", 12))
         info_paciente.pack(pady=10)
 
-        label_servicios = tk.Label(frame, text="Lista de servicios sin pagar:", bg="white", font=("Helvetica", 10, "bold"))
+        label_servicios = tk.Label(frame, text="Lista de servicios sin pagar:", bg="white",
+                                   font=("Helvetica", 10, "bold"))
         label_servicios.pack(pady=10)
 
         servicios_seleccionados = []
@@ -134,18 +138,21 @@ def facturacion(hospital, frame):
 
     def buscar_paciente():
         cedula = ingreso_cedula.getValue(1)
-        paciente = hospital.buscar_paciente(int(cedula))
 
-        # Continua si el paciente esta registrado en el hospital
-        if paciente is not None:
-            obtener_servicios_sin_pagar(paciente)
+        if len(cedula) != 0:
+            try:
+                paciente = hospital.buscar_paciente(int(cedula))
+                if paciente is not None:
+                    obtener_servicios_sin_pagar(paciente)
+                else:
+                    try:
+                        raise DatosFalsos()
+                    except DatosFalsos as e:
+                        e.enviar_mensaje()
+            except (ValueError, TypeError):
+                raise TipoIncorrecto().enviar_mensaje()
         else:
-            respuesta = tk.messagebox.askyesno("Error", "No existe un paciente registrado con esta cedula. "
-                                                        "¿Desea intentar de nuevo?")
-            if not respuesta:
-                # Se importa aca para evitar una referencia circular
-                from src.ui_main.ventana_principal import implementacion_default
-                implementacion_default(frame)
+            raise CampoVacio().enviar_mensaje()
 
     imprimir_titulo(frame)
 
