@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
 
 from src.ui_main.ventana_principal import ventana_principal
@@ -200,10 +200,24 @@ def ventana_inicial(hospital):
 
         canvas_imagenes_aplicacion.create_image(0, 0, image=tk_aplicacion, anchor="nw")
 
+    def descripcion():
+        descripcion_texto = "MedPlus - Sistema de gestion hospitalaria es una aplicacion que se encarga de gestionar " \
+                          "los servicios de salud que ofrece su hospital"
+        messagebox.showinfo("Descripcion", descripcion_texto)
+
     ventana = tk.Tk()
     ventana.title("MedPlus - Sistema de gestion hospitalaria")
     ventana.geometry("1280x720")
     # ventana.protocol("WM_DELETE_WINDOW", hospital.serializar())
+
+    # Menu inicio
+    barra_menu = tk.Menu(ventana)
+    ventana.config(menu=barra_menu)
+    opcion_archivo = tk.Menu(barra_menu, tearoff=0)
+    barra_menu.add_cascade(label="Inicio", menu=opcion_archivo)
+    opcion_archivo.add_command(label="Descripcion", command=descripcion)
+    opcion_archivo.add_command(label="Salir", command=lambda: ventana.destroy())
+    # opcion_archivo.add_command(label="Salir", command=lambda: [hospital.serializar(), ventana.destroy()])
 
     # Frames principales
     frame_p1 = ttk.Frame(ventana)
