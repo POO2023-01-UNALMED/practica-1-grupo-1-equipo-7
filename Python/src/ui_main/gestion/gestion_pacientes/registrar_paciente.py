@@ -12,7 +12,7 @@ def imprimir_titulo(frame):
         item.destroy()
 
     # Imprime el titulo
-    titulo = tk.Label(frame, text="Agregar doctor", bg="white", font=("Helvetica", 16, "bold"))
+    titulo = tk.Label(frame, text="Agregar paciente", bg="white", font=("Helvetica", 16, "bold"))
     titulo.pack(pady=20)
 
 def registrar_paciente(hospital, frame):

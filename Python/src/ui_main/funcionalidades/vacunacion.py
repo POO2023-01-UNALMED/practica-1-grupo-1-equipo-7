@@ -75,15 +75,24 @@ def vacunacion(hospital, frame):
                     implementacion_default(frame)
 
             else:
-                messagebox.showerror("Informacion incompleta", "Necesita completar todos los espacios para agendar la vacuna")
+                try:
+                    raise CampoVacio()
+                except CampoVacio as e:
+                    e.enviar_mensaje()
 
         def lista_citas():
             lista_citas = []
-            for vacuna in paciente.buscar_vacuna_por_eps(combo_tipo_vacuna.get(), hospital):
-                if vacuna.nombre == combo_elegir_vacuna.get():
-                    for cita in vacuna.mostrar_agenda_disponible():
-                        lista_citas.append(cita.fecha)
-            return lista_citas
+            try:
+                for vacuna in paciente.buscar_vacuna_por_eps(combo_tipo_vacuna.get(), hospital):
+                    if vacuna.nombre == combo_elegir_vacuna.get():
+                        for cita in vacuna.mostrar_agenda_disponible():
+                            lista_citas.append(cita.fecha)
+                return lista_citas
+
+            except SinAgenda as e:
+                e.enviar_mensaje()
+                combo_elegir_cita['state'] = 'disabled'
+
         def habilitar_elegir_cita(event):
             eleccion = combo_elegir_vacuna.get()
             combo_elegir_cita.set("")
@@ -97,7 +106,6 @@ def vacunacion(hospital, frame):
             for vacuna in paciente.buscar_vacuna_por_eps(combo_tipo_vacuna.get(), hospital):
                 lista_vacunas.append(vacuna.nombre)
             return lista_vacunas
-
 
         def habilitar_elegir_vacuna(event):
             eleccion = combo_tipo_vacuna.get()
@@ -114,9 +122,14 @@ def vacunacion(hospital, frame):
                 #Se filtran las vacunas que ya se ha puesto el usuario anteriormente
                 opciones_disponibles = list(filter(lambda vacuna: vacuna not in vacunas_puestas,
                                                    todas_vacunas))
-                combo_elegir_vacuna['values'] = opciones_disponibles
-            else:
-                combo_elegir_vacuna['state'] = 'disabled'
+                if len(opciones_disponibles)!=0:
+                    combo_elegir_vacuna['values'] = opciones_disponibles
+                else:
+                    try:
+                        raise SinVacunas()
+                    except SinVacunas as e:
+                        e.enviar_mensaje()
+                        combo_elegir_vacuna['state'] = 'disabled'
 
 
         imprimir_titulo(frame)

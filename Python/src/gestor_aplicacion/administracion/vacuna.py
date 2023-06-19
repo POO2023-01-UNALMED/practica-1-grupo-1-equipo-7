@@ -1,4 +1,5 @@
 from src.gestor_aplicacion.servicios.cita_vacuna import CitaVacuna
+from src.manejo_errores.error_aplicacion import SinAgenda
 
 
 class Vacuna:
@@ -19,7 +20,10 @@ class Vacuna:
         for cita in self._agenda:
             if cita.paciente is None:
                 agenda_disponible.append(cita)
-        return agenda_disponible
+        if len(agenda_disponible) != 0:
+            return agenda_disponible
+        else:
+            raise SinAgenda()
 
     def actualizar_agenda(self, paciente_asignado, numero_cita, agenda_disponible):
         cita_asignada = None

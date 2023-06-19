@@ -4,7 +4,7 @@ from src.gestor_aplicacion.servicios.cita import Cita
 from src.gestor_aplicacion.servicios.cita_vacuna import CitaVacuna
 from src.gestor_aplicacion.servicios.formula import Formula
 from src.gestor_aplicacion.servicios.habitacion import Habitacion
-from src.manejo_errores.error_aplicacion import SinDoctores
+from src.manejo_errores.error_aplicacion import SinDoctores, SinVacunas
 
 
 class Paciente(Persona):
