@@ -4,6 +4,7 @@ from src.gestor_aplicacion.servicios.cita import Cita
 from src.gestor_aplicacion.servicios.cita_vacuna import CitaVacuna
 from src.gestor_aplicacion.servicios.formula import Formula
 from src.gestor_aplicacion.servicios.habitacion import Habitacion
+from src.manejo_errores.error_aplicacion import SinDoctores
 
 
 class Paciente(Persona):
@@ -93,7 +94,10 @@ class Paciente(Persona):
         for doctor in doctores_por_especialidad:
             if doctor.tipo_eps == self.tipo_eps:
                 doctores_disponibles.append(doctor)
-        return doctores_disponibles
+        if len(doctores_disponibles) != 0:
+            return doctores_disponibles
+        else:
+            raise SinDoctores()
 
 
     def buscar_vacuna_por_eps(self, tipo, hospital):

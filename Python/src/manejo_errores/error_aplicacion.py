@@ -34,7 +34,7 @@ class TipoIncorrecto(IngresoErroneo):
 
 class CampoVacio(IngresoErroneo):
     def __init__(self):
-        super().__init__("Ingreso vacio")
+        super().__init__("Uno o más campos están vacíos")
 
 
 class DatoDuplicado(IngresoErroneo):

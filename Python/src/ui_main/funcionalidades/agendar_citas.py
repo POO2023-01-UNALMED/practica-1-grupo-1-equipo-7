@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 
+from src.manejo_errores.error_aplicacion import DatosFalsos, TipoIncorrecto, CampoVacio, SinDoctores, SinAgenda
 from src.ui_main.gestion.field_frame import FieldFrame
 
 
@@ -46,6 +47,7 @@ def agendar_citas(hospital, frame):
 
         def confirmar_cita():
             eleccion = combo_elegir_cita.get()
+
             if eleccion:
                 respuesta = tk.messagebox.askyesno("Confirmar cita", "¿Estas seguro de agendar esta cita?")
                 if respuesta:
@@ -62,15 +64,23 @@ def agendar_citas(hospital, frame):
                     implementacion_default(frame)
 
             else:
-                messagebox.showerror("Informacion incompleta", "Necesita completar todos los espacios para agendar la cita")
+                try:
+                    raise CampoVacio()
+                except CampoVacio as e:
+                    e.enviar_mensaje()
 
         def lista_citas():
             lista_citas = []
-            for doctor in paciente.buscar_doctor_por_eps(combo_tipo_cita.get(), hospital):
-                if doctor.nombre == combo_elegir_doctor.get():
-                    for cita in doctor.mostrar_agenda_disponible():
-                        lista_citas.append(cita.fecha)
-            return lista_citas
+            try:
+                for doctor in paciente.buscar_doctor_por_eps(combo_tipo_cita.get(), hospital):
+                    if doctor.nombre == combo_elegir_doctor.get():
+                        for cita in doctor.mostrar_agenda_disponible():
+                            lista_citas.append(cita.fecha)
+                return lista_citas
+
+            except SinAgenda as e:
+                e.enviar_mensaje()
+                combo_elegir_cita['state'] = 'disabled'
 
         def habilitar_elegir_cita(event):
             eleccion = combo_elegir_doctor.get()
@@ -83,9 +93,13 @@ def agendar_citas(hospital, frame):
 
         def lista_doctores():
             lista_doctores = []
-            for doctor in paciente.buscar_doctor_por_eps(combo_tipo_cita.get(), hospital):
-                lista_doctores.append(doctor.nombre)
-            return lista_doctores
+            try:
+                for doctor in paciente.buscar_doctor_por_eps(combo_tipo_cita.get(), hospital):
+                    lista_doctores.append(doctor.nombre)
+                return lista_doctores
+            except SinDoctores as e:
+                e.enviar_mensaje()
+                combo_elegir_doctor['state'] = 'disabled'
 
         def habilitar_elegir_doctor(event):
             eleccion = combo_tipo_cita.get()
@@ -138,18 +152,20 @@ def agendar_citas(hospital, frame):
 
     def buscar_paciente():
         cedula = fp.getValue(1)
-        paciente = hospital.buscar_paciente(int(cedula))
 
-        # Continua si el paciente esta registrado en el hospital
-        if paciente is not None:
-            agendamiento_de_la_cita(paciente)
+        if len(cedula) != 0:
+            try:
+                paciente = hospital.buscar_paciente(int(cedula))
+                agendamiento_de_la_cita(paciente)
+            except DatosFalsos as e:
+                e.enviar_mensaje()
+            except ValueError:
+                TipoIncorrecto().enviar_mensaje()
         else:
-            respuesta = tk.messagebox.askyesno("Error", "No existe un paciente registrado con esta cedula. "
-                                                        "¿Desea intentar de nuevo?")
-            if not respuesta:
-                # Se importa aca para evitar una referencia circular
-                from src.ui_main.ventana_principal import implementacion_default
-                implementacion_default(frame)
+            try:
+                raise CampoVacio()
+            except CampoVacio as e:
+                e.enviar_mensaje()
 
     imprimir_titulo(frame)
 

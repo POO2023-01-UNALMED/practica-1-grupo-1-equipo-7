@@ -1,6 +1,7 @@
 from src.gestor_aplicacion.personas import persona
 from src.gestor_aplicacion.personas.persona import Persona
 from src.gestor_aplicacion.servicios.cita import Cita
+from src.manejo_errores.error_aplicacion import SinAgenda
 
 
 class Doctor(Persona):
@@ -18,7 +19,10 @@ class Doctor(Persona):
         for cita in self.agenda:
             if cita.paciente is None:
                 agenda_disponible.append(cita)
-        return agenda_disponible
+        if len(agenda_disponible) != 0:
+            return agenda_disponible
+        else:
+            raise SinAgenda()
 
     def actualizar_agenda(self, paciente_seleccionado, numero_cita, agenda_disponible):
         cita_seleccionada = None
