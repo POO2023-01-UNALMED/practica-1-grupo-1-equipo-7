@@ -166,7 +166,7 @@ def vacunacion(hospital, frame):
             except DatosFalsos as e:
                 e.enviar_mensaje()
             except ValueError:
-                messagebox.showerror("Error", "Error de tipo de dato")
+                TipoIncorrecto().enviar_mensaje()
         else:
             try:
                 raise CampoVacio()
