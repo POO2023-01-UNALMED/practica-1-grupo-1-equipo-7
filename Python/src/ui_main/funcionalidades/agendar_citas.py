@@ -4,7 +4,7 @@ from tkinter import ttk, messagebox
 from src.manejo_errores.error_aplicacion import DatosFalsos, TipoIncorrecto, CampoVacio, SinDoctores, SinAgenda
 from src.ui_main.gestion.field_frame import FieldFrame
 
-
+# Se usa para borrar lo que hay en el frame y mostrar el titulo de la funcionalidad
 def imprimir_titulo(frame):
     # Limpia el frame
     for item in frame.winfo_children():
@@ -14,6 +14,8 @@ def imprimir_titulo(frame):
     titulo = tk.Label(frame, text="Agendar citas", bg="white", font=("Helvetica", 16, "bold"))
     titulo.pack(pady=20)
 def agendar_citas(hospital, frame):
+
+    # Cuando se confirma la cita, se muestra el historial de todas las citas del paciente
     def mostrar_historial_citas(paciente):
         imprimir_titulo(frame)
         info_historial = tk.Label(frame, text=f"Historial de citas de {paciente.nombre} - CC: {paciente.cedula}",
@@ -37,14 +39,18 @@ def agendar_citas(hospital, frame):
         historial_citas_text.config(highlightthickness=5, highlightbackground="#4D5BE4")
         historial_citas_text.config(state="disabled")
 
+        # Boton para regresar a la ventana principal
+
         # Se importa aca para evitar una referencia circular
         from src.ui_main.ventana_principal import implementacion_default
 
         boton_regresar = tk.Button(frame, text="Regresar", command=lambda: implementacion_default(frame))
         boton_regresar.pack()
 
+    # Aca se ingresan todos los datos necesarios para agendar una cita
     def agendamiento_de_la_cita(paciente):
 
+        # Se pide confirmar la cita y se actualiza la agenda del doctor y el historial del paciente
         def confirmar_cita():
             eleccion = combo_elegir_cita.get()
 
@@ -69,6 +75,7 @@ def agendar_citas(hospital, frame):
                 except CampoVacio as e:
                     e.enviar_mensaje()
 
+        # Busca las citas en la agenda del doctor seleccionado que estan disponibles
         def lista_citas():
             lista_citas = []
             try:
@@ -82,6 +89,7 @@ def agendar_citas(hospital, frame):
                 e.enviar_mensaje()
                 combo_elegir_cita['state'] = 'disabled'
 
+        # Se usa como evento para cuando se selecciona algo en el combobox del doctor
         def habilitar_elegir_cita(event):
             eleccion = combo_elegir_doctor.get()
             combo_elegir_cita.set("")
@@ -91,6 +99,7 @@ def agendar_citas(hospital, frame):
             else:
                 combo_elegir_cita['state'] = 'disabled'
 
+        # Busca los doctores de la especialidad seleccionada y del tipo de eps del paciente
         def lista_doctores():
             lista_doctores = []
             try:
@@ -101,6 +110,7 @@ def agendar_citas(hospital, frame):
                 e.enviar_mensaje()
                 combo_elegir_doctor['state'] = 'disabled'
 
+        # Se usa como evento para cuando se selecciona algo en el combobox del tipo de cita
         def habilitar_elegir_doctor(event):
             eleccion = combo_tipo_cita.get()
             combo_elegir_doctor.set("")
@@ -120,6 +130,7 @@ def agendar_citas(hospital, frame):
         frame1 = tk.Frame(frame, bg="white")
         frame1.pack()
 
+        # se crean los label y combobox necesarios para llenar la informacion para agendar la cita
         tipo_cita = tk.Label(frame1, text="Seleccione el tipo de cita:", bg="white", font=("Helvetica", 10, "bold"))
         tipo_cita.grid(row=0,column=0,padx=10,pady=10,sticky="w")
         valor_defecto1 = tk.StringVar
@@ -140,8 +151,11 @@ def agendar_citas(hospital, frame):
         combo_elegir_cita = ttk.Combobox(frame1,textvariable=valor_defecto3,state="disabled")
         combo_elegir_cita.grid(row=2,column=1,padx=10,pady=10,sticky="w")
 
+        # Boton para aceptar e ir a la confirmacion de la cita
         boton_aceptar = tk.Button(frame, text="Aceptar", command=confirmar_cita)
         boton_aceptar.pack(pady=5)
+
+        # Boton para regresar a la ventana principal
 
         # Se importa aca para evitar una referencia circular
         from src.ui_main.ventana_principal import implementacion_default
@@ -149,13 +163,15 @@ def agendar_citas(hospital, frame):
         boton_regresar = tk.Button(frame, text="Regresar", command=lambda: implementacion_default(frame))
         boton_regresar.pack(pady=5)
 
-
+    # Aca se verifica que el paciente exista y que no hubieron errores al ingresarlo
     def buscar_paciente():
         cedula = fp.getValue(1)
 
         if len(cedula) != 0:
             try:
                 paciente = hospital.buscar_paciente(int(cedula))
+
+                #Se llama la siguiente funcion
                 agendamiento_de_la_cita(paciente)
             except DatosFalsos as e:
                 e.enviar_mensaje()
@@ -178,10 +194,11 @@ def agendar_citas(hospital, frame):
     fp = FieldFrame(frame, "", criterios, "", None, None)
     fp.pack()
 
+    # Boton para buscar el paciente
     boton_buscar_paciente = tk.Button(frame, text="Buscar", command=buscar_paciente)
     boton_buscar_paciente.pack(pady=10)
 
-    # Funcionalidad para regresar a la ventana principal
+    # Boton para regresar a la ventana principal
 
     # Se importa aca para evitar una referencia circular
     from src.ui_main.ventana_principal import implementacion_default
