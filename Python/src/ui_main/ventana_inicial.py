@@ -280,10 +280,10 @@ def ventana_inicial(hospital):
                     Image.open("src/ui_main/imagenes/desarrolladores/elian/foto3.jpg").resize((1000, 1000)),
                     Image.open("src/ui_main/imagenes/desarrolladores/elian/foto4.jpg").resize((1000, 1000))],
 
-                   [Image.open("src/ui_main/imagenes/desarrolladores/puffin/foto1.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/puffin/foto2.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/puffin/foto3.jpg").resize((1000, 1000)),
-                    Image.open("src/ui_main/imagenes/desarrolladores/puffin/foto4.jpg").resize((1000, 1000))],
+                   [Image.open("src/ui_main/imagenes/desarrolladores/santiago/foto1.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/santiago/foto2.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/santiago/foto3.jpg").resize((1000, 1000)),
+                    Image.open("src/ui_main/imagenes/desarrolladores/santiago/foto4.jpg").resize((1000, 1000))],
                    ]
 
     foto00 = tk.Canvas(frame_p6)
