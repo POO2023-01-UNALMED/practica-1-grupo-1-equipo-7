@@ -1,3 +1,5 @@
+# Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+# y Santiago Arboleda Acevedo
 from src.gestor_aplicacion.administracion.historia_clinica import HistoriaClinica
 from src.gestor_aplicacion.personas.persona import Persona
 from src.gestor_aplicacion.servicios.cita import Cita
@@ -7,13 +9,19 @@ from src.gestor_aplicacion.servicios.habitacion import Habitacion
 from src.manejo_errores.error_aplicacion import SinDoctores
 
 
+# Clase destinada a crear pacientes
 class Paciente(Persona):
 
+    # Atributos y constructor
     def __init__(self, cedula, nombre, tipo_eps):
         super().__init__(cedula, nombre, tipo_eps)
         self._habitacion_asignada = None
         self._HISTORIA_CLINICA = HistoriaClinica(self)
 
+    # Metodos
+
+    # Metodo que calcula el precio de un servicio, recibe un objeto de la clase Servicio
+    # y devuelve un entero dependiendo la clase que sea servicio
     def calcular_precio(self, servicio):
         if isinstance(servicio, Formula):
             IVA = 1.19
@@ -79,6 +87,9 @@ class Paciente(Persona):
             precio_total *= (1 + IVA)
             return precio_total
 
+    # Método que se encarga de buscar los medicamentos disponibles y posteriormente busca los medicamentos
+    # que traten la enfermedad ingresada como parámetro. Recibe un objeto de clase Enfermedad, uno de clase
+    # Hospital y retorna una lista de objetos de Medicamento
     def med_enfermedad(self, enfermedad, hospital):
         meds = hospital.meds_disponibles()
         med_enfermedades = []
@@ -87,6 +98,8 @@ class Paciente(Persona):
                 med_enfermedades.append(med)
         return med_enfermedades
 
+    # Método que busca los doctores por especialidad y por el tipo de eps del paciente
+    # Recibe un string, y un objeto de clase Hospital. Retorna una lista de objetos de Doctor
     def buscar_doctor_por_eps(self, especialidad, hospital):
         doctores_por_especialidad = hospital.buscar_tipo_doctor(especialidad)
         doctores_disponibles = []
@@ -99,7 +112,10 @@ class Paciente(Persona):
         else:
             raise SinDoctores()
 
-
+    # Método que busca las vacunas por tipo ingresada en el parámetro, invocando el método
+    # de hospital, y con el for filtrandolas por eps del paciente
+    # Recibe un string, un objeto de clase Hospital y devuelve una lista de
+    # objetos de Vacuna
     def buscar_vacuna_por_eps(self, tipo, hospital):
         vacunas_por_tipo = hospital.buscar_tipo_vacuna(tipo)
         vacunas_disponibles = []
@@ -110,10 +126,14 @@ class Paciente(Persona):
                     vacunas_disponibles.append(vacuna)
         return vacunas_disponibles
 
+    # Método que agrega una cita a la lista de citas de la historia clínica del paciente
+    # recibe un objeto de tipo Cita y modifica el atributo _historia_clinica de paciente
     def actualizar_historial_citas(self, cita_seleccionada):
         self.historia_clinica.historial_citas.append(cita_seleccionada)
 
-    def actualizar_historial_vacunas(self,cita_asignada):
+    # Método que agrega una Cita_Vacuna a la lista de citas de la historia clínica del paciente
+    # recibe un objeto de tipo Cita_Vacuna y modifica el atributo _historia_clinica de paciente
+    def actualizar_historial_vacunas(self, cita_asignada):
         self.historia_clinica.historial_vacunas.append(cita_asignada)
 
     @property

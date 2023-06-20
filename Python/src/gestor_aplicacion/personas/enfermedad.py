@@ -1,7 +1,13 @@
+# Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+# y Santiago Arboleda Acevedo
+
+# Clase que crea enfermedades, las cuales son usadas para recomendarle al paciente
+# distintos servicios que estén relacionados con su enfermedad
 class Enfermedad:
 
-    _enfermedades_registradas = []
+    _enfermedades_registradas = [] # Atributo de clase
 
+    # Atributos y constructor
     def __init__(self, nombre, tipologia, especialidad):
         self._especialidad = especialidad
         self._nombre = nombre
@@ -9,6 +15,9 @@ class Enfermedad:
         self._enfermos = 1
         Enfermedad._enfermedades_registradas.append(self)
 
+    # Metodos
+
+    # Aumenta en el atributo enfermos en una unidad
     def nuevo_enfermo(self):
         self._enfermos += 1
 

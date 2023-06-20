@@ -1,8 +1,14 @@
+# Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+# y Santiago Arboleda Acevedo
+
+
 from src.gestor_aplicacion.servicios.cita_vacuna import CitaVacuna
 from src.manejo_errores.error_aplicacion import SinAgenda
 
-
+# Clase destinada a los objetos vacuna
 class Vacuna:
+
+    # Atributos y constructor
     def __init__(self, tipo, nombre, tipo_eps, precio):
         self._tipo = tipo
         self._nombre = nombre
@@ -15,6 +21,10 @@ class Vacuna:
             CitaVacuna("24 de Diciembre, 6:00 am", None, self)
         ]
 
+    # Metodos
+
+    # Método que muestra las citas que no tienen paciente asignado de una vacuna
+    # No recibe ningun parametro y devuelve una lista de objetos Cita_Vacuna
     def mostrar_agenda_disponible(self):
         agenda_disponible = []
         for cita in self._agenda:
@@ -25,6 +35,8 @@ class Vacuna:
         else:
             raise SinAgenda()
 
+    # Este método asigna un paciente a una cita de una vacuna
+    # recibe un objeto de Paciente, un entero y una lista de Cita_Vacuna
     def actualizar_agenda(self, paciente_asignado, numero_cita, agenda_disponible):
         cita_asignada = None
         for cita in self._agenda:

@@ -1,5 +1,10 @@
+# Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+# y Santiago Arboleda Acevedo
+
+# Clase destinada para que hereden doctor y persona
 class Persona:
 
+    # Atributos y constructor
     def __init__(self, cedula, nombre, tipo_eps):
         self._cedula = cedula
         self._nombre = nombre

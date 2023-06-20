@@ -1,15 +1,19 @@
+# Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+# y Santiago Arboleda Acevedo
 from abc import ABC, abstractmethod
 
 
+# Clase Abstracta destinada a herencia de servicios del hospital
 class Servicio(ABC):
     generadorID = 1
-
+    # Atributos y constructor
     def __init__(self, paciente):
         self._id_servicio = Servicio.generadorID
         Servicio.generadorID += 1
         self._paciente = paciente
         self._estado_pago = False
 
+    # Metodos abstractos
     @abstractmethod
     def descripcion_servicio(self):
         pass
@@ -38,6 +42,8 @@ class Servicio(ABC):
     def paciente(self, value):
         self._paciente = value
 
+    # Método estático para obtener servicios sin pagar
+    # recibe un objeto de Paciente y devuelve una lista de obetos de Servicio
     @classmethod
     def obtener_servicios_sin_pagar(cls, paciente):
         historia_clinica_paciente = paciente.historia_clinica

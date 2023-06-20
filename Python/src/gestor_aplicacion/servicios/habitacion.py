@@ -1,9 +1,12 @@
+# Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+# y Santiago Arboleda Acevedo
 from src.gestor_aplicacion.administracion.categoria_habitacion import *
 from src.gestor_aplicacion.servicios.servicio import Servicio
 
 
 class Habitacion(Servicio):
 
+    # Atributos y constructor
     def __init__(self, numero, categoria, ocupada, paciente, dias):
         super().__init__(paciente)
         self.numero = numero
@@ -11,6 +14,10 @@ class Habitacion(Servicio):
         self.ocupada = ocupada
         self.dias = dias
 
+    # Metodos
+
+    # Se crea el metodo estatico, el cual se encarga de filtrar. Recibe un string y
+    # retorna un ArrayList de las habitaciones vacias de la categoria que se selecciono
     @classmethod
     def buscar_habitacion_disponible(cls, categoria):
         from src.gestor_aplicacion.administracion.hospital import Hospital
@@ -22,6 +29,8 @@ class Habitacion(Servicio):
             return habitaciones_disponibles
         return None
 
+    # Este metodo se encarga de cambiar la categoria a una inferior. Recibe un string y
+    # retorna un ArrayList de las habitaciones vacias de la categoria que se selecciono
     @classmethod
     def buscar_otra_categoria(cls, categoria):
         if categoria == Categoria_habitacion.UCC.name:

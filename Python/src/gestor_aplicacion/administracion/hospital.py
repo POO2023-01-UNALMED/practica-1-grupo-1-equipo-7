@@ -1,3 +1,5 @@
+# Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
+# y Santiago Arboleda Acevedo
 import os
 import pickle
 
@@ -10,10 +12,11 @@ from src.gestor_aplicacion.administracion.medicamento import Medicamento
 from src.gestor_aplicacion.servicios.habitacion import Habitacion
 from src.manejo_errores.error_aplicacion import DatosFalsos
 
-
+# Clase destinada a crear el hospital
 class Hospital:
-    _habitaciones = [Habitacion(1, Categoria_habitacion.CAMILLA, False, None, 0)]
+    _habitaciones = [Habitacion(1, Categoria_habitacion.CAMILLA, False, None, 0)] # atributo de clase
 
+    # demas atributos y constructor
     def __init__(self):
         pac = Paciente(111, "Diego", "Particular")
         self._lista_pacientes = [pac, Paciente(123, "Bolillo", "Subsidiado")]
@@ -27,17 +30,25 @@ class Hospital:
                                Vacuna("Obligatoria", "Neumococo", ["Subsidiado"], 2000)]
         # self.deserializar()
 
+    # Metodos
+
+    # Metodo que recibe un entero y busca el paciente en la lista de hospital y devuelve un objeto de clase Paciente
     def buscar_paciente(self, cedula):
         for paciente in self._lista_pacientes:
             if paciente.cedula == cedula:
                 return paciente
         raise DatosFalsos()
 
+    # Metodo que recibe un entero y busca el doctor en la lista de hospital y devuelve un objeto de clase Doctor
+
     def buscar_doctor(self, cedula):
         for doctor in self._lista_doctores:
             if doctor.cedula == cedula:
                 return doctor
         return None
+
+    # Metodo no recibe nada y busca los medicamentos
+    # disponibles en la lista de hospital y devuelve una lista de objetos de Medicamento
 
     def meds_disponibles(self):
         disponibles = []
@@ -46,6 +57,8 @@ class Hospital:
                 disponibles.append(med)
         return disponibles
 
+    # Metodo que recibe un string y busca el doctor en la lista de hospital
+    # con ese string y devuelve un objeto de clase Doctor
     def buscar_tipo_doctor(self, especialidad):
         disponibles = []
         for doc in self._lista_doctores:
@@ -53,6 +66,8 @@ class Hospital:
                 disponibles.append(doc)
         return disponibles
 
+    # Metodo que recibe un string y busca vacunas disponibles por tipo
+    # en la lista de hospital y devuelve una lista de objetos Vacuna
     def buscar_tipo_vacuna(self, tipo):
         disponibles = []
         for vacuna in self._lista_vacunas:
@@ -60,6 +75,8 @@ class Hospital:
                 disponibles.append(vacuna)
         return disponibles
 
+    # Metodo que recibe un string y busca una vacuna por nombre
+    # en la lista de hospital y devuelve un un objeto de vacuna
     def buscar_vacuna(self, nombre):
         vacuna_seleccionada=None
         for vacuna in self._lista_vacunas:
