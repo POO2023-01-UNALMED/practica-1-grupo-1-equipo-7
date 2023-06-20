@@ -90,34 +90,43 @@ def formula_medica(hospital, frame):
         combo_elegir_doctor.grid(row=1, column=1, padx=10, pady=10, sticky="w")
 
         def seleccion_medicamentos(enfermedad, formula, doctor):
-            # Crear el nuevo frame para la selección de medicamentos
-            imprimir_titulo(frame)
-            frame_seleccion = tk.Frame(frame, bg="white")
-            frame_seleccion.pack(fill="both", expand=True)
-            medicamentos_disponibles = paciente.med_enfermedad(enfermedad, hospital)
-            if len(medicamentos_disponibles) != 0:
-                # Título de la selección de medicamentos
-                titulo_seleccion = tk.Label(frame_seleccion, text="Seleccione los medicamentos", bg="white", font=("Helvetica", 10, "bold"))
-                titulo_seleccion.pack()
+            if doctor != "":
+                # Crear el nuevo frame para la selección de medicamentos
+                imprimir_titulo(frame)
+                frame_seleccion = tk.Frame(frame, bg="white")
+                frame_seleccion.pack(fill="both", expand=True)
+                medicamentos_disponibles = paciente.med_enfermedad(enfermedad, hospital)
+                if len(medicamentos_disponibles) != 0:
+                    # Título de la selección de medicamentos
+                    titulo_seleccion = tk.Label(frame_seleccion, text="Seleccione los medicamentos", bg="white", font=("Helvetica", 10, "bold"))
+                    titulo_seleccion.pack()
 
-                # Listbox para la selección de medicamentos
-                listbox_medicamentos = tk.Listbox(frame_seleccion, selectmode=tk.MULTIPLE, bg="white")
-                listbox_medicamentos.pack(fill="both", expand=True)
+                    # Listbox para la selección de medicamentos
+                    listbox_medicamentos = tk.Listbox(frame_seleccion, selectmode=tk.MULTIPLE, bg="white")
+                    listbox_medicamentos.pack(fill="both", expand=True)
 
-                # Agregar los medicamentos disponibles al listbox
-                for med in medicamentos_disponibles:
-                    listbox_medicamentos.insert(tk.END, med)
+                    # Agregar los medicamentos disponibles al listbox
+                    for med in medicamentos_disponibles:
+                        listbox_medicamentos.insert(tk.END, med)
 
-                # Botón para finalizar la selección
-                boton_finalizar = tk.Button(frame_seleccion, text="Finalizar selección",
-                                            command=lambda: obtener_seleccion(listbox_medicamentos.curselection(),
-                                                                              medicamentos_disponibles, formula, doctor))
-                boton_finalizar.pack()
+                    # Botón para finalizar la selección
+                    boton_finalizar = tk.Button(frame_seleccion, text="Finalizar selección",
+                                                command=lambda: obtener_seleccion(listbox_medicamentos.curselection(),
+                                                                                  medicamentos_disponibles, formula, doctor))
+                    boton_finalizar.pack()
+                else:
+                    try:
+                        raise SinMedicamentos()
+                    except SinMedicamentos as e:
+                        SinMedicamentos().enviar_mensaje()
+                        # Se importa aca para evitar una referencia circular
+                        from src.ui_main.ventana_principal import implementacion_default
+                        implementacion_default(frame)
             else:
                 try:
-                    raise SinMedicamentos()
-                except SinMedicamentos as e:
-                    SinMedicamentos().enviar_mensaje()
+                    raise ValueError
+                except ValueError:
+                    IngresoErroneo("No elegiste doctor").enviar_mensaje()
                     # Se importa aca para evitar una referencia circular
                     from src.ui_main.ventana_principal import implementacion_default
                     implementacion_default(frame)
@@ -129,18 +138,27 @@ def formula_medica(hospital, frame):
 
             # Obtener los medicamentos seleccionados utilizando los índices
             medicamentos_seleccionados = [disponibles[indice] for indice in indices_seleccionados]
-            frame_meds_seleccionados = tk.Frame(frame)
-            frame_meds_seleccionados.pack(fill="both", expand=True)
-            label_meds_seleccionados = tk.Label(frame_meds_seleccionados, text="Estos son sus medicamentos", bg="white", font=("Helvetica", 10, "bold"))
-            label_meds_seleccionados.pack()
-            formula.lista_meds = medicamentos_seleccionados
-            for med in medicamentos_seleccionados:
-                string_info = med.mostrar_info()
-                label_med = tk.Label(frame_meds_seleccionados, text=string_info, bg="white")
-                label_med.pack()
-            boton_generar_formula = tk.Button(frame_meds_seleccionados, text="Generar Formula",
-                                              command=lambda: generar_formula(formula, doctor))
-            boton_generar_formula.pack()
+            if len(medicamentos_seleccionados) != 0:
+                frame_meds_seleccionados = tk.Frame(frame)
+                frame_meds_seleccionados.pack(fill="both", expand=True)
+                label_meds_seleccionados = tk.Label(frame_meds_seleccionados, text="Estos son sus medicamentos", bg="white", font=("Helvetica", 10, "bold"))
+                label_meds_seleccionados.pack()
+                formula.lista_meds = medicamentos_seleccionados
+                for med in medicamentos_seleccionados:
+                    string_info = med.mostrar_info()
+                    label_med = tk.Label(frame_meds_seleccionados, text=string_info, bg="white")
+                    label_med.pack()
+                boton_generar_formula = tk.Button(frame_meds_seleccionados, text="Generar Formula",
+                                                  command=lambda: generar_formula(formula, doctor))
+                boton_generar_formula.pack()
+            else:
+                try:
+                    raise ValueError
+                except ValueError:
+                    IngresoErroneo("Sin medicamentos").enviar_mensaje()
+                    # Se importa aca para evitar una referencia circular
+                    from src.ui_main.ventana_principal import implementacion_default
+                    implementacion_default(frame)
 
             def generar_formula(formula_paciente, doctor):
                 respuesta = tk.messagebox.askyesno("Confirmar Formula", "¿Estas seguro de generar esta formula?")

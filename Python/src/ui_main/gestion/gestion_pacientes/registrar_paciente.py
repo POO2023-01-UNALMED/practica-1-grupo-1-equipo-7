@@ -16,6 +16,7 @@ def imprimir_titulo(frame):
     titulo = tk.Label(frame, text="Agregar paciente", bg="white", font=("Helvetica", 16, "bold"))
     titulo.pack(pady=20)
 
+
 def registrar_paciente(hospital, frame):
     def ver_paciente(cedula, nombre, tipo_eps):
         imprimir_titulo(frame)
@@ -45,27 +46,61 @@ def registrar_paciente(hospital, frame):
 
         boton_regresar = tk.Button(frame, text="Regresar", command=lambda: implementacion_default(frame))
         boton_regresar.pack()
+
     def agregar_a_lista_pacientes():
-        try:
+        cedula = fp.getValue(1)
+        nombre = fp.getValue(2)
+        tipo_eps = fp.getValue(3)
+        error = False
+        if cedula != "" and nombre != "" and tipo_eps != "":
+            try:
+                cedula = int(cedula)
+                for pac in hospital.lista_pacientes:
+                    if cedula == pac.cedula:
+                        error = True
+                        raise DatoDuplicado()
+            except DatoDuplicado as e:
+                e.enviar_mensaje()
+            except ValueError:
+                TipoIncorrecto("en el campo cedula").enviar_mensaje()
+            try:
+                if nombre.isdigit():
+                    error = True
+                    raise ValueError
+                else:
+                    nombre = str(nombre)
+            except ValueError:
+                TipoIncorrecto("en el campo nombre").enviar_mensaje()
+            try:
+                if tipo_eps != "Subsidiado" and tipo_eps != "Contributivo" and tipo_eps != "Particular":
+                    error = True
+                    raise ValueError
+                else:
+                    nombre = str(nombre)
+            except ValueError:
+                TipoIncorrecto("en el campo tipo eps").enviar_mensaje()
+        else:
+            try:
+                error = True
+                raise CampoVacio()
+            except CampoVacio as e:
+                e.enviar_mensaje()
+
+        if error is not True:
             respuesta = tk.messagebox.askyesno("Confirmacion del paciente", "¿Estas seguro de registrar este paciente?")
 
             if respuesta:
-                    cedula = int(fp.getValue(1))
-                    nombre = str(fp.getValue(2))
-                    tipo_eps = str(fp.getValue(3))
-                    paciente = Paciente(cedula, nombre, tipo_eps)
-                    hospital.lista_pacientes.append(paciente)
-                    messagebox.showinfo("Paciente registrado", "El paciente se ha registrado exitosamente")
-                    ver_paciente(cedula, nombre, tipo_eps)
+
+                paciente = Paciente(cedula, nombre, tipo_eps)
+                hospital.lista_pacientes.append(paciente)
+                messagebox.showinfo("Paciente registrado", "El paciente se ha registrado exitosamente")
+                ver_paciente(cedula, nombre, tipo_eps)
             else:
                 messagebox.showinfo("Paciente no registrado", "No se ha registrado el paciente")
                 # Se importa aca para evitar una referencia circular
                 from src.ui_main.ventana_principal import implementacion_default
                 implementacion_default(frame)
-        except CampoVacio as e:
-            e.enviar_mensaje()
-        except ValueError:
-            TipoIncorrecto().enviar_mensaje()
+
     def borrar_campos():
         for entry in fp.valores:
             entry.delete(0, tk.END)

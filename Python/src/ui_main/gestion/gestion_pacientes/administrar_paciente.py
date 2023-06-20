@@ -58,17 +58,34 @@ def administrar_paciente(hospital, frame):
         boton_regresar = tk.Button(frame, text="Regresar", command=lambda: implementacion_default(frame))
         boton_regresar.pack()
     def actualizar_paciente(fp, paciente):
-        respuesta = tk.messagebox.askyesno("Confirmacion de cambio", "¿Estas seguro deseas cambiar el nombre?")
-        if respuesta:
-            nombre = str(fp.getValue(2))
-            paciente.nombre = nombre
-            messagebox.showinfo("Cambio hecho", "El nombre se ha cambiado exitosamente")
-            ver_paciente(paciente)
+        nombre = fp.getValue(2)
+        error = False
+        if nombre != "":
+            try:
+                if nombre.isdigit():
+                    error = True
+                    raise ValueError
+                else:
+                    nombre = str(nombre)
+            except ValueError:
+                TipoIncorrecto().enviar_mensaje()
         else:
-            messagebox.showinfo("Cambio cancelado", "El nombre no se ha cambiado")
-            # Se importa aca para evitar una referencia circular
-            from src.ui_main.ventana_principal import implementacion_default
-            implementacion_default(frame)
+            try:
+                error = True
+                raise CampoVacio()
+            except CampoVacio as e:
+                e.enviar_mensaje()
+        if error is not True:
+            respuesta = tk.messagebox.askyesno("Confirmacion de cambio", "¿Estas seguro deseas cambiar el nombre?")
+            if respuesta:
+                paciente.nombre = nombre
+                messagebox.showinfo("Cambio hecho", "El nombre se ha cambiado exitosamente")
+                ver_paciente(paciente)
+            else:
+                messagebox.showinfo("Cambio cancelado", "El nombre no se ha cambiado")
+                # Se importa aca para evitar una referencia circular
+                from src.ui_main.ventana_principal import implementacion_default
+                implementacion_default(frame)
 
 
 

@@ -25,32 +25,65 @@ def registrar_enfermedad(hospital, frame):
                 entry.delete(0, tk.END)
 
         def crear_enf():
-            respuesta = tk.messagebox.askyesno("Confirmacion Enfermedad", "¿Estas seguro de agregar esta enfermedad?")
-            if fp.getValue(1) != "" and fp.getValue(2) != "" and fp.getValue(3) != "":
+            nombre = fp.getValue(1)
+            tipologia = fp.getValue(2)
+            especialidad = fp.getValue(3)
+            error = False
+            if nombre != "" and tipologia != "" and especialidad != "":
                 try:
-                    if respuesta:
-                        nombre = str(fp.getValue(1))
-                        tipologia = str(fp.getValue(2))
-                        especialidad = str(fp.getValue(3))
-                        enf = Enfermedad(nombre, tipologia, especialidad)
-                        paciente.historia_clinica.enfermedades.append(enf)
-                        messagebox.showinfo("Enfermedad agregada", "La enfermedad se ha agregado exitosamente")
-                        # Se importa aca para evitar una referencia circular
-                        from src.ui_main.ventana_principal import implementacion_default
-                        implementacion_default(frame)
+                    if nombre.isdigit():
+                        error = True
+                        raise ValueError
+                    else:
+                        nombre = str(nombre)
                 except ValueError:
-                    TipoIncorrecto().enviar_mensaje()
+                    TipoIncorrecto("en el campo nombre").enviar_mensaje()
+                try:
+                    if tipologia.isdigit():
+                        error = True
+                        raise ValueError
+                    else:
+                        tipologia = str(tipologia)
+                except ValueError:
+                    TipoIncorrecto("en el campo tipologia").enviar_mensaje()
+                try:
+                    if especialidad != "General" and especialidad != "Oftalmologia" and especialidad != "Odontologia":
+                        error = True
+                        raise ValueError
+                    else:
+                        especialidad = str(especialidad)
+                except ValueError:
+                    TipoIncorrecto("en el campo especialidad").enviar_mensaje()
+                try:
+                    for enf in Enfermedad.getEnfermedadesRegistradas():
+                        if nombre == enf.nombre and tipologia == enf.tipologia:
+                            error = True
+                            raise DatoDuplicado()
+                except DatoDuplicado as e:
+                    e.enviar_mensaje()
+            else:
+                try:
+                    raise CampoVacio()
+                except CampoVacio as e:
+                    e.enviar_mensaje()
+                    error = True
+
+            if error is not True:
+                respuesta = tk.messagebox.askyesno("Confirmacion Enfermedad",
+                                                   "¿Estas seguro de agregar esta enfermedad?")
+                if respuesta:
+                    enf = Enfermedad(nombre, tipologia, especialidad)
+                    paciente.historia_clinica.enfermedades.append(enf)
+                    messagebox.showinfo("Enfermedad agregada", "La enfermedad se ha agregado exitosamente")
+                    # Se importa aca para evitar una referencia circular
+                    from src.ui_main.ventana_principal import implementacion_default
+                    implementacion_default(frame)
 
                 else:
                     messagebox.showinfo("Enfermedad no agregada", "No se ha agregado la enfermedad")
                     # Se importa aca para evitar una referencia circular
                     from src.ui_main.ventana_principal import implementacion_default
                     implementacion_default(frame)
-            else:
-                try:
-                    raise CampoVacio()
-                except CampoVacio as e:
-                    e.enviar_mensaje()
 
         imprimir_titulo(frame)
         criterios = ["Nombre", "Tipologia", "Especialidad que la trata(General, Oftalmologia u Odontologia)"]
