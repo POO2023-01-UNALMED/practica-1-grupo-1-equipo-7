@@ -1,11 +1,9 @@
-# Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
-# y Santiago Arboleda Acevedo
+# Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez
+# Martinez y Santiago Arboleda Acevedo
 import os
 import pickle
 
-from src.gestor_aplicacion.administracion.categoria_habitacion import Categoria_habitacion
 from src.gestor_aplicacion.personas.enfermedad import Enfermedad
-from src.gestor_aplicacion.servicios.habitacion import Habitacion
 from src.manejo_errores.error_aplicacion import DatosFalsos
 
 
@@ -20,13 +18,6 @@ class Hospital:
         self._lista_medicamentos = []
         self._lista_vacunas = []
         self.deserializar()
-
-        self._habitaciones.append(Habitacion(1, Categoria_habitacion.CAMILLA, False, None, 0))
-        self._habitaciones.append(Habitacion(2, Categoria_habitacion.INDIVIDUAL, False, None, 0))
-        self._habitaciones.append(Habitacion(3, Categoria_habitacion.DOBLE, False, None, 0))
-        self._habitaciones.append(Habitacion(4, Categoria_habitacion.OBSERVACION, False, None, 0))
-        self._habitaciones.append(Habitacion(5, Categoria_habitacion.UCI, False, None, 0))
-        self._habitaciones.append(Habitacion(6, Categoria_habitacion.UCC, False, None, 0))
 
     # Metodos
 
@@ -95,12 +86,12 @@ class Hospital:
         with open(os.path.abspath("src/base_datos/temp/registro_vacunas.pickle"), "wb") as file:
             file.truncate()
             pickle.dump(self._lista_vacunas, file)
-        with open(os.path.abspath("src/base_datos/temp/registro_habitaciones.pickle"), "wb") as file:
-            file.truncate()
-            pickle.dump(self._habitaciones, file)
         with open(os.path.abspath("src/base_datos/temp/registro_enfermedades.pickle"), "wb") as file:
             file.truncate()
             pickle.dump(Enfermedad._enfermedades_registradas, file)
+        with open(os.path.abspath("src/base_datos/temp/registro_habitaciones.pickle"), "wb") as file:
+            file.truncate()
+            pickle.dump(self._habitaciones, file)
 
     def deserializar(self):
         with open(os.path.abspath("src/base_datos/temp/registro_doctores.pickle"), "rb") as file:
@@ -111,10 +102,10 @@ class Hospital:
             self._lista_medicamentos = pickle.load(file)
         with open(os.path.abspath("src/base_datos/temp/registro_vacunas.pickle"), "rb") as file:
             self._lista_vacunas = pickle.load(file)
-        with open(os.path.abspath("src/base_datos/temp/registro_habitaciones.pickle"), "rb") as file:
-            self._habitaciones = pickle.load(file)
         with open(os.path.abspath("src/base_datos/temp/registro_enfermedades.pickle"), "rb") as file:
             Enfermedad._enfermedades_registradas = pickle.load(file)
+        with open(os.path.abspath("src/base_datos/temp/registro_habitaciones.pickle"), "rb") as file:
+            self._habitaciones = pickle.load(file)
 
     @property
     def lista_pacientes(self):
