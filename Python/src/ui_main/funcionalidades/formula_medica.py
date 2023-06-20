@@ -155,7 +155,7 @@ def formula_medica(hospital, frame):
                 try:
                     raise ValueError
                 except ValueError:
-                    IngresoErroneo("Sin medicamentos").enviar_mensaje()
+                    IngresoErroneo("No elegiste medicamentos").enviar_mensaje()
                     # Se importa aca para evitar una referencia circular
                     from src.ui_main.ventana_principal import implementacion_default
                     implementacion_default(frame)
