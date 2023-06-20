@@ -169,9 +169,11 @@ def asignar_habitacion(hospital, frame):
         if len(cedula) != 0:
             try:
                 paciente = hospital.buscar_paciente(int(cedula))
-                if not paciente.habitacion_asignada:
+                if paciente.habitacion_asignada is None:
+                    asignar_habitacion_a_Pacientes(paciente)
+                else:
                     try:
-                        asignar_habitacion_a_Pacientes(paciente)
+                        raise EstaHospitalizado
                     except EstaHospitalizado as e:
                         e.enviar_mensaje()
             except DatosFalsos as e:

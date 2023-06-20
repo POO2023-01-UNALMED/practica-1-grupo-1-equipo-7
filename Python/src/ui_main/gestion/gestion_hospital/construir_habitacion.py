@@ -59,37 +59,44 @@ def construir_habitacion(hospital, frame):
             numero = int(fp.getValue(1))
             categoria = str(fp.getValue(2))
 
+            hay_error = False
+
             for i, habitacion in enumerate(hospital._habitaciones):
-                if habitacion.numero != numero and habitacion.categoria.name !=categoria:
+                if habitacion.numero == numero and habitacion.categoria.name ==categoria:
                     try:
-                        if categoria == Categoria_habitacion.CAMILLA.name:
-                            habitacion_nueva = Habitacion(numero, Categoria_habitacion.CAMILLA, False, None, 0)
-                            hospital._habitaciones.append(habitacion_nueva)
-
-                        elif categoria == Categoria_habitacion.INDIVIDUAL.name:
-                            habitacion_nueva = Habitacion(numero, Categoria_habitacion.INDIVIDUAL, False, None, 0)
-                            hospital._habitaciones.append(habitacion_nueva)
-
-                        elif categoria == Categoria_habitacion.DOBLE.name:
-                            habitacion_nueva = Habitacion(numero, Categoria_habitacion.DOBLE, False, None, 0)
-                            hospital._habitaciones.append(habitacion_nueva)
-
-                        elif categoria == Categoria_habitacion.OBSERVACION.name:
-                            habitacion_nueva = Habitacion(numero, Categoria_habitacion.OBSERVACION, False, None, 0)
-                            hospital._habitaciones.append(habitacion_nueva)
-
-                        elif categoria == Categoria_habitacion.UCI.name:
-                            habitacion_nueva = Habitacion(numero, Categoria_habitacion.UCI, False, None, 0)
-                            hospital._habitaciones.append(habitacion_nueva)
-
-                        elif categoria == Categoria_habitacion.UCC.name:
-                            habitacion_nueva = Habitacion(numero, Categoria_habitacion.UCC, False, None, 0)
-                            hospital._habitaciones.append(habitacion_nueva)
-
-                        messagebox.showinfo("Habitación Construida", "La habitación se ha construido exitosamente")
-                        ver_habitacion(numero, categoria)
+                        raise DatoDuplicado
                     except DatoDuplicado as e:
+                        hay_error = True
                         e.enviar_mensaje()
+
+            if hay_error == False:
+                if categoria == Categoria_habitacion.CAMILLA.name:
+                    habitacion_nueva = Habitacion(numero, Categoria_habitacion.CAMILLA, False, None, 0)
+                    hospital._habitaciones.append(habitacion_nueva)
+
+                elif categoria == Categoria_habitacion.INDIVIDUAL.name:
+                    habitacion_nueva = Habitacion(numero, Categoria_habitacion.INDIVIDUAL, False, None, 0)
+                    hospital._habitaciones.append(habitacion_nueva)
+
+                elif categoria == Categoria_habitacion.DOBLE.name:
+                    habitacion_nueva = Habitacion(numero, Categoria_habitacion.DOBLE, False, None, 0)
+                    hospital._habitaciones.append(habitacion_nueva)
+
+                elif categoria == Categoria_habitacion.OBSERVACION.name:
+                    habitacion_nueva = Habitacion(numero, Categoria_habitacion.OBSERVACION, False, None, 0)
+                    hospital._habitaciones.append(habitacion_nueva)
+
+                elif categoria == Categoria_habitacion.UCI.name:
+                    habitacion_nueva = Habitacion(numero, Categoria_habitacion.UCI, False, None, 0)
+                    hospital._habitaciones.append(habitacion_nueva)
+
+                elif categoria == Categoria_habitacion.UCC.name:
+                    habitacion_nueva = Habitacion(numero, Categoria_habitacion.UCC, False, None, 0)
+                    hospital._habitaciones.append(habitacion_nueva)
+
+                messagebox.showinfo("Habitación Construida", "La habitación se ha construido exitosamente")
+                ver_habitacion(numero, categoria)
+
         else:
             messagebox.showinfo("Habitación no construida", "No se ha construido la habitación")
             # Se importa aca para evitar una referencia circular

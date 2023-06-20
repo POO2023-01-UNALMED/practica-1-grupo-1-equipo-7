@@ -35,12 +35,12 @@ def destruir_habitacion(hospital, frame):
 
         criterios = ["Numero", "Tipo de Categoria (CAMILLA, INDIVIDUAL, DOBLE, OBSERVACION, UCI o UCC)","Estado","Paciente Asignado", "Disas Establecido el Paciente"]
         if habitacion.ocupada==False:
-            fp = FieldFrame(frame, "Criterio", criterios, "Valor", [habitacion.numero, habitacion.categoria.name,"Desocupada",habitacion.paciente.nombre, habitacion.dias],[False, False, False, False])
+            fp = FieldFrame(frame, "Criterio", criterios, "Valor", [habitacion.numero, habitacion.categoria.name,"Desocupada","Libre", habitacion.dias],[False, False, False, False, False])
             fp.pack()
             boton_eliminar = tk.Button(frame, text="Eliminar", command=lambda: destrucion_habitacion(habitacion))
             boton_eliminar.pack(pady=10)
         else:
-            fp = FieldFrame(frame, "Criterio", criterios, "Valor",[habitacion.numero, habitacion.categoria.name, "Ocupada", habitacion.paciente.nombre,habitacion.dias], [False, False, False, False])
+            fp = FieldFrame(frame, "Criterio", criterios, "Valor",[habitacion.numero, habitacion.categoria.name, "Ocupada", habitacion.paciente.nombre,habitacion.dias], [False, False, False, False, False])
             fp.pack()
 
 
@@ -54,17 +54,15 @@ def destruir_habitacion(hospital, frame):
         categoria = fp.getValue(2)
 
         if len(numero) != 0 and categoria != "":
-            try:
-                for i, habitacion in enumerate(hospital._habitaciones):
-                    if habitacion.numero == numero and habitacion.categoria.name == categoria:
-                        if habitacion is not None:
-                            elementos_habitacion(habitacion)
-                        else:
+            for i, habitacion in enumerate(hospital._habitaciones):
+                if habitacion.numero == int(numero) and habitacion.categoria.name == categoria:
+                    if habitacion:
+                        elementos_habitacion(habitacion)
+                    else:
+                        try:
                             raise DatosFalsos
-            except DatosFalsos as e:
-                e.enviar_mensaje()
-            except ValueError:
-                TipoIncorrecto().enviar_mensaje()
+                        except DatosFalsos as e:
+                            e.enviar_mensaje()
         else:
             try:
                 raise CampoVacio()

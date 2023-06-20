@@ -1,16 +1,18 @@
 import os
 import pickle
 
+from src.gestor_aplicacion.administracion.categoria_habitacion import Categoria_habitacion
 from src.gestor_aplicacion.administracion.vacuna import Vacuna
 from src.gestor_aplicacion.personas.doctor import Doctor
 from src.gestor_aplicacion.personas.enfermedad import Enfermedad
 from src.gestor_aplicacion.personas.paciente import Paciente
 from src.gestor_aplicacion.administracion.medicamento import Medicamento
+from src.gestor_aplicacion.servicios.habitacion import Habitacion
 from src.manejo_errores.error_aplicacion import DatosFalsos
 
 
 class Hospital:
-    _habitaciones = []
+    _habitaciones = [Habitacion(1, Categoria_habitacion.CAMILLA, False, None, 0)]
 
     def __init__(self):
         pac = Paciente(111, "Diego", "Particular")
