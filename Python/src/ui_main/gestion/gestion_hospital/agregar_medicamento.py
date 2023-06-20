@@ -3,6 +3,7 @@ from tkinter import messagebox, ttk
 from src.gestor_aplicacion.administracion.medicamento import Medicamento
 from src.gestor_aplicacion.personas.doctor import Doctor
 from src.gestor_aplicacion.personas.enfermedad import Enfermedad
+from src.manejo_errores.error_aplicacion import *
 from src.ui_main.gestion.field_frame import FieldFrame
 import tkinter as tk
 
@@ -20,21 +21,23 @@ def agregar_medicamento(hospital, frame):
 
     def agregar_lista_medicamentos():
         respuesta = tk.messagebox.askyesno("Confirmacion de medicamento", "¿Estas seguro de agregar este medicamento?")
-
         if respuesta:
-            nombre = str(fp.getValue(1))
-            descripcion = str(fp.getValue(2))
-            cantidad = int(fp.getValue(3))
-            precio = float(fp.getValue(4))
-            indice_enfermedad = combo_enfermedades.current()
-            enf_objeto = Enfermedad.getEnfermedadesRegistradas()[indice_enfermedad]
+            try:
+                nombre = str(fp.getValue(1))
+                descripcion = str(fp.getValue(2))
+                cantidad = int(fp.getValue(3))
+                precio = float(fp.getValue(4))
+                indice_enfermedad = combo_enfermedades.current()
+                enf_objeto = Enfermedad.getEnfermedadesRegistradas()[indice_enfermedad]
 
-            medicamento = Medicamento(nombre, enf_objeto, descripcion, cantidad, precio)
-            hospital.lista_medicamentos.append(medicamento)
-            messagebox.showinfo("Medicamento agregado", "El medicamento se ha agregado exitosamente")
-            # Se importa aca para evitar una referencia circular
-            from src.ui_main.ventana_principal import implementacion_default
-            implementacion_default(frame)
+                medicamento = Medicamento(nombre, enf_objeto, descripcion, cantidad, precio)
+                hospital.lista_medicamentos.append(medicamento)
+                messagebox.showinfo("Medicamento agregado", "El medicamento se ha agregado exitosamente")
+                # Se importa aca para evitar una referencia circular
+                from src.ui_main.ventana_principal import implementacion_default
+                implementacion_default(frame)
+            except ValueError:
+                TipoIncorrecto().enviar_mensaje()
         else:
             messagebox.showinfo("Medicamento no agregado", "No se ha agregado el medicamento")
             # Se importa aca para evitar una referencia circular

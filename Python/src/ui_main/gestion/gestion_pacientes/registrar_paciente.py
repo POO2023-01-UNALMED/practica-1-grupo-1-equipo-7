@@ -57,8 +57,6 @@ def registrar_paciente(hospital, frame):
                     hospital.lista_pacientes.append(paciente)
                     messagebox.showinfo("Paciente registrado", "El paciente se ha registrado exitosamente")
                     ver_paciente(cedula, nombre, tipo_eps)
-
-
             else:
                 messagebox.showinfo("Paciente no registrado", "No se ha registrado el paciente")
                 # Se importa aca para evitar una referencia circular

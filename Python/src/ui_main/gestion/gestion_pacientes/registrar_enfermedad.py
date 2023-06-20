@@ -3,6 +3,7 @@ from tkinter import messagebox, ttk
 import tkinter as tk
 
 from src.gestor_aplicacion.personas.enfermedad import Enfermedad
+from src.manejo_errores.error_aplicacion import *
 from src.ui_main.gestion.field_frame import FieldFrame
 
 
@@ -25,23 +26,31 @@ def registrar_enfermedad(hospital, frame):
 
         def crear_enf():
             respuesta = tk.messagebox.askyesno("Confirmacion Enfermedad", "¿Estas seguro de agregar esta enfermedad?")
+            if fp.getValue(1) != "" and fp.getValue(2) != "" and fp.getValue(3) != "":
+                try:
+                    if respuesta:
+                        nombre = str(fp.getValue(1))
+                        tipologia = str(fp.getValue(2))
+                        especialidad = str(fp.getValue(3))
+                        enf = Enfermedad(nombre, tipologia, especialidad)
+                        paciente.historia_clinica.enfermedades.append(enf)
+                        messagebox.showinfo("Enfermedad agregada", "La enfermedad se ha agregado exitosamente")
+                        # Se importa aca para evitar una referencia circular
+                        from src.ui_main.ventana_principal import implementacion_default
+                        implementacion_default(frame)
+                except ValueError:
+                    TipoIncorrecto().enviar_mensaje()
 
-            if respuesta:
-                nombre = str(fp.getValue(1))
-                tipologia = str(fp.getValue(2))
-                especialidad = str(fp.getValue(3))
-                enf = Enfermedad(nombre, tipologia, especialidad)
-                paciente.historia_clinica.enfermedades.append(enf)
-                messagebox.showinfo("Enfermedad agregada", "La enfermedad se ha agregado exitosamente")
-                # Se importa aca para evitar una referencia circular
-                from src.ui_main.ventana_principal import implementacion_default
-                implementacion_default(frame)
-
+                else:
+                    messagebox.showinfo("Enfermedad no agregada", "No se ha agregado la enfermedad")
+                    # Se importa aca para evitar una referencia circular
+                    from src.ui_main.ventana_principal import implementacion_default
+                    implementacion_default(frame)
             else:
-                messagebox.showinfo("Enfermedad no agregada", "No se ha agregado la enfermedad")
-                # Se importa aca para evitar una referencia circular
-                from src.ui_main.ventana_principal import implementacion_default
-                implementacion_default(frame)
+                try:
+                    raise CampoVacio()
+                except CampoVacio as e:
+                    e.enviar_mensaje()
 
         imprimir_titulo(frame)
         criterios = ["Nombre", "Tipologia", "Especialidad que la trata(General, Oftalmologia u Odontologia)"]
@@ -58,20 +67,25 @@ def registrar_enfermedad(hospital, frame):
         boton_borrar.grid(row=0, column=1, padx=10, pady=10, sticky="w")
 
     def agregar_enf(paciente, combo):
-        respuesta = tk.messagebox.askyesno("Confirmar eliminacion", "¿Estas seguro de agregar esta enfermedad?")
-        if respuesta:
-            indice_seleccionado = combo.current()
-            objeto_seleccionado = Enfermedad.getEnfermedadesRegistradas()[indice_seleccionado]
-            paciente.historia_clinica.agregar_enfermedad(objeto_seleccionado)
-            messagebox.showinfo("Enfermedad agregada", "La enfermedad se ha agregado exitosamente")
-            # Se importa aca para evitar una referencia circular
-            from src.ui_main.ventana_principal import implementacion_default
-            implementacion_default(frame)
-        else:
-            messagebox.showinfo("Agregar enfermedad cancelada", "No se ha agregado la enfermedad")
-            # Se importa aca para evitar una referencia circular
-            from src.ui_main.ventana_principal import implementacion_default
-            implementacion_default(frame)
+        respuesta = tk.messagebox.askyesno("Confirmar registro", "¿Estas seguro de agregar esta enfermedad?")
+        try:
+            if respuesta:
+                indice_seleccionado = combo.current()
+                objeto_seleccionado = Enfermedad.getEnfermedadesRegistradas()[indice_seleccionado]
+                paciente.historia_clinica.agregar_enfermedad(objeto_seleccionado)
+                messagebox.showinfo("Enfermedad agregada", "La enfermedad se ha agregado exitosamente")
+                # Se importa aca para evitar una referencia circular
+                from src.ui_main.ventana_principal import implementacion_default
+                implementacion_default(frame)
+            else:
+                messagebox.showinfo("Agregar enfermedad cancelada", "No se ha agregado la enfermedad")
+                # Se importa aca para evitar una referencia circular
+                from src.ui_main.ventana_principal import implementacion_default
+                implementacion_default(frame)
+        except CampoVacio as e:
+            e.enviar_mensaje()
+        except ValueError:
+            TipoIncorrecto().enviar_mensaje()
 
     def registrar_enf(paciente):
         imprimir_titulo(frame)
@@ -94,18 +108,19 @@ def registrar_enfermedad(hospital, frame):
 
     def buscar_paciente():
         cedula = fp.getValue(1)
-        paciente = hospital.buscar_paciente(int(cedula))
-
-        # Continua si el paciente esta registrado en el hospital
-        if paciente is not None:
-            registrar_enf(paciente)
+        if len(cedula) != 0:
+            try:
+                paciente = hospital.buscar_paciente(int(cedula))
+                registrar_enf(paciente)
+            except DatosFalsos as e:
+                e.enviar_mensaje()
+            except ValueError:
+                TipoIncorrecto().enviar_mensaje()
         else:
-            respuesta = tk.messagebox.askyesno("Error", "No existe un paciente registrado con esta cedula. "
-                                                        "¿Desea intentar de nuevo?")
-            if not respuesta:
-                # Se importa aca para evitar una referencia circular
-                from src.ui_main.ventana_principal import implementacion_default
-                implementacion_default(frame)
+            try:
+                raise CampoVacio()
+            except CampoVacio as e:
+                e.enviar_mensaje()
 
     imprimir_titulo(frame)
 
