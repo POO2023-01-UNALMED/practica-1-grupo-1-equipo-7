@@ -5,7 +5,7 @@ from abc import ABC, abstractmethod
 
 # Clase Abstracta destinada a herencia de servicios del hospital
 class Servicio(ABC):
-    generadorID = 1
+    generadorID = 100000
     # Atributos y constructor
     def __init__(self, paciente):
         self._id_servicio = Servicio.generadorID

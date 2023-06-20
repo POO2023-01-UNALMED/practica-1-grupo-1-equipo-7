@@ -128,7 +128,7 @@ def ventana_principal(hospital):
     ventana = tk.Tk()
     ventana.title("MedPlus - Sistema de gestion hospitalaria")
     ventana.geometry("1280x720")
-    # ventana.protocol("WM_DELETE_WINDOW", hospital.serializar())
+    ventana.protocol("WM_DELETE_WINDOW", hospital.serializar())
 
     # Menu de opciones (Zona 1)
     barra_menu = tk.Menu(ventana)

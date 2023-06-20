@@ -208,7 +208,7 @@ def ventana_inicial(hospital):
     ventana = tk.Tk()
     ventana.title("MedPlus - Sistema de gestion hospitalaria")
     ventana.geometry("1280x720")
-    # ventana.protocol("WM_DELETE_WINDOW", hospital.serializar())
+    ventana.protocol("WM_DELETE_WINDOW", hospital.serializar())
 
     # Menu inicio
     barra_menu = tk.Menu(ventana)
@@ -216,8 +216,7 @@ def ventana_inicial(hospital):
     opcion_archivo = tk.Menu(barra_menu, tearoff=0)
     barra_menu.add_cascade(label="Inicio", menu=opcion_archivo)
     opcion_archivo.add_command(label="Descripcion", command=descripcion)
-    opcion_archivo.add_command(label="Salir", command=lambda: ventana.destroy())
-    # opcion_archivo.add_command(label="Salir", command=lambda: [hospital.serializar(), ventana.destroy()])
+    opcion_archivo.add_command(label="Salir", command=lambda: [hospital.serializar(), ventana.destroy()])
 
     # Frames principales
     frame_p1 = ttk.Frame(ventana)
