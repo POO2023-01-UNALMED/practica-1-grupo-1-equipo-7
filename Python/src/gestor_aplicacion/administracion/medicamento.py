@@ -5,7 +5,7 @@
 # medicamentos que se eligen allí
 class Medicamento:
     # Atributos y constructor
-    def __init__(self, nombre, enfermedad, descripcion, cantidad, precio):
+    def __init__(self, nombre, descripcion, enfermedad, cantidad, precio):
         self._nombre = nombre
         self._enfermedad = enfermedad
         self._descripcion = descripcion
