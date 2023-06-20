@@ -11,7 +11,7 @@ from src.manejo_errores.error_aplicacion import DatosFalsos
 
 # Clase destinada a crear el hospital
 class Hospital:
-    _habitaciones = [Habitacion(1, Categoria_habitacion.CAMILLA, False, None, 0)]  # atributo de clase
+    _habitaciones = []  # atributo de clase
 
     # demas atributos y constructor
     def __init__(self):
@@ -20,6 +20,13 @@ class Hospital:
         self._lista_medicamentos = []
         self._lista_vacunas = []
         self.deserializar()
+
+        self._habitaciones.append(Habitacion(1, Categoria_habitacion.CAMILLA, False, None, 0))
+        self._habitaciones.append(Habitacion(2, Categoria_habitacion.INDIVIDUAL, False, None, 0))
+        self._habitaciones.append(Habitacion(3, Categoria_habitacion.DOBLE, False, None, 0))
+        self._habitaciones.append(Habitacion(4, Categoria_habitacion.OBSERVACION, False, None, 0))
+        self._habitaciones.append(Habitacion(5, Categoria_habitacion.UCI, False, None, 0))
+        self._habitaciones.append(Habitacion(6, Categoria_habitacion.UCC, False, None, 0))
 
     # Metodos
 
