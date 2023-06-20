@@ -71,7 +71,7 @@ def agregar_doctor(hospital, frame):
                         e.enviar_mensaje()
             except ValueError:
                 hay_errores = True
-                TipoIncorrecto().enviar_mensaje()
+                TipoIncorrecto("en el campo cedula").enviar_mensaje()
 
         if len(nombre) != 0:
             try:
@@ -82,7 +82,7 @@ def agregar_doctor(hospital, frame):
                     nombre = str(fp.getValue(2))
             except ValueError:
                 hay_errores = True
-                TipoIncorrecto().enviar_mensaje()
+                TipoIncorrecto("en el campo nombre").enviar_mensaje()
 
         if len(tipo_eps) != 0:
             try:
@@ -93,7 +93,7 @@ def agregar_doctor(hospital, frame):
                     tipo_eps = str(fp.getValue(3))
             except ValueError:
                 hay_errores = True
-                TipoIncorrecto().enviar_mensaje()
+                TipoIncorrecto("en el campo tipo de eps").enviar_mensaje()
 
         if len(especialidad) != 0:
             try:
@@ -104,7 +104,7 @@ def agregar_doctor(hospital, frame):
                     especialidad = str(fp.getValue(4))
             except ValueError:
                 hay_errores = True
-                TipoIncorrecto().enviar_mensaje()
+                TipoIncorrecto("en el campo especialidad").enviar_mensaje()
 
         if not cedula or not nombre or not tipo_eps or not especialidad:
             hay_errores = True

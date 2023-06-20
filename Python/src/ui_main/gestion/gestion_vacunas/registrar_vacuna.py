@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 
 from src.gestor_aplicacion.administracion.vacuna import Vacuna
+from src.manejo_errores.error_aplicacion import DatoDuplicado, TipoIncorrecto, CampoVacio
 from src.ui_main.gestion.field_frame import FieldFrame
 
 
@@ -46,18 +47,79 @@ def registrar_vacuna(hospital, frame_implementacion):
 
 
     def crear_vacuna():
-        respuesta = tk.messagebox.askyesno("Confirmacion de la vacuna", "¿Estas seguro de agregar esta vacuna?")
-        if respuesta:
-            nombre = str(fp.getValue(1))
-            tipo = str(fp.getValue(2))
-            tipo_eps = str(fp.getValue(3)).split(",")
-            precio = float(fp.getValue(4))
 
-            vacuna = Vacuna(tipo, nombre, tipo_eps, precio)
-            hospital.lista_vacunas.append(vacuna)
-            messagebox.showinfo("Vacuna agregada", "La vacuna se ha agregado exitosamente")
-            ver_vacuna_registrada(tipo,nombre,precio)
+        nombre = fp.getValue(1)
+        tipo = fp.getValue(2)
+        tipo_eps = str(fp.getValue(3)).split(",")
+        precio = fp.getValue(4)
 
+        # Variable de control para verificar si hay errores
+        hay_errores = False
+
+        if len(nombre) != 0:
+            try:
+                if nombre.isdigit():
+                    hay_errores=True
+                    raise ValueError
+                else:
+                    nombre=str(fp.getValue(1))
+                    if hospital.buscar_vacuna(nombre) is not None:
+                        hay_errores = True
+                        try:
+                            raise DatoDuplicado()
+                        except DatoDuplicado as e:
+                            e.enviar_mensaje()
+            except ValueError:
+                hay_errores = True
+                TipoIncorrecto("en el campo nombre").enviar_mensaje()
+
+        if len(tipo) != 0:
+            try:
+                if tipo != "Obligatoria" and tipo != "No obligatoria":
+                    hay_errores = True
+                    raise ValueError
+                else:
+                    tipo = str(fp.getValue(2))
+            except ValueError:
+                hay_errores = True
+                TipoIncorrecto("en el campo tipo").enviar_mensaje()
+
+        if tipo_eps !=[""]:
+            try:
+                for eps in tipo_eps:
+                    if eps != "Subsidiado" and eps !="Contributivo" and eps !="Particular":
+                        hay_errores = True
+                        raise ValueError
+            except ValueError:
+                hay_errores = True
+                TipoIncorrecto("en el campo eps").enviar_mensaje()
+
+        if len(precio) != 0:
+            try:
+                precio=float(fp.getValue(4))
+            except ValueError:
+                hay_errores = True
+                TipoIncorrecto("en el campo precio").enviar_mensaje()
+
+        if not nombre or not tipo or not precio or tipo_eps==[""]:
+            hay_errores = True
+            try:
+                raise CampoVacio()
+            except CampoVacio as e:
+                e.enviar_mensaje()
+
+        if not hay_errores:
+            respuesta = tk.messagebox.askyesno("Confirmacion de la vacuna", "¿Estás seguro de agregar esta vacuna?")
+            if respuesta:
+                vacuna = Vacuna(tipo, nombre, tipo_eps, precio)
+                hospital.lista_vacunas.append(vacuna)
+                messagebox.showinfo("Vacuna agregada", "La vacuna se ha agregado exitosamente")
+                ver_vacuna_registrada(tipo, nombre, precio)
+            else:
+                messagebox.showinfo("Vacuna no agregada", "No se ha agregado la vacuna")
+                # Se importa acá para evitar una referencia circular
+                from src.ui_main.ventana_principal import implementacion_default
+                implementacion_default(frame_implementacion)
 
     def borrar_campos():
         for entry in fp.valores:

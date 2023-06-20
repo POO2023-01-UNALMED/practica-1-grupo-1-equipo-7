@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 
 from src.gestor_aplicacion.servicios.cita_vacuna import CitaVacuna
+from src.manejo_errores.error_aplicacion import DatosFalsos, TipoIncorrecto, CampoVacio
 from src.ui_main.gestion.field_frame import FieldFrame
 
 
@@ -78,18 +79,28 @@ def agregar_cita_vacuna(hospital, frame):
         boton_regresar = tk.Button(frame, text="Regresar", command=lambda: implementacion_default(frame))
         boton_regresar.pack()
     def busqueda_vacuna():
-        nombre= fp.getValue(1)
-        vacuna= hospital.buscar_vacuna(nombre)
+        nombre = fp.getValue(1)
 
-        if vacuna is not None:
-            agregar_fecha_vacuna(vacuna)
+        if len(nombre) != 0:
+            try:
+                if nombre.isdigit():
+                    raise ValueError
+                else:
+                    vacuna = hospital.buscar_vacuna(nombre)
+                    if vacuna is not None:
+                        agregar_fecha_vacuna(vacuna)
+                    else:
+                        raise DatosFalsos
+            except ValueError:
+                TipoIncorrecto().enviar_mensaje()
+            except DatosFalsos as e:
+                e.enviar_mensaje()
+
         else:
-            respuesta = tk.messagebox.askyesno("Error", "No existe una vacuna registrada con ese nombre. "
-                                                        "¿Desea intentar de nuevo?")
-            if not respuesta:
-                # Se importa aca para evitar una referencia circular
-                from src.ui_main.ventana_principal import implementacion_default
-                implementacion_default(frame)
+            try:
+                raise CampoVacio()
+            except CampoVacio as e:
+                e.enviar_mensaje()
 
     imprimir_titulo(frame)
     titulo_ingreso_nombre = tk.Label(frame, text="Ingrese el nombre de la vacuna a ver:", bg="white",

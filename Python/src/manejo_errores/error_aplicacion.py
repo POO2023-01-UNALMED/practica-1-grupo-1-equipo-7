@@ -28,8 +28,8 @@ class DatosFalsos(IngresoErroneo):
 
 
 class TipoIncorrecto(IngresoErroneo):
-    def __init__(self):
-        super().__init__("Ingrese dato de forma correcta")
+    def __init__(self,mensaje=""):
+        super().__init__(f"Ingrese dato de forma correcta {mensaje}")
 
 
 class CampoVacio(IngresoErroneo):

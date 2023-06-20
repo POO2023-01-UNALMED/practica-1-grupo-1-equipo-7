@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox
+
 
 from src.manejo_errores.error_aplicacion import DatosFalsos, TipoIncorrecto, CampoVacio
 from src.ui_main.gestion.field_frame import FieldFrame
