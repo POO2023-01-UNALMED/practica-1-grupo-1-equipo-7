@@ -100,25 +100,29 @@ def registrar_enfermedad(hospital, frame):
         boton_borrar.grid(row=0, column=1, padx=10, pady=10, sticky="w")
 
     def agregar_enf(paciente, combo):
-        respuesta = tk.messagebox.askyesno("Confirmar registro", "¿Estas seguro de agregar esta enfermedad?")
-        try:
-            if respuesta:
-                indice_seleccionado = combo.current()
-                objeto_seleccionado = Enfermedad.getEnfermedadesRegistradas()[indice_seleccionado]
-                paciente.historia_clinica.agregar_enfermedad(objeto_seleccionado)
-                messagebox.showinfo("Enfermedad agregada", "La enfermedad se ha agregado exitosamente")
-                # Se importa aca para evitar una referencia circular
-                from src.ui_main.ventana_principal import implementacion_default
-                implementacion_default(frame)
-            else:
-                messagebox.showinfo("Agregar enfermedad cancelada", "No se ha agregado la enfermedad")
-                # Se importa aca para evitar una referencia circular
-                from src.ui_main.ventana_principal import implementacion_default
-                implementacion_default(frame)
-        except CampoVacio as e:
-            e.enviar_mensaje()
-        except ValueError:
-            TipoIncorrecto().enviar_mensaje()
+            indice_seleccionado = combo.current()
+            objeto_seleccionado = Enfermedad.getEnfermedadesRegistradas()[indice_seleccionado]
+            error = False
+            if objeto_seleccionado in paciente.historia_clinica.enfermedades:
+                try:
+                    error = True
+                    raise DatoDuplicado()
+                except DatoDuplicado as e:
+                    e.enviar_mensaje()
+            if error is not True:
+                respuesta = tk.messagebox.askyesno("Confirmar registro", "¿Estas seguro de agregar esta enfermedad?")
+                if respuesta:
+
+                    paciente.historia_clinica.agregar_enfermedad(objeto_seleccionado)
+                    messagebox.showinfo("Enfermedad agregada", "La enfermedad se ha agregado exitosamente")
+                    # Se importa aca para evitar una referencia circular
+                    from src.ui_main.ventana_principal import implementacion_default
+                    implementacion_default(frame)
+                else:
+                    messagebox.showinfo("Agregar enfermedad cancelada", "No se ha agregado la enfermedad")
+                    # Se importa aca para evitar una referencia circular
+                    from src.ui_main.ventana_principal import implementacion_default
+                    implementacion_default(frame)
 
     def registrar_enf(paciente):
         imprimir_titulo(frame)
