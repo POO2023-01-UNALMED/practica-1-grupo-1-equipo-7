@@ -7,7 +7,7 @@ from src.ui_main.gestion.field_frame import FieldFrame
 
 
 def imprimir_titulo(frame):
-    # Limpia el frame
+    # Se usa para borrar lo que hay en el frame y mostrar el titulo de la funcionalidad
     for item in frame.winfo_children():
         item.destroy()
 
@@ -18,6 +18,7 @@ def imprimir_titulo(frame):
 
 def asignar_habitacion(hospital, frame):
     def mostra_asignacion(paciente):
+        # cuando se confirma se muestra en pantalla el resumen de la asignacion
         imprimir_titulo(frame)
         paciente_label = tk.Label(frame, text="Resumen asignación de habitación del Paciente:", bg="white",
                                   font=("Helvetica", 12))
@@ -34,11 +35,13 @@ def asignar_habitacion(hospital, frame):
 
         # Se importa aca para evitar una referencia circular
         from src.ui_main.ventana_principal import implementacion_default
-
+        # Boton para regresar a la ventana principal
         boton_regresar = tk.Button(frame, text="Regresar", command=lambda: implementacion_default(frame))
         boton_regresar.pack()
 
+    # Aca se ingresan todos los datos necesarios para asignar las habitaciones
     def asignar_habitacion_a_Pacientes(paciente):
+        # Se pide confirmar la asignacion y se actualiza la lista de habitaciones
         def confirmar_habitacion():
             eleccion = entry.get()
             if eleccion:
@@ -98,7 +101,7 @@ def asignar_habitacion(hospital, frame):
 
         def limpiar_entry():
             entry.delete("0", "end")
-
+        #Codigo para habilitar el combobox de habitaciones
         def habilitar_elegir_habitacion(event):
             eleccion = combo_tipo_categoria.get()
             combo_elegir_habitacion.set("")
@@ -130,6 +133,7 @@ def asignar_habitacion(hospital, frame):
             else:
                 combo_elegir_habitacion['state'] = 'disabled'
 
+        # Codigo para habilitar el entry de dias estimados
         def habilitar_ingresar_dias(event):
             eleccion = combo_elegir_habitacion.get()
             limpiar_entry()
@@ -140,6 +144,7 @@ def asignar_habitacion(hospital, frame):
                 entry.config(state='disabled')
                 limpiar_entry()
 
+        # se crean los label y combobox necesarios para llenar la informacion para asignar la habitacion
         tipo_categoria = tk.Label(frame1, text="Seleccione el tipo de categoria:", bg="white",
                                   font=("Helvetica", 10, "bold"))
         tipo_categoria.grid(row=0, column=0, padx=10, pady=10, sticky="w")
@@ -161,16 +166,17 @@ def asignar_habitacion(hospital, frame):
         label_entry.grid(row=2, column=0, padx=10, pady=10, sticky="w")
         entry = tk.Entry(frame1, state='disabled')
         entry.grid(row=2, column=1, padx=10, pady=10, sticky="w")
-
+        # Boton para aceptar e ir a la confirmacion de la asignacion
         boton_aceptar = tk.Button(frame, text="Aceptar", command=confirmar_habitacion)
         boton_aceptar.pack(pady=5)
 
         # Se importa aca para evitar una referencia circular
         from src.ui_main.ventana_principal import implementacion_default
-
+        # Boton para regresar a la ventana principal
         boton_regresar = tk.Button(frame, text="Regresar", command=lambda: implementacion_default(frame))
         boton_regresar.pack(pady=5)
 
+    # Aca se verifica que el paciente exista, que no tenga ya una habitacion asignada y que no hubieron errores al ingresarlo
     def buscar_paciente():
         cedula = fp.getValue(1)
 

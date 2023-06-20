@@ -1,7 +1,7 @@
 # Autores: Diego Andres Gracia Granados, Daniel Giraldo Vanegas, Elian David Velandia Riveros, Juan Camilo Gutierrez Martinez
 # y Santiago Arboleda Acevedo
 from enum import Enum
-
+#enum que contiene las categorias de las habitaciones y sus precios
 class Categoria_habitacion(Enum):
     CAMILLA = 50000
     INDIVIDUAL = 150000
