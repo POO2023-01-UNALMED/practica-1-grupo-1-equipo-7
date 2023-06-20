@@ -75,7 +75,7 @@ def agregar_medicamento(hospital, frame):
                 indice_enfermedad = combo_enfermedades.current()
                 enf_objeto = Enfermedad.getEnfermedadesRegistradas()[indice_enfermedad]
 
-                medicamento = Medicamento(nombre, enf_objeto, descripcion, cantidad, precio)
+                medicamento = Medicamento(nombre, descripcion, enf_objeto, cantidad, precio)
                 hospital.lista_medicamentos.append(medicamento)
                 messagebox.showinfo("Medicamento agregado", "El medicamento se ha agregado exitosamente")
                 # Se importa aca para evitar una referencia circular
