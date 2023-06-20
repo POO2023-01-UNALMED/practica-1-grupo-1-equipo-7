@@ -7,7 +7,7 @@ from src.ui_main.gestion.gestion_doctores import agregar_doctor, ver_doctor, eli
 from src.ui_main.gestion.gestion_pacientes import registrar_paciente, administrar_paciente, registrar_enfermedad
 from src.ui_main.gestion.gestion_vacunas import registrar_vacuna, ver_vacuna, eliminar_vacuna,agregar_cita_vacuna
 from src.ui_main.gestion.gestion_hospital import ver_vacunas, ver_pacientes, ver_doctores, agregar_medicamento, \
-    ver_medicamentos
+    ver_medicamentos, construir_habitacion, destruir_habitacion
 
 
 def cambiar_contenido(opcion, hospital, frame_implementacion):
@@ -27,6 +27,8 @@ def cambiar_contenido(opcion, hospital, frame_implementacion):
         "ver_vacunas": ver_vacunas.ver_vacunas,
         "ver_pacientes": ver_pacientes.ver_pacientes,
         "ver_doctores": ver_doctores.ver_doctores,
+        "construir-habitacion": construir_habitacion.construir_habitacion,
+        "destruir-habitacion": destruir_habitacion.destruir_habitacion,
         "agregar-medicamento": agregar_medicamento.agregar_medicamento,
         "ver-medicamentos": ver_medicamentos.ver_medicamentos,
 
@@ -167,6 +169,12 @@ def ventana_principal(hospital):
                                                                           frame_implementacion))
     opcion_gestion_hospital.add_command(label="Doctores del hospital",
                                         command=lambda: cambiar_contenido("ver_doctores", hospital,
+                                                                          frame_implementacion))
+    opcion_gestion_hospital.add_command(label="Construir habitación",
+                                        command=lambda: cambiar_contenido("construir-habitacion", hospital,
+                                                                          frame_implementacion))
+    opcion_gestion_hospital.add_command(label="Destruir habitación",
+                                        command=lambda: cambiar_contenido("destruir-habitacion", hospital,
                                                                           frame_implementacion))
     opcion_gestion_hospital.add_command(label="Agregar medicamento",
                                         command=lambda: cambiar_contenido("agregar-medicamento", hospital,

@@ -1,25 +1,9 @@
 import tkinter as tk
-
-
-def asignar_habitacion(hospital, frame_implementacion):
-    # Implementacion
-    label_inicial = tk.Label(frame_implementacion, text="Asignar habitacion")
-    label_inicial.pack()
-    label_inicial.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
-
-    # Funcionalidad para regresar a la ventana principal
-
-    # Se importa aca para evitar una referencia circular
-    from src.ui_main.ventana_principal import implementacion_default
-
-    boton_regresar = tk.Button(frame_implementacion, text="Regresar",
-                               command=lambda: implementacion_default(frame_implementacion))
-    boton_regresar.pack()
-    boton_regresar.place(relx=0.5, rely=0.6, anchor=tk.CENTER)
-import tkinter as tk
 from tkinter import ttk, messagebox
 
 from src.gestor_aplicacion.servicios.habitacion import Habitacion
+from src.manejo_errores.error_aplicacion import DatosFalsos, TipoIncorrecto, CampoVacio, EstaHospitalizado
+from src.ui_main.gestion.field_frame import FieldFrame
 
 def imprimir_titulo(frame):
     # Limpia el frame
@@ -30,45 +14,41 @@ def imprimir_titulo(frame):
     titulo = tk.Label(frame, text="Asignar Habitación", font=("Helvetica", 16, "bold"))
     titulo.pack(pady=20)
 def asignar_habitacion(hospital, frame):
+
     def mostra_asignacion(paciente):
         imprimir_titulo(frame)
         paciente_label = tk.Label(frame, text="Resumen asignación de habitación del Paciente:", bg="white",font=("Helvetica", 12))
         paciente_label.pack(pady=10)
-        frame_habitacion=tk.Frame(frame)
-        frame_habitacion.pack(fill=tk.BOTH, expand=True)
 
+        resumen_habitacion=tk.Text(frame, bg="white", font=("Helvetica", 14))
+        resumen_habitacion.pack(fill=tk.BOTH, expand=True)
 
-        cedula_label = tk.Label(frame_habitacion, text=f"Cédula: {paciente.cedula}", bg="white", font=("Helvetica", 10, "bold"))
-        cedula_label.grid(row=0, column=0, padx=10, pady=5, sticky="w")
-
-        nombre_label = tk.Label(frame_habitacion, text=f"Nombre: {paciente.nombre}", bg="white", font=("Helvetica", 10, "bold"))
-        nombre_label.grid(row=0, column=1, padx=10, pady=5, sticky="w")
-
-        numero_label = tk.Label(frame_habitacion, text=f"Número de habitación: {paciente.habitacion_asignada.numero()}", bg="white", font=("Helvetica", 10, "bold"))
-        numero_label.grid(row=0, column=1, padx=10, pady=5, sticky="w")
-
-        categoria_label = tk.Label(frame_habitacion, text=f"Categoría de habitación: {paciente.habitacion_asignada.categoria()}", bg="white", font=("Helvetica", 10, "bold"))
-        categoria_label.grid(row=1, column=1, padx=10, pady=5, sticky="w")
+        texto_resumen = f"Nombre: {paciente.nombre}\nCedula: {paciente.cedula}\nNumero de habitación: {paciente.habitacion_asignada.numero}\nCategoria de Habitacion:  {paciente.habitacion_asignada.categoria.name}\n\n"
+        resumen_habitacion.insert(tk.END, texto_resumen)
+        resumen_habitacion.config(padx=30)
+        resumen_habitacion.config(highlightthickness=5, highlightbackground="#4D5BE4")
+        resumen_habitacion.config(state="disabled")
 
         # Se importa aca para evitar una referencia circular
         from src.ui_main.ventana_principal import implementacion_default
 
-        boton_regresar = tk.Button(frame_habitacion, text="Regresar", command=lambda: implementacion_default(frame))
+        boton_regresar = tk.Button(frame, text="Regresar", command=lambda: implementacion_default(frame))
         boton_regresar.pack()
     def asignar_habitacion_a_Pacientes(paciente):
         def confirmar_habitacion():
             eleccion = entry.get()
             if eleccion:
-                respuesta = tk.messagebox.askyesno("Confirmar habitación", "¿Estas seguro de la elección de esta habitación?")
+                respuesta = tk.messagebox.askyesno("Confirmar habitación",
+                                                   "¿Estas seguro de la elección de esta habitación?")
                 if respuesta:
                     numero_habitacion, categoria_habitacion = combo_elegir_habitacion.get().split(" - ")
                     for i, habitacion in enumerate(hospital._habitaciones):
-                        if habitacion.numero == numero_habitacion and habitacion.categoria.name == categoria_habitacion:
-                            hospital._habitaciones[i].ocupada = True
-                            hospital._habitaciones[i].dias = entry.get()
-                            hospital._habitaciones[i].paciente = paciente
-                            habitacion_nueva = hospital._habitaciones[i]
-                            paciente.habitacion_asignada = habitacion_nueva
+                        if habitacion.numero == int(
+                                numero_habitacion) and habitacion.categoria.name == categoria_habitacion:
+                            habitacion.ocupada = True
+                            habitacion.dias = int(entry.get())
+                            habitacion.paciente = paciente
+                            paciente.habitacion_asignada = habitacion
                             break
                     messagebox.showinfo("Habitación asignada", "La habitación se ha asignado exitosamente")
                     mostra_asignacion(paciente)
@@ -80,8 +60,11 @@ def asignar_habitacion(hospital, frame):
                     implementacion_default(frame)
 
             else:
-                messagebox.showerror("Informacion incompleta",
-                                     "Necesita completar todos los espacios para asignar la habitación")
+                try:
+                    raise CampoVacio()
+                except CampoVacio as e:
+                    e.enviar_mensaje()
+
 
         def obtener_categorias(paciente):
             # Código para obtener las categorías disponibles según la EPS del usuario
@@ -181,29 +164,37 @@ def asignar_habitacion(hospital, frame):
         boton_regresar.pack(pady=5)
 
     def buscar_paciente():
-        cedula = ingreso_cedula.get()
-        paciente = hospital.buscar_paciente(int(cedula))
+        cedula = fp.getValue(1)
 
-        # Continua si el paciente esta registrado en el hospital
-        if paciente is not None:
-            asignar_habitacion_a_Pacientes(paciente)
+        if len(cedula) != 0:
+            try:
+                paciente = hospital.buscar_paciente(int(cedula))
+                if not paciente.habitacion_asignada:
+                    try:
+                        asignar_habitacion_a_Pacientes(paciente)
+                    except EstaHospitalizado as e:
+                        e.enviar_mensaje()
+            except DatosFalsos as e:
+                e.enviar_mensaje()
+            except ValueError:
+                TipoIncorrecto().enviar_mensaje()
         else:
-            respuesta = tk.messagebox.askyesno("Error", "No existe un paciente registrado con esta cedula. "
-                                                        "¿Desea intentar de nuevo?")
-            if not respuesta:
-                # Se importa aca para evitar una referencia circular
-                from src.ui_main.ventana_principal import implementacion_default
-                implementacion_default(frame)
+            try:
+                raise CampoVacio()
+            except CampoVacio as e:
+                e.enviar_mensaje()
 
     imprimir_titulo(frame)
 
     # Pide la cedula del paciente
-    label_ingreso_cedula = tk.Label(frame, text="Ingrese la cédula del paciente:", bg="white",
-                                    font=("Helvetica", 10, "bold"))
-    label_ingreso_cedula.pack()
 
-    ingreso_cedula = tk.Entry(frame)
-    ingreso_cedula.pack(pady=5)
+    titulo_ingreso_cedula = tk.Label(frame, text="Ingrese la cédula del paciente:", bg="white",
+                                     font=("Helvetica", 10, "bold"))
+    titulo_ingreso_cedula.pack()
+
+    criterios = ["Cédula"]
+    fp = FieldFrame(frame, "", criterios, "", None, None)
+    fp.pack()
 
     boton_buscar_paciente = tk.Button(frame, text="Buscar", command=buscar_paciente)
     boton_buscar_paciente.pack(pady=10)
